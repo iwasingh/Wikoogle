@@ -8,6 +8,13 @@ Wikipedia search engine
 * https://lucene.apache.org/solr/ 
 * https://elasticsearch-py.readthedocs.io/en/master/
 
+## Tips
+* https://wiki.python.org/moin/PythonSpeed/PerformanceTips
+* Write high speed functions in C and build a python c extension. Roughly
+* Pypy
+* Ctypes
+* C extension
+
 ## XML parsing
 * http://effbot.org/zone/celementtree.htm
 * https://lxml.de/intro.html 
