@@ -14,6 +14,7 @@ Wikipedia search engine
 * Pypy
 * Ctypes
 * C extension
+* I/O performance https://docs.python.org/3/library/io.html
 
 ## XML parsing
 * http://effbot.org/zone/celementtree.htm
