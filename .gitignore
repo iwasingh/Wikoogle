@@ -137,3 +137,5 @@ dmypy.json
 ### VisualStudioCode ###
 .vscode
 .history
+
+dumps

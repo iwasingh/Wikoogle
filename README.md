@@ -19,6 +19,11 @@ Wikipedia search engine
 ## XML parsing
 * http://effbot.org/zone/celementtree.htm
 * https://lxml.de/intro.html 
-
+* Wikipedia Schema https://www.mediawiki.org/wiki/Help:Formatting
+* https://github.com/attardi/wikiextractor/wiki
 ## Indexing
 * https://www.ibm.com/developerworks/library/x-hiperfparse/index.html 
+## Wikitext formatting
+* https://en.wikipedia.org/wiki/Help:Wikitext
+## Logging
+* https://docs.python.org/3/howto/logging-cookbook.html
