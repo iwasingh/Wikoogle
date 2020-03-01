@@ -27,3 +27,15 @@ Wikipedia search engine
 * https://en.wikipedia.org/wiki/Help:Wikitext
 ## Logging
 * https://docs.python.org/3/howto/logging-cookbook.html
+
+## Notes 1.0
+### Problems
+* xml tree memory problem, solved by .clear() and del
+* Wikipedia template parsing
+###
+* How to model the index?
+ * Multiple index
+   - whoosh index with title and a reference in the wikigoogle index
+   - wikigoogle index with the wikipedia parsed template and other information
+
+ 
