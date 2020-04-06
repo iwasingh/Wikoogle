@@ -1,12 +1,12 @@
 import sys
-# import logging
+import logging
 from lxml import etree
 
 
 # huge_tree: disable security restrictions and support very deep trees
 # and very long text content (only affects libxml2 2.7+)
 
-
+# @functools.lru_cache(user_function)¶
 class Parser:
     """XML dump wikipedia parser"""
 
@@ -23,7 +23,7 @@ class Parser:
             title = root.xpath('n:title', namespaces=namespaces)[0]
             body = root.xpath('n:revision/n:text', namespaces=namespaces)[0]
 
-            # Wikimedia.compile(body)
+            print(body.text)
             while root.getprevious() is not None:
                 del root.getparent()[0]
             root.clear()

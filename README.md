@@ -20,11 +20,21 @@ Wikipedia search engine
 * http://effbot.org/zone/celementtree.htm
 * https://lxml.de/intro.html 
 * Wikipedia Schema https://www.mediawiki.org/wiki/Help:Formatting
+
+## Wikimedia parsing
+* https://www.mediawiki.org/wiki/Markup_spec/EBNF
 * https://github.com/attardi/wikiextractor/wiki
+
+
 ## Indexing
 * https://www.ibm.com/developerworks/library/x-hiperfparse/index.html 
 ## Wikitext formatting
 * https://en.wikipedia.org/wiki/Help:Wikitext
+* https://en.wikipedia.org/wiki/Help:Cheatsheet
+* https://en.wikiquote.org/wiki/Help:Wiki_markup_examples	
+* https://dl.acm.org/doi/10.1145/512927.512931
+* https://tomassetti.me/guide-parsing-algorithms-terminology/#structureParser
+
 ## Logging
 * https://docs.python.org/3/howto/logging-cookbook.html
 
@@ -37,5 +47,11 @@ Wikipedia search engine
  * Multiple index
    - whoosh index with title and a reference in the wikigoogle index
    - wikigoogle index with the wikipedia parsed template and other information
+
+## Notes 1.1
+* Wikimedia markup spec
+ * Keep &ltmath; and &gt/math to show math expressions or remove them?;
+   -> Everything different from Wikimedia markspec should be kept or handle situation case by case?
+      For indexing purpose these expression are quite useless since they need to be processed (ex. MathJax, Latex ec..)
 
  

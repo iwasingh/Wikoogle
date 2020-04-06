@@ -13,8 +13,8 @@ DUMP_FOLDER = Path('./dumps')
 
 def main():
     print('parsing')
-    # w_parser = parser.Parser(str(DUMP_FOLDER / 'enwiki-20200120-pages-articles-multistream1.xml'))
-    # w_parser.parse()
+    w_parser = parser.Parser(str(DUMP_FOLDER / 'enwiki-20200120-pages-articles-multistream1.xml'))
+    w_parser.parse()
 
     # schema = Schema(id=ID(stored=True),
     #                 title=TEXT(stored=True),
