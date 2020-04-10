@@ -1,12 +1,13 @@
-from .lexer import TemplateT
 import logging
+from .combinators import sor
+import src.parsing.lexer as lexer
 
 logger = logging.getLogger('Parser')
 
-"""LL(1) parser implementation
-You can find the grammar in the ABNF form here(https://www.mediawiki.org/wiki/Preprocessor_ABNF),
-this parser implements a context-free grammar and each rule is described in the proper class.
-Obviously this parser will not handle every production, in fact there are rules
+"""A recursive descent parser implementation
+You can find the grammar for Wikimedia in the ABNF form here(https://www.mediawiki.org/wiki/Preprocessor_ABNF),
+this parser implements a context-free grammar and each rule is described in the proper method inside Grammar class.
+Obviously this parser will not handle every production rule (non-terminal ones), in fact there are rules
 that might be simplified and a internal grammar is used and explained in the EBNF form.
 
 For indexing purpose i don't need too much, however it is pretty solid and can handle most of
@@ -14,6 +15,11 @@ them or can be further extended if necessary
 
 """
 
+
+# TODO read
+#  change .next() with .peak() in some combinators so there is at least 1 lookahead before consuming the
+#  token. Current implementation should work anyway because the dump should be correct (no syntax errors, i hope so!)
+#  therefore the parser assumes everything is correct. I raise a ParseError if something is wrong
 
 class Node:
     def __init__(self, value=None):
@@ -34,31 +40,6 @@ class Node:
         return self.__str__()
 
 
-class ParseError(Exception):
-    def __init__(self, message=''):
-        self.message = f"ParseError: {message}"
-
-
-# class TextP(Node):
-#     def __init__(self, body):
-#         super().__init__()
-#         self._type = 'TEXT'
-#         self.body = body
-#         self._context = None
-#
-#     @staticmethod
-#     def parse(context):
-#         context.next()
-#         return TextP(context.current)
-
-
-# class LinkP(Node):
-#     def __init__(self, text, link):
-#         self._type = 'LINK'
-#         self.text = text,
-#         self.link = link
-
-
 class Parser:
     def __init__(self, tokens):
         print(tokens, len(tokens))
@@ -66,16 +47,24 @@ class Parser:
         self._ast = Node()
         self._index = -1
         self._current = None
+        self._grammar = Grammar()
 
     def parse(self):
+        expression = self._grammar.expression()
         self.next()
-        ast = WIKIMEDIA(self)
-        print(ast)
+        while self.current.token != lexer.Lexer.EOF:
+            result = expression(self)
+            if result:
+                self._ast.add(result)
+            else:
+                self.next()
+
+        print(self._ast)
 
     def next(self):
         try:
             token = next(self._tokens)
-            logging.info('Next token: ' + repr(token))
+            # logging.info('Next token: ' + repr(token))
             self._index = self._index + 1
             self._current = token
             return token
@@ -91,71 +80,144 @@ class Parser:
         return self._current
 
 
-# class S(tuple):
-#    def __new__(cls, *args):
-#        pass
-
-# def s(*argv):
-#    pass
-# def
-""" Small set of combinator utilities """
-
-
-# Sequence of parser
-def seq(*args):
-    pass
-
-
-# Pipe aka | aka OR aka alternative
-def pipe(*args):
-    pass
-
-
-def expect(self):
-    pass
-
-
-def epsilon(self):
-    pass
+# def epsilon(self):
+#     return
+#     pass
 
 
 class Grammar:
-    TEXT = terminal()
-    TEMPLATE = seq()
+    """Handles the grammar on which the parser will depend upon
+    As said before, each production rule is described in the EBNF form and might be simplified from the original one
+    """
+
+    rules = {
+        # 'TEMPLATE': lexer.TemplateT.parse,
+        # 'LINK': lexer.LinkT.parse,
+        # 'TEXT': lexer.Text.parse,
+    }
+
+    def __init__(self):
+        pass
+
+    # Add additional rules
+    def rule(self, rule):
+        pass
+
+    def expression(self):
+        """
+        Wikimedia primary expression
+
+        ε : = text
+        expression := template
+                        | heading_2
+                        | link
+                        | ε
+        :param parser:
+        :return:
+        """
+        # sor(*Grammar.rules.values())
+        return sor(
+            self.template,
+            self.link,
+            self.epsilon
+        )
+
+    @staticmethod
+    def template(parser):
+        """Template grammar
+        Wikimedia ABNF
+        template = "{{", title, { "|", part }, "}}" ;
+        part     = [ name, "=" ], value ;
+        title    = text ;
+
+        ------
+
+        Internal
+        text          := ε
+        template      := '{{' text '}}'
+
+        Templates are used to call functions and do some particular formatting
+        Only the title might be necessary, this is why the template is simplified with a simple text inside brackets
+
+        :param parser:
+        :return:
+        """
+        return lexer.TemplateT.parse(parser)
+
+    @staticmethod
+    def link(parser):
+        """Link grammar
+        Wikimedia EBNF
+
+        start link    = "[[";
+        end link      = "]]";
+        internal link = start link, full pagename, ["|", label], end link,
+
+        ------
+        Internal
+
+        pagename   := ε
+        link            := '[[' pagename ']]'
+
+        The link contain the page name, i don't consider the optional ["|", label] for now, which is used for the link parameter
+        If that is relevant for index purposes, create a not-terminal function and call it inside parse in lexer.LinkT
+
+        :param parser:
+        :return:
+        """
+        return lexer.LinkT.parse(parser)
+
+    @staticmethod
+    def heading_2():
+        """Heading 2
+        A heading
+        """
+        return lexer.HeadingT.parse
+
+    @staticmethod
+    def epsilon(parser):
+        """Basic epsilon that consume the token and proceed aka Text for now.
+        Maybe i'll further extend this to handle cases like left-recursion but for now there aren't recursive rules
+
+        :param parser:
+        :return:
+        """
+        return lexer.Text.parse(parser)
 
 
-def TEXT():
-    def parse(parser):
-        token = parser.current
-        parser.next()
-        return Node(TextP(token.text))
+# def TEXT(parser):
+#     if parser.current.token == Text.start:
+#         token = parser.current
+#         parser.next()
+#         return Node(TextP(token.text))
+#
+#     logging.info('TEXT_NOT_FOUND')
+#     return None
+#
+#
+# def TEMPLATE(parser):
+#     rule = seq(expect(TemplateT.start), TEXT, expect(TemplateT.end))
+#     result = pipe(parser, rule, extract)
+#     if result:
+#         return Node(TemplateP(result.value))
+#     return False
+#
+#
+# def LINK(parser):
+#     rule = seq(expect(LinkT.start), TEXT, expect(LinkT.end))
+#     result = pipe(parser, rule, extract)
+#     if result:
+#         return Node(LinkP(result.value))
+#     return False
+#
 
-    return parse
-
-
-def TEMPLATE():
-    tag = TemplateT()
-
-    def parse(parser):
-        if parser.current == tag.start:
-            parser.next()
-            text = (TEXT())(parser)
-            if parser.current == tag.end:
-                parser.next()
-                return Node(TemplateP(text.value))
-        return Node(None)
-
-    return parse
-
-
-def WIKIMEDIA(parser):
-    ast = Node()
-    ast.add(TEMPLATE()(parser))
-    # for i in [TEMPLATE()]:
-    #     ast.add(i(parser))
-    #
-
-    return ast
+# def WIKIMEDIA(parser):
+#     ast = Node()
+#     ast.add(lexer.TemplateT(parser))
+#     # for i in [TEMPLATE()]:
+#     #     ast.add(i(parser))
+#     #
+#     # return sor(TEXT, TEMPLATE, LINK)(parser)
 
 
 class TextP:
@@ -163,47 +225,19 @@ class TextP:
         self.text = text
 
 
-class TemplateP:
-    """Template grammar
-    Wikimedia
-        template = "{{", title, { "|", part }, "}}" ;
-        part     = [ name, "=" ], value ;
-        title    = balanced text ;
-    ------
-    Internal
-        text          := ε
-        template      := '{{' text '}}'
-
-        Only the title might be necessary, this is why the template is simplified with a simple text inside brackets
-    """
-
+class Expression:
     def __init__(self, node):
         self.content = node
-        # self.right
-        # self._type = 'TEMPLATE'
-        # self._symbol = TemplateT()
-        # self._context = context
-        #
-        # self.body = body
 
     def compile(self):
-        pass
-    # def _template(self, context):
-    #     if context.current == self._symbol.start:
-    #         node = TemplateP()
-    #         context.next()
-    #         text_p = TextP.parse(context)
-    #
-    #         if context.current == self._symbol.end:
-    #             return TemplateP
-    #         # optional_p = self._optional()
-    #         # while self._context.current == '|':
-    #         #    self._optional()
-    #
-    #     # if(self._context.expect())
-    #
-    # def parse(self, context):
-    #     # self._context = context
-    #     return self._template(context)
+        raise NotImplementedError()
 
-    # def next(self):
+
+class LinkP(Expression):
+    def compile(self):
+        pass
+
+
+class TemplateP(Expression):
+    def compile(self):
+        pass

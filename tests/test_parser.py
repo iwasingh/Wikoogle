@@ -28,6 +28,6 @@ class TestParser(unittest.TestCase):
         with (DATA_FOLDER / name).open(encoding="utf8") as f:
             text = f.read()
             lexer = Lexer()
-            tokens = lexer.tokenize('{{asd}}')
+            tokens = lexer.tokenize('{{AJAJA}} [[asdsa]] asdasd [[asd]] aosjdosad {{asdsa}}')
             parser = Parser(tokens)
             parser.parse()
