@@ -1,4 +1,5 @@
 import re
+
 """ Recursive match helper that regular expressions can't handle """
 
 
@@ -56,4 +57,3 @@ class RecursiveMatch:
     @property
     def matches(self):
         return self._matches
-

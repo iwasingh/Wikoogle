@@ -1,10 +1,11 @@
 import logging
 from .combinators import sor
 import src.parsing.lexer as lexer
+import src.parsing.grammar as g
 
 logger = logging.getLogger('Parser')
 
-"""A recursive descent parser implementation
+"""A recursive descent parser implementation LL(1) https://en.wikipedia.org/wiki/Recursive_descent_parser
 You can find the grammar for Wikimedia in the ABNF form here(https://www.mediawiki.org/wiki/Preprocessor_ABNF),
 this parser implements a context-free grammar and each rule is described in the proper method inside Grammar class.
 Obviously this parser will not handle every production rule (non-terminal ones), in fact there are rules
@@ -27,30 +28,37 @@ class Node:
         self.children = []
 
     def add(self, node):
-        assert isinstance(node, Node)
+        # assert isinstance(node, Node)
         self.children.append(node)
 
-    def __str__(self):
-        ret = '(' + self.value.__str__() + ' '
-        for child in self.children:
-            ret += child.__str__()
-        return ret + ')'
-
     def __repr__(self):
-        return self.__str__()
+        NodeVisitor.pretty_print(self)
+        return ''
+
+
+class NodeVisitor:
+    @staticmethod
+    def pretty_print(node, _prefix="", _last=True):
+        print(_prefix, "`- " if _last else "|- ", node.value, sep="")
+        _prefix += "   " if _last else "|  "
+        child_count = len(node.children)
+        for i, child in enumerate(node.children):
+            _last = i == (child_count - 1)
+            NodeVisitor.pretty_print(child, _prefix, _last)
 
 
 class Parser:
     def __init__(self, tokens):
-        print(tokens, len(tokens))
+        logging.info(tokens)
+        logger.info(len(tokens))
         self._tokens = iter(tokens)
         self._ast = Node()
         self._index = -1
         self._current = None
-        self._grammar = Grammar()
+        # self._grammar = g.Grammar()
 
-    def parse(self):
-        expression = self._grammar.expression()
+    def parse(self, expression):
+        # expression = self._grammar.expression()
         self.next()
         while self.current.token != lexer.Lexer.EOF:
             result = expression(self)
@@ -59,7 +67,11 @@ class Parser:
             else:
                 self.next()
 
-        print(self._ast)
+        return self._ast
+
+    def compile(self):
+
+        pass
 
     def next(self):
         try:
@@ -78,146 +90,6 @@ class Parser:
     @property
     def current(self):
         return self._current
-
-
-# def epsilon(self):
-#     return
-#     pass
-
-
-class Grammar:
-    """Handles the grammar on which the parser will depend upon
-    As said before, each production rule is described in the EBNF form and might be simplified from the original one
-    """
-
-    rules = {
-        # 'TEMPLATE': lexer.TemplateT.parse,
-        # 'LINK': lexer.LinkT.parse,
-        # 'TEXT': lexer.Text.parse,
-    }
-
-    def __init__(self):
-        pass
-
-    # Add additional rules
-    def rule(self, rule):
-        pass
-
-    def expression(self):
-        """
-        Wikimedia primary expression
-
-        ε : = text
-        expression := template
-                        | heading_2
-                        | link
-                        | ε
-        :param parser:
-        :return:
-        """
-        # sor(*Grammar.rules.values())
-        return sor(
-            self.template,
-            self.link,
-            self.epsilon
-        )
-
-    @staticmethod
-    def template(parser):
-        """Template grammar
-        Wikimedia ABNF
-        template = "{{", title, { "|", part }, "}}" ;
-        part     = [ name, "=" ], value ;
-        title    = text ;
-
-        ------
-
-        Internal
-        text          := ε
-        template      := '{{' text '}}'
-
-        Templates are used to call functions and do some particular formatting
-        Only the title might be necessary, this is why the template is simplified with a simple text inside brackets
-
-        :param parser:
-        :return:
-        """
-        return lexer.TemplateT.parse(parser)
-
-    @staticmethod
-    def link(parser):
-        """Link grammar
-        Wikimedia EBNF
-
-        start link    = "[[";
-        end link      = "]]";
-        internal link = start link, full pagename, ["|", label], end link,
-
-        ------
-        Internal
-
-        pagename   := ε
-        link            := '[[' pagename ']]'
-
-        The link contain the page name, i don't consider the optional ["|", label] for now, which is used for the link parameter
-        If that is relevant for index purposes, create a not-terminal function and call it inside parse in lexer.LinkT
-
-        :param parser:
-        :return:
-        """
-        return lexer.LinkT.parse(parser)
-
-    @staticmethod
-    def heading_2():
-        """Heading 2
-        A heading
-        """
-        return lexer.HeadingT.parse
-
-    @staticmethod
-    def epsilon(parser):
-        """Basic epsilon that consume the token and proceed aka Text for now.
-        Maybe i'll further extend this to handle cases like left-recursion but for now there aren't recursive rules
-
-        :param parser:
-        :return:
-        """
-        return lexer.Text.parse(parser)
-
-
-# def TEXT(parser):
-#     if parser.current.token == Text.start:
-#         token = parser.current
-#         parser.next()
-#         return Node(TextP(token.text))
-#
-#     logging.info('TEXT_NOT_FOUND')
-#     return None
-#
-#
-# def TEMPLATE(parser):
-#     rule = seq(expect(TemplateT.start), TEXT, expect(TemplateT.end))
-#     result = pipe(parser, rule, extract)
-#     if result:
-#         return Node(TemplateP(result.value))
-#     return False
-#
-#
-# def LINK(parser):
-#     rule = seq(expect(LinkT.start), TEXT, expect(LinkT.end))
-#     result = pipe(parser, rule, extract)
-#     if result:
-#         return Node(LinkP(result.value))
-#     return False
-#
-
-# def WIKIMEDIA(parser):
-#     ast = Node()
-#     ast.add(lexer.TemplateT(parser))
-#     # for i in [TEMPLATE()]:
-#     #     ast.add(i(parser))
-#     #
-#     # return sor(TEXT, TEMPLATE, LINK)(parser)
 
 
 class TextP:
@@ -241,3 +113,12 @@ class LinkP(Expression):
 class TemplateP(Expression):
     def compile(self):
         pass
+
+
+class HeadingP(Expression):
+    def compile(self):
+        pass
+
+# class LinkNode(Node):
+#     def __init__(self, content):
+#         self.content = content

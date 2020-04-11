@@ -6,13 +6,14 @@ class ParseError(Exception):
         self.message = f"ParseError: {message}"
 
 
-# Sequence of parsers
 def seq(*args):
+    """ Sequence of parsers """
+
     def parse(parser):
         acc = []
         for i in args:
             result = i(parser)
-            if result:
+            if result is not None and result is not False:
                 acc.append(result)
             else:
                 if len(acc) > 0:
@@ -24,8 +25,9 @@ def seq(*args):
     return parse
 
 
-# aka alternatives; or keyword is reserved, that's why this name
 def sor(*args):
+    """ sor aka or aka alternative; "or" keyword is reserved, that's why this name """
+
     def parse(parser):
         for i in args:
             result = i(parser)
@@ -37,8 +39,8 @@ def sor(*args):
     return parse
 
 
-# Pipe
 def pipe(arg, *args):
+    """ Pipe """
     last_result = arg
     for combinator in args:
         last_result = combinator(last_result)
@@ -49,9 +51,7 @@ def pipe(arg, *args):
 
 def expect(token):
     def parse(parser):
-        # node = Node(token)
         current = parser.current
-        # breakpoint()
         if current and current.token == token:
             parser.next()
             return current
@@ -65,3 +65,27 @@ def extract(result):
         __left, content, __right = result
         return content
     return None
+
+
+def opt():
+    """ Optional """
+    pass
+
+
+def rep(expression, stop):
+    """ One or more repetition """
+
+    def parse(parser):
+        acc = []
+        while parser.current.token != stop:
+            result = expression(parser)
+            if result:
+                acc.append(result)
+                print(acc)
+        # parser.next()
+        return acc
+
+    return parse
+
+# def extractor(arr, f):
+#     return (lambda *f(): (content, nodes))(*arr)

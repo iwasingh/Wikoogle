@@ -2,9 +2,8 @@ import re
 import logging
 from enum import Enum
 from abc import ABC
-from .utils import recursive, RecursiveMatch
-from .combinators import pipe, expect, extract, seq
-import src.parsing.parser as p
+from .utils import RecursiveMatch, recursive
+from .symbols import Template, Link, Heading, Text, Token
 
 logger = logging.getLogger('Lexer')
 
@@ -18,63 +17,8 @@ class Symbol(Enum):
     IGNORE = 'IGNORE'
 
 
-class Token:
-    """
-    Basic token
-    """
-
-    def __init__(self, tag, regex='', flags=0):
-        self._tag = tag
-        self._regex = regex
-        self._match = re.compile(regex, flags)
-
-    @property
-    def tag(self):
-        return self._tag
-
-    @property
-    def regex(self):
-        return self._regex
-
-    @property
-    def re(self):
-        return self._match
-
-    def match(self, text, pos=0, **kwargs):
-        return self._match.match(text, pos, **kwargs)
-
-    def __str__(self):
-        return self.tag
-
-    def __repr__(self):
-        return '({0})'.format(self.__str__())
-
-    def __eq__(self, token):
-        return self._tag == token.tag
-
-
-class NoneToken(Token):
-    def __init__(self):
-        super().__init__('NONE')
-
-
-class Tag(ABC):
-    def __init__(self, start, end):
-        self.start = start
-        self.end = end
-
-    def match(self, text, pos, **kwargs):
-        match = self.start.match(text, pos, **kwargs) or self.end.match(text, pos, **kwargs)
-        token = None
-        if match:
-            token = self.start if match.re == self.start.re else self.end if match.re == self.end.re else NoneToken()
-            if token.tag == 'NONE':
-                logging.info('NONE token returned, there might be a problem')
-        return match, token
-
-
 class LexerToken(Token):
-    def __init__(self, token, row, col, text=None):
+    def __init__(self, token, row, col, text=''):
         self._token = token
         self._row = row
         self._col = col
@@ -96,6 +40,7 @@ class LexerToken(Token):
 
     def __str__(self):
         return self._token.__repr__()
+        # return '\n' + self._text
 
     def __eq__(self, token):
         return self._token == token
@@ -143,7 +88,7 @@ class Lexer:
                 if isinstance(match, RecursiveMatch):
                     for (m, t) in match.matches:
                         tokens.append(
-                            LexerToken(t if isinstance(t, Token) else Text.start,
+                            LexerToken(t if isinstance(t, Token) else TextT.start,
                                        self._row,
                                        self._col,
                                        m.group(0)))
@@ -157,9 +102,6 @@ class Lexer:
             self._col += 1
 
         if self._col >= len(text):
-            tokens.append(EOFToken(self._row, self._col))
-            logger.info('EOF')
-            self._col += 1
             return tokens, None
 
         return tokens, Symbol.RESERVED if len(tokens) > 0 else Symbol.ID
@@ -168,6 +110,7 @@ class Lexer:
         tokens = list()
         self._col = 0
         symbol_type = Symbol.RESERVED
+
         while self._col < len(text):
             if self.table[Symbol.IGNORE][0].match(text, self._col):
                 self._col += 1
@@ -177,6 +120,10 @@ class Lexer:
                 tokens = tokens + resolved_tokens
                 if symbol_type is None:
                     break
+
+        tokens.append(EOFToken(self._row, self._col))
+        logger.info('EOF')
+        self._col += 1
         return tokens
 
     @classmethod
@@ -200,92 +147,40 @@ class SymbolNotFoundError(Exception):
         super().__init__(message)
 
 
-""" Symbol definitions """
+""" Lexer symbol definitions """
 
-
-# TODO move symbols in a own file
 
 @Lexer.symbol(Symbol.RESERVED)
-class TemplateT(Tag):
-    start = Token('TEMPLATE_START', r'{{')
-    end = Token('TEMPLATE_END', r'}}')
-
+class TemplateT(Template):
     def __init__(self):
-        super().__init__(self.start, self.end)
-        # self._context = context
+        super().__init__()
 
     def match(self, text, pos, **kwargs):
         return recursive(text, self.start, self.end, pos), self.start
 
-    @staticmethod
-    def parse(parser):
-        result = pipe(parser,
-                      seq(expect(TemplateT.start), Text.parse, expect(TemplateT.end)),
-                      extract)
-        if result:
-            return p.Node(p.TemplateP(result.value))
-        return None
+
+@Lexer.symbol(Symbol.RESERVED)
+class LinkT(Link):
+
+    def __init__(self):
+        super().__init__()
 
 
 @Lexer.symbol(Symbol.RESERVED)
-class LinkT(Tag):
-    start = Token('LINK_START', r'\[\[')
-    end = Token('LINK_END', r']]')
-
+class HeadingT(Heading):
     def __init__(self):
-        super().__init__(self.start, self.end)
-
-    @staticmethod
-    def parse(parser):
-        result = pipe(parser,
-                      seq(expect(LinkT.start), Text.parse, expect(LinkT.end)),
-                      extract)
-
-        if result:
-            return p.Node(p.LinkP(result.value))
-        return None
-
-
-@Lexer.symbol(Symbol.RESERVED)
-class HeadingT(Tag):
-    """
-    Equals signs are used for headings (must be at start of line)
-
-    """
-    start = Token('HEADING_2', r'==')
-    end = Token('HEADING_2', r'==')
-
-    def __init__(self):
-        super().__init__(self.start, self.end)
-
-    @staticmethod
-    def parse(parser):
-        pass
+        super().__init__()
 
 
 @Lexer.symbol(Symbol.ID)
-class Text(Tag):
-    tags = [symbol.start.regex + '|' + symbol.end.regex for symbol in Lexer.table[Symbol.RESERVED]]
-    start = Token('TEXT', '.*?(?={0})|.*'.format('|'.join(tags), re.DOTALL))
-    end = start  # None or NoneToken
+class TextT(Text):
+    # TODO Copy here the logic in the base class
+    # tags = [symbol.start.regex + '|' + symbol.end.regex for symbol in Lexer.table[Symbol.RESERVED]]
+    # start = Token('TEXT', '.*?(?={0})|.*'.format('|'.join(tags), re.DOTALL))
+    # end = start  # None or NoneToken
 
     def __init__(self):
-        super().__init__(self.start, self.end)
-
-    @staticmethod
-    def parse(parser):
-        result = expect(Text.start)(parser)
-        if result:
-            return p.Node(p.TextP(result.text))
-        return None
-        # if parser.current.token == Text.start:
-        # token = parser.current
-        #         parser.next()
-        #         return Node(TextP(token.text))
-        #
-        #     logging.info('TEXT_NOT_FOUND')
-        #     return None
-        # pass
+        super().__init__()
 
 
 @Lexer.symbol(Symbol.IGNORE)
