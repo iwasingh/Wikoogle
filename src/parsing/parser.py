@@ -18,7 +18,7 @@ them or can be further extended if necessary
 
 
 # TODO read
-#  change .next() with .peak() in some combinators so there is at least 1 lookahead before consuming the
+#  change .next() with .peek() in some combinator so there is at least 1 lookahead before consuming the
 #  token. Current implementation should work anyway because the dump should be correct (no syntax errors, i hope so!)
 #  therefore the parser assumes everything is correct. I raise a ParseError if something is wrong
 
@@ -119,6 +119,3 @@ class HeadingP(Expression):
     def compile(self):
         pass
 
-# class LinkNode(Node):
-#     def __init__(self, content):
-#         self.content = content

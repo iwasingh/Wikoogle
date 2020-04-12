@@ -2,20 +2,20 @@ import logging
 import re
 import src.parsing.parser as p
 from .combinators import pipe, expect, extract, seq, sor, rep
-from .symbols import Template, Text, Link, Heading
+from .symbols import Template, Text, Link, Heading, Heading6, Heading5, Heading4, Heading3
 from .utils import recursive
 
 # import src.parsing.lexer as l
 
 logger = logging.getLogger('Grammar')
 
-""" Grammar definition """
-
 
 # TODO move symbols in a own file
 class Grammar:
     """Handles the grammar on which the parser will depend upon
-    As said before, each production rule is described in the EBNF form and might be simplified from the original one
+    Each production rule is described in the EBNF or ABNF form and might be simplified from the original one
+    You can find the grammar for Wikimedia in the ABNF form here(https://www.mediawiki.org/wiki/Preprocessor_ABNF).
+    An internal grammar definition might be used because for index purpose some rules are useless
     """
 
     rules = {
@@ -47,7 +47,7 @@ class Grammar:
         return sor(
             self.template,
             self.link,
-            # self.heading_2,
+            self.headings,
             self.epsilon
         )
 
@@ -80,30 +80,6 @@ class Grammar:
         return None
         # return TemplateT.parse(parser)
 
-    # """Internal test method """
-    # @staticmethod
-    # def _link_expr(parser):
-    #     # if parser.current.token == Link.end:
-    #     #     return
-    #
-    #     return sor(Grammar.template, Grammar._link, Grammar.epsilon)(parser)
-    #
-    # """Internal test method """
-    # @staticmethod
-    # def _link(parser):
-    #     if parser.current.token == Link.start:
-    #         parser.next()
-    #         text = parser.current
-    #         node = p.Node(p.LinkP(text.text))
-    #         parser.next()
-    #         while parser.current.token != Link.end:
-    #             result = Grammar._link_expr(parser)
-    #             if result:
-    #                 # breakpoint()
-    #                 node.add(result)
-    #         parser.next()
-    #         return node
-
     @staticmethod
     def link(parser):
         """Link grammar
@@ -113,7 +89,7 @@ class Grammar:
         end link      = "]]";
         internal link = start link, full pagename, ["|", label], end link,
 
-        ------
+        ---
         Internal
 
         pagename   := ε
@@ -121,7 +97,7 @@ class Grammar:
                         | link
                         | ε
 
-        link            := '[[' pagename { expression } ']]'
+        link            := '[[' pagename, { expression } ']]'
 
         The link contain the page name, and 0 or more repetitions of the expression ["|", label]. That is simplified with
         an expression that can by any one of the wikimedia non-terminals (text, template, link for now)
@@ -132,6 +108,7 @@ class Grammar:
         :param parser:
         :return:
         """
+
         # expression = sor(expect(Link.end), rep(sor(Grammar.epsilon, Grammar.template, Grammar.link), Link.end))
 
         def extractor(arr):
@@ -144,7 +121,6 @@ class Grammar:
                           expect(Link.end)),
                       extractor)
         if result:
-            # breakpoint()
             (content, nodes) = result
             node = p.Node(p.LinkP(content.value))
             for n in nodes:
@@ -153,19 +129,41 @@ class Grammar:
         return None
 
     @staticmethod
-    def heading_2(parser):
-        """Heading 2
-        A heading
+    def headings(parser):
+        """ Heading
+        Wikimedia EBNF
+        header end  = [whitespace], line break;
+        header6     = line break, "======", [whitespace], text, [whitespace], "======", header end;
+        header5     = line break, "=====",  [whitespace], text, [whitespace], "=====",  header end;
+        header4     = line break, "====",   [whitespace], text, [whitespace], "====",   header end;
+        header3     = line break, "===",    [whitespace], text, [whitespace], "===",    header end;
+        header2     = line break, "==",     [whitespace], text, [whitespace], "==",     header end;
+
+        ---
+        Internal EBNF
+        header6     = "======", text, "======";
+        header5     = "=====", text, "=====";
+        header4     = "====", text, "====";
+        header3     = "===", text, "===";
+        header2     = "==", text, "==";
+
+        NOTE: Linebreak is one of the ignored character in the lexer, i should consider them TODO
+
         """
-        result = pipe(parser,
-                      seq(expect(Heading.start), Grammar.epsilon, expect(Heading.end)),
-                      extract)
+        precedence = [
+            Heading6,
+            Heading5,
+            Heading4,
+            Heading3,
+            Heading
+        ]
+
+        result = pipe(parser, sor(*[seq(expect(i.start), Grammar.epsilon, expect(i.end)) for i in precedence]), extract)
 
         if result:
             return p.Node(p.HeadingP(result.value))
 
         return None
-        # return HeadingT.parse(parser)
 
     @staticmethod
     def text(parser):

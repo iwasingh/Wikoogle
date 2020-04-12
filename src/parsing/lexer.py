@@ -3,7 +3,7 @@ import logging
 from enum import Enum
 from abc import ABC
 from .utils import RecursiveMatch, recursive
-from .symbols import Template, Link, Heading, Text, Token
+from .symbols import Template, Link, Heading, Text, Token, Heading3, Heading4, Heading5, Heading6
 
 logger = logging.getLogger('Lexer')
 
@@ -159,6 +159,7 @@ class TemplateT(Template):
         return recursive(text, self.start, self.end, pos), self.start
 
 
+# Lexer.symbol(Symbol.RESERVED)(Link)
 @Lexer.symbol(Symbol.RESERVED)
 class LinkT(Link):
 
@@ -166,10 +167,17 @@ class LinkT(Link):
         super().__init__()
 
 
-@Lexer.symbol(Symbol.RESERVED)
-class HeadingT(Heading):
-    def __init__(self):
-        super().__init__()
+# @Lexer.symbol(Symbol.RESERVED)
+# class HeadingT(Heading):
+#     def __init__(self):
+#         super().__init__()
+
+# The order is important
+Lexer.symbol(Symbol.RESERVED)(Heading6)
+Lexer.symbol(Symbol.RESERVED)(Heading5)
+Lexer.symbol(Symbol.RESERVED)(Heading4)
+Lexer.symbol(Symbol.RESERVED)(Heading3)
+Lexer.symbol(Symbol.RESERVED)(Heading)
 
 
 @Lexer.symbol(Symbol.ID)

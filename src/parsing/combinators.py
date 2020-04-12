@@ -1,4 +1,4 @@
-""" Small set of combinator utilities """
+""" Small set of combinator utilities to combine rules """
 
 
 class ParseError(Exception):
@@ -81,8 +81,8 @@ def rep(expression, stop):
             result = expression(parser)
             if result:
                 acc.append(result)
-                print(acc)
         # parser.next()
+        print(acc)
         return acc
 
     return parse

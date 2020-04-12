@@ -26,7 +26,7 @@ class TestParser(unittest.TestCase):
     #
     #         TemplateP().parse(parser)
 
-    def test_parse(self, name='wikitext'):
+    def test_parse(self, name='wikitext_full'):
         with (DATA_FOLDER / name).open(encoding="utf8") as f:
             text = f.read()
             t0 = time.time()
@@ -53,8 +53,12 @@ class TestParser(unittest.TestCase):
         ast = parser.parse(Grammar.link)
         print(ast)
 
-    def test_heading(self):
+    def test_headings(self):
         txt = '==asd=='
-        parser = Parser(self.lexer.tokenize(txt))
-        ast = parser.parse(Grammar.heading_2)
+        txt3 = '===asd==='
+        txt4 = '====asd===='
+        txt5 = '=====asd====='
+        txt6 = '======asd======'
+        parser = Parser(self.lexer.tokenize(txt6))
+        ast = parser.parse(Grammar.headings)
         print(ast)

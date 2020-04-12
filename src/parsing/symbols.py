@@ -90,25 +90,52 @@ class Heading(Tag):
         super().__init__(self.start, self.end)
 
 
-class Heading3(Heading):
-    pass
+class Heading3(Tag):
+    start = Token('HEADING_3', r'===')
+    end = Token('HEADING_3', r'===')
+
+    def __init__(self):
+        super().__init__(self.start, self.end)
 
 
-class Heading4(Heading):
-    pass
+class Heading4(Tag):
+    start = Token('HEADING_4', r'====')
+    end = Token('HEADING_4', r'====')
+
+    def __init__(self):
+        super().__init__(self.start, self.end)
 
 
-class Heading5(Heading):
-    pass
+class Heading5(Tag):
+    start = Token('HEADING_5', r'=====')
+    end = Token('HEADING_5', r'=====')
+
+    def __init__(self):
+        super().__init__(self.start, self.end)
 
 
-class Heading6(Heading):
-    pass
+class Heading6(Tag):
+    start = Token('HEADING_6', r'======')
+    end = Token('HEADING_6', r'======')
+
+    def __init__(self):
+        super().__init__(self.start, self.end)
+
+
+WIKIMEDIA_MARKUP = [
+    Template(),
+    Link(),
+    Heading(),
+    Heading3(),
+    Heading4(),
+    Heading5(),
+    Heading6(),
+]
 
 
 class Text(Tag):
     # TODO do this in the lexer TextT class
-    tags = [symbol.start.regex + '|' + symbol.end.regex for symbol in [Heading(), Link(), Template()]]
+    tags = [symbol.start.regex + '|' + symbol.end.regex for symbol in WIKIMEDIA_MARKUP]
     start = Token('TEXT', '.*?(?={0})|.*'.format('|'.join(tags), re.DOTALL))
     end = start  # None or NoneToken
 
