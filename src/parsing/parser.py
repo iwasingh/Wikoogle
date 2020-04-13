@@ -2,6 +2,7 @@ import logging
 from .combinators import sor
 import src.parsing.lexer as lexer
 import src.parsing.grammar as g
+import re
 
 logger = logging.getLogger('Parser')
 
@@ -23,6 +24,18 @@ them or can be further extended if necessary
 #  therefore the parser assumes everything is correct. I raise a ParseError if something is wrong
 
 class Node:
+    """AST
+                         Node(None)
+            ________________|_______ ....
+            |       |              |
+    Node(TextP) Node(TemplateP)  LinkNode(LinkP)
+                             ______|____
+                            |         |
+                    Node(Text)       LinkNode(LinkP)
+                                      |
+                                    ....
+    """
+
     def __init__(self, value=None):
         self.value = value
         self.children = []
@@ -34,6 +47,13 @@ class Node:
     def __repr__(self):
         NodeVisitor.pretty_print(self)
         return ''
+
+    def compile(self, writer):
+        if self.value:
+            self.value.render(writer)
+
+        for children in self.children:
+            children.compile(writer)
 
 
 class NodeVisitor:
@@ -69,10 +89,6 @@ class Parser:
 
         return self._ast
 
-    def compile(self):
-
-        pass
-
     def next(self):
         try:
             token = next(self._tokens)
@@ -92,30 +108,53 @@ class Parser:
         return self._current
 
 
-class TextP:
-    def __init__(self, text):
-        self.text = text
-
-
 class Expression:
-    def __init__(self, node):
-        self.content = node
+    def __init__(self, exp):
+        self.expression = exp
 
-    def compile(self):
+    def render(self, writer):
         raise NotImplementedError()
 
 
+class TextP(Expression):
+    def __init__(self, text):
+        self.text = text
+
+    def render(self, writer):
+        writer.write(self.text)
+        return self.text
+
+
 class LinkP(Expression):
-    def compile(self):
-        pass
+    def __init__(self, node):
+        self.text = node.text
+        super().__init__(node)
+
+    def render(self, writer):
+        writer.write(self.text +  " ")
 
 
 class TemplateP(Expression):
-    def compile(self):
+    def render(self, writer):
         pass
 
 
 class HeadingP(Expression):
-    def compile(self):
-        pass
+    def render(self, writer):
+        writer.write(self.expression.text)
 
+
+class LinkNode(Node):
+    # https://en.wikipedia.org/wiki/Wikipedia:Manual_of_Style/Linking
+    media = re.compile('^(File:|Category:)')
+
+    def __init__(self, value):
+        self.text = value.text
+        super().__init__(value)
+
+    def is_media(self):
+        return self.media.match(self.text)
+
+    def compile(self, writer):
+        if not self.is_media():
+            self.value.render(writer)

@@ -122,6 +122,14 @@ class Heading6(Tag):
         super().__init__(self.start, self.end)
 
 
+class Table(Tag):
+    pass
+
+
+class Comment(Tag):
+    pass
+
+
 WIKIMEDIA_MARKUP = [
     Template(),
     Link(),

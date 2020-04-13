@@ -4,7 +4,9 @@ import time
 from pathlib import Path
 from src.parsing.lexer import Lexer
 from src.parsing.parser import TemplateP, Parser
+from src.parsing.compiler import Compiler
 from src.parsing.grammar import Grammar
+import os
 logging.basicConfig(level=logging.INFO)
 
 DATA_FOLDER = Path(__file__).parent / 'data'
@@ -13,20 +15,8 @@ DATA_FOLDER = Path(__file__).parent / 'data'
 class TestParser(unittest.TestCase):
     lexer = Lexer()
     grammar = Grammar()
-    # def test_template(self, name='wikitext'):
-    #     """
-    #     Test tokenizer
-    #
-    #     """
-    #     with (DATA_FOLDER / name).open(encoding="utf8") as f:
-    #         text = f.read()
-    #         lexer = Lexer()
-    #         tokens = lexer.tokenize(text)
-    #         parser = Parser(tokens)
-    #
-    #         TemplateP().parse(parser)
 
-    def test_parse(self, name='wikitext_full'):
+    def test_parse(self, name='wikitext'):
         with (DATA_FOLDER / name).open(encoding="utf8") as f:
             text = f.read()
             t0 = time.time()
@@ -38,11 +28,13 @@ class TestParser(unittest.TestCase):
             t1 = time.time()
             print(ast)
             print('Ast built in: ', t1 - t0)
+            return ast
 
     def test_template(self):
         parser = Parser(self.lexer.tokenize('{{asd}}'))
         ast = parser.parse(Grammar.template)
         print(ast)
+        return ast
         # Todo assert
 
     def test_link(self):
@@ -51,7 +43,9 @@ class TestParser(unittest.TestCase):
         txt3 = '[[asd]]'
         parser = Parser(self.lexer.tokenize(txt2))
         ast = parser.parse(Grammar.link)
+
         print(ast)
+        return ast
 
     def test_headings(self):
         txt = '==asd=='
@@ -62,3 +56,13 @@ class TestParser(unittest.TestCase):
         parser = Parser(self.lexer.tokenize(txt6))
         ast = parser.parse(Grammar.headings)
         print(ast)
+        return ast
+
+    def test_compile(self, file='wikitext_full'):
+        with (DATA_FOLDER / file).open(encoding="utf8") as f:
+            text = f.read()
+            result = Compiler().render(self.test_parse(name=file))
+            print('Wikimedia length', len(text))
+            print('Wikoogle length', len(result))
+            print('Page compressed for about,','{:.1%}'.format(len(result)/len(text)))
+            print(result)

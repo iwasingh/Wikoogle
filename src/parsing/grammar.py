@@ -18,11 +18,7 @@ class Grammar:
     An internal grammar definition might be used because for index purpose some rules are useless
     """
 
-    rules = {
-        # 'TEMPLATE': lexer.TemplateT.parse,
-        # 'LINK': lexer.LinkT.parse,
-        # 'TEXT': lexer.Text.parse,
-    }
+    rules = {}
 
     def __init__(self):
         pass
@@ -103,8 +99,7 @@ class Grammar:
         an expression that can by any one of the wikimedia non-terminals (text, template, link for now)
         Watch out left recursion (a link can contain a link)
 
-        link := '[[' pagename expr
-        expr := ']]' | {expression}
+        TODO add external link too, https://en.wikipedia.org/wiki/Help:Link#External_links
         :param parser:
         :return:
         """
@@ -122,7 +117,7 @@ class Grammar:
                       extractor)
         if result:
             (content, nodes) = result
-            node = p.Node(p.LinkP(content.value))
+            node = p.LinkNode(p.LinkP(content.value))
             for n in nodes:
                 node.add(n)
             return node
@@ -172,7 +167,7 @@ class Grammar:
     @staticmethod
     def epsilon(parser):
         """Basic epsilon that consume the token and proceed aka Text for now.
-        Maybe i'll further extend this to handle cases like left-recursion but for now there aren't recursive rules
+        Maybe i'll further extend this to handle cases like left-recursion
 
         :param parser:
         :return:
