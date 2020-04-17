@@ -1,8 +1,8 @@
 import logging
-from .combinators import sor
-import src.parsing.lexer as lexer
-import src.parsing.grammar as g
 import re
+# import src.parsing.lexer as lexer
+import parsing.lexer as lexer
+from .combinators import ParseError
 
 logger = logging.getLogger('Parser')
 
@@ -80,12 +80,16 @@ class Parser:
     def parse(self, expression):
         # expression = self._grammar.expression()
         self.next()
-        while self.current.token != lexer.Lexer.EOF:
-            result = expression(self)
-            if result:
-                self._ast.add(result)
-            else:
-                self.next()
+        try:
+            while self.current.token != lexer.Lexer.EOF:
+                result = expression(self)
+                if result:
+                    self._ast.add(result)
+                else:
+                    self.next()
+
+        except ParseError as e:
+            raise e
 
         return self._ast
 
@@ -131,11 +135,12 @@ class LinkP(Expression):
         super().__init__(node)
 
     def render(self, writer):
-        writer.write(self.text +  " ")
+        writer.write(self.text.split('|')[0])
 
 
 class TemplateP(Expression):
     def render(self, writer):
+        # Ignore templates
         pass
 
 
@@ -146,7 +151,7 @@ class HeadingP(Expression):
 
 class LinkNode(Node):
     # https://en.wikipedia.org/wiki/Wikipedia:Manual_of_Style/Linking
-    media = re.compile('^(File:|Category:)')
+    media = re.compile('^(File:|Category:|Image:)')
 
     def __init__(self, value):
         self.text = value.text

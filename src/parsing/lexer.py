@@ -4,8 +4,21 @@ from enum import Enum
 from abc import ABC
 from .utils import RecursiveMatch, recursive
 from .symbols import Template, Link, Heading, Text, Token, Heading3, Heading4, Heading5, Heading6
+import html
+
+# import xml.sax.saxutils as saxutils
 
 logger = logging.getLogger('Lexer')
+
+
+class Encoder:
+    def __init__(self):
+        pass
+
+    def encode(self, text):
+        return text
+        # return html.unescape(text) # Too slow
+        # return saxutils.unescape(text) # Better than previous but still slow
 
 
 class Symbol(Enum):
@@ -56,7 +69,7 @@ class EOFToken(LexerToken):
 
 class Lexer:
     """
-    Lexer that handles streams of character and deliver tokens
+    Lexer that handles streams of character and delivers tokens
     """
     table = {
         Symbol.RESERVED: [],
@@ -66,10 +79,10 @@ class Lexer:
 
     EOF = Token('EOF')
 
-    def __init__(self):
+    def __init__(self, encoder=Encoder()):
         self._row = 0  # Not used yet
         self._col = 0
-        self._tokens = list()
+        self.encoder = encoder
 
     def _tokenize(self, text, symbol_type):
         """
@@ -78,6 +91,7 @@ class Lexer:
         :param symbol_type:
         :return:
         """
+        text = self.encoder.encode(text)
         tokens = []
         # Debugging
         # if symbol_type == Symbol.ID: breakpoint()
@@ -112,7 +126,7 @@ class Lexer:
         symbol_type = Symbol.RESERVED
 
         while self._col < len(text):
-            if self.table[Symbol.IGNORE][0].match(text, self._col):
+            if self.table[Symbol.IGNORE] and self.table[Symbol.IGNORE][0].match(text, self._col):
                 self._col += 1
             else:
                 resolved_tokens, next_symbol = self._tokenize(text, symbol_type)
@@ -136,10 +150,6 @@ class Lexer:
             return symbol
 
         return __wrap
-
-    # @property
-    # def symbols(self):
-    #     return Lexer.symbols
 
 
 class SymbolNotFoundError(Exception):
@@ -167,11 +177,6 @@ class LinkT(Link):
         super().__init__()
 
 
-# @Lexer.symbol(Symbol.RESERVED)
-# class HeadingT(Heading):
-#     def __init__(self):
-#         super().__init__()
-
 # The order is important
 Lexer.symbol(Symbol.RESERVED)(Heading6)
 Lexer.symbol(Symbol.RESERVED)(Heading5)
@@ -191,10 +196,10 @@ class TextT(Text):
         super().__init__()
 
 
-@Lexer.symbol(Symbol.IGNORE)
+# @Lexer.symbol(Symbol.IGNORE)
 class Ignore:
     def __init__(self):
-        self._regex = re.compile('\n|\\s')
+        self._regex = re.compile(r'\s')
 
     def match(self, text, pos, **kwargs):
         return self._regex.match(text, pos)

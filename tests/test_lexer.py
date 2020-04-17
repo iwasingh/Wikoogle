@@ -1,6 +1,6 @@
 import unittest
 import logging
-from src.parsing.lexer import TemplateT, Lexer
+from parsing.lexer import TemplateT, Lexer
 from pathlib import Path
 
 logging.basicConfig(level=logging.INFO)

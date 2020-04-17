@@ -17,7 +17,7 @@ def seq(*args):
                 acc.append(result)
             else:
                 if len(acc) > 0:
-                    breakpoint()
+                    # breakpoint()
                     raise ParseError('Syntax error, bad token sequence')
                 return None
         return acc
@@ -82,7 +82,6 @@ def rep(expression, stop):
             if result:
                 acc.append(result)
         # parser.next()
-        print(acc)
         return acc
 
     return parse

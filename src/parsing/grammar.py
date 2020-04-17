@@ -1,7 +1,7 @@
 import logging
 import re
-import src.parsing.parser as p
-from .combinators import pipe, expect, extract, seq, sor, rep
+import parsing.parser as p
+from .combinators import pipe, expect, extract, seq, sor, rep, ParseError
 from .symbols import Template, Text, Link, Heading, Heading6, Heading5, Heading4, Heading3
 from .utils import recursive
 
@@ -115,6 +115,7 @@ class Grammar:
                           rep(sor(Grammar.epsilon, Grammar.template, Grammar.link), Link.end),
                           expect(Link.end)),
                       extractor)
+
         if result:
             (content, nodes) = result
             node = p.LinkNode(p.LinkP(content.value))
@@ -152,8 +153,11 @@ class Grammar:
             Heading3,
             Heading
         ]
-
-        result = pipe(parser, sor(*[seq(expect(i.start), Grammar.epsilon, expect(i.end)) for i in precedence]), extract)
+        try:
+            result = pipe(parser, sor(*[seq(expect(i.start), Grammar.epsilon, expect(i.end)) for i in precedence]),
+                          extract)
+        except ParseError as e:
+            raise e
 
         if result:
             return p.Node(p.HeadingP(result.value))
@@ -176,3 +180,16 @@ class Grammar:
         if result:
             return p.Node(p.TextP(result.text))
         return None
+
+    @staticmethod
+    def linebreak(parser):
+        pass
+
+    @staticmethod
+    def table(parser):
+        """Table grammar
+
+        Tables are threatened as text, hence will be indexed including formatting attributes not
+        useful for indexing purpose
+        """
+        pass

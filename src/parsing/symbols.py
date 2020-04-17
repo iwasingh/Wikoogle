@@ -81,7 +81,7 @@ class Heading(Tag):
     """
     Equals signs are used for headings (must be at start of line)
 
-    Must the after new line
+    Must be after new line
     """
     start = Token('HEADING_2', r'==')
     end = Token('HEADING_2', r'==')
@@ -122,8 +122,20 @@ class Heading6(Tag):
         super().__init__(self.start, self.end)
 
 
+# class Linebreak(Tag):
+#     start = Token('LINE_BREAK', r'\n')
+#     end = Token('LINE_BREAK', r'\n')
+#
+#     def __init__(self):
+#         super().__init__(self.start, self.end)
+
+
 class Table(Tag):
-    pass
+    start = Token('TABLE', r'{\|')
+    end = Token('TABLE', r'\|}')
+
+    def __init__(self):
+        super().__init__(self.start, self.end)
 
 
 class Comment(Tag):
@@ -138,14 +150,19 @@ WIKIMEDIA_MARKUP = [
     Heading4(),
     Heading5(),
     Heading6(),
+    # Table() For now tables are threatened as text, hence will be indexed, including formatting attributes not
+    # useful for indexing purpose
 ]
 
 
 class Text(Tag):
     # TODO do this in the lexer TextT class
     tags = [symbol.start.regex + '|' + symbol.end.regex for symbol in WIKIMEDIA_MARKUP]
-    start = Token('TEXT', '.*?(?={0})|.*'.format('|'.join(tags), re.DOTALL))
+    reserved = '({0})'.format('|'.join(tags))
+    start = Token('TEXT', r'(.+?(?={0}))|(.+(?!{0}))'.format(reserved), re.DOTALL)
     end = start  # None or NoneToken
+
+    # start = Token('TEXT', '.*?(?={0})|.*'.format('|'.join(tags)))
 
     def __init__(self):
         super().__init__(self.start, self.end)

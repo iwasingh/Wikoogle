@@ -1,20 +1,23 @@
 import sys
+import logging
 from pathlib import Path
-from preprocessing import parser
-from whoosh.fields import Schema, TEXT, ID
-import whoosh.index as index
-from whoosh.qparser import QueryParser
+# from preprocessing import index
+from preprocessing.index import WikiIndex
 
 DUMP_FOLDER = Path('./dumps')
+
+
 # DUMP = '../dumps/'
 # 'enwiki-20200120-pages-articles-multistream1.xml'
 # 'wiki_test.xml'
 
 
 def main():
-    print('parsing')
-    w_parser = parser.Parser(str(DUMP_FOLDER / 'enwiki-20200120-pages-articles-multistream1.xml'))
-    w_parser.parse()
+    wikimedia = WikiIndex().get('__index')
+    wikimedia.build()
+
+    # w_parser = index.Parser(str(DUMP_FOLDER / 'enwiki-20200120-pages-articles-multistream1.xml'))
+    # w_parser.parse()
 
     # schema = Schema(id=ID(stored=True),
     #                 title=TEXT(stored=True),
@@ -34,4 +37,6 @@ def main():
     # finally:
     #     searcher.close()
 
-main()
+
+if __name__ == '__main__':
+    main()
