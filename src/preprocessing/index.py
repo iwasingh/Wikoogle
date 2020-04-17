@@ -7,24 +7,18 @@ from whoosh import index
 from parsing.combinators import ParseError
 from .analyzer import WikimediaAnalyzer
 import config
-import json
 from parsing.compiler import Compiler
 import shutil
-from whoosh.analysis import StandardAnalyzer
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.WARNING)
+logger.setLevel(logging.INFO)
 logger.addHandler(
     logging.FileHandler(filename=str((config.ROOT / 'logs' / 'preprocessing.index.log').absolute()), delay=True))
 
 
-# huge_tree: disable security restrictions and support very deep trees
-# and very long text content (only affects libxml2 2.7+)
-
-# @functools.lru_cache(user_function)
-
 class WikiSchema(SchemaClass):
-    title = ID(stored=True)
+    id = ID(stored=True)
+    title = TEXT(stored=True, analyzer=WikimediaAnalyzer(), field_boost=2.0)
     text = TEXT(stored=True, analyzer=WikimediaAnalyzer())
 
 
@@ -33,25 +27,26 @@ class WikiIndex:
     def __init__(self):
         self.schema = WikiSchema
         self.xml_parser = WikiXML(namespace='http://www.mediawiki.org/xml/export-0.10/')
-        # self.index_path = None
         self.index = None
-        # self.name = '__indexir'
 
     def clear(self):
         pass
 
-    def get(self, name='__indexdir', destructive=True):
+    def get(self, name='__indexdir', destructive=False):
         index_path = config.ROOT.joinpath(name)
         path = str(index_path)
-        # self.index_path = index_path
 
         if destructive and index_path.exists():
             shutil.rmtree(path)
+            while index_path.exists():
+                pass
 
         if destructive or (not index_path.exists() or not index.exists_in(path)):
             try:
                 index_path.mkdir()
                 self.index = index.create_in(path, WikiSchema())
+                logging.info('Index newly created, adding documents')
+                self.build()
             except (FileExistsError, FileNotFoundError) as e:
                 logger.error('Index already exist or parent not found')
                 sys.exit(0)
@@ -68,19 +63,27 @@ class WikiIndex:
         miss = 0
         for wiki in directory.iterdir():
             if wiki.is_file() and wiki.stem.startswith('enwiki'):
-                logger.info('Processing: ', wiki.name)
                 for root in self.xml_parser.from_xml(str(wiki)):
                     try:
                         # title = self.xml_parser.title(root)
                         id, title, text = self.xml_parser.get(root)
                         article = compiler.compile(text.text)
-                        writer.add_document(title=title.text, text=article)
+                        writer.add_document(title=title.text, text=article, id=f'{id}')
+                        logger.info(f'{title.text} indexed')
                     except ParseError as e:
                         miss += 1
-                        logger.warning(f'Article {title.text} parse error, skipping, count: {miss}')
+                        logger.warning(f'{title.text} parse error, skipping')
                         continue
 
+        if miss > 0:
+            logger.warning(f'{miss} articles ignored')
+
         writer.commit()
+
+# huge_tree: disable security restrictions and support very deep trees
+# and very long text content (only affects libxml2 2.7+)
+
+# @functools.lru_cache(user_function)
 
 
 class WikiXML:
