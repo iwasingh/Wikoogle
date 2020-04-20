@@ -56,4 +56,11 @@ Wikipedia search engine
 
 ## Notes 1.2
 * Parser works, it might be useful to build a secondary index with a parsed wikitext to add features like this https://www.google.com/search?q=Known+star+systems+within+5.0+parsecs+(16.3+light-years)&rlz=1C1CHBF_enIT883IT883&oq=Known+star+systems+within+5.0+parsecs+(16.3+light-years)&aqs=chrome..69i57.182j0j7&sourceid=chrome&ie=UTF-8 (Table rendered directly)
- 
+
+## Notes 1.3
+Things to do:
+* UI
+ * Nodejs that serves a SPA
+* Searching
+ * Query expansion
+ *	 

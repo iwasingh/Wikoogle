@@ -1,5 +1,4 @@
 from io import StringIO
-import re
 from .parser import Parser
 from .lexer import Lexer
 from .grammar import Grammar

@@ -2,7 +2,7 @@ import sys
 import logging
 import sys
 from lxml import etree
-from whoosh.fields import Schema, TEXT, KEYWORD, ID, STORED, SchemaClass
+from whoosh.fields import TEXT, ID, SchemaClass
 from whoosh import index
 from parsing.combinators import ParseError
 from .analyzer import WikimediaAnalyzer
@@ -10,10 +10,7 @@ import config
 from parsing.compiler import Compiler
 import shutil
 
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-logger.addHandler(
-    logging.FileHandler(filename=str((config.ROOT / 'logs' / 'preprocessing.index.log').absolute()), delay=True))
+logger = logging.getLogger()
 
 
 class WikiSchema(SchemaClass):
