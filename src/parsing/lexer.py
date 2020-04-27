@@ -1,12 +1,8 @@
 import re
 import logging
 from enum import Enum
-from abc import ABC
 from .utils import RecursiveMatch, recursive
 from .symbols import Template, Link, Heading, Text, Token, Heading3, Heading4, Heading5, Heading6
-import html
-
-# import xml.sax.saxutils as saxutils
 
 logger = logging.getLogger('Lexer')
 
@@ -17,8 +13,6 @@ class Encoder:
 
     def encode(self, text):
         return text
-        # return html.unescape(text) # Too slow
-        # return saxutils.unescape(text) # Better than previous but still slow
 
 
 class Symbol(Enum):
