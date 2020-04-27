@@ -1,6 +1,6 @@
 from preprocessing.index import WikiIndex
 from searching.searcher import Searcher
-from flask import Flask, request
+from flask import Flask, request, render_template
 
 import yaml
 import config
@@ -17,18 +17,20 @@ def setup_logz():
             print('Error loading logger, using default config', e)
 
 
-def main():
-    setup_logz()
+setup_logz()
 
-    logger = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
-    wikimedia_ix = WikiIndex().get('__index')
-    # wikimedia_ix.build()
+wikimedia_ix = WikiIndex().get('__index')
 
 searcher = Searcher(wikimedia_ix)
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="layouts")
 
+@app.route('/')
+def show_index():
+    return render_template('base.html')
+    
 @app.route('/search')
 def search_results():
     print(searcher.search('anar'))
