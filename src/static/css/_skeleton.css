@@ -1,0 +1,32 @@
+* {
+  font-family: 'Lato', sans-serif;
+}
+
+body {
+  margin: 0px;
+}
+
+.page {
+  display: grid;
+  grid-template-rows: 50px auto 100px;
+  height: 100vh;
+}
+
+header {
+  grid-row: 1;
+  display: grid;
+  grid-template-columns: 25% auto 25%;
+}
+
+header nav.top-left {
+  grid-column: 1;
+}
+
+header nav.top-right {
+  grid-column: 3;
+}
+
+footer {
+  grid-row: 3;
+  background: bisque;
+}

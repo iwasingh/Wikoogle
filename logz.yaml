@@ -5,11 +5,11 @@ formatters:
 handlers:
   root:
     class: logging.FileHandler
-    filename: './logs/default.log'
+    filename: '../logs/default.log'
     formatter: simple
   file:
     class: logging.FileHandler
-    filename: './logs/preprocessing.log'
+    filename: '../logs/preprocessing.log'
     formatter: simple
 loggers:
   preprocessing:

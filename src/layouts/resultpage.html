@@ -1,0 +1,15 @@
+{% extends "_skeleton.html" %}
+
+{% block title %}Risultati{% endblock %}
+
+{% block stylesheet %}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/homepage.css') }}" />
+{% endblock %}
+
+{% block content %}
+  <main>
+    {% for obj in results %}
+      <span>{{ obj["title"] }}</span>
+    {% endfor %}
+  </main>
+{% endblock %}

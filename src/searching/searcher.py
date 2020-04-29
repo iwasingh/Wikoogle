@@ -15,7 +15,10 @@ class Searcher:
             searcher = self.wikimedia.index.searcher()
             results = searcher.search(query)
 
-        finally:
-            searcher.close()
+        except:
+            pass
+            
+        # finally:
+        #     searcher.close()
 
         return results

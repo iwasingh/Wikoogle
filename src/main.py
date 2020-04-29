@@ -8,7 +8,19 @@ import logging
 import logging.config
 
 
-def setup_logz():
+__logger = None
+__wikimedia_ix = None
+__searcher = None
+
+
+def get_logger():
+    global __logger
+
+    if __logger is not None:
+        return __logger
+        
+    print(' * Bootstrap logger')
+
     with open(config.LOGZ, 'r') as file:
         try:
             log_config = yaml.load(file, Loader=yaml.SafeLoader)
@@ -16,23 +28,52 @@ def setup_logz():
         except yaml.YAMLError as e:
             print('Error loading logger, using default config', e)
 
+    __logger = logging.getLogger(__name__)
 
-setup_logz()
+    return __logger
 
-logger = logging.getLogger(__name__)
+def get_wikimedia_ix():
+    global __wikimedia_ix
 
-wikimedia_ix = WikiIndex().get('__index')
+    if __wikimedia_ix is not None:
+        return __wikimedia_ix
 
-searcher = Searcher(wikimedia_ix)
+    print(' * Bootstrap WikiIndex')
+
+    __wikimedia_ix = WikiIndex().get('__index')
+
+    return __wikimedia_ix
+
+def get_searcher():
+    global __searcher
+
+    if __searcher is not None:
+        return __searcher
+
+    print(' * Bootstrap Searcher')
+
+    __searcher = Searcher(get_wikimedia_ix())
+
+    return __searcher
+
 
 app = Flask(__name__, template_folder="layouts")
 
+
 @app.route('/')
 def show_index():
-    return render_template('base.html')
+    return render_template('homepage.html')
     
 @app.route('/search')
 def search_results():
-    print(searcher.search('anar'))
-    return 'Ok'
+    results = get_searcher().search('anarchism')
+    
+    return render_template(
+        'resultpage.html',
+        results=results
+    )
 
+if __name__ == 'src.main':
+    get_logger()
+    get_wikimedia_ix()
+    get_searcher()

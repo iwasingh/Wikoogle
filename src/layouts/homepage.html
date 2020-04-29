@@ -1,0 +1,25 @@
+{% extends "_skeleton.html" %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block stylesheet %}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/homepage.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/partials/multi-field-query.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/partials/search-form.css') }}" />
+{% endblock %}
+
+{% block content %}
+  <main>
+    <form class="search-form" method="GET" action="/search">
+
+      {% include 'partials/search-form.html' %}
+
+      {% include 'partials/multi-field-query.html' %}
+      
+    </form>
+  </main>
+{% endblock %}
+
+{% block javascript %}
+  <script type="text/javascript" src="{{ url_for('static', filename='js/homepage.js') }}"></script>
+{% endblock %}

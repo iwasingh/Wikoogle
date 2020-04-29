@@ -1,0 +1,39 @@
+#multi-field-query {
+  grid-row: 2;
+  grid-column: 1 / span 2;
+  position: relative;
+  align-self: start;
+  padding: 20px;
+  text-align: center;
+}
+
+#multi-field-query-dropdown {
+  display: none;
+}
+
+#multi-field-query-dropdown.active {
+  display: grid;
+  grid-template-rows: repeat(4, 30px);
+  grid-template-columns: 100px auto;
+  row-gap: 10px;
+  position: absolute;
+  overflow-y: auto;
+  top: 35px;
+  left: 0px;
+  width: 100%;
+  max-width: 300px;
+  min-height: 100px;
+  max-height: 270px;
+  margin: 10px;
+  padding: 20px;
+  background: aliceblue;
+}
+
+#multi-field-query-dropdown label {
+  align-self: center;
+  justify-self: start;
+}
+
+#multi-field-query-dropdown button {
+  grid-column: 1 / span 2;
+}
