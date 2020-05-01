@@ -1,0 +1,44 @@
+nav.top-right-center {
+  grid-column: 2 / span 2;
+  margin-right: 16px;
+}
+
+nav form.search-form {
+  grid-template-columns:  1fr 60px;
+}
+
+nav form.search-form > input {
+  align-self: center;
+  padding: 0px 20px;
+  width: 100%;
+  height: 41px;
+}
+
+nav form.search-form > button {
+  height: 41px;
+  padding: 10px;
+  align-self: center;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 30% auto;
+  grid-auto-rows: 100px;
+  grid-row: 2;
+  row-gap: 10px;
+  margin: 20px;
+}
+
+main article {
+  display: grid;
+  grid-column: 2;
+}
+
+main article span.text {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 19px;
+  height: 38px;
+}

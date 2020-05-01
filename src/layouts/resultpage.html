@@ -3,13 +3,36 @@
 {% block title %}Risultati{% endblock %}
 
 {% block stylesheet %}
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/homepage.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/resultpage.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/partials/multi-field-query.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/partials/search-form.css') }}" />
+{% endblock %}
+
+{% block header %}
+  <header>
+    <nav class="top-left">
+      <a href="/">Wikoogle</a>
+    </nav>
+    <nav class="top-right-center">
+      <form class="search-form" method="GET" action="/search">
+        {% include 'partials/search-form.html' %}
+      </form>
+    </nav>
+  </header>
 {% endblock %}
 
 {% block content %}
   <main>
     {% for obj in results %}
-      <span>{{ obj["title"] }}</span>
+      <article>
+        <small>en.wikipedia.org/resource</small>
+        <a href="#">{{ obj["title"] }}</a>
+        <span class="text">{{ obj.highlights("text", top=1) | safe }}</span>
+      </article>
     {% endfor %}
   </main>
+{% endblock %}
+
+{% block javascript %}
+  <!-- <script type="text/javascript" src="{{ url_for('static', filename='js/homepage.js') }}"></script> -->
 {% endblock %}

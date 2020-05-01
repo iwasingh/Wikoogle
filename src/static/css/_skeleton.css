@@ -1,5 +1,6 @@
 * {
   font-family: 'Lato', sans-serif;
+  box-sizing: border-box;
 }
 
 body {
@@ -15,18 +16,50 @@ body {
 header {
   grid-row: 1;
   display: grid;
-  grid-template-columns: 25% auto 25%;
+  grid-template-columns: 30% auto 30%;
 }
 
 header nav.top-left {
   grid-column: 1;
+  align-self: center;
+  justify-self: center;
 }
 
 header nav.top-right {
   grid-column: 3;
+  align-self: center;
+  justify-self: center;
+}
+
+header nav a {
+  padding: 10px 16px 12px 16px;
+  background: rgba(43, 108, 176, .7);
+  text-decoration: none;
+  color: #ffffff;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  font-weight: bold;
+}
+
+header nav a:hover,
+header nav a.active {
+  background: rgb(43, 108, 176);
 }
 
 footer {
   grid-row: 3;
-  background: bisque;
+  background: #f2f2f2;
+  color: rgba(0,0,0,.7);
+}
+
+footer span.title {
+  display: block;
+  font-size: 18px;
+  margin: 20px;
+}
+
+footer span.subtitle {
+  margin-left: 20px;
 }

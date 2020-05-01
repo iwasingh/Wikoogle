@@ -1,3 +1,4 @@
+from whoosh import highlight
 from preprocessing.index import WikiIndex
 from searching.searcher import Searcher
 from flask import Flask, request, render_template
@@ -66,8 +67,17 @@ def show_index():
     
 @app.route('/search')
 def search_results():
-    results = get_searcher().search('anarchism')
+    queryAllFields = request.args.get("q", "")
+
+    queryByTitle = request.args.get("title", "")
+    queryByAuthor = request.args.get("author", "")
+    queryByCategory = request.args.get("category", "")
+
+    results = get_searcher().search(queryAllFields)
     
+    results.fragmenter = highlight.SentenceFragmenter()
+    results.order = highlight.FIRST
+
     return render_template(
         'resultpage.html',
         results=results

@@ -4,6 +4,7 @@
   var isMultiFieldQueryActive = false
 
   // dropdown-toggle
+  const closeRef = document.getElementById("multi-field-query-close")
   const toggleRef = document.getElementById("multi-field-query-action")
   const dropdownRef = document.getElementById("multi-field-query-dropdown")
 
@@ -15,9 +16,7 @@
   const inputAuthorRef = document.getElementById("pub_author")
   const inputCategoryRef = document.getElementById("pub_category")
 
-  toggleRef.onclick = function() {
-    isMultiFieldQueryActive = !isMultiFieldQueryActive
-    
+  function bindMultiFieldQuery() {
     if (isMultiFieldQueryActive) {
       dropdownRef.classList.add("active")
 
@@ -30,13 +29,23 @@
     } else {
       dropdownRef.classList.remove("active")
 
-      mainQueryRef.setAttribute("name", "search")
+      mainQueryRef.setAttribute("name", "q")
       mainQueryRef.removeAttribute("disabled") 
 
       inputTitleRef.removeAttribute("name")
       inputAuthorRef.removeAttribute("name")
       inputCategoryRef.removeAttribute("name")
     }
+  }
+
+  closeRef.onclick = function() {
+    isMultiFieldQueryActive = false
+    bindMultiFieldQuery()
+  }
+
+  toggleRef.onclick = function() {
+    isMultiFieldQueryActive = true
+    bindMultiFieldQuery()
   }
 
 })();

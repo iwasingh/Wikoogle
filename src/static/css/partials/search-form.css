@@ -11,13 +11,14 @@ form.search-form > input {
   box-sizing: border-box;
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;
-  background: aliceblue;
-  border: 1px solid #dedede;
+  background: transparent;
+  border: 2px solid #c3c3c3;
   border-right: none;
   outline: none;
   height: 60px;
   padding: 20px;
   font-size: 18px;
+  font-weight: bold;
 }
 
 form.search-form > button {
@@ -25,8 +26,8 @@ form.search-form > button {
   align-self: end;
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
-  background: aliceblue;
-  border: 1px solid #dedede;
+  background: transparent;
+  border: 2px solid #c3c3c3;
   border-left: none;
   outline: none;
   width: 100%;
@@ -37,4 +38,5 @@ form.search-form > button {
 form.search-form > button svg {
   width: 18px;
   height: 18px;
+  fill: #757575;
 }

@@ -9,16 +9,12 @@ class Searcher:
     def search(self, text):
         results = []
         query = MultifieldParser(['title', 'text'], schema=self.wikimedia.index.schema).parse(text)
-        # QueryParser(text, schema=self.wikimedia.index.schema).parse()
+        # QueryParser("text", schema=self.wikimedia.index.schema).parse(text)
 
         try:
             searcher = self.wikimedia.index.searcher()
             results = searcher.search(query)
-
         except:
             pass
-            
-        # finally:
-        #     searcher.close()
 
         return results

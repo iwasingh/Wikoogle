@@ -16,8 +16,11 @@
     <div class="page">
       {% block header %}
         <header>
-          <nav class="top-left">Wikoogle</nav>
-          <nav class="top-right">Homepage</nav>
+          <nav class="top-left">
+            <a href="/">Wikoogle</a>
+          </nav>
+          <nav class="top-right">
+            <a href="/" class="active">Homepage</a>
           </nav>
         </header>
       {% endblock %}
@@ -26,7 +29,9 @@
 
       {% block footer %}
         <footer>
-          Here is footer
+          <span class="title">Gestione dell'informazione 2019/2020</span>
+          <hr/>
+          <span class="subtitle">&copy; Singh Amarjot, Matteo Guerzoni</span>
         </footer>
       {% endblock %}
     </div>
