@@ -60,7 +60,12 @@ Wikipedia search engine
 ## Notes 1.3
 Things to do:
 * UI
- * Nodejs that serves a SPA
+ * Nodejs/Flask that serves a SPA/SSR
 * Searching
  * Query expansion
- *	 
+
+## Notes 1.4
+* Summarize with RAKE https://www.researchgate.net/publication/227988510_Automatic_Keyword_Extraction_from_Individual_Documents
+* Query expansion and WSD with NLTK
+ - An idea might be use wikipedia articles Category references to build a wikipedia-specific thesaurus to get better results
+	 

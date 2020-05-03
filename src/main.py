@@ -7,6 +7,7 @@ import yaml
 import config
 import logging
 import logging.config
+from query import expander
 
 
 __logger = None
@@ -19,7 +20,7 @@ def get_logger():
 
     if __logger is not None:
         return __logger
-        
+
     print(' * Bootstrap logger')
 
     with open(config.LOGZ, 'r') as file:
@@ -64,7 +65,7 @@ app = Flask(__name__, template_folder="layouts")
 @app.route('/')
 def show_index():
     return render_template('homepage.html')
-    
+
 @app.route('/search')
 def search_results():
     queryAllFields = request.args.get("q", "")
@@ -74,7 +75,7 @@ def search_results():
     queryByCategory = request.args.get("category", "")
 
     results = get_searcher().search(queryAllFields)
-    
+
     results.fragmenter = highlight.SentenceFragmenter()
     results.order = highlight.FIRST
 
