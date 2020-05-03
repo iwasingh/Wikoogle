@@ -151,7 +151,7 @@ class HeadingP(Expression):
 
 class LinkNode(Node):
     # https://en.wikipedia.org/wiki/Wikipedia:Manual_of_Style/Linking
-    media = re.compile('^(File:|Category:|Image:)')
+    media = re.compile('^(File:|Image:)')
 
     def __init__(self, value):
         self.text = value.text

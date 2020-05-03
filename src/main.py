@@ -4,6 +4,7 @@ import yaml
 import config
 import logging
 import logging.config
+from query import expander
 
 
 def setup_logz():
@@ -16,14 +17,14 @@ def setup_logz():
 
 
 def main():
-    setup_logz()
+    # setup_logz()
 
-    logger = logging.getLogger(__name__)
+    # logger = logging.getLogger(__name__)
 
-    wikimedia_ix = WikiIndex().get('__index')
+    # wikimedia_ix = WikiIndex().get('__index')
     # wikimedia_ix.build()
 
-    searcher = Searcher(wikimedia_ix)
+    # searcher = Searcher(wikimedia_ix)
 
     while True:
         query = input('Insert query \n')
@@ -31,8 +32,12 @@ def main():
         if query == 'exit':
             break
 
-        results = searcher.search(query)
+        # results = searcher.search(query)
+        result = expander.expand(query)
+
+        print(result)
 
 
 if __name__ == '__main__':
     main()
+    # test()

@@ -14,7 +14,7 @@ class Searcher:
         try:
             searcher = self.wikimedia.index.searcher()
             results = searcher.search(query)
-
+            breakpoint()
         finally:
             searcher.close()
 
