@@ -17,7 +17,7 @@ class WikiSchema(SchemaClass):
     id = ID(stored=True)
     title = TEXT(stored=True, analyzer=WikimediaAnalyzer(), field_boost=2.0)
     text = TEXT(stored=True, analyzer=WikimediaAnalyzer())
-    categories = KEYWORD(stored=True, analyzer=WikimediaAnalyzer(), scorable=True)
+    categories = KEYWORD(stored=True, analyzer=WikimediaAnalyzer(), scorable=True, lowercase=True, commas=True)
 
 
 # TODO singleton
@@ -76,7 +76,7 @@ class WikiIndex:
                     try:
                         id, title, text = self.xml_parser.get(root)
                         article = compiler.compile(text.text)
-                        writer.add_document(title=title.text, text=article, categories=' '.join(categories), id=f'{id}')
+                        writer.add_document(title=title.text, text=article, categories=','.join(categories), id=f'{id}')
                         logger.info(f'{title.text} indexed')
                         categories.clear()
                     except ParseError as e:
