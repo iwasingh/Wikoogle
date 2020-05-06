@@ -25,3 +25,7 @@ def WikimediaAnalyzer():
     # chain = ret | WikitextFilter()
 
     return ret
+
+def HighlightAnalyzer():
+    ret = StandardAnalyzer(stoplist=None)
+    return ret

@@ -57,6 +57,7 @@ class WikiIndex:
 
         writer = self.index.writer()
         compiler = Compiler()
+        analyzer = WikimediaAnalyzer()
         miss = 0
         for wiki in directory.iterdir():
             if wiki.is_file() and wiki.stem.startswith('enwiki'):
@@ -65,6 +66,8 @@ class WikiIndex:
                         # title = self.xml_parser.title(root)
                         id, title, text = self.xml_parser.get(root)
                         article = compiler.compile(text.text)
+                        # article = analyzer(article)
+                        # article = " ".join([i.text for i in article])
                         writer.add_document(title=title.text, text=article, id=f'{id}')
                         logger.info(f'{title.text} indexed')
                     except ParseError as e:
