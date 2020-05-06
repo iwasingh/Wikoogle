@@ -3,6 +3,7 @@ import re
 # import src.parsing.lexer as lexer
 import parsing.lexer as lexer
 from .combinators import ParseError
+import parsing.grammar as g
 
 logger = logging.getLogger('Parser')
 
@@ -48,12 +49,13 @@ class Node:
         NodeVisitor.pretty_print(self)
         return ''
 
-    def compile(self, writer):
+    def compile(self, writer, parser):
+        parser.notify(self)
         if self.value:
             self.value.render(writer)
 
         for children in self.children:
-            children.compile(writer)
+            children.compile(writer, parser)
 
 
 class NodeVisitor:
@@ -68,17 +70,20 @@ class NodeVisitor:
 
 
 class Parser:
-    def __init__(self, tokens):
-        logging.info(tokens)
-        logger.info(len(tokens))
-        self._tokens = iter(tokens)
+    def __init__(self):
+        self._tokens = iter([])
         self._ast = Node()
         self._index = -1
         self._current = None
-        # self._grammar = g.Grammar()
+        self._listeners = []
+        self.lexer = lexer.Lexer()
+        # self.expression =
+        self._grammar = g.Grammar()
 
-    def parse(self, expression):
-        # expression = self._grammar.expression()
+    def parse(self, text, expression=None):
+        self._ast = Node()
+        self._tokens = iter(self.lexer.tokenize(text))
+        expression = expression if expression else self._grammar.expression()
         self.next()
         try:
             while self.current.token != lexer.Lexer.EOF:
@@ -111,6 +116,22 @@ class Parser:
     def current(self):
         return self._current
 
+    def on(self, fn, type):
+        self._listeners.append((fn, type))
+        index = len(self._listeners) - 1
+
+        def off():
+            if index >= 0:
+                self._listeners.pop(index)
+
+        return off
+
+    def notify(self, node):
+        if node.value and len(self._listeners) > 0:
+            for fn, type in self._listeners:
+                if isinstance(node.value, type.value):
+                    fn(node)
+
 
 class Expression:
     def __init__(self, exp):
@@ -130,6 +151,8 @@ class TextP(Expression):
 
 
 class LinkP(Expression):
+    category_match = re.compile(r'(?<=Category:).+')
+
     def __init__(self, node):
         self.text = node.text
         super().__init__(node)
@@ -137,10 +160,23 @@ class LinkP(Expression):
     def render(self, writer):
         writer.write(self.text.split('|')[0])
 
+    def category(self):
+        return self.category_match.search(self.text)
+
 
 class TemplateP(Expression):
     def render(self, writer):
         # Ignore templates
+        pass
+
+
+class CommentP(Expression):
+    def __init__(self, node):
+        self.text = node.text
+        super().__init__(node)
+
+    def render(self, writer):
+        # Ignore comments
         pass
 
 
@@ -160,6 +196,7 @@ class LinkNode(Node):
     def is_media(self):
         return self.media.match(self.text)
 
-    def compile(self, writer):
+    def compile(self, writer, parser):
         if not self.is_media():
+            parser.notify(self)
             self.value.render(writer)

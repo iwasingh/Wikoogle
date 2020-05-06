@@ -27,7 +27,12 @@ class WikiNormalizer(Filter):
     # ]
 
     def __call__(self, tokens):
-        filters = SubstitutionFilter("-", " ") | SubstitutionFilter('_', " ")
+        filters = SubstitutionFilter("-", " ") \
+                  | SubstitutionFilter('_', " ") \
+                  # | SubstitutionFilter("'''''", "") \
+                  # | SubstitutionFilter("'''", "") \
+                  # | SubstitutionFilter("''", "")
+
         return filters(tokens)
 
 

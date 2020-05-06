@@ -29,10 +29,19 @@ class TestLexer(unittest.TestCase):
             logging.info('TEXT_LENGTH: {0}'.format(len(text)))
             self.assertGreater(len(tokens), 0)
 
-    # def test_text(self):
-    #     TEXT_TOKEN = text_token()
-    #     self.assertRegex('The anarchism of [[', TEXT_TOKEN.regex, 'Assert regex dont match')
-    #     self.assertEqual(TEXT_TOKEN.match('The anarchism of [[').group(0), 'The anarchism of ')
+    def test_comment(self):
+        lexer = Lexer()
+        tokens = lexer.tokenize('&lt;!-- In the interest of restricting article length, please limit this section to '
+                                'two or three short paragraphs and add any substantial information to the main Issues '
+                                'in anarchism article. Thank you. --&gt;')
+        logging.info(tokens)
+        self.assertGreater(len(tokens), 0)
+
+    # def test_formatting(self):
+    #     lexer = Lexer()
+    #     tokens = lexer.tokenize("'''hello''' ''world'' this is '''''bold and italic'''''")
+    #     logging.info(tokens)
+    #     self.assertGreater(len(tokens), 0)
 
 
 if __name__ == '__main__':

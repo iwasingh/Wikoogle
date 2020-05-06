@@ -9,7 +9,6 @@ import logging
 import logging.config
 from query import expander
 
-
 __logger = None
 __wikimedia_ix = None
 __searcher = None
@@ -34,6 +33,7 @@ def get_logger():
 
     return __logger
 
+
 def get_wikimedia_ix():
     global __wikimedia_ix
 
@@ -45,6 +45,7 @@ def get_wikimedia_ix():
     __wikimedia_ix = WikiIndex().get('__index')
 
     return __wikimedia_ix
+
 
 def get_searcher():
     global __searcher
@@ -66,6 +67,7 @@ app = Flask(__name__, template_folder="layouts")
 def show_index():
     return render_template('homepage.html')
 
+
 @app.route('/search')
 def search_results():
     queryAllFields = request.args.get("q", "")
@@ -83,6 +85,7 @@ def search_results():
         'resultpage.html',
         results=results
     )
+
 
 if __name__ == 'src.main':
     get_logger()

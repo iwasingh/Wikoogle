@@ -2,12 +2,12 @@ import sys
 import logging
 import sys
 from lxml import etree
-from whoosh.fields import TEXT, ID, SchemaClass
+from whoosh.fields import TEXT, ID, SchemaClass, KEYWORD
 from whoosh import index
 from parsing.combinators import ParseError
 from .analyzer import WikimediaAnalyzer
 import config
-from parsing.compiler import Compiler
+from parsing.compiler import Compiler, ParseTypes
 import shutil
 
 logger = logging.getLogger()
@@ -17,6 +17,7 @@ class WikiSchema(SchemaClass):
     id = ID(stored=True)
     title = TEXT(stored=True, analyzer=WikimediaAnalyzer(), field_boost=2.0)
     text = TEXT(stored=True, analyzer=WikimediaAnalyzer())
+    categories = KEYWORD(stored=True, analyzer=WikimediaAnalyzer(), scorable=True)
 
 
 # TODO singleton
@@ -57,16 +58,27 @@ class WikiIndex:
 
         writer = self.index.writer()
         compiler = Compiler()
+
+        categories = []
+
+        def parse_categories(node):
+            # This might fail with other types, since there is a filter on the listener (ParseTypes.Link) i don't
+            # check anything
+            category = node.value.category()
+            if category:
+                categories.append(category.group())
+
+        listener = compiler.on(parse_categories, ParseTypes.LINK)
         miss = 0
         for wiki in directory.iterdir():
             if wiki.is_file() and wiki.stem.startswith('enwiki'):
                 for root in self.xml_parser.from_xml(str(wiki)):
                     try:
-                        # title = self.xml_parser.title(root)
                         id, title, text = self.xml_parser.get(root)
                         article = compiler.compile(text.text)
-                        writer.add_document(title=title.text, text=article, id=f'{id}')
+                        writer.add_document(title=title.text, text=article, categories=' '.join(categories), id=f'{id}')
                         logger.info(f'{title.text} indexed')
+                        categories.clear()
                     except ParseError as e:
                         miss += 1
                         logger.warning(f'{title.text} parse error, skipping')
@@ -74,6 +86,8 @@ class WikiIndex:
 
         if miss > 0:
             logger.warning(f'{miss} articles ignored')
+
+        listener()  # Remove listener
 
         writer.commit()
 

@@ -1,8 +1,9 @@
-import re
 import logging
+import re
 from enum import Enum
+from .symbols import Template, Link, Heading, Text, Token, \
+    Heading3, Heading4, Heading5, Heading6, Comment, Italic, ItalicAndBold, Bold
 from .utils import RecursiveMatch, recursive
-from .symbols import Template, Link, Heading, Text, Token, Heading3, Heading4, Heading5, Heading6
 
 logger = logging.getLogger('Lexer')
 
@@ -171,12 +172,20 @@ class LinkT(Link):
         super().__init__()
 
 
-# The order is important
+# Headings
 Lexer.symbol(Symbol.RESERVED)(Heading6)
 Lexer.symbol(Symbol.RESERVED)(Heading5)
 Lexer.symbol(Symbol.RESERVED)(Heading4)
 Lexer.symbol(Symbol.RESERVED)(Heading3)
 Lexer.symbol(Symbol.RESERVED)(Heading)
+
+# Comment
+Lexer.symbol(Symbol.RESERVED)(Comment)
+
+# Formatting, whoosh automatically removes apices
+# Lexer.symbol(Symbol.RESERVED)(ItalicAndBold)
+# Lexer.symbol(Symbol.RESERVED)(Bold)
+# Lexer.symbol(Symbol.RESERVED)(Italic)
 
 
 @Lexer.symbol(Symbol.ID)

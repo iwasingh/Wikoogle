@@ -139,7 +139,35 @@ class Table(Tag):
 
 
 class Comment(Tag):
-    pass
+    start = Token('COMMENT_START', r'&lt;!--')
+    end = Token('COMMENT_END', r'--&gt;')
+
+    def __init__(self):
+        super().__init__(self.start, self.end)
+
+
+class Bold(Tag):
+    start = Token('BOLD', r"\'\'\'")
+    end = Token('BOLD', r"\'\'\'")
+
+    def __init__(self):
+        super().__init__(self.start, self.end)
+
+
+class Italic(Tag):
+    start = Token('ITALIC', r"\'\'")
+    end = Token('ITALIC', r"\'\'")
+
+    def __init__(self):
+        super().__init__(self.start, self.end)
+
+
+class ItalicAndBold(Tag):
+    start = Token('ITALIC_AND_BOLD', r"\'\'\'\'\'")
+    end = Token('ITALIC_AND_BOLD', r"\'\'\'\'\'")
+
+    def __init__(self):
+        super().__init__(self.start, self.end)
 
 
 WIKIMEDIA_MARKUP = [
@@ -150,6 +178,10 @@ WIKIMEDIA_MARKUP = [
     Heading4(),
     Heading5(),
     Heading6(),
+    Comment(),
+    # Bold(),
+    # Italic(),
+    # ItalicAndBold(),
     # Table() For now tables are threatened as text, hence will be indexed, including formatting attributes not
     # useful for indexing purpose
 ]

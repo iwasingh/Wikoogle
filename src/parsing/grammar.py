@@ -2,7 +2,7 @@ import logging
 import re
 import parsing.parser as p
 from .combinators import pipe, expect, extract, seq, sor, rep, ParseError
-from .symbols import Template, Text, Link, Heading, Heading6, Heading5, Heading4, Heading3
+from .symbols import Template, Text, Link, Heading, Heading6, Heading5, Heading4, Heading3, Comment, Bold, ItalicAndBold, Italic
 from .utils import recursive
 
 # import src.parsing.lexer as l
@@ -193,3 +193,16 @@ class Grammar:
         useful for indexing purpose
         """
         pass
+
+    @staticmethod
+    def comment(parser):
+        result = pipe(parser,
+                      seq(expect(Comment.start), Grammar.epsilon, expect(Comment.end)),
+                      extract)
+        if result:
+            return p.Node(p.CommentP(result.value))
+        return None
+
+    # @staticmethod
+    # def formatting(parser):
+    #     result = pipe(parser, sor())
