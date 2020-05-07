@@ -27,7 +27,7 @@
       <article>
         <small>en.wikipedia.org/resource</small>
         <a href="#">{{ obj["title"] }}</a>
-        <span class="text">{{ obj.highlights("text", top=1) | safe }}</span>
+        <span class="text">{{ obj["text"] | safe }}</span>
       </article>
     {% endfor %}
   </main>

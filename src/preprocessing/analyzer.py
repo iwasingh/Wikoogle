@@ -42,3 +42,7 @@ def WikimediaAnalyzer():
     chain = ret | WikiNormalizer()
 
     return chain
+
+def HighlightAnalyzer():
+    ret = StandardAnalyzer(stoplist=None)
+    return ret

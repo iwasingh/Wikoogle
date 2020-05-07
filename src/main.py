@@ -1,5 +1,7 @@
 from whoosh import highlight
+from whoosh.analysis import StandardAnalyzer, RegexAnalyzer, KeywordAnalyzer, SimpleAnalyzer, LowercaseFilter
 from preprocessing.index import WikiIndex
+from preprocessing.analyzer import HighlightAnalyzer
 from searching.searcher import Searcher
 from flask import Flask, request, render_template
 
@@ -7,7 +9,11 @@ import yaml
 import config
 import logging
 import logging.config
-from query import expander
+
+import nltk
+from nltk.corpus import wordnet as wn
+import re
+
 
 __logger = None
 __wikimedia_ix = None
@@ -63,6 +69,43 @@ def get_searcher():
 app = Flask(__name__, template_folder="layouts")
 
 
+def StandardScorer(fragment):
+    analyzer  = StandardAnalyzer()
+    paragraph = fragment.text[fragment.startchar:fragment.endchar]
+    tokens    = [token.text for token in analyzer(paragraph)]
+
+    anarchism = wn.synsets('anarchism')[0]
+    synsets = [wn.synsets(token) for token in tokens]
+    synsets = [(tokens[idx], syn[0]) for idx, syn in enumerate(synsets) if len(syn) > 0]
+    wup_print = [(tar[0], anarchism.wup_similarity(tar[1])) for tar in synsets]
+    wup_similarity = [tar[1] for tar in wup_print]
+    score = sum(filter(lambda wup: wup is not None and wup > 0.25 and wup < 1, wup_similarity)) / len(paragraph)
+
+    # relative to sentence length
+    # try speed up parsing synsets
+    # remove == 1 matches
+
+    print(wup_print)
+    print("_______________________________________", score)
+
+    return score * 100000
+
+def map_result_to_temp(item, query):
+    title = item["title"]
+    analyzer = StandardAnalyzer(stoplist=None)
+
+    text = highlight.highlight(
+        item["text"],
+        query,
+        analyzer,
+        highlight.SentenceFragmenter(maxchars=2**15),
+        highlight.HtmlFormatter(),
+        top=1,
+        scorer=StandardScorer
+    )
+
+    return dict(title=item["title"], text=text)
+
 @app.route('/')
 def show_index():
     return render_template('homepage.html')
@@ -76,10 +119,10 @@ def search_results():
     queryByAuthor = request.args.get("author", "")
     queryByCategory = request.args.get("category", "")
 
-    results = get_searcher().search(queryAllFields)
+    query = [t.text for t in StandardAnalyzer()(queryAllFields)]
 
-    results.fragmenter = highlight.SentenceFragmenter()
-    results.order = highlight.FIRST
+    results = get_searcher().search(queryAllFields)
+    results = [map_result_to_temp(r, query) for r in results]
 
     return render_template(
         'resultpage.html',
