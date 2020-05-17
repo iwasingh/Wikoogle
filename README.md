@@ -69,3 +69,8 @@ Things to do:
 * Query expansion and WSD with NLTK
  - An idea might be use wikipedia articles Category references to build a wikipedia-specific thesaurus to get better results
 	 
+
+
+# Snippet generation
+* https://arxiv.org/pdf/2002.10782.pdf
+

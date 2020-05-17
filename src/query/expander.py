@@ -18,7 +18,7 @@ class POSTag(Enum):
         for pos in cls:
             if nltk_pos.startswith(pos.name):
                 return pos
-        return cls.N  # Maybe None?
+        return cls.N  # TODO check. Not founded tag are threatened as nouns. Maybe None?
 
 
 def lemmatizer(tokens):
@@ -49,9 +49,8 @@ def expand(query):
      - holonyms things that contain meronyms (i.e. tree)
 
      Query expansion require good relevance feedback methods. Using a thesaurus based query expansion might decrease
-     performance and has query drift problems with polysemic words. For now query expansion is disabled
-
-     for now only stems and lemmas of non-polysemic words are returned.
+     performance and has query drift problems with polysemic words. For now query expansion
+     for now only stems and lemmas of non-polysemic words are expanded
     :param query:
     :return:
     """
@@ -59,7 +58,6 @@ def expand(query):
     original_tokens = [i.text for i in analyzer(query)]
     tokens = stemming(original_tokens)
     synonyms = set()
-    # result = resnik_wsd(original_tokens)
     for token in original_tokens:
         senses = wordnet.synsets(token, 'n')
         if len(senses) == 1:

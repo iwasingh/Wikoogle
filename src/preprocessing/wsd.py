@@ -14,7 +14,7 @@ def resnik_wsd(tokens, threshold=0.8):
     """https://arxiv.org/pdf/1105.5444.pdf"""
     """
     For each pair the algorithm goes through all possible combinations of
-    the words' senses, and assigns \credit" to senses on the basis of shared information content,
+    the words' senses, and assigns "credit" to senses on the basis of shared information content,
     as measured using the wu_palmer similarity of the most informative subsumer.
 
     TODO: optimize with numpy

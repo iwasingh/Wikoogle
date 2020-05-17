@@ -1,5 +1,7 @@
 from whoosh.qparser import QueryParser
+import searching.result as r
 from whoosh.qparser import MultifieldParser
+from query.expander import expand
 
 
 class Searcher:
@@ -8,6 +10,7 @@ class Searcher:
 
     def search(self, text):
         results = []
+        # TODO expand query
         query = MultifieldParser(['title', 'text'], schema=self.wikimedia.index.schema).parse(text)
         # QueryParser("text", schema=self.wikimedia.index.schema).parse(text)
 
@@ -17,4 +20,4 @@ class Searcher:
         except:
             pass
 
-        return results
+        return [r.Result(i, text) for i in results]
