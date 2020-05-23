@@ -186,12 +186,18 @@ WIKIMEDIA_MARKUP = [
     # useful for indexing purpose
 ]
 
+IGNORED_TAGS = [
+    r'<math[\s\S]*?<\/math\>',
+    # r'<sub[\s\S]*?<\/sub\>',
+]
+
 
 class Text(Tag):
     # TODO do this in the lexer TextT class
     tags = [symbol.start.regex + '|' + symbol.end.regex for symbol in WIKIMEDIA_MARKUP]
-    reserved = '({0})'.format('|'.join(tags))
+    reserved = '({0})'.format('|'.join(IGNORED_TAGS + tags))
     start = Token('TEXT', r'(.+?(?={0}))|(.+(?!{0}))'.format(reserved), re.DOTALL)
+    # print(r'(.+?(?={0}))|(.+(?!{0}))'.format(reserved))
     end = start  # None or NoneToken
 
     # start = Token('TEXT', '.*?(?={0})|.*'.format('|'.join(tags)))

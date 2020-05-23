@@ -2,7 +2,9 @@ import logging
 import re
 from enum import Enum
 from .symbols import Template, Link, Heading, Text, Token, \
-    Heading3, Heading4, Heading5, Heading6, Comment, Italic, ItalicAndBold, Bold
+    Heading3, Heading4, Heading5, Heading6, Comment, Italic, ItalicAndBold, Bold, Tag, WIKIMEDIA_MARKUP, \
+    IGNORED_TAGS
+
 from .utils import RecursiveMatch, recursive
 
 logger = logging.getLogger('Lexer')
@@ -88,6 +90,7 @@ class Lexer:
         """
         text = self.encoder.encode(text)
         tokens = []
+
         # Debugging
         # if symbol_type == Symbol.ID: breakpoint()
         for symbol in self.table[symbol_type]:
@@ -121,8 +124,10 @@ class Lexer:
         symbol_type = Symbol.RESERVED
 
         while self._col < len(text):
-            if self.table[Symbol.IGNORE] and self.table[Symbol.IGNORE][0].match(text, self._col):
-                self._col += 1
+            for ignore in self.table[Symbol.IGNORE]:
+                match = ignore.match(text, self._col)
+                if match:
+                    self._col = match.end(0)
             else:
                 resolved_tokens, next_symbol = self._tokenize(text, symbol_type)
                 symbol_type = next_symbol
@@ -182,10 +187,23 @@ Lexer.symbol(Symbol.RESERVED)(Heading)
 # Comment
 Lexer.symbol(Symbol.RESERVED)(Comment)
 
+
 # Formatting, whoosh automatically removes apices
 # Lexer.symbol(Symbol.RESERVED)(ItalicAndBold)
 # Lexer.symbol(Symbol.RESERVED)(Bold)
 # Lexer.symbol(Symbol.RESERVED)(Italic)
+
+@Lexer.symbol(Symbol.IGNORE)
+class IgnoreTags:
+    # start = Token('MATH_JAX_START', r'<math')
+    # end = Token('MATH_JAX_END', r'')
+    tags = [] + IGNORED_TAGS
+
+    def __init__(self):
+        self.regex = re.compile('|'.join(self.tags), re.DOTALL)
+
+    def match(self, text, pos, **kwargs):
+        return self.regex.match(text, pos, **kwargs)
 
 
 @Lexer.symbol(Symbol.ID)

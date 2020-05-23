@@ -17,6 +17,12 @@ __logger = None
 __wikimedia_ix = None
 __searcher = None
 
+"""
+TODO stats and content compression,
+TODO snippets,
+TODO integrate expand query
+"""
+
 
 def get_logger():
     global __logger
@@ -94,4 +100,4 @@ def search_results():
 if __name__ == 'src.main':
     get_logger()
     get_wikimedia_ix()
-    get_searcher()
+    # get_searcher()

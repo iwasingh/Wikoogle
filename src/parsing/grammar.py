@@ -2,7 +2,8 @@ import logging
 import re
 import parsing.parser as p
 from .combinators import pipe, expect, extract, seq, sor, rep, ParseError
-from .symbols import Template, Text, Link, Heading, Heading6, Heading5, Heading4, Heading3, Comment, Bold, ItalicAndBold, Italic
+from .symbols import Template, Text, Link, Heading, Heading6, Heading5, Heading4, Heading3, Comment, Bold, \
+    ItalicAndBold, Italic
 from .utils import recursive
 
 # import src.parsing.lexer as l
@@ -45,6 +46,15 @@ class Grammar:
             self.link,
             self.headings,
             self.epsilon
+        )
+
+    @staticmethod
+    def __expression():
+        return sor(
+            Grammar.template,
+            Grammar.link,
+            Grammar.headings,
+            Grammar.epsilon
         )
 
     @staticmethod
@@ -153,9 +163,16 @@ class Grammar:
             Heading3,
             Heading
         ]
+
+        def extractor(r):
+            _, arr, __ = r
+            return arr[0]
+
         try:
-            result = pipe(parser, sor(*[seq(expect(i.start), Grammar.epsilon, expect(i.end)) for i in precedence]),
-                          extract)
+            result = pipe(parser, sor(
+                *[seq(expect(i.start), rep(sor(Grammar.epsilon, Grammar.template, Grammar.link), i.end), expect(i.end))
+                  for i in precedence]),
+                          extractor)
         except ParseError as e:
             raise e
 

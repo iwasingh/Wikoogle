@@ -52,6 +52,10 @@ class Fragmenter:
     def __init__(self, max_size=150, ):
         self._tokenizer = PhraseTokenizer()
 
+    # def _filter_matches(self, phrases, terms):
+    #     for phrase in phrases:
+    #         all(term in phrase.matches for term in terms)
+
     def frag(self, text, terms):
         regex = re.compile(r'|'.join(terms))
         phrases = self._tokenizer.tokenize(text)
@@ -62,6 +66,11 @@ class Fragmenter:
                 if phrase.start <= start <= end <= phrase.end:
                     phrase.add_match(token)
 
-        selected = sorted(filter(lambda p: len(p.matches) > 0, phrases), key=lambda p: p.index)
-        for i in selected:
-            print(i, '\n', '__MATCHES__', i.matches, '\n___')
+        for phrase in phrases:
+            for term in terms:
+                if term not in phrase.matches:
+                    break
+
+        # selected = sorted(filter(lambda p: len(p.matches) > 0, phrases), key=lambda p: p.index)
+        # for i in selected:
+        #     print(i, '\n', '__MATCHES__', i.matches, '\n___')

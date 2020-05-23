@@ -37,7 +37,8 @@ class WikiNormalizer(Filter):
 
 
 def WikimediaAnalyzer():
-    ret = StandardAnalyzer(stoplist=GOOGLE_STOP_WORDS)
+    # Use different analyzer for the title
+    ret = StemmingAnalyzer(stoplist=GOOGLE_STOP_WORDS)
 
     chain = ret | WikiNormalizer()
 

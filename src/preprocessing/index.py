@@ -10,7 +10,7 @@ import config
 from parsing.compiler import Compiler, ParseTypes
 import shutil
 
-logger = logging.getLogger()
+logger = logging.getLogger('preprocessing')
 
 
 class WikiSchema(SchemaClass):

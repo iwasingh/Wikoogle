@@ -12,6 +12,7 @@ def recursive(text, start, end, position):
     content = ''
     should_start = start.match(text, index)
     last_end = None
+
     if should_start:
         while True:
             is_start = start.match(text, index)
