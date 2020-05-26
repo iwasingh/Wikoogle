@@ -82,6 +82,9 @@ def rep(expression, stop):
             if result:
                 acc.append(result)
         # parser.next()
+        if len(acc) and parser.current.token != stop:
+            raise ParseError('Syntax error, no ending token found')
+
         return acc
 
     return parse

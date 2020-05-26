@@ -46,5 +46,5 @@ def WikimediaAnalyzer():
 
 
 def FragmenterAnalyzer():
-    ret = StandardAnalyzer(stoplist=None)
+    ret = StemmingAnalyzer(stoplist=None)
     return ret

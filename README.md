@@ -73,4 +73,5 @@ Things to do:
 
 # Snippet generation
 * https://arxiv.org/pdf/2002.10782.pdf
+* http://marksanderson.org/publications/my_papers/SIGIR98.pdf
 

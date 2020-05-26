@@ -1,0 +1,309 @@
+{{About|acids in chemistry|the drug|Lysergic acid diethylamide|other uses}}
+{{Redirect|Acidity| the novelette|Acidity (novelette)}}
+{{redirect|Acidic|the band|Acidic (band)}}
+
+{{Use dmy dates|date=June 2013}}
+[[File:Zn reaction with HCl.JPG|thumb|[[Zinc]], a typical metal, reacting with [[hydrochloric acid]], a typical acid]]
+{{Acids and bases}}
+An '''Acid''' is a [[molecule]] or [[ion]] capable of donating a [[proton]] (hydrogen ion H<sup>+</sup>) (a [[Brønsted–Lowry acid–base theory|Brønsted–Lowry acid]]), or, alternatively, capable of forming a [[covalent bond]] with an [[electron pair]] (a [[Lewis acid]]).<ref name="IUPAC_acid">[http://goldbook.iupac.org/A00071.html IUPAC Gold Book - acid]</ref>
+
+The first category of acids are the proton donors, or [[Brønsted–Lowry acid–base theory|Brønsted–Lowry acid]]s. In the special case of [[aqueous solutions]], proton donors form the [[hydronium ion]] H<sub>3</sub>O<sup>+</sup> and are known as [[Acid-base reaction#Arrhenius theory|Arrhenius acids]]. [[Johannes Nicolaus Brønsted|Brønsted]] and [[Thomas Martin Lowry|Lowry]] generalized the Arrhenius theory to include non-aqueous solvents. A Brønsted or Arrhenius acid usually contains a hydrogen atom bonded to a chemical structure that is still energetically favorable after loss of H<sup>+</sup>.
+
+Aqueous Arrhenius acids have characteristic properties which provide a practical description of an acid.<ref>Petrucci R.H., Harwood, R.S. and Herring, F.G. ''General Chemistry'' (8th ed., Prentice-Hall 2002) p.146 {{ISBN|0-13-014329-4}}</ref> Acids form [[aqueous solution]]s with a sour taste, can turn blue [[litmus]] red, and react with [[Base (chemistry)|bases]] and certain metals (like [[calcium]]) to form [[Salt (chemistry)|salts]]. The word ''acid'' is derived from the [[Latin]] ''acidus/acēre'' meaning ''sour''.<ref>[http://www.merriam-webster.com/dictionary/acid Merriam-Webster's Online Dictionary: ''acid'']</ref> An aqueous solution of an acid has a [[pH]] less than 7 and is colloquially also referred to as 'acid' (as in 'dissolved in acid'), while the strict definition refers only to the [[solution|solute]].<ref name="IUPAC_acid"/> A lower pH means a higher acidity, and thus a higher concentration of [[Hydron (chemistry)|positive hydrogen ions]] in the [[solution]]. Chemicals or substances having the property of an acid are said to be '''acidic'''.
+
+Common aqueous acids include [[hydrochloric acid]] (a solution of [[hydrogen chloride]] which is found in [[gastric acid]] in the stomach and activates [[digestive enzymes]]), [[acetic acid]] (vinegar is a dilute aqueous solution of this liquid), [[sulfuric acid]] (used in [[car battery|car batteries]]), and [[citric acid]] (found in citrus fruits). As these examples show, acids (in the colloquial sense) can be solutions or pure substances, and can be derived from acids (in the strict<ref name="IUPAC_acid"/> sense) that are solids, liquids, or gases. [[Acid strength|Strong acid]]s and some concentrated weak acids are [[corrosive substance|corrosive]], but there are exceptions such as [[carborane]]s and [[boric acid]].
+
+The second category of acids are [[Lewis acids and bases|Lewis acids]], which form a covalent bond with an electron pair. An example is [[boron trifluoride]] (BF<sub>3</sub>), whose boron atom has a vacant [[atomic orbital|orbital]] which can form a covalent bond by sharing a lone pair of electrons on an atom in a base, for example the nitrogen atom in [[ammonia]] (NH<sub>3</sub>). [[Gilbert N. Lewis|Lewis]] considered this as a generalization of the Brønsted definition, so that an acid is a chemical species that accepts electron pairs either directly ''or'' by releasing protons (H<sup>+</sup>) into the solution, which then accept electron pairs. However, hydrogen chloride, acetic acid, and most other Brønsted-Lowry acids cannot form a covalent bond with an electron pair and are therefore not Lewis acids.<ref name="Oxtoby8th">Oxtoby, D. W; Gillis, H.P., [[Laurie Butler|Butler, L. J.]] (2015).''Principles of Modern Chemistry'', Brooks Cole. p. 617.  {{ISBN|978-1305079113}}</ref> Conversely, many Lewis acids are not Arrhenius or Brønsted-Lowry acids. In modern terminology, an ''acid'' is implicitly a Brønsted acid and not a Lewis acid, since chemists almost always refer to a Lewis acid explicitly as ''a Lewis acid''.<ref name="Oxtoby8th" />
+
+==Definitions and concepts==
+{{main|Acid–base reaction}}
+Modern definitions are concerned with the fundamental chemical reactions common to all acids.
+
+Most acids encountered in everyday life are [[aqueous solutions]], or can be dissolved in water, so the Arrhenius and Brønsted-Lowry definitions are the most relevant.
+
+The Brønsted-Lowry definition is the most widely used definition; unless otherwise specified, acid-base reactions are assumed to involve the transfer of a proton (H<sup>+</sup>) from an acid to a base.
+
+Hydronium ions are acids according to all three definitions. Although alcohols and amines can be Brønsted-Lowry acids, they can also function as [[Lewis base]]s due to the lone pairs of electrons on their oxygen and nitrogen atoms.
+
+===Arrhenius acids===
+[[File:Arrhenius2.jpg|thumb|150px|Svante Arrhenius]]
+
+The Swedish chemist [[Svante Arrhenius]] attributed the properties of acidity to [[hydron (chemistry)|hydrogen ions]] (H<sup>+</sup>) or [[proton]]s in 1884. An '''Arrhenius acid''' is a substance that, when added to water, increases the concentration of H<sup>+</sup> ions in the water.<ref name="Oxtoby8th"/><ref name="Ebbing">Ebbing, D.D., & Gammon, S. D. (2005). ''General chemistry'' (8th ed.). Boston, MA: Houghton Mifflin. {{ISBN|0-618-51177-6}}</ref> Note that chemists often write H<sup>+</sup>(''aq'') and refer to the [[hydrogen ion]] when describing acid-base reactions but the free hydrogen nucleus, a [[proton]], does not exist alone in water, it exists as the hydronium ion, H<sub>3</sub>O<sup>+</sup>. Thus, an Arrhenius acid can also be described as a substance that increases the concentration of hydronium ions when added to water. Examples include molecular substances such as HCl and acetic acid.
+
+An Arrhenius [[base (chemistry)|base]], on the other hand, is a substance which increases the concentration of [[hydroxide]] (OH<sup>−</sup>) ions when dissolved in water. This decreases the concentration of hydronium because the ions react to form H<sub>2</sub>O molecules:
+
+H<sub>3</sub>O{{su|p=+|b=(aq)}} + OH{{su|p=−|b=(aq)}} ⇌ H<sub>2</sub>O<sub>(l)</sub> + H<sub>2</sub>O<sub>(l)</sub>
+
+Due to this equilibrium, any increase in the concentration of hydronium is accompanied by a decrease in the concentration of hydroxide. Thus, an Arrhenius acid could also be said to be one that decreases hydroxide concentration, while an Arrhenius base increases it.
+
+In an acidic solution, the concentration of hydronium ions is greater than 10<sup>−7</sup> [[Mole (unit)|moles]] per liter. Since pH is defined as the negative logarithm of the concentration of hydronium ions, acidic solutions thus have a pH of less than 7.
+
+===Brønsted–Lowry acids{{anchor|Brønsted acids}}===
+{{Main|Brønsted–Lowry acid–base theory}}
+
+[[File:Acetic-acid-dissociation-3D-balls.png|thumb|350px|alt=Acetic acid, CH<sub>3</sub>COOH, is composed of a methyl group, CH<sub>3</sub>, bound chemically to a carboxylate group, COOH. The carboxylate group can lose a proton and donate it to a water molecule, H<sub>2</sub>0, leaving behind an acetate anion CH<sub>3</sub>COO- and creating a hydronium cation H<sub>3</sub>O. This is an equilibrium reaction, so the reverse process can also take place.|[[Acetic acid]], a [[weak acid]], donates a proton (hydrogen ion, highlighted in green) to water in an equilibrium reaction to give the [[acetate]] ion and the [[hydronium]] ion. Red: oxygen, black: carbon, white: hydrogen.]]
+
+While the Arrhenius concept is useful for describing many reactions, it is also quite limited in its scope. In 1923 chemists [[Johannes Nicolaus Brønsted]] and [[Thomas Martin Lowry]] independently recognized that acid-base reactions involve the transfer of a proton. A '''Brønsted-Lowry acid''' (or simply Brønsted acid) is a species that donates a proton to a Brønsted-Lowry base.<ref name="Ebbing" /> Brønsted-Lowry acid-base theory has several advantages over Arrhenius theory. Consider the following reactions of [[acetic acid]] (CH<sub>3</sub>COOH), the [[organic acid]] that gives vinegar its characteristic taste:
+
+:{{chem|CH|3|COOH}} + {{chem|H|2|O}} {{eqm}} {{chem|CH|3|COO|−}} + {{chem|H|3|O|+}}
+:{{chem|CH|3|COOH}} + {{chem|NH|3}} {{eqm}} {{chem|CH|3|COO|−}} + {{chem|NH|4|+}}
+
+Both theories easily describe the first reaction: CH<sub>3</sub>COOH acts as an Arrhenius acid because it acts as a source of H<sub>3</sub>O<sup>+</sup> when dissolved in water, and it acts as a Brønsted acid by donating a proton to water. In the second example CH<sub>3</sub>COOH undergoes the same transformation, in this case donating a proton to ammonia (NH<sub>3</sub>), but does not relate to the Arrhenius definition of an acid because the reaction does not produce hydronium. Nevertheless, CH<sub>3</sub>COOH is both an Arrhenius and a Brønsted-Lowry acid.
+
+Brønsted-Lowry theory can be used to describe reactions of [[molecule|molecular compounds]] in nonaqueous solution or the gas phase. [[Hydrogen chloride]] (HCl) and ammonia combine under several different conditions to form [[ammonium chloride]], NH<sub>4</sub>Cl. In aqueous solution HCl behaves as [[hydrochloric acid]] and exists as hydronium and chloride ions. The following reactions illustrate the limitations of Arrhenius's definition:
+# H<sub>3</sub>O{{su|p=+|b=(aq)}} + Cl{{su|p=−|b=(aq)}} + NH<sub>3</sub> → Cl{{su|p=−|b=(aq)}} + NH{{su|b=4|p=+}}<sub>(aq)</sub> + H<sub>2</sub>O
+# HCl<sub>(benzene)</sub> + NH<sub>3(benzene)</sub> → NH<sub>4</sub>Cl<sub>(s)</sub>
+# HCl<sub>(g)</sub> + NH<sub>3(g)</sub> → NH<sub>4</sub>Cl<sub>(s)</sub>
+
+As with the acetic acid reactions, both definitions work for the first example, where water is the solvent and hydronium ion is formed by the HCl solute. The next two reactions do not involve the formation of ions but are still proton-transfer reactions. In the second reaction hydrogen chloride and ammonia (dissolved in [[benzene]]) react to form solid ammonium chloride in a benzene solvent and in the third gaseous HCl and NH<sub>3</sub> combine to form the solid.
+
+===Lewis acids===
+{{main|Lewis acids and bases}}
+A third, only marginally related concept was proposed in 1923 by [[Gilbert N. Lewis]], which includes reactions with acid-base characteristics that do not involve a proton transfer. A '''Lewis acid''' is a species that accepts a pair of electrons from another species; in other words, it is an electron pair acceptor.<ref name="Ebbing" /> Brønsted acid-base reactions are proton transfer reactions while Lewis acid-base reactions are electron pair transfers. Many Lewis acids are not Brønsted-Lowry acids. Contrast how the following reactions are described in terms of acid-base chemistry:
+:[[File:LewisAcid.png|374px]]
+In the first reaction a [[fluoride|fluoride ion]], F<sup>−</sup>, gives up an [[lone pair|electron pair]] to [[boron trifluoride]] to form the product [[tetrafluoroborate]]. Fluoride "loses" a pair of [[valence electron]]s because the electrons shared in the B—F bond are located in the region of space between the two atomic [[atomic nucleus|nuclei]] and are therefore more distant from the fluoride nucleus than they are in the lone fluoride ion. BF<sub>3</sub> is a Lewis acid because it accepts the electron pair from fluoride. This reaction cannot be described in terms of Brønsted theory because there is no proton transfer. The second reaction can be described using either theory. A proton is transferred from an unspecified Brønsted acid to ammonia, a Brønsted base; alternatively, ammonia acts as a Lewis base and transfers a lone pair of electrons to form a bond with a hydrogen ion. The species that gains the electron pair is the Lewis acid; for example, the oxygen atom in H<sub>3</sub>O<sup>+</sup> gains a pair of electrons when one of the H—O bonds is broken and the electrons shared in the bond become localized on oxygen. Depending on the context, a Lewis acid may also be described as an [[Oxidizing agent|oxidizer]] or an [[electrophile]]. Organic Brønsted acids, such as acetic, citric, or oxalic acid, are not Lewis acids.<ref name="Oxtoby8th" /> They dissociate in water to produce a Lewis acid, H<sup>+</sup>, but at the same time also yield an equal amount of a Lewis base (acetate, citrate, or oxalate, respectively, for the acids mentioned). Few, if any, of the acids discussed in the following are Lewis acids.
+
+==Dissociation and equilibrium==
+<!-- linked from redirect [[Free acid]] -->
+Reactions of acids are often generalized in the form HA {{eqm}} H<sup>+</sup> + A<sup>−</sup>, where HA represents the acid and A<sup>−</sup> is the [[conjugate acid|conjugate base]]. This reaction is referred to as '''protolysis'''. The protonated form (HA) of an acid is also sometimes referred to as the '''free acid'''.<ref>{{cite book | editor-last1 = Stahl | editor-first1 = P. Heinrich | editor-last2 = Warmth | editor-first2 = Camille G. | last1 = Stahl | first1 = P. Heinrich | last2 = Nakamo | first2 = Masahiro | name-list-format = vanc | title = Handbook of Pharmaceutical Salts: Properties, Selection, and Use | date = 2008 | publisher = Wiley-VCH | location = Weinheim | isbn = 978-3-906390-58-1 | chapter = Pharmaceutical Aspects of the Salt Form | chapter-url = https://books.google.com/books?id=IvSEXUZUON8C&pg=PA92&dq=%22free+acid%22+salt&hl=en&sa=X&redir_esc=y#v=onepage&q=%22free%20acid%22%20salt&f=false | pages = 92–94 }}</ref>
+
+Acid-base conjugate pairs differ by one proton, and can be interconverted by the addition or removal of a proton ([[protonation]] and [[deprotonation]], respectively). Note that the acid can be the charged species and the conjugate base can be neutral in which case the generalized reaction scheme could be written as HA<sup>+</sup> {{eqm}} H<sup>+</sup> + A. In solution there exists an [[chemical equilibrium|equilibrium]] between the acid and its conjugate base. The [[equilibrium constant]] ''K'' is an expression of the equilibrium concentrations of the molecules or the ions in solution. Brackets indicate concentration, such that [H<sub>2</sub>O] means ''the concentration of H<sub>2</sub>O''. The [[acid dissociation constant]] ''K''<sub>a</sub> is generally used in the context of acid-base reactions. The numerical value of ''K''<sub>a</sub> is equal to the product of the concentrations of the products divided by the concentration of the reactants, where the reactant is the acid (HA) and the products are the conjugate base and H<sup>+</sup>.
+:<math chem>K_a = \frac\ce{[H+] [A^-]}\ce{[HA]}</math>
+The stronger of two acids will have a higher ''K''<sub>a</sub> than the weaker acid; the ratio of hydrogen ions to acid will be higher for the stronger acid as the stronger acid has a greater tendency to lose its proton. Because the range of possible values for ''K''<sub>a</sub> spans many orders of magnitude, a more manageable constant, p''K''<sub>a</sub> is more frequently used, where p''K''<sub>a</sub> = &minus;log<sub>10</sub> ''K''<sub>a</sub>. Stronger acids have a smaller p''K''<sub>a</sub> than weaker acids. Experimentally determined p''K''<sub>a</sub> at 25&nbsp;°C in aqueous solution are often quoted in textbooks and reference material.
+
+==Nomenclature==
+In the classical naming system, acids are named according to their [[anion]]s. That ionic suffix is dropped and replaced with a new suffix (and sometimes prefix), according to the table below.
+For example, HCl has [[chloride]] as its anion, so the -ide suffix makes it take the form [[hydrochloric acid]]. In the [[IUPAC]] naming system, "aqueous" is simply added to the name of the ionic compound. Thus, for hydrogen chloride, the IUPAC name would be aqueous hydrogen chloride. The prefix "hydro-" is added only if the acid is made up of just hydrogen and one other element.
+
+Classical naming system:
+{| class="wikitable"
+!Anion prefix
+!Anion suffix
+!Acid prefix
+!Acid suffix
+!Example
+|-
+|per
+|ate
+|per
+|ic acid
+|[[perchloric acid]] (HClO<sub>4</sub>)
+|-
+|
+|ate
+|
+|ic acid
+|[[chloric acid]] (HClO<sub>3</sub>)
+|-
+|
+|ite
+|
+|ous acid
+|[[chlorous acid]] (HClO<sub>2</sub>)
+|-
+|hypo
+|ite
+|hypo
+|ous acid
+|[[hypochlorous acid]] (HClO)
+|-
+|
+|ide
+|hydro
+|ic acid
+|[[hydrochloric acid]] (HCl)
+|}
+
+==Acid strength==
+{{main|Acid strength}}
+
+The strength of an acid refers to its ability or tendency to lose a proton. A strong acid is one that completely dissociates in water; in other words, one [[mole (unit)|mole]] of a strong acid HA dissolves in water yielding one mole of H<sup>+</sup> and one mole of the conjugate base, A<sup>−</sup>, and none of the protonated acid HA. In contrast, a weak acid only partially dissociates and at equilibrium both the acid and the conjugate base are in solution. Examples of [[strong acid]]s are [[hydrochloric acid]] (HCl), [[hydroiodic acid]] (HI), [[hydrobromic acid]] (HBr), [[perchloric acid]] (HClO<sub>4</sub>), [[nitric acid]] (HNO<sub>3</sub>) and [[sulfuric acid]] (H<sub>2</sub>SO<sub>4</sub>). In water each of these essentially ionizes 100%. The stronger an acid is, the more easily it loses a proton, H<sup>+</sup>. Two key factors that contribute to the ease of deprotonation are the [[chemical polarity|polarity]] of the H—A bond and the size of atom A, which determines the strength of the H—A bond. Acid strengths are also often discussed in terms of the stability of the conjugate base.
+
+Stronger acids have a larger ''K''<sub>a</sub> and a more negative p''K''<sub>a</sub> than weaker acids.
+
+Sulfonic acids, which are organic oxyacids, are a class of strong acids. A common example is [[toluenesulfonic acid]] (tosylic acid). Unlike sulfuric acid itself, sulfonic acids can be solids. In fact, [[polystyrene]] functionalized into polystyrene sulfonate is a solid strongly acidic plastic that is filterable.
+
+[[Superacid]]s are acids stronger than 100% sulfuric acid. Examples of superacids are [[fluoroantimonic acid]], [[magic acid]] and [[perchloric acid]]. Superacids can permanently protonate water to give ionic, crystalline [[hydronium]] "salts". They can also quantitatively stabilize [[carbocation]]s.
+
+While ''K''<sub>a</sub> measures the strength of an acid compound, the strength of an aqueous acid solution is measured by pH, which is an indication of the concentration of hydronium in the solution.  The pH of a simple solution of an acid compound in water is determined by the dilution of the compound and the compound's ''K''<sub>a</sub>.
+
+==Chemical characteristics==
+
+===Monoprotic acids===
+Monoprotic acids, also known as monobasic acids, are those acids that are able to donate one [[proton]] per molecule during the process of [[dissociation (chemistry)|dissociation]] (sometimes called ionization) as shown below (symbolized by HA):
+:HA<sub>(aq)</sub> + H<sub>2</sub>O<sub>(l)</sub> {{eqm}} H<sub>3</sub>O{{su|p=+|b=(aq)}} + A{{su|p=−|b=(aq)}} &nbsp; &nbsp; &nbsp; &nbsp; ''K''<sub>a</sub>
+
+Common examples of monoprotic acids in [[mineral acid]]s include [[hydrochloric acid]] (HCl) and [[nitric acid]] (HNO<sub>3</sub>). On the other hand, for [[organic acids]] the term mainly indicates the presence of one [[carboxylic acid]] group and sometimes these acids are known as monocarboxylic acid. Examples in [[organic acids]] include [[formic acid]] (HCOOH), [[acetic acid]] (CH<sub>3</sub>COOH) and [[benzoic acid]] (C<sub>6</sub>H<sub>5</sub>COOH).
+{{See also|Acid dissociation constant#Monoprotic acids}}
+
+===Polyprotic acids===
+Polyprotic acids, also known as polybasic acids, are able to donate more than one proton per acid molecule, in contrast to monoprotic acids that only donate one proton per molecule. Specific types of polyprotic acids have more specific names, such as diprotic (or dibasic) acid (two potential protons to donate), and triprotic (or tribasic) acid (three potential protons to donate).
+
+A diprotic acid (here symbolized by H<sub>2</sub>A) can undergo one or two dissociations depending on the pH. Each dissociation has its own dissociation constant, K<sub>a1</sub> and K<sub>a2</sub>.
+:{{nowrap|H<sub>2</sub>A<sub>(aq)</sub> + H<sub>2</sub>O<sub>(l)</sub> {{eqm}} H<sub>3</sub>O{{su|p=+|b=(aq)}} + HA{{su|p=−|b=(aq)}} &nbsp; &nbsp; &nbsp; ''K''<sub>a1</sub>}}
+:{{nowrap|HA{{su|p=−|b=(aq)}} + H<sub>2</sub>O<sub>(l)</sub> {{eqm}} H<sub>3</sub>O{{su|p=+|b=(aq)}} + A{{su|p=2−|b=(aq)}} &nbsp;&nbsp;&nbsp; &nbsp; ''K''<sub>a2</sub>}}
+
+The first dissociation constant is typically greater than the second; i.e., ''K''<sub>a1</sub> > ''K''<sub>a2</sub>. For example, [[sulfuric acid]] (H<sub>2</sub>SO<sub>4</sub>) can donate one proton to form the [[bisulfate]] anion (HSO{{su|b=4|p=−}}), for which ''K''<sub>a1</sub> is very large; then it can donate a second proton to form the [[sulfate]] anion (SO{{su|b=4|p=2−}}), wherein the ''K''<sub>a2</sub> is intermediate strength. The large ''K''<sub>a1</sub> for the first dissociation makes sulfuric a strong acid. In a similar manner, the weak unstable [[carbonic acid]] {{nowrap|(H<sub>2</sub>CO<sub>3</sub>)}} can lose one proton to form [[bicarbonate]] anion {{nowrap|(HCO{{su|b=3|p=−}})}} and lose a second to form [[carbonate]] anion (CO{{su|b=3|p=2−}}). Both ''K''<sub>a</sub> values are small, but ''K''<sub>a1</sub> > ''K''<sub>a2</sub> .
+
+A triprotic acid (H<sub>3</sub>A) can undergo one, two, or three dissociations and has three dissociation constants, where ''K''<sub>a1</sub> > ''K''<sub>a2</sub> > ''K''<sub>a3</sub>.
+:{{nowrap|H<sub>3</sub>A<sub>(aq)</sub> + H<sub>2</sub>O<sub>(l)</sub> {{eqm}} H<sub>3</sub>O{{su|p=+|b=(aq)}} + H<sub>2</sub>A{{su|p=−|b=(aq)}} &nbsp; &nbsp; &nbsp; &nbsp; ''K''<sub>a1</sub>}}
+:{{nowrap|H<sub>2</sub>A{{su|p=−|b=(aq)}} + H<sub>2</sub>O<sub>(l)</sub> {{eqm}} H<sub>3</sub>O{{su|p=+|b=(aq)}} + HA{{su|p=2−|b=(aq)}} &nbsp; &nbsp; &nbsp; ''K''<sub>a2</sub>}}
+:{{nowrap|HA{{su|p=2−|b=(aq)}} + H<sub>2</sub>O<sub>(l)</sub> {{eqm}} H<sub>3</sub>O{{su|p=+|b=(aq)}} + A{{su|p=3−|b=(aq)}} &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ''K''<sub>a3</sub>}}
+
+An [[inorganic]] example of a triprotic acid is orthophosphoric acid (H<sub>3</sub>PO<sub>4</sub>), usually just called [[phosphoric acid]]. All three protons can be successively lost to yield H<sub>2</sub>PO{{su|b=4|p=−}}, then HPO{{su|b=4|p=2−}}, and finally PO{{su|b=4|p=3−}}, the orthophosphate ion, usually just called [[phosphate]]. Even though the positions of the three protons on the original phosphoric acid molecule are equivalent, the successive ''K''<sub>a</sub> values differ since it is energetically less favorable to lose a proton if the conjugate base is more negatively charged. An [[organic compound|organic]] example of a triprotic acid is [[citric acid]], which can successively lose three protons to finally form the [[citrate]] ion.
+
+Although the subsequent loss of each hydrogen ion is less favorable, all of the conjugate bases are present in solution. The fractional concentration, ''α'' (alpha), for each species can be calculated. For example, a generic diprotic acid will generate 3 species in solution: H<sub>2</sub>A, HA<sup>−</sup>, and A<sup>2−</sup>. The fractional concentrations can be calculated as below when given either the pH (which can be converted to the [H<sup>+</sup>]) or the concentrations of the acid with all its conjugate bases:
+:<math chem>\begin{align}
+\alpha_\ce{H2A}   &= \frac{\ce{[H+]^2}}{\ce{[H+]^2}  + [\ce{H+}]K_1 + K_1 K_2}  = \frac{\ce{[H2A]}}{\ce{{[H2A]}} + [HA^-] + [A^{2-}]}\\
+\alpha_\ce{HA^-}  &= \frac{[\ce{H+}]K_1}{\ce{[H+]^2} + [\ce{H+}]K_1 + K_1 K_2}  = \frac{\ce{[HA^-]}}{\ce{[H2A]}+{[HA^-]}+{[A^{2-}]}}\\
+\alpha_\ce{A^{2-}}&= \frac{K_1 K_2}{\ce{[H+]^2} + [\ce{H+}]K_1 + K_1 K_2} = \frac{\ce{[A^{2-}]}}{\ce{{[H2A]}}+{[HA^-]}+{[A^{2-}]}}
+\end{align}</math>
+A plot of these fractional concentrations against pH, for given ''K''<sub>1</sub> and ''K''<sub>2</sub>, is known as a [[Bjerrum plot]]. A pattern is observed in the above equations and can be expanded to the general ''n'' -protic acid that has been deprotonated ''i'' -times:
+:<math chem>
+\alpha_{\ce H_{n-i} A^{i-} }= {{[\ce{H+}]^{n-i} \displaystyle \prod_{j=0}^{i}K_j} \over { \displaystyle \sum_{i=0}^n \Big[ [\ce{H+}]^{n-i} \displaystyle \prod_{j=0}^{i}K_j} \Big] }
+</math>
+
+where ''K''<sub>0</sub> = 1 and the other K-terms are the dissociation constants for the acid.
+{{See also|Acid dissociation constant#Polyprotic acids}}
+
+===Neutralization===
+[[Image:Hydrochloric acid ammonia.jpg|thumb|[[Hydrochloric acid]] (in [[beaker (glassware)|beaker]]) reacting with [[ammonia]] fumes to produce [[ammonium chloride]] (white smoke).]]
+[[Neutralization (chemistry)|Neutralization]] is the reaction between an acid and a base, producing a [[salt (chemistry)|salt]] and neutralized base; for example, [[hydrochloric acid]] and [[sodium hydroxide]] form [[sodium chloride]] and water:
+:HCl<sub>(aq)</sub> + NaOH<sub>(aq)</sub> → H<sub>2</sub>O<sub>(l)</sub> + NaCl<sub>(aq)</sub>
+
+Neutralization is the basis of [[titration]], where a [[pH indicator]] shows equivalence point when the equivalent number of moles of a base have been added to an acid. It is often wrongly assumed that neutralization should result in a solution with pH 7.0, which is only the case with similar acid and base strengths during a reaction.
+
+Neutralization with a base weaker than the acid results in a weakly acidic salt. An example is the weakly acidic [[ammonium chloride]], which is produced from the strong acid [[hydrogen chloride]] and the weak base [[ammonia]]. Conversely, neutralizing a weak acid with a strong base gives a weakly basic salt, e.g. [[sodium fluoride]] from [[hydrogen fluoride]] and [[sodium hydroxide]].
+
+===Weak acid–weak base equilibrium===
+{{main|Henderson–Hasselbalch equation}}
+In order for a protonated acid to lose a proton, the pH of the system must rise above the p''K''<sub>a</sub> of the acid. The decreased concentration of H<sup>+</sup> in that basic solution shifts the equilibrium towards the conjugate base form (the deprotonated form of the acid). In lower-pH (more acidic) solutions, there is a high enough H<sup>+</sup> concentration in the solution to cause the acid to remain in its protonated form.
+
+Solutions of weak acids and salts of their conjugate bases form [[buffer solution]]s.
+
+== Titration ==
+{{main|Acid–base titration}}
+To determine the concentration of an acid in an aqueous solution, an acid-base titration is commonly performed. A strong base solution with a known concentration, usually NaOH or KOH, is added to neutralize the acid solution according to the color change of the indicator with the amount of base added.<ref>{{Cite book|title = Aqueous Acid-Base Equilibria and Titrations.|first = Robert|last = de Levie|publisher = Oxford University Press|year = 1999|isbn = |location = New York|pages = }}</ref> The titration curve of an acid titrated by a base has two axes, with the base volume on the x-axis and the solution's pH value on the y-axis. The pH of the solution always goes up as the base is added to the solution.
+
+=== Example: Diprotic acid ===
+[[File:Titration alanine.jpg|thumb|This is an ideal titration curve for [[alanine]], a diprotic amino acid.<ref>{{Cite journal|title = Assignment of the proton-association constants for 3-(3,4-dihydroxyphenyl)alanine (L-dopa)|journal = Journal of the Chemical Society, Dalton Transactions|volume = 0|issue = 1|pages = 43–45|doi = 10.1039/DT9780000043|language = en|first = Reginald F.|last = Jameson|year = 1978}}</ref> Point 2 is the first equivalent point where the amount of NaOH added equals the amount of alanine in the original solution.]]
+For each diprotic acid titration curve, from left to right, there are two midpoints, two equivalence points, and two buffer regions.<ref>{{Cite book|title = Ion Exchange|url = https://books.google.com/books?id=F9OQMEA88CAC|publisher = Courier Corporation|date = 1962-01-01|isbn = 9780486687841|language = en|first = Friedrich G.|last = Helfferich}}</ref>
+
+==== Equivalence points ====
+Due to the successive dissociation processes, there are two equivalence points in the titration curve of a diprotic acid.<ref>{{Cite web|title = Titration of Diprotic Acid|url = http://dwb.unl.edu/calculators/activities/diproticacid.html|website = dwb.unl.edu |access-date = 2016-01-24|archive-url = https://web.archive.org/web/20160207011433/http://dwb.unl.edu/calculators/activities/diproticacid.html|archive-date = 7 February 2016|url-status = dead|df = dmy-all}}</ref> The first equivalence point occurs when all first hydrogen ions from the first ionization are titrated.<ref name = learning>{{Cite book|title = Chemistry & Chemical Reactivity |url = https://books.google.com/books?id=i1g8AwAAQBAJ|publisher = Cengage Learning|date = 2014-01-24|isbn = 9781305176461|language = en|first = John C.|last = Kotz|first2 = Paul M.|last2 = Treichel|first3 = John|last3 = Townsend|first4 = David|last4 = Treichel}}</ref> In other words, the amount of OH<sup>−</sup> added equals the original amount of H<sub>2</sub>A at the first equivalence point. The second equivalence point occurs when all hydrogen ions are titrated. Therefore, the amount of OH<sup>−</sup> added equals twice the amount of H<sub>2</sub>A at this time. For a weak diprotic acid titrated by a strong base, the second equivalence point must occur at pH above 7 due to the hydrolysis of the resulted salts in the solution.<ref name = learning/> At either equivalence point, adding a drop of base will cause the steepest rise of the pH value in the system.
+
+==== Buffer regions and midpoints ====
+A titration curve for a diprotic acid contains two midpoints where pH=pK<sub>a</sub>. Since there are two different K<sub>a</sub> values, the first midpoint occurs at pH=pK<sub>a1</sub> and the second one occurs at pH=pK<sub>a2</sub>.<ref>{{Cite book|title = Lehninger Principles of Biochemistry|url = https://books.google.com/books?id=7chAN0UY0LYC|publisher = Macmillan|date = 2005-01-01|isbn = 9780716743392|language = en|first = Albert L.|last = Lehninger|first2 = David L.|last2 = Nelson|first3 = Michael M.|last3 = Cox}}</ref> Each segment of the curve which contains a midpoint at its center is called the buffer region. Because the buffer regions consist of the acid and its conjugate base, it can resist pH changes when base is added until the next equivalent points.<ref>{{Cite book|title = General Chemistry|url = https://books.google.com/books?id=BnccCgAAQBAJ|publisher = Cengage Learning|date = 2016-01-01|isbn = 9781305887299|language = en|first = Darrell|last = Ebbing|first2 = Steven D.|last2 = Gammon}}</ref>
+
+==Applications of acids==
+Acids exist universally in our life. There are both numerous kinds of natural acid compounds with biological functions and massive synthesized acids which are used in many ways.
+
+===In industry===
+Acids are fundamental reagents in treating almost all processes in today's industry. Sulfuric acid, a diprotic acid, is the most widely used acid in industry, which is also the most-produced industrial chemical in the world. It is mainly used in producing fertilizer, detergent, batteries and dyes, as well as used in processing many products such like removing impurities.<ref>{{Cite web|title = The Top 10 Industrial Chemicals - For Dummies|url = http://www.dummies.com/how-to/content/the-top-10-industrial-chemicals.html|website = www.dummies.com|access-date = 2016-02-05}}</ref> According to the statistics data in 2011, the annual production of sulfuric acid was around 200 million tonnes in the world.<ref>{{Cite web|title = Sulfuric acid|url = http://www.essentialchemicalindustry.org/chemicals/sulfuric-acid.html|website = www.essentialchemicalindustry.org|access-date = 2016-02-06}}</ref> For example, phosphate minerals react with sulfuric acid to produce [[phosphoric acid]] for the production of phosphate fertilizers, and [[zinc]] is produced by dissolving zinc oxide into sulfuric acid, purifying the solution and electrowinning.
+
+In the chemical industry, acids react in neutralization reactions to produce salts. For example, [[nitric acid]] reacts with [[ammonia]] to produce [[ammonium nitrate]], a fertilizer. Additionally, [[carboxylic acid]]s can be [[Esterification|esterified]] with alcohols, to produce [[ester]]s.
+
+Acids are often used to remove rust and other corrosion from metals in a process known as [[pickling (metal)|pickling]]. They may be used as an electrolyte in a [[wet cell battery]], such as [[sulfuric acid]] in a [[car battery]].
+
+===In food===
+[[File:Lata Coca Cola.JPG|thumb|Carbonated water (H<sub>2</sub>CO<sub>3</sub> aqueous solution) is one of the  main ingredients listed the ingredient sheet of a can of Coca-Cola.]]
+[[Tartaric acid]] is an important component of some commonly used foods like unripened mangoes and tamarind. Natural fruits and vegetables also contain acids. [[Citric acid]] is present in oranges, lemon and other citrus fruits. [[Oxalic acid]] is present in tomatoes, spinach, and especially in [[carambola]] and [[rhubarb]]; rhubarb leaves and unripe carambolas are toxic because of high concentrations of oxalic acid. [[Ascorbic acid]] (Vitamin C) is an essential vitamin for the human body and is present in such foods as amla ([[Phyllanthus emblica|Indian gooseberry]]), lemon, citrus fruits, and guava.
+
+Many acids can be found in various kinds of food as additives, as they alter their taste and serve as preservatives. [[Phosphoric acid]], for example, is a component of [[cola]] drinks. [[Acetic acid]] is used in day-to-day life as vinegar. Citric acid is used as a preservative in sauces and pickles.
+
+[[Carbonic acid]] is one of the most common acid additive that is widely added in [[soft drink]]<nowiki/>s, such as [[Coca-Cola]]. During the manufacturing process of soft drinks, CO<sub>2</sub> is usually pressurized to dissolve in these drinks to generate carbonic acid. Carbonic acid is very unstable and tend to decompose into water and CO<sub>2</sub> in normal temperature and pressure. Therefore, when we open the bottles or cans of these kinds of soft drinks, CO<sub>2</sub> bubbles come out and thus we feel 'sparks'.<ref>{{Citation|title = Method of and apparatus for making and dispensing a carbonated beverage utilizing propellant carbon dioxide gas for carbonating|url = http://www.google.com/patents/US4304736|date = Dec 8, 1981|accessdate = 2016-02-06|first = John R.|last = McMillin|first2 = Gene A.|last2 = Tracy|first3 = William A.|last3 = Harvill|first4 = William S., Jr.|last4 = Credle}}</ref>
+
+Certain acids are used as drugs. [[Acetylsalicylic acid]] (Aspirin) is used as a pain killer and for bringing down fevers.
+
+===In human bodies===
+Acids play important roles in the human body. The hydrochloric acid present in the stomach aids digestion by breaking down large and complex food molecules. Amino acids are required for synthesis of proteins required for growth and repair of body tissues. Fatty acids are also required for growth and repair of body tissues. Nucleic acids are important for the manufacturing of DNA and RNA and transmitting of traits to offspring through genes. Carbonic acid is important for maintenance of pH equilibrium in the body.
+
+Human bodies contain a variety of organic and inorganic compounds, among those [[dicarboxylic acid]]s play an essential role in many biological behaviors. Many of those acids are [[amino acids]] which mainly serve as materials for the synthesis of proteins.<ref>{{Cite journal|title = 8 - Biological roles of amino acids and peptides - University Publishing Online|url = http://ebooks.cambridge.org/chapter.jsf?bid=CBO9781139163828&cid=CBO9781139163828A114|website = ebooks.cambridge.org|access-date = 2016-02-06|doi = 10.1017/CBO9781139163828}}</ref> Other weak acids serve as buffers with their conjugate bases to keep the body's pH from undergoing large scale changes which would be harmful to cells.<ref>{{Cite web|url = http://fitsweb.uchc.edu/student/selectives/TimurGraham/Acid_Buffering.html|title = Acid Buffering|date = 2006|access-date = 2016-02-06|website = Acid Base Online Tutorial|publisher = University of Connecticut|last = Graham|first = Timur|archive-url = https://web.archive.org/web/20160213132105/http://fitsweb.uchc.edu/student/selectives/TimurGraham/Acid_Buffering.html|archive-date = 13 February 2016|url-status = dead|df = dmy-all}}</ref> The rest of the dicarboxylic acids also participate in the synthesis of various biologically important compounds in human bodies.
+
+===Acid catalysis===
+{{Main|Acid catalysis}}
+Acids are used as [[catalyst]]s in industrial and organic chemistry; for example, [[sulfuric acid]] is used in very large quantities in the [[alkylation]] process to produce gasoline.  Some acids, such as sulfuric, phosphoric, and hydrochloric acids, also effect [[Dehydration reaction|dehydration]] and [[condensation reaction]]s. In biochemistry, many [[enzyme]]s employ acid catalysis.<ref name="Voet acid cat">{{cite book |author=Voet, Judith G.|author2=Voet, Donald |title=Biochemistry |url=https://archive.org/details/biochemistry00voet_1|url-access=registration|publisher=J. Wiley & Sons |location=New York |date=2004 |pages=[https://archive.org/details/biochemistry00voet_1/page/496 496–500] |isbn=978-0-471-19350-0 }}</ref>
+
+==Biological occurrence==
+[[Image:Aminoacid.png|thumb|left|Basic structure of an [[amino acid]].]]Many biologically important molecules are acids. [[Nucleic acid]]s, which contain acidic [[phosphate|phosphate groups]], include [[DNA]] and [[RNA]]. Nucleic acids contain the genetic code that determines many of an organism's characteristics, and is passed from parents to offspring. DNA contains the chemical blueprint for the synthesis of [[protein]]s which are made up of [[amino acid]] subunits. [[Cell membrane]]s contain [[fatty acid]] [[ester]]s such as [[phospholipids]].
+
+An α-amino acid has a central carbon (the α or [[alpha and beta carbon|''alpha'' carbon]]) which is covalently bonded to a [[carboxyl]] group (thus they are [[carboxylic acid]]s), an [[amine|amino]] group, a hydrogen atom and a variable group. The variable group, also called the R group or side chain, determines the identity and many of the properties of a specific amino acid. In [[glycine]], the simplest amino acid, the R group is a hydrogen atom, but in all other amino acids it is contains one or more carbon atoms bonded to hydrogens, and may contain other elements such as sulfur, oxygen or nitrogen. With the exception of glycine, naturally occurring amino acids are [[Chirality (chemistry)|chiral]] and almost invariably occur in the [[Chirality (chemistry)#By configuration: D- and L-|<small>L</small>-configuration]]. [[Peptidoglycan]], found in some bacterial [[cell wall]]s contains some <small>D</small>-amino acids. At physiological pH, typically around 7, free amino acids exist in a charged form, where the acidic carboxyl group (-COOH) loses a proton (-COO<sup>−</sup>) and the basic amine group (-NH<sub>2</sub>) gains a proton (-NH{{su|b=3|p=+}}). The entire molecule has a net neutral charge and is a [[zwitterion]], with the exception of amino acids with basic or acidic side chains. [[Aspartic acid]], for example, possesses one protonated amine and two deprotonated carboxyl groups, for a net charge of −1 at physiological pH.
+
+Fatty acids and fatty acid derivatives are another group of carboxylic acids that play a significant role in biology. These contain long hydrocarbon chains and a carboxylic acid group on one end. The cell membrane of nearly all organisms is primarily made up of a [[phospholipid bilayer]], a [[micelle]] of hydrophobic fatty acid esters with polar, hydrophilic [[phosphate]] "head" groups. Membranes contain additional components, some of which can participate in acid-base reactions.
+
+In humans and many other animals, [[hydrochloric acid]] is a part of the [[gastric acid]] secreted within the [[stomach]] to help hydrolyze [[protein]]s and [[polysaccharide]]s, as well as converting the inactive pro-enzyme, [[pepsinogen]] into the [[digestive enzyme|enzyme]], [[pepsin]]. Some organisms produce acids for defense; for example, ants produce [[formic acid]].
+
+Acid-base equilibrium plays a critical role in regulating [[mammal]]ian breathing. [[molecular oxygen|Oxygen]] gas (O<sub>2</sub>) drives [[cellular respiration]], the process by which animals release the chemical [[potential energy]] stored in food, producing [[carbon dioxide]] (CO<sub>2</sub>) as a byproduct. Oxygen and carbon dioxide are exchanged in the [[lungs]], and the body responds to changing energy demands by adjusting the rate of [[ventilation (physiology)|ventilation]]. For example, during periods of exertion the body rapidly breaks down stored [[carbohydrate]]s and fat, releasing CO<sub>2</sub> into the blood stream. In aqueous solutions such as blood CO<sub>2</sub> exists in equilibrium with [[carbonic acid]] and [[bicarbonate]] ion.
+: CO<sub>2</sub> + H<sub>2</sub>O {{eqm}} H<sub>2</sub>CO<sub>3</sub> {{eqm}} H<sup>+</sup> + HCO{{su|b=3|p=−}}
+It is the decrease in pH that signals the brain to breathe faster and deeper, expelling the excess CO<sub>2</sub> and resupplying the cells with O<sub>2</sub>.
+
+[[Image:Aspirin-skeletal.svg|thumb|right|[[Aspirin]] (acetylsalicylic acid) is a [[carboxylic acid]].]] [[Cell membrane]]s are generally impermeable to charged or large, polar molecules because of the [[lipophilicity|lipophilic]] fatty acyl chains comprising their interior. Many biologically important molecules, including a number of pharmaceutical agents, are organic weak acids which can cross the membrane in their protonated, uncharged form but not in their charged form (i.e. as the conjugate base). For this reason the activity of many drugs can be enhanced or inhibited by the use of antacids or acidic foods. The charged form, however, is often more soluble in blood and [[cytosol]], both aqueous environments. When the extracellular environment is more acidic than the neutral pH within the cell, certain acids will exist in their neutral form and will be membrane soluble, allowing them to cross the phospholipid bilayer. Acids that lose a proton at the [[intracellular pH]] will exist in their soluble, charged form and are thus able to diffuse through the cytosol to their target. [[Ibuprofen]], [[aspirin]] and [[penicillin]] are examples of drugs that are weak acids.
+
+==Common acids==
+
+===Mineral acids (inorganic acids)===
+* [[Hydrogen halides]] and their solutions: [[hydrofluoric acid]] (HF), [[hydrochloric acid]] (HCl), [[hydrobromic acid]] (HBr), [[hydroiodic acid]] (HI)
+* Halogen oxoacids: [[hypochlorous acid]] (HClO), [[chlorous acid]] (HClO<sub>2</sub>), [[chloric acid]] (HClO<sub>3</sub>), [[perchloric acid]] (HClO<sub>4</sub>), and corresponding analogs for bromine and iodine
+** [[Hypofluorous acid]] (HFO), the only known oxoacid for fluorine.
+* [[Sulfuric acid]] (H<sub>2</sub>SO<sub>4</sub>)
+* [[Fluorosulfuric acid]] (HSO<sub>3</sub>F)
+* [[Nitric acid]] (HNO<sub>3</sub>)
+* [[Phosphoric acid]] (H<sub>3</sub>PO<sub>4</sub>)
+* [[Fluoroantimonic acid]] (HSbF<sub>6</sub>)
+* [[Fluoroboric acid]] (HBF<sub>4</sub>)
+* [[Hexafluorophosphoric acid]] (HPF<sub>6</sub>)
+* [[Chromic acid]] (H<sub>2</sub>CrO<sub>4</sub>)
+* [[Boric acid]] (H<sub>3</sub>BO<sub>3</sub>)
+
+===Sulfonic acids===
+A [[sulfonic acid]] has the general formula RS(=O)<sub>2</sub>–OH, where R is an organic radical.
+* [[Methanesulfonic acid]] (or mesylic acid, CH<sub>3</sub>SO<sub>3</sub>H)
+* [[Ethanesulfonic acid]] (or esylic acid, CH<sub>3</sub>CH<sub>2</sub>SO<sub>3</sub>H)
+* [[Benzenesulfonic acid]] (or besylic acid, C<sub>6</sub>H<sub>5</sub>SO<sub>3</sub>H)
+* [[p-Toluenesulfonic acid]] (or tosylic acid, CH<sub>3</sub>C<sub>6</sub>H<sub>4</sub>SO<sub>3</sub>H)
+* [[Trifluoromethanesulfonic acid]] (or triflic acid, CF<sub>3</sub>SO<sub>3</sub>H)
+* [[Polystyrene sulfonic acid]] (sulfonated [[polystyrene]], [CH<sub>2</sub>CH(C<sub>6</sub>H<sub>4</sub>)SO<sub>3</sub>H]<sub>n</sub>)
+
+===Carboxylic acids===
+A [[carboxylic acid]] has the general formula R-C(O)OH, where R is an organic radical. The carboxyl group -C(O)OH contains a [[carbonyl]] group, C=O, and a [[hydroxyl]] group, O-H.
+* [[Acetic acid]] (CH<sub>3</sub>COOH)
+* [[Citric acid]] (C<sub>6</sub>H<sub>8</sub>O<sub>7</sub>)
+* [[Formic acid]] (HCOOH)
+* [[Gluconic acid]] HOCH<sub>2</sub>-(CHOH)<sub>4</sub>-COOH
+* [[Lactic acid]] (CH<sub>3</sub>-CHOH-COOH)
+* [[Oxalic acid]] (HOOC-COOH)
+* [[Tartaric acid]] (HOOC-CHOH-CHOH-COOH)
+
+===Halogenated carboxylic acids===
+Halogenation at [[alpha and beta carbon|alpha position]] increases acid strength, so that the following acids are all stronger than acetic acid.
+* [[Fluoroacetic acid]]
+* [[Trifluoroacetic acid]]
+* [[Chloroacetic acid]]
+* [[Dichloroacetic acid]]
+* [[Trichloroacetic acid]]
+
+===Vinylogous carboxylic acids===
+Normal carboxylic acids are the direct union of a carbonyl group and a hydroxyl group.  In [[vinylogous]] carboxylic acids, a carbon-carbon double bond separates the carbonyl and hydroxyl groups.
+
+* [[Ascorbic acid]]
+
+===Nucleic acids===
+* [[Deoxyribonucleic acid]] (DNA)
+* [[Ribonucleic acid]] (RNA)
+
+==References==
+
+{{Reflist|30em}}
+* [https://web.archive.org/web/20011218075412/http://www.csudh.edu/oliver/chemdata/data-ka.htm Listing of strengths of common acids and bases]
+* [http://goldbook.iupac.org/A00071.html IUPAC Gold Book - acid]
+* Zumdahl, Chemistry, 4th Edition.
+* Ebbing, D.D., & Gammon, S. D. (2005). ''General chemistry'' (8th ed.). Boston, MA: Houghton Mifflin. {{ISBN|0-618-51177-6}}
+* Pavia, D.L., Lampman, G.M., & Kriz, G.S. (2004). ''Organic chemistry volume 1: Organic chemistry 351.'' Mason, OH: Cenage Learning. {{ISBN|0-7593-4727-1}}
+
+==External links==
+* [http://www2.iq.usp.br/docente/gutz/Curtipot_.html Curtipot]: Acid-Base equilibria diagrams, [[pH]] calculation and [[titration]] curves simulation and analysis – [[freeware]]
+
+{{Authority control}}
+
+[[Category:Acids| ]]
+[[Category:Acid–base chemistry]]

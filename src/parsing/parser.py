@@ -140,6 +140,9 @@ class Expression:
     def render(self, writer):
         raise NotImplementedError()
 
+    # def value(self):
+    #     return self.expression
+
 
 class TextP(Expression):
     def __init__(self, text):
@@ -165,9 +168,15 @@ class LinkP(Expression):
 
 
 class TemplateP(Expression):
+    def __init__(self, node):
+        self.text = ''
+
     def render(self, writer):
         # Ignore templates
         pass
+
+    # def value(self):
+    #     return ''
 
 
 class CommentP(Expression):
@@ -179,10 +188,21 @@ class CommentP(Expression):
         # Ignore comments
         pass
 
+    # def value(self):
+    #     return ''
+
 
 class HeadingP(Expression):
+    def __init__(self, node):
+        super().__init__(node)
+        # self.text = node.value()
+        # if isinstance(node, TemplateP):
+        self.text = node.text
+        # else:
+        #     self.text = ''
+
     def render(self, writer):
-        writer.write(self.expression.text)
+        writer.write(self.text)
 
 
 class LinkNode(Node):

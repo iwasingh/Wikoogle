@@ -25,7 +25,7 @@ class TestParser(unittest.TestCase):
             parser = Parser()
             ast = parser.parse(text)
             t1 = time.time()
-            print(ast)
+            # print(ast)
             print('Ast built in: ', t1 - t0)
             return ast
 
@@ -70,7 +70,7 @@ class TestParser(unittest.TestCase):
     def test_comment(self):
         txt = '&lt;!-- In the interest of restricting article length, please limit this section to two or three short ' \
               'paragraphs and add any substantial information to the main Issues in anarchism article. Thank you. ' \
-              '--&gt; '.star
+              '--&gt; '
         parser = Parser()
         ast = parser.parse(txt, Grammar.comment)
         print(ast, Compiler().render(ast))

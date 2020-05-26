@@ -1,309 +1,722 @@
-{{About|acids in chemistry|the drug|Lysergic acid diethylamide|other uses}}
-{{Redirect|Acidity| the novelette|Acidity (novelette)}}
-{{redirect|Acidic|the band|Acidic (band)}}
+{{short description|American computer character encoding standard}}
+{{Distinguish|text=MS [[Windows-1252]] or other types of [[extended ASCII]]}}
+{{About|the character encoding}}
+{{Use mdy dates|date=June 2013|cs1-dates=y}}
+{{Use American English|date=December 2018}}
+{{Infobox character encoding|
+| name = ASCII
+| alias = ISO-IR-006<ref>{{citation |mode=cs1 |url=https://www.itscj.ipsj.or.jp/iso-ir/006.pdf |title=ISO-IR-006: ASCII Graphic character set |author=ANSI |author-link=American National Standards Institute |publisher=ITSCJ/[[Information Processing Society of Japan|IPSJ]] |date=1975-12-01}}</ref>
+| mime = us-ascii
+| image = ASCII-infobox.svg
+| caption = ASCII (1967 or later)
+| lang = [[English language|English]]
+| extensions = * [[Unicode]]
+* [[ISO/IEC 8859]] (series)
+* [[KOI-8]]
+* [[OEM code page|OEM]] (series)
+* [[Windows-125x]] (series)
+* [[Extended ASCII|Others]]
+| prev = [[International Telegraph Alphabet No. 2|ITA 2]], [[FIELDATA]]
+| next = [[ISO 8859]], [[Unicode]]
+| classification = [[ISO 646|ISO 646 series]]
+}}
+'''ASCII''' ({{IPAc-en|audio=En-us-ASCII.ogg|ˈ|æ|s|k|iː}} {{respell|ASS|kee}}),<ref name="Mackenzie_1980">{{cite book |url=https://textfiles.meulie.net/bitsaved/Books/Mackenzie_CodedCharSets.pdf |title=Coded Character Sets, History and Development |work=The Systems Programming Series |author-last=Mackenzie |author-first=Charles E. |date=1980 |edition=1 |publisher=[[Addison-Wesley Publishing Company, Inc.]] |isbn=978-0-201-14460-4 |lccn=77-90165 |pages=6, 66, 211, 215, 217, 220, 223, 228, 236–238, 243–245, 247–253, 423, 425–428, 435–439 |access-date=2019-08-25 |archive-url=https://web.archive.org/web/20160526172151/https://textfiles.meulie.net/bitsaved/Books/Mackenzie_CodedCharSets.pdf |archive-date=May 26, 2016 |url-status=live |df=mdy-all }}</ref>{{rp|6}} abbreviated from '''American Standard Code for Information Interchange''', is a [[character encoding]] standard for electronic communication. ASCII codes represent text in computers, [[telecommunications equipment]], and other devices. Most modern character-encoding schemes are based on ASCII, although they support many additional characters.
 
-{{Use dmy dates|date=June 2013}}
-[[File:Zn reaction with HCl.JPG|thumb|[[Zinc]], a typical metal, reacting with [[hydrochloric acid]], a typical acid]]
-{{Acids and bases}}
-An '''Acid''' is a [[molecule]] or [[ion]] capable of donating a [[proton]] (hydrogen ion H<sup>+</sup>) (a [[Brønsted–Lowry acid–base theory|Brønsted–Lowry acid]]), or, alternatively, capable of forming a [[covalent bond]] with an [[electron pair]] (a [[Lewis acid]]).<ref name="IUPAC_acid">[http://goldbook.iupac.org/A00071.html IUPAC Gold Book - acid]</ref>
+The [[Internet Assigned Numbers Authority]] (IANA) prefers the name '''US-ASCII''' for this character encoding.<ref name="IANA_2007">{{cite web|website=Internet Assigned Numbers Authority (IANA)|date=May 14, 2007|url=http://www.iana.org/assignments/character-sets|title=Character Sets|access-date=2019-08-25}}</ref>
 
-The first category of acids are the proton donors, or [[Brønsted–Lowry acid–base theory|Brønsted–Lowry acid]]s. In the special case of [[aqueous solutions]], proton donors form the [[hydronium ion]] H<sub>3</sub>O<sup>+</sup> and are known as [[Acid-base reaction#Arrhenius theory|Arrhenius acids]]. [[Johannes Nicolaus Brønsted|Brønsted]] and [[Thomas Martin Lowry|Lowry]] generalized the Arrhenius theory to include non-aqueous solvents. A Brønsted or Arrhenius acid usually contains a hydrogen atom bonded to a chemical structure that is still energetically favorable after loss of H<sup>+</sup>.
+ASCII is one of the [[List of IEEE milestones|IEEE milestones]].
 
-Aqueous Arrhenius acids have characteristic properties which provide a practical description of an acid.<ref>Petrucci R.H., Harwood, R.S. and Herring, F.G. ''General Chemistry'' (8th ed., Prentice-Hall 2002) p.146 {{ISBN|0-13-014329-4}}</ref> Acids form [[aqueous solution]]s with a sour taste, can turn blue [[litmus]] red, and react with [[Base (chemistry)|bases]] and certain metals (like [[calcium]]) to form [[Salt (chemistry)|salts]]. The word ''acid'' is derived from the [[Latin]] ''acidus/acēre'' meaning ''sour''.<ref>[http://www.merriam-webster.com/dictionary/acid Merriam-Webster's Online Dictionary: ''acid'']</ref> An aqueous solution of an acid has a [[pH]] less than 7 and is colloquially also referred to as 'acid' (as in 'dissolved in acid'), while the strict definition refers only to the [[solution|solute]].<ref name="IUPAC_acid"/> A lower pH means a higher acidity, and thus a higher concentration of [[Hydron (chemistry)|positive hydrogen ions]] in the [[solution]]. Chemicals or substances having the property of an acid are said to be '''acidic'''.
+[[File:USASCII code chart.png|thumb|361px|ASCII chart from a pre-1972 printer manual (In the column headings “b1” is the least significant bit.)]]
 
-Common aqueous acids include [[hydrochloric acid]] (a solution of [[hydrogen chloride]] which is found in [[gastric acid]] in the stomach and activates [[digestive enzymes]]), [[acetic acid]] (vinegar is a dilute aqueous solution of this liquid), [[sulfuric acid]] (used in [[car battery|car batteries]]), and [[citric acid]] (found in citrus fruits). As these examples show, acids (in the colloquial sense) can be solutions or pure substances, and can be derived from acids (in the strict<ref name="IUPAC_acid"/> sense) that are solids, liquids, or gases. [[Acid strength|Strong acid]]s and some concentrated weak acids are [[corrosive substance|corrosive]], but there are exceptions such as [[carborane]]s and [[boric acid]].
+==Overview==
+ASCII was developed from [[telegraph code]]. Its first commercial use was as a seven-[[bit]] [[teleprinter]] code promoted by Bell data services. Work on the ASCII standard began on October 6, 1960, with the first meeting of the [[American Standards Association]]'s (ASA) (now the [[American National Standards Institute]] or ANSI) X3.2 subcommittee. The first edition of the standard was published in 1963,<ref name="Brandel_1999">{{cite news |author-first=Mary |author-last=Brandel |date=July 6, 1999 |url=http://edition.cnn.com/TECH/computing/9907/06/1963.idg/ |title=1963: The Debut of ASCII |publisher=[[CNN]] |access-date=2008-04-14 |archive-url=https://web.archive.org/web/20130617155922/http://edition.cnn.com/TECH/computing/9907/06/1963.idg/ |archive-date=June 17, 2013 |url-status=live }}</ref><ref name="ASCII-1963">{{cite web |title=American Standard Code for Information Interchange, ASA X3.4-1963 |publisher=[[American Standards Association]] (ASA) |date=1963-06-17 |url=http://worldpowersystems.com/ARCHIVE/codes/X3.4-1963/index.html |access-date=2018-09-28 |url-status=live |archive-url=https://web.archive.org/web/20180928201050/http://worldpowersystems.com/ARCHIVE/codes/X3.4-1963/index.html |archive-date=September 28, 2018}}</ref> underwent a major revision during 1967,<ref name="ASCII-1967">{{cite journal |title=USA Standard Code for Information Interchange, USAS X3.4-1967 |publisher=[[United States of America Standards Institute]] (USASI) |date=July 7, 1967}}</ref><ref name="Jennings_2016">{{cite web |title=An annotated history of some character codes or ASCII: American Standard Code for Information Infiltration |author-first=Thomas Daniel |author-last=Jennings |author-link=Thomas Daniel Jennings |website=World Power Systems (WPS) |date=2016-04-20 |orig-year=1999 |url=https://www.sr-ix.com/Archive/CharCodeHist/index.html#ASCII-1967 |access-date=2020-03-08 |url-status=live |archive-url=https://web.archive.org/web/20180928201025/http://worldpowersystems.com/ARCHIVE/codes/#ASCII-1967 |archive-date=September 28, 2018}}</ref> and experienced its most recent update during 1986.<ref name="ASCII-1986">{{cite journal |title=American National Standard for Information Systems — Coded Character Sets — 7-Bit American National Standard Code for Information Interchange (7-Bit ASCII), ANSI X3.4-1986 |publisher=[[American National Standards Institute]] (ANSI) |date=March 26, 1986}}</ref> Compared to earlier telegraph codes, the proposed Bell code and ASCII were both ordered for more convenient sorting (i.e., alphabetization) of lists, and added features for devices other than teleprinters. {{Citation Needed|date=March 2020}}
 
-The second category of acids are [[Lewis acids and bases|Lewis acids]], which form a covalent bond with an electron pair. An example is [[boron trifluoride]] (BF<sub>3</sub>), whose boron atom has a vacant [[atomic orbital|orbital]] which can form a covalent bond by sharing a lone pair of electrons on an atom in a base, for example the nitrogen atom in [[ammonia]] (NH<sub>3</sub>). [[Gilbert N. Lewis|Lewis]] considered this as a generalization of the Brønsted definition, so that an acid is a chemical species that accepts electron pairs either directly ''or'' by releasing protons (H<sup>+</sup>) into the solution, which then accept electron pairs. However, hydrogen chloride, acetic acid, and most other Brønsted-Lowry acids cannot form a covalent bond with an electron pair and are therefore not Lewis acids.<ref name="Oxtoby8th">Oxtoby, D. W; Gillis, H.P., [[Laurie Butler|Butler, L. J.]] (2015).''Principles of Modern Chemistry'', Brooks Cole. p. 617.  {{ISBN|978-1305079113}}</ref> Conversely, many Lewis acids are not Arrhenius or Brønsted-Lowry acids. In modern terminology, an ''acid'' is implicitly a Brønsted acid and not a Lewis acid, since chemists almost always refer to a Lewis acid explicitly as ''a Lewis acid''.<ref name="Oxtoby8th" />
+The use of ASCII format for Network Interchange was described in 1969.<ref>{{cite ietf |title=ASCII format for Network Interchange |rfc=20 |author=Vint Cerf |date=October 16, 1969 |publisher=[[Internet Engineering Task Force|IETF]]}}</ref> That document was formally elevated to an Internet Standard in 2015.<ref>{{cite web |url=https://datatracker.ietf.org/doc/status-change-rfc20-ascii-format-to-standard/ |title=Correct classification of RFC 20 (ASCII format) to Internet Standard |author=Barry Leiba |date=January 12, 2015 |publisher=[[Internet Engineering Task Force|IETF]]}}</ref>
 
-==Definitions and concepts==
-{{main|Acid–base reaction}}
-Modern definitions are concerned with the fundamental chemical reactions common to all acids.
+Originally based on the [[English alphabet]], ASCII encodes 128 specified [[character (computing)|characters]] into seven-bit integers as shown by the ASCII chart above.<ref name="RFC-4949">{{citation |title=Internet Security Glossary, Version 2 |date=August 2007 |author-first=R. |author-last=Shirley |rfc=4949 |url=https://tools.ietf.org/html/rfc4949 |access-date=2016-06-13 |url-status=live |archive-url=https://web.archive.org/web/20160613203815/https://tools.ietf.org/html/rfc4949 |archive-date=2016-06-13}}</ref> Ninety-five of the encoded characters are printable: these include the digits ''0'' to ''9'', lowercase letters ''a'' to ''z'', uppercase letters ''A'' to ''Z'', and [[punctuation symbol]]s. In addition, the original ASCII specification included 33 non-printing [[control code]]s which originated with [[Teletype machine]]s; most of these are now obsolete,<ref name="Maini_2007">{{cite book |author-last=Maini |author-first=Anil Kumar |title=Digital Electronics: Principles, Devices and Applications |url=https://books.google.com/?id=NQSpNAEACAAJ&pg=PA28 |date=2007 |publisher=[[John Wiley and Sons]] |isbn=978-0-470-03214-5 |page=28 |quote=In addition, it defines codes for 33 nonprinting, mostly obsolete control characters that affect how the text is processed.}}</ref> although a few are still commonly used, such as the [[carriage return]], [[line feed]] and [[Tab key#Tab characters|tab]] codes.
 
-Most acids encountered in everyday life are [[aqueous solutions]], or can be dissolved in water, so the Arrhenius and Brønsted-Lowry definitions are the most relevant.
+For example, lowercase ''[[i]]'' would be represented in the ASCII encoding by [[binary number|binary]] 1101001 = [[hexadecimal]] 69 (''i'' is the ninth letter) = [[decimal]] 105.
 
-The Brønsted-Lowry definition is the most widely used definition; unless otherwise specified, acid-base reactions are assumed to involve the transfer of a proton (H<sup>+</sup>) from an acid to a base.
+=={{anchor|1963|1965|1967|1968|1977|1986|1992|1997|2002|2007|2012|2017}}History==
+[[File:ASCII1963-infobox-paths.svg|thumb|upright=1.25|right|ASCII (1963). [[Control Pictures|Control pictures]] of equivalent controls are shown where they exist, or a grey dot otherwise.]]
+The American Standard Code for Information Interchange (ASCII) was developed under the auspices of a committee of the [[American Standards Association]] (ASA), called the X3 committee, by its X3.2 (later X3L2) subcommittee, and later by that subcommittee's X3.2.4 working group (now [[INCITS]]). The ASA became the [[United States of America Standards Institute]] (USASI)<ref name="Mackenzie_1980"/>{{rp|211}} and ultimately the [[American National Standards Institute]] (ANSI).
 
-Hydronium ions are acids according to all three definitions. Although alcohols and amines can be Brønsted-Lowry acids, they can also function as [[Lewis base]]s due to the lone pairs of electrons on their oxygen and nitrogen atoms.
+With the other special characters and control codes filled in, ASCII was published as ASA X3.4-1963,<ref name="ASCII-1963"/><ref name="Bukstein_1964">{{cite journal |title=Binary Computer Codes and ASCII |author-first=Ed |author-last=Bukstein |journal=[[Electronics World]] |date=July 1964 |volume=72 |number=1 |pages=28–29 |url=http://www.swtpc.com/mholley/ElectronicsWorld/Jul1964/EW_Jul1964.htm |access-date=2016-05-22 |archive-url=https://web.archive.org/web/20160303180933/http://www.swtpc.com/mholley/ElectronicsWorld/Jul1964/EW_Jul1964.htm |archive-date=March 3, 2016 |url-status=live }}</ref> leaving 28 code positions without any assigned meaning, reserved for future standardization, and one unassigned control code.<ref name="Mackenzie_1980"/>{{rp|66, 245}} There was some debate at the time whether there should be more control characters rather than the lowercase alphabet.<ref name="Mackenzie_1980"/>{{rp|435}} The indecision did not last long: during May 1963 the CCITT Working Party on the New Telegraph Alphabet proposed to assign lowercase characters to ''sticks''{{Efn|name="NB_Stick"|{{anchor|Stick}}The 128 characters of the 7-bit ASCII character set are divided into eight 16-character groups called ''sticks'' 0–7, associated with the three [[most-significant bit]]s.<ref name="Bemer_1980_Inside"/> Depending on the horizontal or vertical representation of the character map, ''sticks'' correspond with either table rows or columns.}}<ref name="Bemer_1980_Inside"/> 6 and 7,<ref name="CCITT_1963">Brief Report: Meeting of CCITT Working Party on the New Telegraph Alphabet, May 13–15, 1963.</ref> and [[International Organization for Standardization]] TC 97 SC 2 voted during October to incorporate the change into its draft standard.<ref name="ISO_1963">Report of ISO/TC/97/SC 2 – Meeting of October 29–31, 1963.</ref> The X3.2.4 task group voted its approval for the change to ASCII at its May 1963 meeting.<ref>Report on Task Group X3.2.4, June 11, 1963, Pentagon Building, Washington, DC.</ref> Locating the lowercase letters in ''sticks''{{Efn|name="NB_Stick"}}<ref name="Bemer_1980_Inside"/> 6 and 7 caused the characters to differ in bit pattern from the upper case by a single bit, which simplified [[case-insensitive]] character matching and the construction of keyboards and printers.
 
-===Arrhenius acids===
-[[File:Arrhenius2.jpg|thumb|150px|Svante Arrhenius]]
+The X3 committee made other changes, including other new characters (the [[brace (punctuation)|brace]] and [[vertical bar]] characters),<ref>Report of Meeting No. 8, Task Group X3.2.4, December 17 and 18, 1963</ref> renaming some control characters (SOM became start of header (SOH)) and moving or removing others (RU was removed).<ref name="Mackenzie_1980"/>{{rp|247–248}} ASCII was subsequently updated as USAS X3.4-1967,<ref name="ASCII-1967"/><ref name="Winter_2010">{{cite web |title=US and International standards: ASCII |url=http://homepages.cwi.nl/~dik/english/codes/stand.html#ascii |author-first=Dik T. |author=Winter |date=2010 |orig-year=2003 |url-status=dead |archive-url=https://web.archive.org/web/20100116001012/http://homepages.cwi.nl/~dik/english/codes/stand.html#ascii |archive-date=2010-01-16}}</ref> then USAS X3.4-1968, ANSI X3.4-1977, and finally, ANSI X3.4-1986.<ref name="ASCII-1986"/><ref name="Salste_2016">{{cite web |title=7-bit character sets: Revisions of ASCII |author-first=Tuomas |author-last=Salste |publisher=Aivosto Oy |date=January 2016 |id={{URN|nbn|fi-fe201201011004}} |url=http://www.aivosto.com/vbtips/charsets-7bit.html#body |access-date=2016-06-13 |url-status=live |archive-url=https://web.archive.org/web/20160613145224/http://www.aivosto.com/vbtips/charsets-7bit.html#body |archive-date=2016-06-13}}</ref>
 
-The Swedish chemist [[Svante Arrhenius]] attributed the properties of acidity to [[hydron (chemistry)|hydrogen ions]] (H<sup>+</sup>) or [[proton]]s in 1884. An '''Arrhenius acid''' is a substance that, when added to water, increases the concentration of H<sup>+</sup> ions in the water.<ref name="Oxtoby8th"/><ref name="Ebbing">Ebbing, D.D., & Gammon, S. D. (2005). ''General chemistry'' (8th ed.). Boston, MA: Houghton Mifflin. {{ISBN|0-618-51177-6}}</ref> Note that chemists often write H<sup>+</sup>(''aq'') and refer to the [[hydrogen ion]] when describing acid-base reactions but the free hydrogen nucleus, a [[proton]], does not exist alone in water, it exists as the hydronium ion, H<sub>3</sub>O<sup>+</sup>. Thus, an Arrhenius acid can also be described as a substance that increases the concentration of hydronium ions when added to water. Examples include molecular substances such as HCl and acetic acid.
+Revisions of the ASCII standard:
 
-An Arrhenius [[base (chemistry)|base]], on the other hand, is a substance which increases the concentration of [[hydroxide]] (OH<sup>−</sup>) ions when dissolved in water. This decreases the concentration of hydronium because the ions react to form H<sub>2</sub>O molecules:
+* ASA <!-- Standard -->X3.4-1963<ref name="Mackenzie_1980"/><ref name="ASCII-1963"/><ref name="Winter_2010"/><ref name="Salste_2016"/>
+* ASA X3.4-1965 (approved, but not published, nevertheless used by [[IBM 2260]] & [[IBM 2265|2265]] Display Stations and [[IBM 2848]] Display Control)<ref name="Mackenzie_1980"/>{{rp|423, 425–428, 435–439}}<ref name="SA_215">{{cite journal |title=Information<!-- Title of issue, not title of article --> |author-first= |author-last= |date=September 1966 |volume=215 |number=3 |type=special edition |journal=[[Scientific American]] |jstor=e24931041 |pages=}}</ref><ref name="Winter_2010"/><ref name="Salste_2016"/>
+* USAS <!-- USA Standard -->X3.4-1967<ref name="Mackenzie_1980"/><ref name="ASCII-1967"/><ref name="Salste_2016"/>
+* USAS X3.4-1968<!-- October 1968 --><ref name="Mackenzie_1980"/><ref name="Salste_2016"/>
+* ANSI <!-- American National Standard -->X3.4-1977<ref name="Salste_2016"/>
+* ANSI X3.4-1986<ref name="ASCII-1986"/><ref name="Salste_2016"/>
+* ANSI X3.4-1986 (R1992)
+* ANSI X3.4-1986 (R1997)
+* ANSI INCITS 4-1986 (R2002)<ref name="Korpela_2014">{{cite book |title=Unicode Explained – Internationalize Documents, Programs, and Web Sites |author-first=Jukka K. |author-last=Korpela |edition=2nd release of 1st |date=2014-03-14 |orig-year=2006-06-07 |publisher=[[O'Reilly Media, Inc.]] |isbn=978-0-596-10121-3 |page=118}}</ref>
+* ANSI INCITS 4-1986 (R2007)<!-- official name with space and with (round brackets) --><ref name="ANSI_INCITS_4-1986_2007">{{citation |title=ANSI INCITS 4-1986 (R2007): American National Standard for Information Systems – Coded Character Sets – 7-Bit American National Standard Code for Information Interchange (7-Bit ASCII) |date=2007 |orig-year=1986 |url=http://sliderule.mraiow.com/w/images/7/73/ASCII.pdf |access-date=2016-06-12 |url-status=live |archive-url=https://web.archive.org/web/20140207170900/http://sliderule.mraiow.com/w/images/7/73/ASCII.pdf |archive-date=2014-02-07}}</ref>
+* (ANSI)<!-- not sure if "ANSI" is still part of the standard's official name, hence put in brackets for now --> INCITS 4-1986[R2012]<!-- official name without space and with [square brackets] --><ref name="INCITS_4-1986_R2012"/>
+* (ANSI) INCITS 4-1986[R2017]<!-- official name without space and with [square brackets] --><ref name="INCITS_4-1986_R2017"/>
 
-H<sub>3</sub>O{{su|p=+|b=(aq)}} + OH{{su|p=−|b=(aq)}} ⇌ H<sub>2</sub>O<sub>(l)</sub> + H<sub>2</sub>O<sub>(l)</sub>
+In the X3.15 standard, the X3 committee also addressed how ASCII should be transmitted ([[least significant bit]] first),<ref name="Mackenzie_1980"/>{{rp|249–253}}<ref name="X3.15-1966">{{citation |title=Bit Sequencing of the American National Standard Code for Information Interchange in Serial-by-Bit Data Transmission |id=X3.15-1966 |date=1966 |publisher=[[American National Standards Institute]] (ANSI)}}</ref> and how it should be recorded on perforated tape. They proposed a [[9-track]] standard for magnetic tape, and attempted to deal with some [[punched card]] formats.
+<!-- To be mentioned: [[Decimal ASCII]] -->
 
-Due to this equilibrium, any increase in the concentration of hydronium is accompanied by a decrease in the concentration of hydroxide. Thus, an Arrhenius acid could also be said to be one that decreases hydroxide concentration, while an Arrhenius base increases it.
+==Design considerations==
 
-In an acidic solution, the concentration of hydronium ions is greater than 10<sup>−7</sup> [[Mole (unit)|moles]] per liter. Since pH is defined as the negative logarithm of the concentration of hydronium ions, acidic solutions thus have a pH of less than 7.
+===Bit width===
+The X3.2 subcommittee designed ASCII based on the earlier teleprinter encoding systems. Like other [[character encoding]]s, ASCII specifies a correspondence between digital bit patterns and [[character (computing)|character]] symbols (i.e. [[grapheme]]s and [[control character]]s). This allows [[Digital data|digital]] devices to communicate with each other and to process, store, and communicate character-oriented information such as written language. Before ASCII was developed, the encodings in use included 26 [[English alphabet|alphabetic]] characters, 10 [[numerical digit]]s, and from 11 to 25 special graphic symbols. To include all these, and control characters compatible with the [[CCITT|Comité Consultatif International Téléphonique et Télégraphique]] (CCITT) [[International Telegraph Alphabet No. 2]] (ITA2) standard of 1924,<ref name="Bruxy_2005">{{cite web |title=BruXy: Radio Teletype communication |date=2005-10-10 |access-date=2016-05-09 |url=http://bruxy.regnet.cz/web/hamradio/EN/radio-teletype-communication/ |quote=The transmitted code use International Telegraph Alphabet No. 2 (ITA-2) which was introduced by CCITT in 1924. |archive-url=https://web.archive.org/web/20160412130035/http://bruxy.regnet.cz/web/hamradio/EN/radio-teletype-communication/ |archive-date=April 12, 2016 |url-status=live }}</ref><ref name="bdcode">{{cite web |author-last=Smith |author-first=Gil |title=Teletype Communication Codes |publisher=Baudot.net |date=2001 |url=http://www.baudot.net/docs/smith--teletype-codes.pdf |access-date=2008-07-11 |archive-url=https://web.archive.org/web/20080820043949/http://www.baudot.net/docs/smith--teletype-codes.pdf |archive-date=August 20, 2008 |url-status=live }}</ref> [[FIELDATA]] (1956{{citation needed|date=June 2016|reason=My sources state 1957 rather than 1956, but Wikipedia states 1956 in various places. This needs to be sorted out with better sources.}}), and early [[EBCDIC]] (1963), more than 64 codes were required for ASCII.
 
-===Brønsted–Lowry acids{{anchor|Brønsted acids}}===
-{{Main|Brønsted–Lowry acid–base theory}}
+ITA2 were in turn based on the 5-bit telegraph code [[Émile Baudot]] invented in 1870 and patented in 1874.<ref name="bdcode"/>
 
-[[File:Acetic-acid-dissociation-3D-balls.png|thumb|350px|alt=Acetic acid, CH<sub>3</sub>COOH, is composed of a methyl group, CH<sub>3</sub>, bound chemically to a carboxylate group, COOH. The carboxylate group can lose a proton and donate it to a water molecule, H<sub>2</sub>0, leaving behind an acetate anion CH<sub>3</sub>COO- and creating a hydronium cation H<sub>3</sub>O. This is an equilibrium reaction, so the reverse process can also take place.|[[Acetic acid]], a [[weak acid]], donates a proton (hydrogen ion, highlighted in green) to water in an equilibrium reaction to give the [[acetate]] ion and the [[hydronium]] ion. Red: oxygen, black: carbon, white: hydrogen.]]
+The committee debated the possibility of a [[Shift code|shift]] function (like in [[ITA2]]), which would allow more than 64 codes to be represented by a [[six-bit character code|six-bit code]]. In a shifted code, some character codes determine choices between options for the following character codes. It allows compact encoding, but is less reliable for [[data transmission]], as an error in transmitting the shift code typically makes a long part of the transmission unreadable. The standards committee decided against shifting, and so ASCII required at least a seven-bit code.<ref name="Mackenzie_1980"/>{{rp|215, 236&thinsp;§&thinsp;4}}
 
-While the Arrhenius concept is useful for describing many reactions, it is also quite limited in its scope. In 1923 chemists [[Johannes Nicolaus Brønsted]] and [[Thomas Martin Lowry]] independently recognized that acid-base reactions involve the transfer of a proton. A '''Brønsted-Lowry acid''' (or simply Brønsted acid) is a species that donates a proton to a Brønsted-Lowry base.<ref name="Ebbing" /> Brønsted-Lowry acid-base theory has several advantages over Arrhenius theory. Consider the following reactions of [[acetic acid]] (CH<sub>3</sub>COOH), the [[organic acid]] that gives vinegar its characteristic taste:
+The committee considered an eight-bit code, since eight bits ([[octet (computing)|octet]]s) would allow two four-bit patterns to efficiently encode two digits with [[binary-coded decimal]]. However, it would require all data transmission to send eight bits when seven could suffice. The committee voted to use a seven-bit code to minimize costs associated with data transmission. Since perforated tape at the time could record eight bits in one position, it also allowed for a [[parity bit]] for [[error checking]] if desired.<ref name="Mackenzie_1980"/>{{rp|217, 236&thinsp;§&thinsp;5}} [[Eight-bit]] machines (with octets as the native data type) that did not use parity checking typically set the eighth bit to 0.<ref name="Sawyer_1995">{{cite book |author-first1=Stanley A. |author-last1=Sawyer |author-first2=Steven George |author-last2=Krantz |title=A TeX Primer for Scientists |url=https://books.google.com/books?id=bXLDwmIJNkUC&pg=PA13 |date=1995 |publisher=[[CRC Press, LLC]] |isbn=978-0-8493-7159-2 |page=13 |bibcode=1995tps..book.....S |access-date=October 29, 2016 |archive-url=https://web.archive.org/web/20161222151907/https://books.google.com/books?id=bXLDwmIJNkUC&pg=PA13 |archive-date=December 22, 2016 |url-status=live }}</ref> In some printers, the high bit was used to enable [[Italics]] printing{{Citation needed|date=May 2019}}.
 
-:{{chem|CH|3|COOH}} + {{chem|H|2|O}} {{eqm}} {{chem|CH|3|COO|−}} + {{chem|H|3|O|+}}
-:{{chem|CH|3|COOH}} + {{chem|NH|3}} {{eqm}} {{chem|CH|3|COO|−}} + {{chem|NH|4|+}}
+===Internal organization===
+The code itself was patterned so that most control codes were together and all graphic codes were together, for ease of identification. The first two so-called ''ASCII sticks''{{Efn|name="NB_Stick"}}<ref name="Bemer_1980_Inside"/> (32 positions) were reserved for control characters.<ref name="Mackenzie_1980"/>{{rp|220, 236&thinsp;§&thinsp;8,9)}} The [[Space (punctuation)|"space" character]] had to come before graphics to make [[sorting algorithm|sorting]] easier, so it became position 20<sub>[[hexadecimal|hex]]</sub>;<ref name="Mackenzie_1980"/>{{rp|237&thinsp;§&thinsp;10}} for the same reason, many special signs commonly used as separators were placed before digits. The committee decided it was important to support [[upper case|uppercase]] [[sixbit code pages|64-character alphabets]], and chose to pattern ASCII so it could be reduced easily to a usable 64-character set of graphic codes,<ref name="Mackenzie_1980"/>{{rp|228, 237&thinsp;§&thinsp;14}} as was done in the [[DEC SIXBIT]] code (1963). [[Lower case|Lowercase]] letters were therefore not interleaved with uppercase. To keep options available for lowercase letters and other graphics, the special and numeric codes were arranged before the letters, and the letter ''A'' was placed in position 41<sub>[[hexadecimal|hex]]</sub> to match the draft of the corresponding British standard.<ref name="Mackenzie_1980"/>{{rp|238&thinsp;§&thinsp;18}} The digits 0–9 are prefixed with 011, but the remaining [[Nibble|4 bits]] correspond to their respective values in binary, making conversion with [[binary-coded decimal]] straightforward.
 
-Both theories easily describe the first reaction: CH<sub>3</sub>COOH acts as an Arrhenius acid because it acts as a source of H<sub>3</sub>O<sup>+</sup> when dissolved in water, and it acts as a Brønsted acid by donating a proton to water. In the second example CH<sub>3</sub>COOH undergoes the same transformation, in this case donating a proton to ammonia (NH<sub>3</sub>), but does not relate to the Arrhenius definition of an acid because the reaction does not produce hydronium. Nevertheless, CH<sub>3</sub>COOH is both an Arrhenius and a Brønsted-Lowry acid.
+Many of the non-alphanumeric characters were positioned to correspond to their shifted position on typewriters; an important subtlety is that these were based on ''mechanical'' typewriters, not ''electric'' typewriters.<ref name="Savard">{{cite web |title=Computer Keyboards |url=http://www.quadibloc.com/comp/kybint.htm |author-first=John J. G. |author-last=Savard |access-date=2014-08-24 |archive-url=https://web.archive.org/web/20140924183236/http://www.quadibloc.com/comp/kybint.htm |archive-date=September 24, 2014 |url-status=live }}</ref> Mechanical typewriters followed the standard set by the Remington No. 2 (1878), the first typewriter with a shift key, and the shifted values of <code>23456789-</code> were <code>"#$%_&'()</code>{{snd}} early typewriters omitted ''0'' and ''1'', using ''O'' (capital letter ''o'') and ''l'' (lowercase letter ''L'') instead, but <code>1!</code> and <code>0)</code> pairs became standard once 0 and 1 became common. Thus, in ASCII <code>!"#$%</code> were placed in the second stick,{{Efn|name="NB_Stick"}}<ref name="Bemer_1980_Inside"/> positions 1–5, corresponding to the digits 1–5 in the adjacent stick.{{Efn|name="NB_Stick"}}<ref name="Bemer_1980_Inside"/> The parentheses could not correspond to ''9'' and ''0'', however, because the place corresponding to ''0'' was taken by the space character. This was accommodated by removing <code>_</code> (underscore) from ''6'' and shifting the remaining characters, which corresponded to many European typewriters that placed the parentheses with ''8'' and ''9''. This discrepancy from typewriters led to [[bit-paired keyboard]]s, notably the [[Teletype Model 33]], which used the left-shifted layout corresponding to ASCII, not to traditional mechanical typewriters. Electric typewriters, notably the [[IBM Selectric]] (1961), used a somewhat different layout that has become standard on computers{{snd}} following the [[IBM PC]] (1981), especially [[Model M]] (1984){{snd}} and thus shift values for symbols on modern keyboards do not correspond as closely to the ASCII table as earlier keyboards did. The <code>/?</code> pair also dates to the No. 2, and the <code>,&lt; .&gt;</code> pairs were used on some keyboards (others, including the No. 2, did not shift <code>,</code> (comma) or <code>.</code> (full stop) so they could be used in uppercase without unshifting). However, ASCII split the <code>;:</code> pair (dating to No. 2), and rearranged mathematical symbols (varied conventions, commonly <code>-* =+</code>) to <code>:* ;+ -=</code>.
 
-Brønsted-Lowry theory can be used to describe reactions of [[molecule|molecular compounds]] in nonaqueous solution or the gas phase. [[Hydrogen chloride]] (HCl) and ammonia combine under several different conditions to form [[ammonium chloride]], NH<sub>4</sub>Cl. In aqueous solution HCl behaves as [[hydrochloric acid]] and exists as hydronium and chloride ions. The following reactions illustrate the limitations of Arrhenius's definition:
-# H<sub>3</sub>O{{su|p=+|b=(aq)}} + Cl{{su|p=−|b=(aq)}} + NH<sub>3</sub> → Cl{{su|p=−|b=(aq)}} + NH{{su|b=4|p=+}}<sub>(aq)</sub> + H<sub>2</sub>O
-# HCl<sub>(benzene)</sub> + NH<sub>3(benzene)</sub> → NH<sub>4</sub>Cl<sub>(s)</sub>
-# HCl<sub>(g)</sub> + NH<sub>3(g)</sub> → NH<sub>4</sub>Cl<sub>(s)</sub>
+Some common characters were not included, notably <code>½¼¢</code>, while <code>^`~</code> were included as diacritics for international use, and <code>&lt;&gt;</code> for mathematical use, together with the simple line characters <code>\|</code> (in addition to common <code>/</code>). The ''@'' symbol was not used in continental Europe and the committee expected it would be replaced by an accented ''À'' in the French variation, so the ''@'' was placed in position 40<sub>[[hexadecimal|hex]]</sub>, right before the letter A.<ref name="Mackenzie_1980"/>{{rp|243}}
 
-As with the acetic acid reactions, both definitions work for the first example, where water is the solvent and hydronium ion is formed by the HCl solute. The next two reactions do not involve the formation of ions but are still proton-transfer reactions. In the second reaction hydrogen chloride and ammonia (dissolved in [[benzene]]) react to form solid ammonium chloride in a benzene solvent and in the third gaseous HCl and NH<sub>3</sub> combine to form the solid.
+The control codes felt essential for data transmission were the start of message (SOM), end of address (EOA), [[End of Message|end of message]] (EOM), end of transmission (EOT), "who are you?" (WRU), "are you?" (RU), a reserved device control (DC0), synchronous idle (SYNC), and acknowledge (ACK). These were positioned to maximize the [[Hamming distance]] between their bit patterns.<ref name="Mackenzie_1980"/>{{rp|243–245}}
 
-===Lewis acids===
-{{main|Lewis acids and bases}}
-A third, only marginally related concept was proposed in 1923 by [[Gilbert N. Lewis]], which includes reactions with acid-base characteristics that do not involve a proton transfer. A '''Lewis acid''' is a species that accepts a pair of electrons from another species; in other words, it is an electron pair acceptor.<ref name="Ebbing" /> Brønsted acid-base reactions are proton transfer reactions while Lewis acid-base reactions are electron pair transfers. Many Lewis acids are not Brønsted-Lowry acids. Contrast how the following reactions are described in terms of acid-base chemistry:
-:[[File:LewisAcid.png|374px]]
-In the first reaction a [[fluoride|fluoride ion]], F<sup>−</sup>, gives up an [[lone pair|electron pair]] to [[boron trifluoride]] to form the product [[tetrafluoroborate]]. Fluoride "loses" a pair of [[valence electron]]s because the electrons shared in the B—F bond are located in the region of space between the two atomic [[atomic nucleus|nuclei]] and are therefore more distant from the fluoride nucleus than they are in the lone fluoride ion. BF<sub>3</sub> is a Lewis acid because it accepts the electron pair from fluoride. This reaction cannot be described in terms of Brønsted theory because there is no proton transfer. The second reaction can be described using either theory. A proton is transferred from an unspecified Brønsted acid to ammonia, a Brønsted base; alternatively, ammonia acts as a Lewis base and transfers a lone pair of electrons to form a bond with a hydrogen ion. The species that gains the electron pair is the Lewis acid; for example, the oxygen atom in H<sub>3</sub>O<sup>+</sup> gains a pair of electrons when one of the H—O bonds is broken and the electrons shared in the bond become localized on oxygen. Depending on the context, a Lewis acid may also be described as an [[Oxidizing agent|oxidizer]] or an [[electrophile]]. Organic Brønsted acids, such as acetic, citric, or oxalic acid, are not Lewis acids.<ref name="Oxtoby8th" /> They dissociate in water to produce a Lewis acid, H<sup>+</sup>, but at the same time also yield an equal amount of a Lewis base (acetate, citrate, or oxalate, respectively, for the acids mentioned). Few, if any, of the acids discussed in the following are Lewis acids.
+==={{anchor|Order}}Character order===
+ASCII-code order is also called ''ASCIIbetical'' order.<ref>{{cite journal |url=https://www.pcmag.com/encyclopedia_term/0,2542,t=ASCIIbetical&i=38025,00.asp |title=ASCIIbetical definition |journal=[[PC Magazine]] |access-date=2008-04-14 |archive-url=https://web.archive.org/web/20130309183509/http://www.pcmag.com/encyclopedia_term/0%2C2542%2Ct%3DASCIIbetical%26i%3D38025%2C00.asp |archive-date=March 9, 2013 |url-status=live }}</ref> [[Collation]] of data is sometimes done in this order rather than "standard" alphabetical order ([[collating sequence]]). The main deviations in ASCII order are:
+* All uppercase come before lowercase letters; for example, "Z" precedes "a"
+* Digits and many punctuation marks come before letters
 
-==Dissociation and equilibrium==
-<!-- linked from redirect [[Free acid]] -->
-Reactions of acids are often generalized in the form HA {{eqm}} H<sup>+</sup> + A<sup>−</sup>, where HA represents the acid and A<sup>−</sup> is the [[conjugate acid|conjugate base]]. This reaction is referred to as '''protolysis'''. The protonated form (HA) of an acid is also sometimes referred to as the '''free acid'''.<ref>{{cite book | editor-last1 = Stahl | editor-first1 = P. Heinrich | editor-last2 = Warmth | editor-first2 = Camille G. | last1 = Stahl | first1 = P. Heinrich | last2 = Nakamo | first2 = Masahiro | name-list-format = vanc | title = Handbook of Pharmaceutical Salts: Properties, Selection, and Use | date = 2008 | publisher = Wiley-VCH | location = Weinheim | isbn = 978-3-906390-58-1 | chapter = Pharmaceutical Aspects of the Salt Form | chapter-url = https://books.google.com/books?id=IvSEXUZUON8C&pg=PA92&dq=%22free+acid%22+salt&hl=en&sa=X&redir_esc=y#v=onepage&q=%22free%20acid%22%20salt&f=false | pages = 92–94 }}</ref>
+An intermediate order converts uppercase letters to lowercase before comparing ASCII values.
 
-Acid-base conjugate pairs differ by one proton, and can be interconverted by the addition or removal of a proton ([[protonation]] and [[deprotonation]], respectively). Note that the acid can be the charged species and the conjugate base can be neutral in which case the generalized reaction scheme could be written as HA<sup>+</sup> {{eqm}} H<sup>+</sup> + A. In solution there exists an [[chemical equilibrium|equilibrium]] between the acid and its conjugate base. The [[equilibrium constant]] ''K'' is an expression of the equilibrium concentrations of the molecules or the ions in solution. Brackets indicate concentration, such that [H<sub>2</sub>O] means ''the concentration of H<sub>2</sub>O''. The [[acid dissociation constant]] ''K''<sub>a</sub> is generally used in the context of acid-base reactions. The numerical value of ''K''<sub>a</sub> is equal to the product of the concentrations of the products divided by the concentration of the reactants, where the reactant is the acid (HA) and the products are the conjugate base and H<sup>+</sup>.
-:<math chem>K_a = \frac\ce{[H+] [A^-]}\ce{[HA]}</math>
-The stronger of two acids will have a higher ''K''<sub>a</sub> than the weaker acid; the ratio of hydrogen ions to acid will be higher for the stronger acid as the stronger acid has a greater tendency to lose its proton. Because the range of possible values for ''K''<sub>a</sub> spans many orders of magnitude, a more manageable constant, p''K''<sub>a</sub> is more frequently used, where p''K''<sub>a</sub> = &minus;log<sub>10</sub> ''K''<sub>a</sub>. Stronger acids have a smaller p''K''<sub>a</sub> than weaker acids. Experimentally determined p''K''<sub>a</sub> at 25&nbsp;°C in aqueous solution are often quoted in textbooks and reference material.
+==Character groups==
 
-==Nomenclature==
-In the classical naming system, acids are named according to their [[anion]]s. That ionic suffix is dropped and replaced with a new suffix (and sometimes prefix), according to the table below.
-For example, HCl has [[chloride]] as its anion, so the -ide suffix makes it take the form [[hydrochloric acid]]. In the [[IUPAC]] naming system, "aqueous" is simply added to the name of the ionic compound. Thus, for hydrogen chloride, the IUPAC name would be aqueous hydrogen chloride. The prefix "hydro-" is added only if the acid is made up of just hydrogen and one other element.
+==={{anchor|ASCII control characters}}Control characters===
+{{Main|Control character}}
 
-Classical naming system:
-{| class="wikitable"
-!Anion prefix
-!Anion suffix
-!Acid prefix
-!Acid suffix
-!Example
+ASCII reserves the first 32 codes (numbers 0–31 decimal) for [[control character]]s: codes originally intended not to represent printable information, but rather to control devices (such as [[computer printer|printers]]) that make use of ASCII, or to provide [[Metadata|meta-information]] about data streams such as those stored on magnetic tape.
+
+For example, character 10 represents the "line feed" function (which causes a printer to advance its paper), and character 8 represents "backspace". {{IETF RFC|2822}} refers to control characters that do not include carriage return, line feed or [[Whitespace (computer science)|white space]] as non-whitespace control characters.<ref name="RFC-2822">{{citation |title=Internet Message Format |author-first=P. |author-last=Resnick |date=April 2001 |rfc=2822 |url=https://tools.ietf.org/html/rfc2822 |access-date=2016-06-13 |url-status=live |archive-url=https://web.archive.org/web/20160613203505/https://tools.ietf.org/html/rfc2822 |archive-date=2016-06-13}} (NB. NO-WS-CTL.)</ref> Except for the control characters that prescribe elementary line-oriented formatting, ASCII does not define any mechanism for describing the structure or appearance of text within a document. Other schemes, such as [[markup language]]s, address page and document layout and formatting.
+
+The original ASCII standard used only short descriptive phrases for each control character. The ambiguity this caused was sometimes intentional, for example where a character would be used slightly differently on a terminal link than on a [[data stream]], and sometimes accidental, for example with the meaning of "delete".
+
+Probably the most influential single device on the interpretation of these characters was the [[Teletype Model 33]] ASR, which was a printing terminal with an available [[punched tape|paper tape]] reader/punch option. Paper tape was a very popular medium for long-term program storage until the 1980s, less costly and in some ways less fragile than magnetic tape. In particular, the Teletype Model 33 machine assignments for codes 17 (Control-Q, DC1, also known as XON), 19 (Control-S, DC3, also known as XOFF), and 127 ([[Delete key|Delete]]) became de facto standards. The Model 33 was also notable for taking the description of Control-G (code 7, BEL, meaning audibly alert the operator) literally, as the unit contained an actual bell which it rang when it received a BEL character.  Because the keytop for the O key also showed a left-arrow symbol (from ASCII-1963, which had this character instead of [[underscore]]), a noncompliant use of code 15 (Control-O, Shift In) interpreted as "delete previous character" was also adopted by many early timesharing systems but eventually became neglected.
+
+When a Teletype 33 ASR equipped with the automatic paper tape reader received a Control-S (XOFF, an abbreviation for transmit off), it caused the tape reader to stop; receiving Control-Q (XON, "transmit on") caused the tape reader to resume.  This technique became adopted by several early computer operating systems as a "handshaking" signal warning a sender to stop transmission because of impending overflow; it persists to this day in many systems as a manual output control technique. On some systems Control-S retains its meaning but Control-Q is replaced by a second Control-S to resume output.  The 33 ASR also could be configured to employ Control-R (DC2) and Control-T (DC4) to start and stop the tape punch; on some units equipped with this function, the corresponding control character lettering on the keycap above the letter was TAPE and <s>TAPE</s> respectively.<ref name="McConnell">{{cite web |title=Understanding ASCII Codes |author-last1=McConnell |author-first1=Robert |author-last2=Haynes |author-first2=James |author-last3=Warren |author-first3=Richard |url=http://www.nadcomm.com/ascii_code.htm |access-date=2014-05-11 |archive-url=https://web.archive.org/web/20140227190425/http://www.nadcomm.com/ascii_code.htm |archive-date=February 27, 2014 |url-status=live }}</ref>
+
+==== Delete & Backspace ====
+
+The Teletype could not move the head backwards, so it did not put a key on the keyboard to send a BS (backspace). Instead there was a key marked {{keypress|RUB OUT}} that sent code 127 (DEL). The purpose of this key was to erase mistakes in a hand-typed paper tape: the operator had to push a button on the tape punch to back it up, then type the rubout, which punched all holes and replaced the mistake with a character that was intended to be ignored.<ref>{{cite mailing list |url=http://lists.gnu.org/archive/html/help-gnu-emacs/2014-05/msg00448.html |title=Re: editor and word processor history (was: Re: RTF for emacs) |author=Barry Margolin |mailing-list=help-gnu-emacs |date=May 29, 2014 |accessdate=July 11, 2014 |archiveurl=https://web.archive.org/web/20140714133149/http://lists.gnu.org/archive/html/help-gnu-emacs/2014-05/msg00448.html |archivedate=July 14, 2014 |url-status=live }}</ref> Teletypes were commonly used for the less-expensive computers from [[Digital Equipment Corporation]], so these systems had to use the available key and thus the DEL code to erase the previous character.<ref name="pdp-6-monitor-manual">{{cite web |url=http://bitsavers.trailing-edge.com/pdf/dec/pdp6/DEC-6-0-EX-SYS-UM-IP-PRE00_Multiprogramming_System_Manual_1965.pdf |title=PDP-6 Multiprogramming System Manual |page=43 |publisher=[[Digital Equipment Corporation]] (DEC) |date=1965 |access-date=July 10, 2014 |archive-url=https://web.archive.org/web/20140714140253/http://bitsavers.trailing-edge.com/pdf/dec/pdp6/DEC-6-0-EX-SYS-UM-IP-PRE00_Multiprogramming_System_Manual_1965.pdf |archive-date=July 14, 2014 |url-status=live }}</ref><ref name="pdp-10-monitor-manual">{{cite web |url=http://bitsavers.org/pdf/dec/pdp10/1970_PDP-10_Ref/1970PDP10Ref_Part3.pdf |title=PDP-10 Reference Handbook, Book 3, Communicating with the Monitor |at=p. 5-5 |publisher=[[Digital Equipment Corporation]] (DEC) |date=1969 |access-date=July 10, 2014 |archive-url=https://web.archive.org/web/20111115083418/http://www.bitsavers.org/pdf/dec/pdp10/1970_PDP-10_Ref/1970PDP10Ref_Part3.pdf |archive-date=November 15, 2011 |url-status=live }}</ref> Because of this, DEC video terminals (by default) sent the DEL code for the key marked "Backspace" while the key marked "Delete" sent an escape sequence, while many other terminals sent BS for the Backspace key. The Unix terminal driver could only use one code to erase the previous character, this could be set to BS ''or'' DEL, but not both, resulting in a long period of annoyance where users had to correct it depending on what terminal they were using (shells that allow line editing, such as [[KornShell|ksh]], [[Bash (Unix shell)|bash]], and [[Z shell|zsh]], understand both). The assumption that no key sent a BS caused Control+H to be used for other purposes, such as the "help" prefix command in [[GNU Emacs]].<ref>{{cite web|url=https://www.gnu.org/software/emacs/manual/html_node/emacs/Help.html|title=Help - GNU Emacs Manual|access-date=July 11, 2018|archive-url=https://web.archive.org/web/20180711223750/https://www.gnu.org/software/emacs/manual/html_node/emacs/Help.html|archive-date=July 11, 2018|url-status=live}}</ref>
+
+==== Escape ====
+Many more of the control codes have been given meanings quite different from their original ones. The "escape" character (ESC, code 27), for example, was intended originally to allow sending other control characters as literals instead of invoking their meaning. This is the same meaning of "escape" encountered in URL encodings, [[C (programming language)|C language]] strings, and other systems where certain characters have a reserved meaning. Over time this meaning has been co-opted and has eventually been changed. In modern use, an ESC sent to the terminal usually indicates the start of a command sequence usually in the form of a so-called "[[ANSI escape code]]" (or, more properly, a "[[Control Sequence Introducer]]") from ECMA-48 (1972) and its successors, beginning with ESC followed by a "<nowiki>[</nowiki>" (left-bracket) character. An ESC sent from the terminal is most often used as an [[out-of-band data|out-of-band]] character used to terminate an operation, as in the [[Text Editor and Corrector|TECO]] and [[vi]] [[text editor]]s. In [[graphical user interface]] (GUI) and [[window (computing)|windowing]] systems, ESC generally causes an application to abort its current operation or to [[exit (system call)|exit]] (terminate) altogether.
+
+==== End of Line ====
+
+The inherent ambiguity of many control characters, combined with their historical usage, created problems when transferring "plain text" files between systems. The best example of this is the [[newline]] problem on various [[operating system]]s. Teletype machines required that a line of text be terminated with both "Carriage Return" (which moves the printhead to the beginning of the line) and "Line Feed" (which advances the paper one line without moving the printhead). The name "Carriage Return" comes from the fact that on a manual [[typewriter]] the carriage holding the paper moved while the position where the typebars struck the ribbon remained stationary.  The entire carriage had to be pushed (returned) to the right in order to position the left margin of the paper for the next line.
+
+[[Digital Equipment Corporation|DEC]] operating systems ([[OS/8]], [[RT-11]], [[RSX-11]], [[RSTS/E|RSTS]], [[TOPS-10]], etc.) used both characters to mark the end of a line so that the console device (originally [[Teleprinter|Teletype machines]]) would work. By the time so-called "glass TTYs" (later called CRTs or terminals) came along, the convention was so well established that backward compatibility necessitated continuing the convention. When [[Gary Kildall]] created [[CP/M]] he was inspired by some command line interface conventions used in [[Digital Equipment Corporation|DEC]]'s [[RT-11]]. Until the introduction of [[PC DOS]] in 1981, [[IBM]] had no hand in this because their 1970s operating systems used EBCDIC instead of ASCII and they were oriented toward punch-card input and line printer output on which the concept of carriage return was meaningless. IBM's [[PC DOS]] (also marketed as [[MS-DOS]] by Microsoft) inherited the convention by virtue of being loosely based on CP/M,<ref>{{cite web|url=http://dosmandrivel.blogspot.com/2007/08/is-dos-rip-off-of-cpm.html|title=Is DOS a Rip-Off of CP/M?|author=Tim Paterson|date=August 8, 2007|website=DosMan Drivel|author-link=Tim Paterson|access-date=April 19, 2018|archive-url=https://web.archive.org/web/20180420075137/http://dosmandrivel.blogspot.com/2007/08/is-dos-rip-off-of-cpm.html|archive-date=April 20, 2018|url-status=live}}</ref> and [[Windows]] inherited it from MS-DOS.
+
+Unfortunately, requiring two characters to mark the end of a line introduces unnecessary complexity and questions as to how to interpret each character when encountered alone. To simplify matters [[plain text]] data streams, including files, on [[Multics]]<ref>{{cite conference |url=http://www.multicians.org/jhs-jfo-terminals.pdf |title=Technical and human engineering problems in connecting terminals to a time-sharing system |author-last1=Ossanna |author-first1=J. F. |author-link1=Joe Ossanna |author-last2=Saltzer |author-first2=J. H. |author-link2=Jerry Saltzer |date=November 17–19, 1970 |publisher=[[AFIPS]] Press |booktitle=Proceedings of the November 17–19, 1970, [[Fall Joint Computer Conference]] (FJCC) |pages=355–362 |location=p. 357 |quote=Using a "new-line" function (combined carriage-return and line-feed) is simpler for both man and machine than requiring both functions for starting a new line; the American National Standard X3.4-1968 permits the line-feed code to carry the new-line meaning. |access-date=January 29, 2013 |archive-url=https://web.archive.org/web/20120819085101/http://www.multicians.org/jhs-jfo-terminals.pdf |archive-date=August 19, 2012 |url-status=live }}</ref> used line feed (LF) alone as a line terminator. [[Unix]] and [[Unix-like]] systems, and [[Amiga]] systems, adopted this convention from Multics. The original [[Macintosh OS]], [[Apple DOS]], and [[ProDOS]], on the other hand, used carriage return (CR) alone as a line terminator; however, since Apple replaced these operating systems with the Unix-based [[macOS]] operating system, they now use line feed (LF) as well. The Radio Shack [[TRS-80]] also used a lone CR to terminate lines.
+
+Computers attached to the [[ARPANET]] included machines running operating systems such as TOPS-10 and [[TENEX (operating system)|TENEX]] using CR-LF line endings, machines running operating systems such as Multics using LF line endings, and machines running operating systems such as [[OS/360]] that represented lines as a character count followed by the characters of the line and that used [[EBCDIC]] rather than ASCII.  The [[Telnet]] protocol defined an ASCII "[[Network Virtual Terminal]]" (NVT), so that connections between hosts with different line-ending conventions and character sets could be supported by transmitting a standard text format over the network. Telnet used ASCII along with CR-LF line endings, and software using other conventions would translate between the local conventions and the NVT.<ref name="RFC-158">{{citation |title=TELNET Protocol |rfc=158 |pages=4–5 |author-first=T. |author-last=O'Sullivan |date=1971-05-19 |publisher=[[Internet Engineering Task Force]] (IETF) |url=https://tools.ietf.org/html/rfc158 |access-date=2013-01-28 |url-status=live |archive-url=https://web.archive.org/web/20160613202223/https://tools.ietf.org/html/rfc158 |archive-date=2016-06-13}}</ref> The [[File Transfer Protocol]] adopted the Telnet protocol, including use of the Network Virtual Terminal, for use when transmitting commands and transferring data in the default ASCII mode.<ref name="RFC-542">{{citation |title=File Transfer Protocol |rfc=542 |author-first=Nancy J. |author-last=Neigus |date=1973-08-12 |publisher=[[Internet Engineering Task Force]] (IETF) |url=https://tools.ietf.org/html/rfc542 |access-date=2013-01-28 |url-status=live |archive-url=https://web.archive.org/web/20160613202314/https://tools.ietf.org/html/rfc542 |archive-date=2016-06-13}}</ref><ref name="RFC-765">{{citation |title=File Transfer Protocol |rfc=765 |author-first=Jon |author-last=Postel |author-link=Jon Postel |date=June 1980 |publisher=[[Internet Engineering Task Force]] (IETF) |url=https://tools.ietf.org/html/rfc765 |access-date=2013-01-28 |url-status=live |archive-url=https://web.archive.org/web/20160613202356/https://tools.ietf.org/html/rfc765 |archive-date=2016-06-13}}</ref> This adds complexity to implementations of those protocols, and to other network protocols, such as those used for E-mail and the World Wide Web, on systems not using the NVT's CR-LF line-ending convention.<ref>{{cite web |url=https://www.mercurial-scm.org/wiki/EOLTranslationPlan |title=EOL translation plan for Mercurial |publisher=Mercurial |access-date=2017-06-24 |archive-url=https://web.archive.org/web/20160616235536/https://www.mercurial-scm.org/wiki/EOLTranslationPlan |archive-date=June 16, 2016 |url-status=live }}</ref><ref>{{cite web |title=Bare LFs in SMTP |url=http://cr.yp.to/docs/smtplf.html |author-first=Daniel J. |author-last=Bernstein |author-link=Daniel J. Bernstein |access-date=2013-01-28 |archive-url=https://web.archive.org/web/20111029013105/http://cr.yp.to/docs/smtplf.html |archive-date=October 29, 2011 |url-status=live }}</ref>
+
+==== End of File/Stream ====
+
+The PDP-6 monitor,<ref name="pdp-6-monitor-manual"/> and its PDP-10 successor TOPS-10,<ref name="pdp-10-monitor-manual"/> used Control-Z (SUB) as an end-of-file indication for input from a terminal.  Some operating systems such as CP/M tracked file length only in units of disk blocks and used Control-Z to mark the end of the actual text in the file.<ref>{{cite book |url=http://www.bitsavers.org/pdf/digitalResearch/cpm/1.4/CPM_1.4_Interface_Guide_1978.pdf |title=CP/M 1.4 Interface Guide |date=1978 |page=10 |publisher=[[Digital Research]] |access-date=October 7, 2017 |archive-url=https://web.archive.org/web/20190529055800/http://bitsavers.org/pdf/digitalResearch/cpm/1.4/CPM_1.4_Interface_Guide_1978.pdf |archive-date=May 29, 2019 |url-status=live }}</ref> For these reasons, EOF, or [[end-of-file]], was used colloquially and conventionally as a [[three-letter acronym]] for Control-Z instead of SUBstitute.  The end-of-text code ([[End-of-text character|ETX]]), also known as [[Control-C]], was inappropriate for a variety of reasons, while using Z as the control code to end a file is analogous to it ending the alphabet and serves as a very convenient [[Mnemonic device|mnemonic aid]]. A historically common and still prevalent convention uses the ETX code convention to interrupt and halt a program via an input data stream, usually from a keyboard.
+
+In C library and [[Unix]] conventions, the [[null character]] is used to terminate text [[string (computer science)|strings]]; such [[null-terminated string]]s can be known in abbreviation as ASCIZ or ASCIIZ, where here Z stands for "zero".
+
+{{anchor|ASCII control code chart}}
+{| class="wikitable sortable" style="text-align: center"
 |-
-|per
-|ate
-|per
-|ic acid
-|[[perchloric acid]] (HClO<sub>4</sub>)
+! rowspan="2" | [[Binary numeral system|Binary]] !! rowspan="2" | [[Octal|Oct]] !! rowspan="2" | [[Decimal|Dec]] !! rowspan="2" class=unsortable | [[Hexadecimal|Hex]] !! colspan="3" | Abbreviation !! rowspan="2" class=unsortable | {{Efn|The [[Unicode]] characters from the area U+2400 to U+2421 reserved for representing control characters when it is necessary to print or display them rather than have them perform their intended function. Some browsers may not display these properly.}} !! rowspan="2" | {{Efn|[[Caret notation]] is often used to represent control characters on a terminal. On most text terminals, holding down the {{key press|[[Control key|Ctrl]]}} key while typing the second character will type the control character. Sometimes the shift key is not needed, for instance <code>^@</code> may be typable with just Ctrl and 2.}} !! rowspan="2" | {{Efn|Character [[escape sequence]]s in [[C (programming language)|C programming language]] and many other languages influenced by it, such as [[Java (programming language)|Java]] and [[Perl]] (though not all implementations necessarily support all escape sequences).}} !! rowspan="2" | Name (1967)
 |-
-|
-|ate
-|
-|ic acid
-|[[chloric acid]] (HClO<sub>3</sub>)
+! 1963 !! 1965 !! 1967
 |-
-|
-|ite
-|
-|ous acid
-|[[chlorous acid]] (HClO<sub>2</sub>)
+| 000 0000 || style="background:lightblue;" | 000 || style="background:#CFF;" | 0 || style="background:lightblue;" | 00
+|NULL||colspan=2|NUL|| style="font-size:large;" | ␀ || <code>[[^@]]</code> || <code>[[\0]]</code> || style="text-align:left;" | [[Null character|Null]]
 |-
-|hypo
-|ite
-|hypo
-|ous acid
-|[[hypochlorous acid]] (HClO)
+| 000 0001 || style="background:lightblue;" | 001 || style="background:#CFF;" | 1 || style="background:lightblue;" | 01
+|SOM||colspan=2|SOH|| style="font-size:large;" | ␁ || <code>[[^A]]</code> || || style="text-align:left;" | [[Start of Heading]]
 |-
-|
-|ide
-|hydro
-|ic acid
-|[[hydrochloric acid]] (HCl)
+| 000 0010 || style="background:lightblue;" | 002 || style="background:#CFF;" | 2 || style="background:lightblue;" | 02
+|EOA||colspan=2|STX|| style="font-size:large;" | ␂ || <code>[[^B]]</code> || || style="text-align:left;" | [[Start of Text]]
+|-
+| 000 0011 || style="background:lightblue;" | 003 || style="background:#CFF;" | 3 || style="background:lightblue;" | 03
+|EOM||colspan=2|ETX|| style="font-size:large;" | ␃ || <code>[[^C]]</code> || || style="text-align:left;" | [[End-of-Text character|End of Text]]
+|-
+| 000 0100 || style="background:lightblue;" | 004 || style="background:#CFF;" | 4 || style="background:lightblue;" | 04
+<!-- Please note that the character below, U+2404, is correct. If you are seeing it as "ENQ", please upgrade your fonts as the one you have is buggy. -->
+|colspan=3|EOT|| style="font-size:large;" | ␄ || <code>[[^D]]</code> || || style="text-align:left;" | [[End-of-Transmission character|End of Transmission]]
+|-
+| 000 0101 || style="background:lightblue;" | 005 || style="background:#CFF;" | 5 || style="background:lightblue;" | 05
+<!-- Please note that the character below, U+2405, is correct. If you are seeing it as "EOT", please upgrade your fonts as the one you have is buggy. -->
+|WRU||colspan=2|ENQ|| style="font-size:large;" | ␅ || <code>[[^E]]</code> || || style="text-align:left;" | [[Enquiry character|Enquiry]]
+|-
+| 000 0110 || style="background:lightblue;" | 006 || style="background:#CFF;" | 6 || style="background:lightblue;" | 06
+|RU||colspan=2|ACK|| style="font-size:large;" | ␆ || <code>[[^F]]</code> || || style="text-align:left;" | [[Acknowledge character|Acknowledgement]]
+|-
+| 000 0111 || style="background:lightblue;" | 007 || style="background:#CFF;" | 7 || style="background:lightblue;" | 07
+|BELL||colspan=2|BEL|| style="font-size:large;" | ␇ || <code>[[^G]]</code> || <code>[[\a]]</code> || style="text-align:left;" | [[Bell character|Bell]]
+|-
+| 000 1000 || style="background:lightblue;" | 010 || style="background:#CFF;" | 8 || style="background:lightblue;" | 08
+|FE0||colspan=2|BS|| style="font-size:large;" | ␈ || <code>[[^H]]</code> || <code>[[Backspace|\b]]</code> || style="text-align:left;" | [[Backspace]]{{Efn|The [[Backspace]] character can also be entered by pressing the {{key press|Backspace}} key on some systems.}}{{Efn|name="bsp del mismatch"}}
+|-
+| 000 1001 || style="background:lightblue;" | 011 || style="background:#CFF;" | 9 || style="background:lightblue;" | 09
+|HT/SK||colspan=2|HT|| style="font-size:large;" | ␉ || <code>[[^I]]</code> || <code>[[\t]]</code> || style="text-align:left;" | [[Horizontal Tab]]{{Efn|The [[Tab character]] can also be entered by pressing the {{key press|Tab}} key on most systems.}}
+|-
+| 000 1010 || style="background:lightblue;" | 012 || style="background:#CFF;" | 10 || style="background:lightblue;" | 0A
+|colspan=3|LF|| style="font-size:large;" | ␊ || <code>[[^J]]</code> || <code>[[\n]]</code> || style="text-align:left;" | [[Line Feed]]
+|-
+| 000 1011 || style="background:lightblue;" | 013 || style="background:#CFF;" | 11 || style="background:lightblue;" | 0B
+|VTAB||colspan=2|VT|| style="font-size:large;" | ␋ || <code>[[^K]]</code> || <code>[[\v]]</code> || style="text-align:left;" | [[Vertical Tab]]
+|-
+| 000 1100 || style="background:lightblue;" | 014 || style="background:#CFF;" | 12 || style="background:lightblue;" | 0C
+|colspan=3|FF|| style="font-size:large;" | ␌ || <code>[[^L]]</code> || <code>[[\f]]</code> || style="text-align:left;" | [[Form Feed]]
+|-
+| 000 1101 || style="background:lightblue;" | 015 || style="background:#CFF;" | 13 || style="background:lightblue;" | 0D
+|colspan=3|CR|| style="font-size:large;" | ␍ || <code>[[^M]]</code> || <code>[[\r]]</code> || style="text-align:left;" | [[Carriage Return]]{{Efn|The [[Carriage Return]] character can also be entered by pressing the {{key press|Enter}} or {{key press|Return}} key on most systems.}}
+|-
+| 000 1110 || style="background:lightblue;" | 016 || style="background:#CFF;" | 14 || style="background:lightblue;" | 0E
+|colspan=3|SO|| style="font-size:large;" | ␎ || <code>[[^N]]</code> || || style="text-align:left;" | [[Shift Out]]
+|-
+| 000 1111 || style="background:lightblue;" | 017 || style="background:#CFF;" | 15 || style="background:lightblue;" | 0F
+|colspan=3|SI|| style="font-size:large;" | ␏ || <code>[[^O]]</code> || || style="text-align:left;" | [[Shift In]]
+|-
+| 001 0000 || style="background:lightblue;" | 020 || style="background:#CFF;" | 16 || style="background:lightblue;" | 10
+|DC0||colspan=2|DLE|| style="font-size:large;" | ␐ || <code>[[^P]]</code> || || style="text-align:left;" | [[Data Link Escape]]
+|-
+| 001 0001 || style="background:lightblue;" | 021 || style="background:#CFF;" | 17 || style="background:lightblue;" | 11
+|colspan=3|DC1|| style="font-size:large;" | ␑ || <code>[[^Q]]</code> || || style="text-align:left;" | [[Device Control 1]] (often [[XON]])
+|-
+| 001 0010 || style="background:lightblue;" | 022 || style="background:#CFF;" | 18 || style="background:lightblue;" | 12
+|colspan=3|DC2|| style="font-size:large;" | ␒ || <code>[[^R]]</code> || || style="text-align:left;" | [[Device Control 2]]
+|-
+| 001 0011 || style="background:lightblue;" | 023 || style="background:#CFF;" | 19 || style="background:lightblue;" | 13
+|colspan=3|DC3|| style="font-size:large;" | ␓ || <code>[[^S]]</code> || || style="text-align:left;" | [[Device Control 3]] (often [[XOFF]])
+|-
+| 001 0100 || style="background:lightblue;" | 024 || style="background:#CFF;" | 20 || style="background:lightblue;" | 14
+|colspan=3|DC4|| style="font-size:large;" | ␔ || <code>[[^T]]</code> || || style="text-align:left;" | [[Device Control 4]]
+|-
+| 001 0101 || style="background:lightblue;" | 025 || style="background:#CFF;" | 21 || style="background:lightblue;" | 15
+|ERR||colspan=2|NAK|| style="font-size:large;" | ␕ || <code>[[^U]]</code> || || style="text-align:left;" | [[Negative-acknowledge character|Negative Acknowledgement]]
+|-
+| 001 0110 || style="background:lightblue;" | 026 || style="background:#CFF;" | 22 || style="background:lightblue;" | 16
+|SYNC||colspan=2|SYN|| style="font-size:large;" | ␖ || <code>[[^V]]</code> || || style="text-align:left;" | [[Synchronous Idle]]
+|-
+| 001 0111 || style="background:lightblue;" | 027 || style="background:#CFF;" | 23 || style="background:lightblue;" | 17
+|LEM||colspan=2|ETB|| style="font-size:large;" | ␗ || <code>[[^W]]</code> || || style="text-align:left;" | [[End-of-Transmission-Block character|End of Transmission Block]]
+|-
+| 001 1000 || style="background:lightblue;" | 030 || style="background:#CFF;" | 24 || style="background:lightblue;" | 18
+|S0||colspan=2|CAN|| style="font-size:large;" | ␘ || <code>[[^X]]</code> || || style="text-align:left;" | [[Cancel character|Cancel]]
+|-
+| 001 1001 || style="background:lightblue;" | 031 || style="background:#CFF;" | 25 || style="background:lightblue;" | 19
+|S1||colspan=2|EM|| style="font-size:large;" | ␙ || <code>[[^Y]]</code> || || style="text-align:left;" | [[End of Medium]]
+|-
+| 001 1010 || style="background:lightblue;" | 032 || style="background:#CFF;" | 26 || style="background:lightblue;" | 1A
+|S2||SS||SUB|| style="font-size:large;" | ␚ || <code>[[^Z]]</code> || || style="text-align:left;" | [[Substitute character|Substitute]]
+|-
+| 001 1011 || style="background:lightblue;" | 033 || style="background:#CFF;" | 27 || style="background:lightblue;" | 1B
+|S3||colspan=2|ESC|| style="font-size:large;" | ␛ || <code>^<nowiki>[</nowiki></code> || <code>[[\e]]</code>{{Efn|The <code>\e</code> [[escape sequence]] is not part of [[ISO C]] and many other language specifications. However, it is understood by several compilers, including [[GCC (software)|GCC]].}} || style="text-align:left;" | [[Escape character|Escape]]{{Efn|The [[Escape character]] can also be entered by pressing the {{key press|Esc}} key on some systems.}}
+|-
+| 001 1100 || style="background:lightblue;" | 034 || style="background:#CFF;" | 28 || style="background:lightblue;" | 1C
+|S4||colspan=2|FS|| style="font-size:large;" | ␜ || <code>[[^\]]</code> || || style="text-align:left;" | [[File Separator]]
+|-
+| 001 1101 || style="background:lightblue;" | 035 || style="background:#CFF;" | 29 || style="background:lightblue;" | 1D
+|S5||colspan=2|GS|| style="font-size:large;" | ␝ || <code>^<nowiki>]</nowiki></code> || || style="text-align:left;" | [[Group Separator]]
+|-
+| 001 1110 || style="background:lightblue;" | 036 || style="background:#CFF;" | 30 || style="background:lightblue;" | 1E
+|S6||colspan=2|RS|| style="font-size:large;" | ␞ || <code>^^</code>{{Efn|^^ means {{key press|Ctrl|^}} (pressing the "Ctrl" and [[caret]] keys).}} || || style="text-align:left;" | [[Record Separator]]
+|-
+| 001 1111 || style="background:lightblue;" | 037 || style="background:#CFF;" | 31 || style="background:lightblue;" | 1F
+|S7||colspan=2|US|| style="font-size:large;" | ␟ || <code>^_</code> || || style="text-align:left;" | [[Unit Separator]]
+|-
+| 111 1111 || style="background:lightblue;" | 177 || style="background:#CFF;" | 127 || style="background:lightblue;" | 7F
+|colspan=3|DEL|| style="font-size:large;" | ␡ || <code>[[^?]]</code> || || style="text-align:left;" | [[Delete character|Delete]]{{Efn|The [[Delete character]] can sometimes be entered by pressing the {{key press|Backspace}} key on some systems.}}{{Efn|name="bsp del mismatch"|The ambiguity of [[Backspace]] is due to early terminals designed assuming the main use of the keyboard would be to manually punch paper tape while not connected to a computer. To delete the previous character, one had to back up the paper tape punch, which for mechanical and simplicity reasons was a button on the punch itself and not the keyboard, then type the rubout character. They therefore placed a key producing rubout at the location used on typewriters for backspace. When systems used these terminals and provided command-line editing, they had to use the "rubout" code to perform a backspace, and often did not interpret the backspace character (they might echo "<code>^H</code>" for backspace). Other terminals not designed for paper tape made the key at this location produce Backspace, and systems designed for these used that character to back up. Since the delete code often produced a backspace effect, this also forced terminal manufacturers to make any {{key press|Delete}} key produce something other than the Delete character.}}
 |}
 
-==Acid strength==
-{{main|Acid strength}}
+Other representations might be used by specialist equipment, for example [[ISO 2047]] graphics or [[hexadecimal]] numbers.
 
-The strength of an acid refers to its ability or tendency to lose a proton. A strong acid is one that completely dissociates in water; in other words, one [[mole (unit)|mole]] of a strong acid HA dissolves in water yielding one mole of H<sup>+</sup> and one mole of the conjugate base, A<sup>−</sup>, and none of the protonated acid HA. In contrast, a weak acid only partially dissociates and at equilibrium both the acid and the conjugate base are in solution. Examples of [[strong acid]]s are [[hydrochloric acid]] (HCl), [[hydroiodic acid]] (HI), [[hydrobromic acid]] (HBr), [[perchloric acid]] (HClO<sub>4</sub>), [[nitric acid]] (HNO<sub>3</sub>) and [[sulfuric acid]] (H<sub>2</sub>SO<sub>4</sub>). In water each of these essentially ionizes 100%. The stronger an acid is, the more easily it loses a proton, H<sup>+</sup>. Two key factors that contribute to the ease of deprotonation are the [[chemical polarity|polarity]] of the H—A bond and the size of atom A, which determines the strength of the H—A bond. Acid strengths are also often discussed in terms of the stability of the conjugate base.
+==={{anchor|ASCII-printable-characters}}Printable characters===
+<!-- Anchor linked to from redirects -->
+Codes 20<sub>[[hexadecimal|hex]]</sub> to 7E<sub>[[hexadecimal|hex]]</sub>, known as the printable characters, represent letters, digits, [[punctuation mark]]s, and a few miscellaneous symbols. There are 95 printable characters in total.{{efn|Printed out, the characters are: {{Pre2|scroll|<nowiki> !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~</nowiki>}}}}
 
-Stronger acids have a larger ''K''<sub>a</sub> and a more negative p''K''<sub>a</sub> than weaker acids.
+Code 20<sub>[[hexadecimal|hex]]</sub>, the [[Space (punctuation)|"space" character]], denotes the space between words, as produced by the space bar of a keyboard. Since the space character is considered an invisible graphic (rather than a control character)<ref name="Mackenzie_1980"/>{{rp|223}}<ref name="RFC-20_1968">{{citation |title=ASCII format for Network Interchange |author-first=Vinton Gray |author-last=Cerf |author-link=Vinton Gray Cerf |publisher=Network Working Group |date=1969-10-16 |rfc=20 |url=https://tools.ietf.org/html/rfc20 |access-date=2016-06-13 |url-status=live |archive-url=https://web.archive.org/web/20160613203624/https://tools.ietf.org/html/rfc20 |archive-date=2016-06-13}} (NB. Almost identical wording to [[USAS X3.4-1968]] except for the intro.)</ref> it is listed in the table below instead of in the previous section.
 
-Sulfonic acids, which are organic oxyacids, are a class of strong acids. A common example is [[toluenesulfonic acid]] (tosylic acid). Unlike sulfuric acid itself, sulfonic acids can be solids. In fact, [[polystyrene]] functionalized into polystyrene sulfonate is a solid strongly acidic plastic that is filterable.
+Code 7F<sub>[[hexadecimal|hex]]</sub> corresponds to the non-printable "delete" (DEL) control character and is therefore omitted from this chart; it is covered in the previous section's chart.  Earlier versions of ASCII used the up arrow instead of the [[caret]] (5E<sub>[[hexadecimal|hex]]</sub>) and the left arrow instead of the [[underscore]] (5F<sub>[[hexadecimal|hex]]</sub>).<ref name="ASCII-1963"/><ref name="Haynes_2015">{{cite web|title=First-Hand: Chad is Our Most Important Product: An Engineer's Memory of Teletype Corporation |author-first=Jim |publisher=Engineering and Technology History Wiki (ETHW) |date=2015-01-13 |author-last=Haynes |url=http://ethw.org/First-Hand:Chad_is_Our_Most_Important_Product:_An_Engineer's_Memory_of_Teletype_Corporation |access-date=2016-10-31 |url-status=live |archive-url=https://web.archive.org/web/20161031223347/http://ethw.org/First-Hand%3AChad_is_Our_Most_Important_Product%3A_An_Engineer%27s_Memory_of_Teletype_Corporation |archive-date=October 31, 2016 |quote=There was the change from 1961 ASCII to 1968 ASCII. Some computer languages used characters in 1961 ASCII such as up arrow and left arrow. These characters disappeared from 1968 ASCII. We worked with Fred Mocking, who by now was in Sales at [[Teletype Corporation|Teletype]], on a type cylinder that would compromise the changing characters so that the meanings of 1961 ASCII were not totally lost. The underscore character was made rather wedge-shaped so it could also serve as a left arrow.}}</ref>
 
-[[Superacid]]s are acids stronger than 100% sulfuric acid. Examples of superacids are [[fluoroantimonic acid]], [[magic acid]] and [[perchloric acid]]. Superacids can permanently protonate water to give ionic, crystalline [[hydronium]] "salts". They can also quantitatively stabilize [[carbocation]]s.
+<!-- To be more useful this list should be expanded to include the character names and reflect the various revisions of the ASCII standard -->
+{| class="wikitable sortable" style="text-align: center;"
+|-
+! rowspan="2" | [[Binary numeral system|Binary]] !! rowspan="2" | [[Octal|Oct]] !! rowspan="2" | [[Decimal|Dec]] !! rowspan="2" class=unsortable | [[Hexadecimal|Hex]] !! colspan="3"|Glyph
+|-
+! 1963 !! 1965 !! 1967
+|-
+|010 0000 ||style="background:lightblue;"| 040 || style="background:#cff;"| 32 ||style="background:lightblue;"| 20 ||colspan=3|&nbsp;[[space (punctuation)|space]]
+|-
+|010 0001 ||style="background:lightblue;"| 041 || style="background:#cff;"| 33 ||style="background:lightblue;"| 21 ||colspan=3|<span class="nounderlines">[[Exclamation mark|!]]</span>
+|-
+|010 0010 ||style="background:lightblue;"| 042 || style="background:#cff;"| 34 ||style="background:lightblue;"| 22 ||colspan=3|<span class="nounderlines">[[Quotation mark|"]]</span>
+|-
+|010 0011 ||style="background:lightblue;"| 043 || style="background:#cff;"| 35 ||style="background:lightblue;"| 23 ||colspan=3|<span class="nounderlines">[[Number sign|#]]</span>
+|-
+|010 0100 ||style="background:lightblue;"| 044 || style="background:#cff;"| 36 ||style="background:lightblue;"| 24 ||colspan=3|<span class="nounderlines">[[Dollar sign|$]]</span>
+|-
+|010 0101 ||style="background:lightblue;"| 045 || style="background:#cff;"| 37 ||style="background:lightblue;"| 25 ||colspan=3|<span class="nounderlines">[[Percent sign|%]]</span>
+|-
+|010 0110 ||style="background:lightblue;"| 046 || style="background:#cff;"| 38 ||style="background:lightblue;"| 26 ||colspan=3|<span class="nounderlines">[[Ampersand|&]]</span>
+|-
+|010 0111 ||style="background:lightblue;"| 047 || style="background:#cff;"| 39 ||style="background:lightblue;"| 27 ||colspan=3|<span class="nounderlines">[[Apostrophe|']]</span>
+|-
+|010 1000 ||style="background:lightblue;"| 050 || style="background:#cff;"| 40 ||style="background:lightblue;"| 28 ||colspan=3|<span class="nounderlines">[[Left parenthesis|(]]</span>
+|-
+|010 1001 ||style="background:lightblue;"| 051 || style="background:#cff;"| 41 ||style="background:lightblue;"| 29 ||colspan=3|<span class="nounderlines">[[Right parenthesis|)]]</span>
+|-
+|010 1010 ||style="background:lightblue;"| 052 || style="background:#cff;"| 42 ||style="background:lightblue;"| 2A ||colspan=3|<span class="nounderlines">[[Asterisk|*]]</span>
+|-
+|010 1011 ||style="background:lightblue;"| 053 || style="background:#cff;"| 43 ||style="background:lightblue;"| 2B ||colspan=3|<span class="nounderlines">[[Plus sign|+]]</span>
+|-
+|010 1100 ||style="background:lightblue;"| 054 || style="background:#cff;"| 44 ||style="background:lightblue;"| 2C ||colspan=3|<span class="nounderlines">[[Comma|,]]</span>
+|-
+|010 1101 ||style="background:lightblue;"| 055 || style="background:#cff;"| 45 ||style="background:lightblue;"| 2D ||colspan=3|<span class="nounderlines">[[Hyphen-minus|-]]</span>
+|-
+|010 1110 ||style="background:lightblue;"| 056 || style="background:#cff;"| 46 ||style="background:lightblue;"| 2E ||colspan=3|<span class="nounderlines">[[Full stop|.]]</span>
+|-
+|010 1111 ||style="background:lightblue;"| 057 || style="background:#cff;"| 47 ||style="background:lightblue;"| 2F ||colspan=3|<span class="nounderlines">[[Slash (punctuation)|/]]</span>
+|-
+|011 0000 ||style="background:lightblue;"| 060 || style="background:#cff;"| 48 ||style="background:lightblue;"| 30 ||colspan=3|<span class="nounderlines">[[0 (number)|0]]</span>
+|-
+|011 0001 ||style="background:lightblue;"| 061 || style="background:#cff;"| 49 ||style="background:lightblue;"| 31 ||colspan=3|<span class="nounderlines">[[1 (number)|1]]</span>
+|-
+|011 0010 ||style="background:lightblue;"| 062 || style="background:#cff;"| 50 ||style="background:lightblue;"| 32 ||colspan=3|<span class="nounderlines">[[2 (number)|2]]</span>
+|-
+|011 0011 ||style="background:lightblue;"| 063 || style="background:#cff;"| 51 ||style="background:lightblue;"| 33 ||colspan=3|<span class="nounderlines">[[3 (number)|3]]</span>
+|-
+|011 0100 ||style="background:lightblue;"| 064 || style="background:#cff;"| 52 ||style="background:lightblue;"| 34 ||colspan=3|<span class="nounderlines">[[4 (number)|4]]</span>
+|-
+|011 0101 ||style="background:lightblue;"| 065 || style="background:#cff;"| 53 ||style="background:lightblue;"| 35 ||colspan=3|<span class="nounderlines">[[5 (number)|5]]</span>
+|-
+|011 0110 ||style="background:lightblue;"| 066 || style="background:#cff;"| 54 ||style="background:lightblue;"| 36 ||colspan=3|<span class="nounderlines">[[6 (number)|6]]</span>
+|-
+|011 0111 ||style="background:lightblue;"| 067 || style="background:#cff;"| 55 ||style="background:lightblue;"| 37 ||colspan=3|<span class="nounderlines">[[7 (number)|7]]</span>
+|-
+|011 1000 ||style="background:lightblue;"| 070 || style="background:#cff;"| 56 ||style="background:lightblue;"| 38 ||colspan=3|<span class="nounderlines">[[8 (number)|8]]</span>
+|-
+|011 1001 ||style="background:lightblue;"| 071 || style="background:#cff;"| 57 ||style="background:lightblue;"| 39 ||colspan=3|<span class="nounderlines">[[9 (number)|9]]</span>
+|-
+|011 1010 ||style="background:lightblue;"| 072 || style="background:#cff;"| 58 ||style="background:lightblue;"| 3A ||colspan=3|<span class="nounderlines">[[Colon (punctuation)|:]]</span>
+|-
+|011 1011 ||style="background:lightblue;"| 073 || style="background:#cff;"| 59 ||style="background:lightblue;"| 3B ||colspan=3|<span class="nounderlines">[[Semicolon|;]]</span>
+|-
+|011 1100 ||style="background:lightblue;"| 074 || style="background:#cff;"| 60 ||style="background:lightblue;"| 3C ||colspan=3|<span class="nounderlines">[[Less-than sign|<]]</span>
+|-
+|011 1101 ||style="background:lightblue;"| 075 || style="background:#cff;"| 61 ||style="background:lightblue;"| 3D ||colspan=3|<span class="nounderlines">[[Equals sign|=]]</span>
+|-
+|011 1110 ||style="background:lightblue;"| 076 || style="background:#cff;"| 62 ||style="background:lightblue;"| 3E ||colspan=3|<span class="nounderlines">[[Greater-than sign|>]]</span>
+|-
+|011 1111 ||style="background:lightblue;"| 077 || style="background:#cff;"| 63 ||style="background:lightblue;"| 3F ||colspan=3|<span class="nounderlines">[[Question mark|?]]</span>
+|-
+|100 0000 ||style="background:lightblue;"| 100 || style="background:#cff;"| 64 ||style="background:lightblue;"| 40 || <span class="nounderlines">[[At sign|@]]</span> || <span class="nounderlines">[[Grave accent|`]]</span> || <span class="nounderlines">[[At sign|@]]</span>
+|-
+|100 0001 ||style="background:lightblue;"| 101 || style="background:#cff;"| 65 ||style="background:lightblue;"| 41 ||colspan=3|<span class="nounderlines">[[A]]</span>
+|-
+|100 0010 ||style="background:lightblue;"| 102 || style="background:#cff;"| 66 ||style="background:lightblue;"| 42 ||colspan=3|<span class="nounderlines">[[B]]</span>
+|-
+|100 0011 ||style="background:lightblue;"| 103 || style="background:#cff;"| 67 ||style="background:lightblue;"| 43 ||colspan=3|<span class="nounderlines">[[C]]</span>
+|-
+|100 0100 ||style="background:lightblue;"| 104 || style="background:#cff;"| 68 ||style="background:lightblue;"| 44 ||colspan=3|<span class="nounderlines">[[D]]</span>
+|-
+|100 0101 ||style="background:lightblue;"| 105 || style="background:#cff;"| 69 ||style="background:lightblue;"| 45 ||colspan=3|<span class="nounderlines">[[E]]</span>
+|-
+|100 0110 ||style="background:lightblue;"| 106 || style="background:#cff;"| 70 ||style="background:lightblue;"| 46 ||colspan=3|<span class="nounderlines">[[F]]</span>
+|-
+|100 0111 ||style="background:lightblue;"| 107 || style="background:#cff;"| 71 ||style="background:lightblue;"| 47 ||colspan=3|<span class="nounderlines">[[G]]</span>
+|-
+|100 1000 ||style="background:lightblue;"| 110 || style="background:#cff;"| 72 ||style="background:lightblue;"| 48 ||colspan=3|<span class="nounderlines">[[H]]</span>
+|-
+|100 1001 ||style="background:lightblue;"| 111 || style="background:#cff;"| 73 ||style="background:lightblue;"| 49 ||colspan=3|<span class="nounderlines">[[I]]</span>
+|-
+|100 1010 ||style="background:lightblue;"| 112 || style="background:#cff;"| 74 ||style="background:lightblue;"| 4A ||colspan=3|<span class="nounderlines">[[J]]</span>
+|-
+|100 1011 ||style="background:lightblue;"| 113 || style="background:#cff;"| 75 ||style="background:lightblue;"| 4B ||colspan=3|<span class="nounderlines">[[K]]</span>
+|-
+|100 1100 ||style="background:lightblue;"| 114 || style="background:#cff;"| 76 ||style="background:lightblue;"| 4C ||colspan=3|<span class="nounderlines">[[L]]</span>
+|-
+|100 1101 ||style="background:lightblue;"| 115 || style="background:#cff;"| 77 ||style="background:lightblue;"| 4D ||colspan=3|<span class="nounderlines">[[M]]</span>
+|-
+|100 1110 ||style="background:lightblue;"| 116 || style="background:#cff;"| 78 ||style="background:lightblue;"| 4E ||colspan=3|<span class="nounderlines">[[N]]</span>
+|-
+|100 1111 ||style="background:lightblue;"| 117 || style="background:#cff;"| 79 ||style="background:lightblue;"| 4F ||colspan=3|<span class="nounderlines">[[O]]</span>
+|-
+|101 0000 ||style="background:lightblue;"| 120 || style="background:#cff;"| 80 ||style="background:lightblue;"| 50 ||colspan=3|<span class="nounderlines">[[P]]</span>
+|-
+|101 0001 ||style="background:lightblue;"| 121 || style="background:#cff;"| 81 ||style="background:lightblue;"| 51 ||colspan=3|<span class="nounderlines">[[Q]]</span>
+|-
+|101 0010 ||style="background:lightblue;"| 122 || style="background:#cff;"| 82 ||style="background:lightblue;"| 52 ||colspan=3|<span class="nounderlines">[[R]]</span>
+|-
+|101 0011 ||style="background:lightblue;"| 123 || style="background:#cff;"| 83 ||style="background:lightblue;"| 53 ||colspan=3|<span class="nounderlines">[[S]]</span>
+|-
+|101 0100 ||style="background:lightblue;"| 124 || style="background:#cff;"| 84 ||style="background:lightblue;"| 54 ||colspan=3|<span class="nounderlines">[[T]]</span>
+|-
+|101 0101 ||style="background:lightblue;"| 125 || style="background:#cff;"| 85 ||style="background:lightblue;"| 55 ||colspan=3|<span class="nounderlines">[[U]]</span>
+|-
+|101 0110 ||style="background:lightblue;"| 126 || style="background:#cff;"| 86 ||style="background:lightblue;"| 56 ||colspan=3|<span class="nounderlines">[[V]]</span>
+|-
+|101 0111 ||style="background:lightblue;"| 127 || style="background:#cff;"| 87 ||style="background:lightblue;"| 57 ||colspan=3|<span class="nounderlines">[[W]]</span>
+|-
+|101 1000 ||style="background:lightblue;"| 130 || style="background:#cff;"| 88 ||style="background:lightblue;"| 58 ||colspan=3|<span class="nounderlines">[[X]]</span>
+|-
+|101 1001 ||style="background:lightblue;"| 131 || style="background:#cff;"| 89 ||style="background:lightblue;"| 59 ||colspan=3|<span class="nounderlines">[[Y]]</span>
+|-
+|101 1010 ||style="background:lightblue;"| 132 || style="background:#cff;"| 90 ||style="background:lightblue;"| 5A ||colspan=3|<span class="nounderlines">[[Z]]</span>
+|-
+|101 1011 ||style="background:lightblue;"| 133 || style="background:#cff;"| 91 ||style="background:lightblue;"| 5B ||colspan=3|<span class="nounderlines">[[Left square bracket|<nowiki>[</nowiki>]]</span>
+|-
+|101 1100 ||style="background:lightblue;"| 134 || style="background:#cff;"| 92 ||style="background:lightblue;"| 5C || <span class="nounderlines">[[Backslash|\]]</span> || <span class="nounderlines">[[Tilde|~]]</span> || <span class="nounderlines">[[Backslash|\]]</span>
+|-
+|101 1101 ||style="background:lightblue;"| 135 || style="background:#cff;"| 93 ||style="background:lightblue;"| 5D ||colspan=3|<span class="nounderlines">[[Right square bracket|<nowiki>]</nowiki>]]</span>
+|-
+|101 1110 ||style="background:lightblue;"| 136 || style="background:#cff;"| 94 ||style="background:lightblue;"| 5E || <span class="nounderlines">[[Up arrow (symbol)|↑]]</span> ||colspan=2|<span class="nounderlines">[[Caret|^]]</span>
+|-
+|101 1111 ||style="background:lightblue;"| 137 || style="background:#cff;"| 95 ||style="background:lightblue;"| 5F || <span class="nounderlines">[[Left arrow (symbol)|←]]</span> ||colspan=2|<span class="nounderlines">[[Underscore|_]]</span>
+|-
+|110 0000 ||style="background:lightblue;"| 140 || style="background:#cff;"| 96 ||style="background:lightblue;"| 60 || || <span class="nounderlines">[[At sign|@]]</span> || <span class="nounderlines">[[Grave accent|`]]</span>
+|-
+|110 0001 ||style="background:lightblue;"| 141 || style="background:#cff;"| 97 ||style="background:lightblue;"| 61 || ||colspan=2|<span class="nounderlines">[[a]]</span>
+|-
+|110 0010 ||style="background:lightblue;"| 142 || style="background:#cff;"| 98 ||style="background:lightblue;"| 62 || ||colspan=2|<span class="nounderlines">[[b]]</span>
+|-
+|110 0011 ||style="background:lightblue;"| 143 || style="background:#cff;"| 99 ||style="background:lightblue;"| 63 || ||colspan=2|<span class="nounderlines">[[c]]</span>
+|-
+|110 0100 ||style="background:lightblue;"| 144 || style="background:#cff;"| 100 ||style="background:lightblue;"| 64 || ||colspan=2|<span class="nounderlines">[[d]]</span>
+|-
+|110 0101 ||style="background:lightblue;"| 145 || style="background:#cff;"| 101 ||style="background:lightblue;"| 65 || ||colspan=2|<span class="nounderlines">[[e]]</span>
+|-
+|110 0110 ||style="background:lightblue;"| 146 || style="background:#cff;"| 102 ||style="background:lightblue;"| 66 || ||colspan=2|<span class="nounderlines">[[f]]</span>
+|-
+|110 0111 ||style="background:lightblue;"| 147 || style="background:#cff;"| 103 ||style="background:lightblue;"| 67 || ||colspan=2|<span class="nounderlines">[[g]]</span>
+|-
+|110 1000 ||style="background:lightblue;"| 150 || style="background:#cff;"| 104 ||style="background:lightblue;"| 68 || ||colspan=2|<span class="nounderlines">[[h]]</span>
+|-
+|110 1001 ||style="background:lightblue;"| 151 || style="background:#cff;"| 105 ||style="background:lightblue;"| 69 || ||colspan=2|<span class="nounderlines">[[i]]</span>
+|-
+|110 1010 ||style="background:lightblue;"| 152 || style="background:#cff;"| 106 ||style="background:lightblue;"| 6A || ||colspan=2|<span class="nounderlines">[[j]]</span>
+|-
+|110 1011 ||style="background:lightblue;"| 153 || style="background:#cff;"| 107 ||style="background:lightblue;"| 6B || ||colspan=2|<span class="nounderlines">[[k]]</span>
+|-
+|110 1100 ||style="background:lightblue;"| 154 || style="background:#cff;"| 108 ||style="background:lightblue;"| 6C || ||colspan=2|<span class="nounderlines">[[l]]</span>
+|-
+|110 1101 ||style="background:lightblue;"| 155 || style="background:#cff;"| 109 ||style="background:lightblue;"| 6D || ||colspan=2|<span class="nounderlines">[[m]]</span>
+|-
+|110 1110 ||style="background:lightblue;"| 156 || style="background:#cff;"| 110 ||style="background:lightblue;"| 6E || ||colspan=2|<span class="nounderlines">[[n]]</span>
+|-
+|110 1111 ||style="background:lightblue;"| 157 || style="background:#cff;"| 111 ||style="background:lightblue;"| 6F || ||colspan=2|<span class="nounderlines">[[o]]</span>
+|-
+|111 0000 ||style="background:lightblue;"| 160 || style="background:#cff;"| 112 ||style="background:lightblue;"| 70 || ||colspan=2|<span class="nounderlines">[[p]]</span>
+|-
+|111 0001 ||style="background:lightblue;"| 161 || style="background:#cff;"| 113 ||style="background:lightblue;"| 71 || ||colspan=2|<span class="nounderlines">[[q]]</span>
+|-
+|111 0010 ||style="background:lightblue;"| 162 || style="background:#cff;"| 114 ||style="background:lightblue;"| 72 || ||colspan=2|<span class="nounderlines">[[r]]</span>
+|-
+|111 0011 ||style="background:lightblue;"| 163 || style="background:#cff;"| 115 ||style="background:lightblue;"| 73 || ||colspan=2|<span class="nounderlines">[[s]]</span>
+|-
+|111 0100 ||style="background:lightblue;"| 164 || style="background:#cff;"| 116 ||style="background:lightblue;"| 74 || ||colspan=2|<span class="nounderlines">[[t]]</span>
+|-
+|111 0101 ||style="background:lightblue;"| 165 || style="background:#cff;"| 117 ||style="background:lightblue;"| 75 || ||colspan=2|<span class="nounderlines">[[u]]</span>
+|-
+|111 0110 ||style="background:lightblue;"| 166 || style="background:#cff;"| 118 ||style="background:lightblue;"| 76 || ||colspan=2|<span class="nounderlines">[[v]]</span>
+|-
+|111 0111 ||style="background:lightblue;"| 167 || style="background:#cff;"| 119 ||style="background:lightblue;"| 77 || ||colspan=2|<span class="nounderlines">[[w]]</span>
+|-
+|111 1000 ||style="background:lightblue;"| 170 || style="background:#cff;"| 120 ||style="background:lightblue;"| 78 || ||colspan=2|<span class="nounderlines">[[x]]</span>
+|-
+|111 1001 ||style="background:lightblue;"| 171 || style="background:#cff;"| 121 ||style="background:lightblue;"| 79 || ||colspan=2|<span class="nounderlines">[[y]]</span>
+|-
+|111 1010 ||style="background:lightblue;"| 172 || style="background:#cff;"| 122 ||style="background:lightblue;"| 7A || ||colspan=2|<span class="nounderlines">[[z]]</span>
+|-
+|111 1011 ||style="background:lightblue;"| 173 || style="background:#cff;"| 123 ||style="background:lightblue;"| 7B || ||colspan=2|<span class="nounderlines">[[Left curly bracket|{]]</span>
+|-
+|111 1100 ||style="background:lightblue;"| 174 || style="background:#cff;"| 124 ||style="background:lightblue;"| 7C || [[Acknowledge character|ACK]] || <span class="nounderlines">[[Not sign|¬]]</span> || <span class="nounderlines">[[Vertical bar|<nowiki>|</nowiki>]]</span>
+|-
+|111 1101 ||style="background:lightblue;"| 175 || style="background:#cff;"| 125 ||style="background:lightblue;"| 7D || ||colspan=2|<span class="nounderlines">[[Right curly bracket|}]]</span>
+|-
+|111 1110 ||style="background:lightblue;"| 176 || style="background:#cff;"| 126 ||style="background:lightblue;"| 7E || [[Escape character|ESC]] || <span class="nounderlines">[[Vertical bar|<nowiki>|</nowiki>]]</span> || <span class="nounderlines">[[Tilde|~]]</span>
+|}
 
-While ''K''<sub>a</sub> measures the strength of an acid compound, the strength of an aqueous acid solution is measured by pH, which is an indication of the concentration of hydronium in the solution.  The pH of a simple solution of an acid compound in water is determined by the dilution of the compound and the compound's ''K''<sub>a</sub>.
+==={{anchor|Code chart|ASCII printable code chart|ASCII printable characters}}Character set===
+<!-- when changing a section title that might be link-referenced from ELSEWHERE, drop in the anchor template to maintain cross-linking integrity! -->
+Points which represented a different character in previous versions (the 1963 version and/or the 1965 draft) are shown boxed. Points assigned since the 1963 version but otherwise unchanged are shown lightly shaded relative to their legend colours.
 
-==Chemical characteristics==
+{| {{chset-tableformat}}
+{{chset-table-header|ASCII (1977/1986)}}
+|-
+!{{chset-left2|0_<br>0}}
+|{{chset-color-ctrl}}|{{chset-ctrl|0000|[[Null character|NUL]]|0}}
+|{{chset-color-ctrl-box}}|{{chset-ctrl|0001|[[Start of heading|SOH]]|1}}
+|{{chset-color-ctrl-box}}|{{chset-ctrl|0002|[[Start of text|STX]]|2}}
+|{{chset-color-ctrl-box}}|{{chset-ctrl|0003|[[End of text|ETX]]|3}}
+|{{chset-color-ctrl}}|{{chset-ctrl|0004|[[End of transmission character|EOT]]|4}}
+|{{chset-color-ctrl-box}}|{{chset-ctrl|0005|[[Enquiry character|ENQ]]|5}}
+|{{chset-color-ctrl-box}}|{{chset-ctrl|0006|[[Acknowledge character|ACK]]|6}}
+|{{chset-color-ctrl}}|{{chset-ctrl|0007|[[Bell character|BEL]]|7}}
+|{{chset-color-ctrl-box}}|{{chset-ctrl|0008|[[Backspace|BS]]|8}}
+|{{chset-color-ctrl}}|{{chset-ctrl|0009|[[Horizontal tabulation|HT]]|9}}
+|{{chset-color-ctrl}}|{{chset-ctrl|000A|[[Line feed|LF]]|10}}
+|{{chset-color-ctrl}}|{{chset-ctrl|000B|[[Vertical tabulation|VT]]|11}}
+|{{chset-color-ctrl}}|{{chset-ctrl|000C|[[Form feed|FF]]|12}}
+|{{chset-color-ctrl}}|{{chset-ctrl|000D|[[Carriage return|CR]]|13}}
+|{{chset-color-ctrl}}|{{chset-ctrl|000E|[[Shift out|SO]]|14}}
+|{{chset-color-ctrl}}|{{chset-ctrl|000F|[[Shift in|SI]]|15}}
+|-
+!{{chset-left2|1_<br>16}}
+|{{chset-color-ctrl-box}}|{{chset-ctrl|0010|[[Data link escape|DLE]]|16}}
+|{{chset-color-ctrl}}|{{chset-ctrl|0011|[[Device Control 1|DC1]]|17}}
+|{{chset-color-ctrl}}|{{chset-ctrl|0012|[[Device Control 2|DC2]]|18}}
+|{{chset-color-ctrl}}|{{chset-ctrl|0013|[[Device Control 3|DC3]]|19}}
+|{{chset-color-ctrl}}|{{chset-ctrl|0014|[[Device Control 4|DC4]]|20}}
+|{{chset-color-ctrl-box}}|{{chset-ctrl|0015|[[Negative acknowledge character|NAK]]|21}}
+|{{chset-color-ctrl}}|{{chset-ctrl|0016|[[Synchronous idle|SYN]]|22}}
+|{{chset-color-ctrl-box}}|{{chset-ctrl|0017|[[End of transmission block|ETB]]|23}}
+|{{chset-color-ctrl-box}}|{{chset-ctrl|0018|[[Cancel character|CAN]]|24}}
+|{{chset-color-ctrl-box}}|{{chset-ctrl|0019|[[End of medium|EM]]|25}}
+|{{chset-color-ctrl-box}}|{{chset-ctrl|001A|[[Substitute character|SUB]]|26}}
+|{{chset-color-ctrl-box}}|{{chset-ctrl|001B|[[Escape character|ESC]]|27}}
+|{{chset-color-ctrl-box}}|{{chset-ctrl|001C|[[File separator|FS]]|28}}
+|{{chset-color-ctrl-box}}|{{chset-ctrl|001D|[[Group separator|GS]]|29}}
+|{{chset-color-ctrl-box}}|{{chset-ctrl|001E|[[Record separator|RS]]|30}}
+|{{chset-color-ctrl-box}}|{{chset-ctrl|001F|[[Unit separator|US]]|31}}
+|-
+!{{chset-left2|2_<br>32}}
+|{{chset-color-misc}}|{{chset-ctrl|0020|[[Space character|SP]]|32}}
+|{{chset-color-punct}}|{{chset-cell|0021|[[Exclamation mark|!]]|33}}
+|{{chset-color-punct}}|{{chset-cell|0022|[[Quotation mark|&#x22;]]|34}}
+|{{chset-color-punct}}|{{chset-cell|0023|[[Number sign|#]]|35}}
+|{{chset-color-graph}}|{{chset-cell|0024|[[Dollar sign|$]]|36}}
+|{{chset-color-punct}}|{{chset-cell|0025|[[Percent sign|%]]|37}}
+|{{chset-color-punct}}|{{chset-cell|0026|[[Ampersand|&amp;]]|38}}
+|{{chset-color-punct}}|{{chset-cell|0027|[[Apostrophe|&#x27;]]|39}}
+|{{chset-color-punct}}|{{chset-cell|0028|[[Left parenthesis|(]]|40}}
+|{{chset-color-punct}}|{{chset-cell|0029|[[Right parenthesis|)]]|41}}
+|{{chset-color-punct}}|{{chset-cell|002A|[[Asterisk|*]]|42}}
+|{{chset-color-graph}}|{{chset-cell|002B|[[Plus sign|+]]|43}}
+|{{chset-color-punct}}|{{chset-cell|002C|[[Comma (punctuation)|,]]|44}}
+|{{chset-color-punct}}|{{chset-cell|002D|[[Hyphen-minus|-]]|45}}
+|{{chset-color-punct}}|{{chset-cell|002E|[[Full stop|.]]|46}}
+|{{chset-color-punct}}|{{chset-cell|002F|[[Slash (punctuation)|/]]|47}}
+|-
+!{{chset-left2|3_<br>48}}
+|{{chset-color-digit}}|{{chset-cell|0030|[[0]]|48}}
+|{{chset-color-digit}}|{{chset-cell|0031|[[1]]|49}}
+|{{chset-color-digit}}|{{chset-cell|0032|[[2]]|50}}
+|{{chset-color-digit}}|{{chset-cell|0033|[[3]]|51}}
+|{{chset-color-digit}}|{{chset-cell|0034|[[4]]|52}}
+|{{chset-color-digit}}|{{chset-cell|0035|[[5]]|53}}
+|{{chset-color-digit}}|{{chset-cell|0036|[[6]]|54}}
+|{{chset-color-digit}}|{{chset-cell|0037|[[7]]|55}}
+|{{chset-color-digit}}|{{chset-cell|0038|[[8]]|56}}
+|{{chset-color-digit}}|{{chset-cell|0039|[[9]]|57}}
+|{{chset-color-punct}}|{{chset-cell|003A|[[Colon (punctuation)|:]]|58}}
+|{{chset-color-punct}}|{{chset-cell|003B|[[Semicolon|;]]|59}}
+|{{chset-color-graph}}|{{chset-cell|003C|[[Less-than sign|&lt;]]|60}}
+|{{chset-color-graph}}|{{chset-cell|003D|[[Equal sign|=]]|61}}
+|{{chset-color-graph}}|{{chset-cell|003E|[[Greater-than sign|>]]|62}}
+|{{chset-color-punct}}|{{chset-cell|003F|[[Question mark|?]]|63}}
+|-
+!{{chset-left2|4_<br>64}}
+|{{chset-color-punct-box}}|{{chset-cell|0040|[[@]]|64}}
+|{{chset-color-letter}}|{{chset-cell|0041|[[A]]|65}}
+|{{chset-color-letter}}|{{chset-cell|0042|[[B]]|66}}
+|{{chset-color-letter}}|{{chset-cell|0043|[[C]]|67}}
+|{{chset-color-letter}}|{{chset-cell|0044|[[D]]|68}}
+|{{chset-color-letter}}|{{chset-cell|0045|[[E]]|69}}
+|{{chset-color-letter}}|{{chset-cell|0046|[[F]]|70}}
+|{{chset-color-letter}}|{{chset-cell|0047|[[G]]|71}}
+|{{chset-color-letter}}|{{chset-cell|0048|[[H]]|72}}
+|{{chset-color-letter}}|{{chset-cell|0049|[[I]]|73}}
+|{{chset-color-letter}}|{{chset-cell|004A|[[J]]|74}}
+|{{chset-color-letter}}|{{chset-cell|004B|[[K]]|75}}
+|{{chset-color-letter}}|{{chset-cell|004C|[[L]]|76}}
+|{{chset-color-letter}}|{{chset-cell|004D|[[M]]|77}}
+|{{chset-color-letter}}|{{chset-cell|004E|[[N]]|78}}
+|{{chset-color-letter}}|{{chset-cell|004F|[[O]]|79}}
+|-
+!{{chset-left2|5_<br>80}}
+|{{chset-color-letter}}|{{chset-cell|0050|[[P]]|80}}
+|{{chset-color-letter}}|{{chset-cell|0051|[[Q]]|81}}
+|{{chset-color-letter}}|{{chset-cell|0052|[[R]]|82}}
+|{{chset-color-letter}}|{{chset-cell|0053|[[S]]|83}}
+|{{chset-color-letter}}|{{chset-cell|0054|[[T]]|84}}
+|{{chset-color-letter}}|{{chset-cell|0055|[[U]]|85}}
+|{{chset-color-letter}}|{{chset-cell|0056|[[V]]|86}}
+|{{chset-color-letter}}|{{chset-cell|0057|[[W]]|87}}
+|{{chset-color-letter}}|{{chset-cell|0058|[[X]]|88}}
+|{{chset-color-letter}}|{{chset-cell|0059|[[Y]]|89}}
+|{{chset-color-letter}}|{{chset-cell|005A|[[Z]]|90}}
+|{{chset-color-punct}}|{{chset-cell|005B|[[Left square bracket|&#x5B;]]|91}}
+|{{chset-color-punct-box}}|{{chset-cell|005C|[[Backslash|&#x5C;]]|92}}
+|{{chset-color-punct}}|{{chset-cell|005D|[[Right square bracket|&#x5D;]]|93}}
+|{{chset-color-graph-box}}|{{chset-cell|005E|[[Caret|^]]|94}}
+|{{chset-color-punct-box}}|{{chset-cell|005F|[[Underscore|_]]|95}}
+|-
+!{{chset-left2|6_<br>96}}
+|{{chset-color-graph-box}}|{{chset-cell|0060|[[Grave accent|`]]|96}}
+|{{chset-color-letter-var}}|{{chset-cell|0061|[[a]]|97}}
+|{{chset-color-letter-var}}|{{chset-cell|0062|[[b]]|98}}
+|{{chset-color-letter-var}}|{{chset-cell|0063|[[c]]|99}}
+|{{chset-color-letter-var}}|{{chset-cell|0064|[[d]]|100}}
+|{{chset-color-letter-var}}|{{chset-cell|0065|[[e]]|101}}
+|{{chset-color-letter-var}}|{{chset-cell|0066|[[f]]|102}}
+|{{chset-color-letter-var}}|{{chset-cell|0067|[[g]]|103}}
+|{{chset-color-letter-var}}|{{chset-cell|0068|[[h]]|104}}
+|{{chset-color-letter-var}}|{{chset-cell|0069|[[i]]|105}}
+|{{chset-color-letter-var}}|{{chset-cell|006A|[[j]]|106}}
+|{{chset-color-letter-var}}|{{chset-cell|006B|[[k]]|107}}
+|{{chset-color-letter-var}}|{{chset-cell|006C|[[l]]|108}}
+|{{chset-color-letter-var}}|{{chset-cell|006D|[[m]]|109}}
+|{{chset-color-letter-var}}|{{chset-cell|006E|[[n]]|110}}
+|{{chset-color-letter-var}}|{{chset-cell|006F|[[o]]|111}}
+|-
+!{{chset-left2|7_<br>112}}
+|{{chset-color-letter-var}}|{{chset-cell|0070|[[p]]|112}}
+|{{chset-color-letter-var}}|{{chset-cell|0071|[[q]]|113}}
+|{{chset-color-letter-var}}|{{chset-cell|0072|[[r]]|114}}
+|{{chset-color-letter-var}}|{{chset-cell|0073|[[s]]|115}}
+|{{chset-color-letter-var}}|{{chset-cell|0074|[[t]]|116}}
+|{{chset-color-letter-var}}|{{chset-cell|0075|[[u]]|117}}
+|{{chset-color-letter-var}}|{{chset-cell|0076|[[v]]|118}}
+|{{chset-color-letter-var}}|{{chset-cell|0077|[[w]]|119}}
+|{{chset-color-letter-var}}|{{chset-cell|0078|[[x]]|120}}
+|{{chset-color-letter-var}}|{{chset-cell|0079|[[y]]|121}}
+|{{chset-color-letter-var}}|{{chset-cell|007A|[[z]]|122}}
+|{{chset-color-punct-var}}|{{chset-cell|007B|[[Left curly bracket|&#x7B;]]|123}}
+|{{chset-color-graph-box}}|{{chset-cell|007C|[[Vertical bar|&#x7C;]]|124}}
+|{{chset-color-punct-var}}|{{chset-cell|007D|[[Right curly bracket|&#x7D;]]|125}}
+|{{chset-color-graph-box}}|{{chset-cell|007E|[[~]]|126}}
+|{{chset-color-ctrl}}|{{chset-ctrl|007F|[[Delete character|DEL]]|127}}
+|}
+{{Chset-legend|graybox=Character changed from 1963 version and/or 1965 draft}}
 
-===Monoprotic acids===
-Monoprotic acids, also known as monobasic acids, are those acids that are able to donate one [[proton]] per molecule during the process of [[dissociation (chemistry)|dissociation]] (sometimes called ionization) as shown below (symbolized by HA):
-:HA<sub>(aq)</sub> + H<sub>2</sub>O<sub>(l)</sub> {{eqm}} H<sub>3</sub>O{{su|p=+|b=(aq)}} + A{{su|p=−|b=(aq)}} &nbsp; &nbsp; &nbsp; &nbsp; ''K''<sub>a</sub>
+==Use==
+ASCII was first used commercially during 1963 as a seven-bit teleprinter code for [[American Telephone & Telegraph]]'s TWX (TeletypeWriter eXchange) network. TWX originally used the earlier five-bit [[ITA2]], which was also used by the competing [[Telex]] teleprinter system. [[Robert William Bemer|Bob Bemer]] introduced features such as the [[Escape character|escape sequence]].<ref name="Brandel_1999"/> His British colleague [[Hugh McGregor Ross]] helped to popularize this work{{snd}} according to Bemer, "so much so that the code that was to become ASCII was first called the ''Bemer–Ross Code'' in Europe".<ref>{{cite web |author-link=Robert William Bemer |author-last=Bemer |author-first=Robert William |url=http://www.trailing-edge.com/~bobbemer/EUROPE.HTM |title=Bemer meets Europe (Computer Standards) – Computer History Vignettes |publisher=Trailing-edge.com |access-date=2008-04-14 |url-status=dead |archive-url=https://web.archive.org/web/20131017062722/http://www.trailing-edge.com/~bobbemer/EUROPE.HTM |archive-date=2013-10-17}} (NB. Bemer was employed at [[IBM]] at that time.)</ref> Because of his extensive work on ASCII, Bemer has been called "the father of ASCII".<ref name="thocp">{{cite web |url=http://www.thocp.net/biographies/bemer_bob.htm |title=Robert William Bemer: Biography |date=2013-03-09 |url-status=live |archive-url=https://web.archive.org/web/20160616081929/http://www.thocp.net/biographies/bemer_bob.htm |archive-date=2016-06-16}}</ref>
 
-Common examples of monoprotic acids in [[mineral acid]]s include [[hydrochloric acid]] (HCl) and [[nitric acid]] (HNO<sub>3</sub>). On the other hand, for [[organic acids]] the term mainly indicates the presence of one [[carboxylic acid]] group and sometimes these acids are known as monocarboxylic acid. Examples in [[organic acids]] include [[formic acid]] (HCOOH), [[acetic acid]] (CH<sub>3</sub>COOH) and [[benzoic acid]] (C<sub>6</sub>H<sub>5</sub>COOH).
-{{See also|Acid dissociation constant#Monoprotic acids}}
+On March 11, 1968, U.S. President [[Lyndon B. Johnson]] mandated that all computers purchased by the [[United States Federal Government]] support ASCII, stating:<ref name="Johnson_1968">{{cite web |title=Memorandum Approving the Adoption by the Federal Government of a Standard Code for Information Interchange |author-last=Johnson |author-first=Lyndon Baines |author-link=Lyndon Baines Johnson |publisher=The American Presidency Project |date=1968-03-11 |url=http://www.presidency.ucsb.edu/ws/index.php?pid=28724 |access-date=2008-04-14 |archive-url=https://web.archive.org/web/20070914121230/http://www.presidency.ucsb.edu/ws/index.php?pid=28724 |archive-date=September 14, 2007 |url-status=live }}</ref><ref>{{cite newsgroup|url=https://groups.google.com/d/msg/alt.folklore.computers/gbg5YVFaT48/wlVFfJ2j4hYJ|title=Re: Early history of ASCII?|author=Richard S. Shuford|date=December 20, 1996|newsgroup=alt.folklore.computers|message-id=Pine.SUN.3.91.961220100220.13180C-100000@duncan.cs.utk.edu}}</ref><ref name="Folts_1982">{{cite book |publisher=[[McGraw-Hill Inc.]] |title=Compilation of Data Communications Standards |editor-first1=Harold C. |editor-last1=Folts |editor-first2=Harry |editor-last2=Karp |date=1982-02-01 |edition=2nd revised |isbn=978-0-07-021457-6 }}</ref>
+<blockquote>I have also approved recommendations of the [[Secretary of Commerce]] &#91;[[Luther H. Hodges]]&#93; regarding standards for recording the Standard Code for Information Interchange on magnetic tapes and paper tapes when they are used in computer operations.
+All computers and related equipment configurations brought into the Federal Government inventory on and after July 1, 1969, must have the capability to use the Standard Code for Information Interchange and the formats prescribed by the magnetic tape and paper tape standards when these media are used.</blockquote>
 
-===Polyprotic acids===
-Polyprotic acids, also known as polybasic acids, are able to donate more than one proton per acid molecule, in contrast to monoprotic acids that only donate one proton per molecule. Specific types of polyprotic acids have more specific names, such as diprotic (or dibasic) acid (two potential protons to donate), and triprotic (or tribasic) acid (three potential protons to donate).
+ASCII was the most common character encoding on the [[World Wide Web]] until December 2007, when [[UTF-8]] encoding surpassed it; UTF-8 is backward compatible with ASCII.<ref name="Dubost_2008">{{cite web |title=UTF-8 Growth on the Web |author-last=Dubost |author-first=Karl |date=2008-05-06 |work=W3C Blog |publisher=[[World Wide Web Consortium]] |url=http://www.w3.org/QA/2008/05/utf8-web-growth.html |access-date=2010-08-15 |url-status=live |archive-url=https://web.archive.org/web/20160616084132/https://www.w3.org/blog/2008/05/utf8-web-growth/ |archive-date=2016-06-16}}</ref><ref name="UTF-8_2008">{{cite web |title=Moving to Unicode 5.1 |author-last=Davis |author-first=Mark |author-link=Mark Davis (Unicode) |date=2008-05-05 |work=Official Google Blog |url=http://googleblog.blogspot.com/2008/05/moving-to-unicode-51.html |access-date=2010-08-15 |url-status=live |archive-url=https://web.archive.org/web/20160616084637/https://googleblog.blogspot.de/2008/05/moving-to-unicode-51.html |archive-date=2016-06-16}}</ref><ref name="Davis_2010">{{cite web |title=Unicode nearing 50% of the web |author-last=Davis |author-first=Mark |author-link=Mark Davis (Unicode) |date=2010-01-28 |work=Official Google Blog |url=http://googleblog.blogspot.com/2010/01/unicode-nearing-50-of-web.html |access-date=2010-08-15 |url-status=live |archive-url=https://web.archive.org/web/20160616085323/https://googleblog.blogspot.de/2010/01/unicode-nearing-50-of-web.html |archive-date=2016-06-16}}</ref>
 
-A diprotic acid (here symbolized by H<sub>2</sub>A) can undergo one or two dissociations depending on the pH. Each dissociation has its own dissociation constant, K<sub>a1</sub> and K<sub>a2</sub>.
-:{{nowrap|H<sub>2</sub>A<sub>(aq)</sub> + H<sub>2</sub>O<sub>(l)</sub> {{eqm}} H<sub>3</sub>O{{su|p=+|b=(aq)}} + HA{{su|p=−|b=(aq)}} &nbsp; &nbsp; &nbsp; ''K''<sub>a1</sub>}}
-:{{nowrap|HA{{su|p=−|b=(aq)}} + H<sub>2</sub>O<sub>(l)</sub> {{eqm}} H<sub>3</sub>O{{su|p=+|b=(aq)}} + A{{su|p=2−|b=(aq)}} &nbsp;&nbsp;&nbsp; &nbsp; ''K''<sub>a2</sub>}}
+=={{anchor|Variants}}Variants and derivations==
+As computer technology spread throughout the world, different [[Standardization|standards bodies]] and corporations developed many variations of ASCII to facilitate the expression of non-English languages that used Roman-based alphabets. One could class some of these variations as "[[ASCII extension]]s", although some misuse that term to represent all variants, including those that do not preserve ASCII's character-map in the 7-bit range. Furthermore, the ASCII extensions have also been mislabelled as ASCII.
 
-The first dissociation constant is typically greater than the second; i.e., ''K''<sub>a1</sub> > ''K''<sub>a2</sub>. For example, [[sulfuric acid]] (H<sub>2</sub>SO<sub>4</sub>) can donate one proton to form the [[bisulfate]] anion (HSO{{su|b=4|p=−}}), for which ''K''<sub>a1</sub> is very large; then it can donate a second proton to form the [[sulfate]] anion (SO{{su|b=4|p=2−}}), wherein the ''K''<sub>a2</sub> is intermediate strength. The large ''K''<sub>a1</sub> for the first dissociation makes sulfuric a strong acid. In a similar manner, the weak unstable [[carbonic acid]] {{nowrap|(H<sub>2</sub>CO<sub>3</sub>)}} can lose one proton to form [[bicarbonate]] anion {{nowrap|(HCO{{su|b=3|p=−}})}} and lose a second to form [[carbonate]] anion (CO{{su|b=3|p=2−}}). Both ''K''<sub>a</sub> values are small, but ''K''<sub>a1</sub> > ''K''<sub>a2</sub> .
+==={{anchor|7-bit}}7-bit codes===
+{{Main|ECMA-6|ISO/IEC 646|ITU T.50}}{{See also|UTF-7}}
+From early in its development,<ref>"Specific Criteria", attachment to memo from R. W. Reach, "X3-2 Meeting – September 14 and 15", September 18, 1961</ref> ASCII was intended to be just one of several national variants of an international character code standard.
 
-A triprotic acid (H<sub>3</sub>A) can undergo one, two, or three dissociations and has three dissociation constants, where ''K''<sub>a1</sub> > ''K''<sub>a2</sub> > ''K''<sub>a3</sub>.
-:{{nowrap|H<sub>3</sub>A<sub>(aq)</sub> + H<sub>2</sub>O<sub>(l)</sub> {{eqm}} H<sub>3</sub>O{{su|p=+|b=(aq)}} + H<sub>2</sub>A{{su|p=−|b=(aq)}} &nbsp; &nbsp; &nbsp; &nbsp; ''K''<sub>a1</sub>}}
-:{{nowrap|H<sub>2</sub>A{{su|p=−|b=(aq)}} + H<sub>2</sub>O<sub>(l)</sub> {{eqm}} H<sub>3</sub>O{{su|p=+|b=(aq)}} + HA{{su|p=2−|b=(aq)}} &nbsp; &nbsp; &nbsp; ''K''<sub>a2</sub>}}
-:{{nowrap|HA{{su|p=2−|b=(aq)}} + H<sub>2</sub>O<sub>(l)</sub> {{eqm}} H<sub>3</sub>O{{su|p=+|b=(aq)}} + A{{su|p=3−|b=(aq)}} &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ''K''<sub>a3</sub>}}
+<!-- ITU-T ITU T.50
+International Reference Alphabet (IRA)
+International Alphabet No. 5 (IA5) -->
+Other international standards bodies have ratified character encodings such as [[ISO 646]] (1967) that are identical or nearly identical to ASCII, with extensions for characters outside the English [[alphabet]] and symbols used outside the United States, such as the symbol for the United Kingdom's [[pound sterling]] (£). Almost every country needed an adapted version of ASCII, since ASCII suited the needs of only the US and a few other countries. For example, Canada had its own version that supported French characters.
 
-An [[inorganic]] example of a triprotic acid is orthophosphoric acid (H<sub>3</sub>PO<sub>4</sub>), usually just called [[phosphoric acid]]. All three protons can be successively lost to yield H<sub>2</sub>PO{{su|b=4|p=−}}, then HPO{{su|b=4|p=2−}}, and finally PO{{su|b=4|p=3−}}, the orthophosphate ion, usually just called [[phosphate]]. Even though the positions of the three protons on the original phosphoric acid molecule are equivalent, the successive ''K''<sub>a</sub> values differ since it is energetically less favorable to lose a proton if the conjugate base is more negatively charged. An [[organic compound|organic]] example of a triprotic acid is [[citric acid]], which can successively lose three protons to finally form the [[citrate]] ion.
+Many other countries developed variants of ASCII to include non-English letters (e.g. [[é]], [[ñ]], [[ß]], [[Ł]]), currency symbols (e.g. [[£]], [[¥]]), etc. See also [[YUSCII]] (Yugoslavia).
 
-Although the subsequent loss of each hydrogen ion is less favorable, all of the conjugate bases are present in solution. The fractional concentration, ''α'' (alpha), for each species can be calculated. For example, a generic diprotic acid will generate 3 species in solution: H<sub>2</sub>A, HA<sup>−</sup>, and A<sup>2−</sup>. The fractional concentrations can be calculated as below when given either the pH (which can be converted to the [H<sup>+</sup>]) or the concentrations of the acid with all its conjugate bases:
-:<math chem>\begin{align}
-\alpha_\ce{H2A}   &= \frac{\ce{[H+]^2}}{\ce{[H+]^2}  + [\ce{H+}]K_1 + K_1 K_2}  = \frac{\ce{[H2A]}}{\ce{{[H2A]}} + [HA^-] + [A^{2-}]}\\
-\alpha_\ce{HA^-}  &= \frac{[\ce{H+}]K_1}{\ce{[H+]^2} + [\ce{H+}]K_1 + K_1 K_2}  = \frac{\ce{[HA^-]}}{\ce{[H2A]}+{[HA^-]}+{[A^{2-}]}}\\
-\alpha_\ce{A^{2-}}&= \frac{K_1 K_2}{\ce{[H+]^2} + [\ce{H+}]K_1 + K_1 K_2} = \frac{\ce{[A^{2-}]}}{\ce{{[H2A]}}+{[HA^-]}+{[A^{2-}]}}
-\end{align}</math>
-A plot of these fractional concentrations against pH, for given ''K''<sub>1</sub> and ''K''<sub>2</sub>, is known as a [[Bjerrum plot]]. A pattern is observed in the above equations and can be expanded to the general ''n'' -protic acid that has been deprotonated ''i'' -times:
-:<math chem>
-\alpha_{\ce H_{n-i} A^{i-} }= {{[\ce{H+}]^{n-i} \displaystyle \prod_{j=0}^{i}K_j} \over { \displaystyle \sum_{i=0}^n \Big[ [\ce{H+}]^{n-i} \displaystyle \prod_{j=0}^{i}K_j} \Big] }
-</math>
+It would share most characters in common, but assign other locally useful characters to several [[code point]]s reserved for "national use". However, the four years that elapsed between the publication of ASCII-1963 and ISO's first acceptance of an international recommendation during 1967<ref name="Maréchal_1967">{{citation |author-last=Maréchal |author-first=R. |title=ISO/TC 97 – Computers and Information Processing: Acceptance of Draft ISO Recommendation No. 1052 |date=1967-12-22}}</ref> caused ASCII's choices for the national use characters to seem to be de facto standards for the world, causing confusion and incompatibility once other countries did begin to make their own assignments to these code points.
 
-where ''K''<sub>0</sub> = 1 and the other K-terms are the dissociation constants for the acid.
-{{See also|Acid dissociation constant#Polyprotic acids}}
+ISO/IEC 646, like ASCII, is a 7-bit character set. It does not make any additional codes available, so the same code points encoded different characters in different countries. Escape codes were defined to indicate which national variant applied to a piece of text, but they were rarely used, so it was often impossible to know what variant to work with and, therefore, which character a code represented, and in general, text-processing systems could cope with only one variant anyway.
 
-===Neutralization===
-[[Image:Hydrochloric acid ammonia.jpg|thumb|[[Hydrochloric acid]] (in [[beaker (glassware)|beaker]]) reacting with [[ammonia]] fumes to produce [[ammonium chloride]] (white smoke).]]
-[[Neutralization (chemistry)|Neutralization]] is the reaction between an acid and a base, producing a [[salt (chemistry)|salt]] and neutralized base; for example, [[hydrochloric acid]] and [[sodium hydroxide]] form [[sodium chloride]] and water:
-:HCl<sub>(aq)</sub> + NaOH<sub>(aq)</sub> → H<sub>2</sub>O<sub>(l)</sub> + NaCl<sub>(aq)</sub>
+Because the bracket and brace characters of ASCII were assigned to "national use" code points that were used for accented letters in other national variants of ISO/IEC 646, a German, French, or Swedish, etc. programmer using their national variant of ISO/IEC 646, rather than ASCII, had to write, and thus read, something such as
 
-Neutralization is the basis of [[titration]], where a [[pH indicator]] shows equivalence point when the equivalent number of moles of a base have been added to an acid. It is often wrongly assumed that neutralization should result in a solution with pH 7.0, which is only the case with similar acid and base strengths during a reaction.
+:<code>ä aÄiÜ = 'Ön'; ü</code>
 
-Neutralization with a base weaker than the acid results in a weakly acidic salt. An example is the weakly acidic [[ammonium chloride]], which is produced from the strong acid [[hydrogen chloride]] and the weak base [[ammonia]]. Conversely, neutralizing a weak acid with a strong base gives a weakly basic salt, e.g. [[sodium fluoride]] from [[hydrogen fluoride]] and [[sodium hydroxide]].
+instead of
 
-===Weak acid–weak base equilibrium===
-{{main|Henderson–Hasselbalch equation}}
-In order for a protonated acid to lose a proton, the pH of the system must rise above the p''K''<sub>a</sub> of the acid. The decreased concentration of H<sup>+</sup> in that basic solution shifts the equilibrium towards the conjugate base form (the deprotonated form of the acid). In lower-pH (more acidic) solutions, there is a high enough H<sup>+</sup> concentration in the solution to cause the acid to remain in its protonated form.
+:<code>{ a[i] = '\n'; }</code>
 
-Solutions of weak acids and salts of their conjugate bases form [[buffer solution]]s.
+[[C trigraph]]s were created to solve this problem for [[ANSI C]], although their late introduction and inconsistent implementation in compilers limited their use. Many programmers kept their computers on US-ASCII, so plain-text in Swedish, German etc. (for example, in e-mail or [[Usenet]]) contained "{, }" and similar variants in the middle of words, something those programmers got used to. For example, a Swedish programmer mailing another programmer asking if they should go for lunch, could get "N{ jag har sm|rg}sar" as the answer, which should be "Nä jag har smörgåsar" meaning "No I've got sandwiches".
 
-== Titration ==
-{{main|Acid–base titration}}
-To determine the concentration of an acid in an aqueous solution, an acid-base titration is commonly performed. A strong base solution with a known concentration, usually NaOH or KOH, is added to neutralize the acid solution according to the color change of the indicator with the amount of base added.<ref>{{Cite book|title = Aqueous Acid-Base Equilibria and Titrations.|first = Robert|last = de Levie|publisher = Oxford University Press|year = 1999|isbn = |location = New York|pages = }}</ref> The titration curve of an acid titrated by a base has two axes, with the base volume on the x-axis and the solution's pH value on the y-axis. The pH of the solution always goes up as the base is added to the solution.
+==={{anchor|8-bit}}8-bit codes===
+{{Main|Extended ASCII|ISO/IEC 8859}}{{See also|UTF-8}}
+<!-- to be mentioned [[USASCII-8]] -->
+Eventually, as 8-, [[16-bit|16-]] and [[32-bit]] (and later [[64-bit]]) computers began to replace [[12-bit|12-]], [[18-bit|18-]] and [[36-bit]] computers as the norm, it became common to use an 8-bit byte to store each character in memory, providing an opportunity for extended, 8-bit relatives of ASCII. In most cases these developed as true extensions of ASCII, leaving the original character-mapping intact, but adding additional character definitions after the first 128 (i.e., 7-bit) characters.
 
-=== Example: Diprotic acid ===
-[[File:Titration alanine.jpg|thumb|This is an ideal titration curve for [[alanine]], a diprotic amino acid.<ref>{{Cite journal|title = Assignment of the proton-association constants for 3-(3,4-dihydroxyphenyl)alanine (L-dopa)|journal = Journal of the Chemical Society, Dalton Transactions|volume = 0|issue = 1|pages = 43–45|doi = 10.1039/DT9780000043|language = en|first = Reginald F.|last = Jameson|year = 1978}}</ref> Point 2 is the first equivalent point where the amount of NaOH added equals the amount of alanine in the original solution.]]
-For each diprotic acid titration curve, from left to right, there are two midpoints, two equivalence points, and two buffer regions.<ref>{{Cite book|title = Ion Exchange|url = https://books.google.com/books?id=F9OQMEA88CAC|publisher = Courier Corporation|date = 1962-01-01|isbn = 9780486687841|language = en|first = Friedrich G.|last = Helfferich}}</ref>
+Encodings include [[ISCII]] (India), [[VISCII]] (Vietnam). Although these encodings are sometimes referred to as ASCII, true ASCII is defined strictly only by the ANSI standard.
 
-==== Equivalence points ====
-Due to the successive dissociation processes, there are two equivalence points in the titration curve of a diprotic acid.<ref>{{Cite web|title = Titration of Diprotic Acid|url = http://dwb.unl.edu/calculators/activities/diproticacid.html|website = dwb.unl.edu |access-date = 2016-01-24|archive-url = https://web.archive.org/web/20160207011433/http://dwb.unl.edu/calculators/activities/diproticacid.html|archive-date = 7 February 2016|url-status = dead|df = dmy-all}}</ref> The first equivalence point occurs when all first hydrogen ions from the first ionization are titrated.<ref name = learning>{{Cite book|title = Chemistry & Chemical Reactivity |url = https://books.google.com/books?id=i1g8AwAAQBAJ|publisher = Cengage Learning|date = 2014-01-24|isbn = 9781305176461|language = en|first = John C.|last = Kotz|first2 = Paul M.|last2 = Treichel|first3 = John|last3 = Townsend|first4 = David|last4 = Treichel}}</ref> In other words, the amount of OH<sup>−</sup> added equals the original amount of H<sub>2</sub>A at the first equivalence point. The second equivalence point occurs when all hydrogen ions are titrated. Therefore, the amount of OH<sup>−</sup> added equals twice the amount of H<sub>2</sub>A at this time. For a weak diprotic acid titrated by a strong base, the second equivalence point must occur at pH above 7 due to the hydrolysis of the resulted salts in the solution.<ref name = learning/> At either equivalence point, adding a drop of base will cause the steepest rise of the pH value in the system.
+Most early home computer systems developed their own 8-bit character sets containing line-drawing and game glyphs, and often filled in some or all of the control characters from 0 to 31 with more graphics. [[Kaypro]] [[CP/M]] computers used the "upper" 128 characters for the Greek alphabet.
 
-==== Buffer regions and midpoints ====
-A titration curve for a diprotic acid contains two midpoints where pH=pK<sub>a</sub>. Since there are two different K<sub>a</sub> values, the first midpoint occurs at pH=pK<sub>a1</sub> and the second one occurs at pH=pK<sub>a2</sub>.<ref>{{Cite book|title = Lehninger Principles of Biochemistry|url = https://books.google.com/books?id=7chAN0UY0LYC|publisher = Macmillan|date = 2005-01-01|isbn = 9780716743392|language = en|first = Albert L.|last = Lehninger|first2 = David L.|last2 = Nelson|first3 = Michael M.|last3 = Cox}}</ref> Each segment of the curve which contains a midpoint at its center is called the buffer region. Because the buffer regions consist of the acid and its conjugate base, it can resist pH changes when base is added until the next equivalent points.<ref>{{Cite book|title = General Chemistry|url = https://books.google.com/books?id=BnccCgAAQBAJ|publisher = Cengage Learning|date = 2016-01-01|isbn = 9781305887299|language = en|first = Darrell|last = Ebbing|first2 = Steven D.|last2 = Gammon}}</ref>
+The [[PETSCII]] code [[Commodore International]] used for their [[8-bit]] systems is probably unique among post-1970 codes in being based on ASCII-1963, instead of the more common ASCII-1967, such as found on the [[ZX Spectrum character set|ZX Spectrum]] computer. [[ATASCII|Atari]] 8-bit computers and [[Galaksija (computer)#Character ROM|Galaksija]] computers also used ASCII variants.
 
-==Applications of acids==
-Acids exist universally in our life. There are both numerous kinds of natural acid compounds with biological functions and massive synthesized acids which are used in many ways.
+The IBM PC defined [[code page 437]], which replaced the control characters with graphic symbols such as [[Emoticon|smiley faces]], and mapped additional graphic characters to the upper 128 positions. Operating systems such as [[DOS]] supported these code pages, and manufacturers of [[IBM PC]]s supported them in hardware. [[Digital Equipment Corporation]] developed the [[Multinational Character Set]] (DEC-MCS) for use in the popular [[VT220]] [[computer terminal|terminal]] as one of the first extensions designed more for international languages than for block graphics. The Macintosh defined [[Mac OS Roman]] and Postscript also defined a set, both of these contained both international letters and typographic punctuation marks instead of graphics, more like modern character sets.
 
-===In industry===
-Acids are fundamental reagents in treating almost all processes in today's industry. Sulfuric acid, a diprotic acid, is the most widely used acid in industry, which is also the most-produced industrial chemical in the world. It is mainly used in producing fertilizer, detergent, batteries and dyes, as well as used in processing many products such like removing impurities.<ref>{{Cite web|title = The Top 10 Industrial Chemicals - For Dummies|url = http://www.dummies.com/how-to/content/the-top-10-industrial-chemicals.html|website = www.dummies.com|access-date = 2016-02-05}}</ref> According to the statistics data in 2011, the annual production of sulfuric acid was around 200 million tonnes in the world.<ref>{{Cite web|title = Sulfuric acid|url = http://www.essentialchemicalindustry.org/chemicals/sulfuric-acid.html|website = www.essentialchemicalindustry.org|access-date = 2016-02-06}}</ref> For example, phosphate minerals react with sulfuric acid to produce [[phosphoric acid]] for the production of phosphate fertilizers, and [[zinc]] is produced by dissolving zinc oxide into sulfuric acid, purifying the solution and electrowinning.
+The [[ISO/IEC 8859]] standard (derived from the DEC-MCS) finally provided a standard that most systems copied (at least as accurately as they copied ASCII, but with many substitutions). A popular further extension designed by Microsoft, [[Windows-1252]] (often mislabeled as [[ISO-8859-1]]), added the typographic punctuation marks needed for traditional text printing.  ISO-8859-1, Windows-1252, and the original 7-bit ASCII were the most common character encodings until 2008 when [[UTF-8]] became more common.<ref name="UTF-8_2008"/>
 
-In the chemical industry, acids react in neutralization reactions to produce salts. For example, [[nitric acid]] reacts with [[ammonia]] to produce [[ammonium nitrate]], a fertilizer. Additionally, [[carboxylic acid]]s can be [[Esterification|esterified]] with alcohols, to produce [[ester]]s.
+[[ISO/IEC 4873]] introduced 32 additional control codes defined in the 80–9F [[hexadecimal]] range, as part of extending the 7-bit ASCII encoding to become an 8-bit system.<ref name="Unicode-5.0_2006">{{cite book |author=The Unicode Consortium |editor-first=Julie D. |editor-last=Allen |title=The Unicode standard, Version 5.0 |date=2006-10-27 |publisher=[[Addison-Wesley Professional]] |location=Upper Saddle River, New Jersey, US |isbn=978-0-321-48091-0 |chapter-url=http://unicode.org/book/ch13.pdf |access-date=2015-03-13 |chapter=Chapter 13: Special Areas and Format Characters |page=314}}</ref>
 
-Acids are often used to remove rust and other corrosion from metals in a process known as [[pickling (metal)|pickling]]. They may be used as an electrolyte in a [[wet cell battery]], such as [[sulfuric acid]] in a [[car battery]].
+===Unicode===
+{{Main|Unicode|ISO/IEC 10646}}{{See also|Basic Latin (Unicode block)}}
+[[Unicode]] and the ISO/IEC 10646 [[Universal Character Set]] (UCS) have a much wider array of characters and their various encoding forms have begun to supplant ISO/IEC 8859 and ASCII rapidly in many environments. While ASCII is limited to 128 characters, Unicode and the UCS support more characters by separating the concepts of unique identification (using [[natural number]]s called ''code points'') and encoding (to 8-, 16- or 32-bit binary formats, called [[UTF-8]], [[UTF-16]] and [[UTF-32]]).
 
-===In food===
-[[File:Lata Coca Cola.JPG|thumb|Carbonated water (H<sub>2</sub>CO<sub>3</sub> aqueous solution) is one of the  main ingredients listed the ingredient sheet of a can of Coca-Cola.]]
-[[Tartaric acid]] is an important component of some commonly used foods like unripened mangoes and tamarind. Natural fruits and vegetables also contain acids. [[Citric acid]] is present in oranges, lemon and other citrus fruits. [[Oxalic acid]] is present in tomatoes, spinach, and especially in [[carambola]] and [[rhubarb]]; rhubarb leaves and unripe carambolas are toxic because of high concentrations of oxalic acid. [[Ascorbic acid]] (Vitamin C) is an essential vitamin for the human body and is present in such foods as amla ([[Phyllanthus emblica|Indian gooseberry]]), lemon, citrus fruits, and guava.
+ASCII was incorporated into the Unicode (1991) character set as the first 128 symbols, so the 7-bit ASCII characters have the same numeric codes in both sets. This allows [[UTF-8]] to be [[Backward compatibility|backward compatible]] with 7-bit ASCII, as a UTF-8 file containing only ASCII characters is identical to an ASCII file containing the same sequence of characters.  Even more importantly, [[forward compatibility]] is ensured as software that recognizes only 7-bit ASCII characters as special and does not alter bytes with the highest bit set (as is often done to support 8-bit ASCII extensions such as ISO-8859-1) will preserve UTF-8 data unchanged.<ref>{{cite web |title=utf-8(7)&nbsp;– Linux manual page |publisher=Man7.org |date=2014-02-26 |url=http://man7.org/linux/man-pages/man7/utf-8.7.html |access-date=2014-04-21 |archive-url=https://web.archive.org/web/20140422232059/http://man7.org/linux/man-pages/man7/utf-8.7.html |archive-date=April 22, 2014 |url-status=live }}</ref>
 
-Many acids can be found in various kinds of food as additives, as they alter their taste and serve as preservatives. [[Phosphoric acid]], for example, is a component of [[cola]] drinks. [[Acetic acid]] is used in day-to-day life as vinegar. Citric acid is used as a preservative in sauces and pickles.
+==See also==
 
-[[Carbonic acid]] is one of the most common acid additive that is widely added in [[soft drink]]<nowiki/>s, such as [[Coca-Cola]]. During the manufacturing process of soft drinks, CO<sub>2</sub> is usually pressurized to dissolve in these drinks to generate carbonic acid. Carbonic acid is very unstable and tend to decompose into water and CO<sub>2</sub> in normal temperature and pressure. Therefore, when we open the bottles or cans of these kinds of soft drinks, CO<sub>2</sub> bubbles come out and thus we feel 'sparks'.<ref>{{Citation|title = Method of and apparatus for making and dispensing a carbonated beverage utilizing propellant carbon dioxide gas for carbonating|url = http://www.google.com/patents/US4304736|date = Dec 8, 1981|accessdate = 2016-02-06|first = John R.|last = McMillin|first2 = Gene A.|last2 = Tracy|first3 = William A.|last3 = Harvill|first4 = William S., Jr.|last4 = Credle}}</ref>
+* [[3568 ASCII]], an asteroid named after the character encoding
+* [[Ascii85]]
+* [[ASCII art]]
+* [[ASCII Ribbon Campaign]]
+* [[Basic Latin (Unicode block)]] (ASCII as a subset of Unicode)
+* [[Extended ASCII]]
+* [[HTML decimal character rendering]]
+* [[List of Unicode characters]]
+* [[Jargon File]], a glossary of computer programmer slang which includes a list of common slang names for ASCII characters
+* [[List of computer character sets]]
+* [[Alt codes]]
 
-Certain acids are used as drugs. [[Acetylsalicylic acid]] (Aspirin) is used as a pain killer and for bringing down fevers.
-
-===In human bodies===
-Acids play important roles in the human body. The hydrochloric acid present in the stomach aids digestion by breaking down large and complex food molecules. Amino acids are required for synthesis of proteins required for growth and repair of body tissues. Fatty acids are also required for growth and repair of body tissues. Nucleic acids are important for the manufacturing of DNA and RNA and transmitting of traits to offspring through genes. Carbonic acid is important for maintenance of pH equilibrium in the body.
-
-Human bodies contain a variety of organic and inorganic compounds, among those [[dicarboxylic acid]]s play an essential role in many biological behaviors. Many of those acids are [[amino acids]] which mainly serve as materials for the synthesis of proteins.<ref>{{Cite journal|title = 8 - Biological roles of amino acids and peptides - University Publishing Online|url = http://ebooks.cambridge.org/chapter.jsf?bid=CBO9781139163828&cid=CBO9781139163828A114|website = ebooks.cambridge.org|access-date = 2016-02-06|doi = 10.1017/CBO9781139163828}}</ref> Other weak acids serve as buffers with their conjugate bases to keep the body's pH from undergoing large scale changes which would be harmful to cells.<ref>{{Cite web|url = http://fitsweb.uchc.edu/student/selectives/TimurGraham/Acid_Buffering.html|title = Acid Buffering|date = 2006|access-date = 2016-02-06|website = Acid Base Online Tutorial|publisher = University of Connecticut|last = Graham|first = Timur|archive-url = https://web.archive.org/web/20160213132105/http://fitsweb.uchc.edu/student/selectives/TimurGraham/Acid_Buffering.html|archive-date = 13 February 2016|url-status = dead|df = dmy-all}}</ref> The rest of the dicarboxylic acids also participate in the synthesis of various biologically important compounds in human bodies.
-
-===Acid catalysis===
-{{Main|Acid catalysis}}
-Acids are used as [[catalyst]]s in industrial and organic chemistry; for example, [[sulfuric acid]] is used in very large quantities in the [[alkylation]] process to produce gasoline.  Some acids, such as sulfuric, phosphoric, and hydrochloric acids, also effect [[Dehydration reaction|dehydration]] and [[condensation reaction]]s. In biochemistry, many [[enzyme]]s employ acid catalysis.<ref name="Voet acid cat">{{cite book |author=Voet, Judith G.|author2=Voet, Donald |title=Biochemistry |url=https://archive.org/details/biochemistry00voet_1|url-access=registration|publisher=J. Wiley & Sons |location=New York |date=2004 |pages=[https://archive.org/details/biochemistry00voet_1/page/496 496–500] |isbn=978-0-471-19350-0 }}</ref>
-
-==Biological occurrence==
-[[Image:Aminoacid.png|thumb|left|Basic structure of an [[amino acid]].]]Many biologically important molecules are acids. [[Nucleic acid]]s, which contain acidic [[phosphate|phosphate groups]], include [[DNA]] and [[RNA]]. Nucleic acids contain the genetic code that determines many of an organism's characteristics, and is passed from parents to offspring. DNA contains the chemical blueprint for the synthesis of [[protein]]s which are made up of [[amino acid]] subunits. [[Cell membrane]]s contain [[fatty acid]] [[ester]]s such as [[phospholipids]].
-
-An α-amino acid has a central carbon (the α or [[alpha and beta carbon|''alpha'' carbon]]) which is covalently bonded to a [[carboxyl]] group (thus they are [[carboxylic acid]]s), an [[amine|amino]] group, a hydrogen atom and a variable group. The variable group, also called the R group or side chain, determines the identity and many of the properties of a specific amino acid. In [[glycine]], the simplest amino acid, the R group is a hydrogen atom, but in all other amino acids it is contains one or more carbon atoms bonded to hydrogens, and may contain other elements such as sulfur, oxygen or nitrogen. With the exception of glycine, naturally occurring amino acids are [[Chirality (chemistry)|chiral]] and almost invariably occur in the [[Chirality (chemistry)#By configuration: D- and L-|<small>L</small>-configuration]]. [[Peptidoglycan]], found in some bacterial [[cell wall]]s contains some <small>D</small>-amino acids. At physiological pH, typically around 7, free amino acids exist in a charged form, where the acidic carboxyl group (-COOH) loses a proton (-COO<sup>−</sup>) and the basic amine group (-NH<sub>2</sub>) gains a proton (-NH{{su|b=3|p=+}}). The entire molecule has a net neutral charge and is a [[zwitterion]], with the exception of amino acids with basic or acidic side chains. [[Aspartic acid]], for example, possesses one protonated amine and two deprotonated carboxyl groups, for a net charge of −1 at physiological pH.
-
-Fatty acids and fatty acid derivatives are another group of carboxylic acids that play a significant role in biology. These contain long hydrocarbon chains and a carboxylic acid group on one end. The cell membrane of nearly all organisms is primarily made up of a [[phospholipid bilayer]], a [[micelle]] of hydrophobic fatty acid esters with polar, hydrophilic [[phosphate]] "head" groups. Membranes contain additional components, some of which can participate in acid-base reactions.
-
-In humans and many other animals, [[hydrochloric acid]] is a part of the [[gastric acid]] secreted within the [[stomach]] to help hydrolyze [[protein]]s and [[polysaccharide]]s, as well as converting the inactive pro-enzyme, [[pepsinogen]] into the [[digestive enzyme|enzyme]], [[pepsin]]. Some organisms produce acids for defense; for example, ants produce [[formic acid]].
-
-Acid-base equilibrium plays a critical role in regulating [[mammal]]ian breathing. [[molecular oxygen|Oxygen]] gas (O<sub>2</sub>) drives [[cellular respiration]], the process by which animals release the chemical [[potential energy]] stored in food, producing [[carbon dioxide]] (CO<sub>2</sub>) as a byproduct. Oxygen and carbon dioxide are exchanged in the [[lungs]], and the body responds to changing energy demands by adjusting the rate of [[ventilation (physiology)|ventilation]]. For example, during periods of exertion the body rapidly breaks down stored [[carbohydrate]]s and fat, releasing CO<sub>2</sub> into the blood stream. In aqueous solutions such as blood CO<sub>2</sub> exists in equilibrium with [[carbonic acid]] and [[bicarbonate]] ion.
-: CO<sub>2</sub> + H<sub>2</sub>O {{eqm}} H<sub>2</sub>CO<sub>3</sub> {{eqm}} H<sup>+</sup> + HCO{{su|b=3|p=−}}
-It is the decrease in pH that signals the brain to breathe faster and deeper, expelling the excess CO<sub>2</sub> and resupplying the cells with O<sub>2</sub>.
-
-[[Image:Aspirin-skeletal.svg|thumb|right|[[Aspirin]] (acetylsalicylic acid) is a [[carboxylic acid]].]] [[Cell membrane]]s are generally impermeable to charged or large, polar molecules because of the [[lipophilicity|lipophilic]] fatty acyl chains comprising their interior. Many biologically important molecules, including a number of pharmaceutical agents, are organic weak acids which can cross the membrane in their protonated, uncharged form but not in their charged form (i.e. as the conjugate base). For this reason the activity of many drugs can be enhanced or inhibited by the use of antacids or acidic foods. The charged form, however, is often more soluble in blood and [[cytosol]], both aqueous environments. When the extracellular environment is more acidic than the neutral pH within the cell, certain acids will exist in their neutral form and will be membrane soluble, allowing them to cross the phospholipid bilayer. Acids that lose a proton at the [[intracellular pH]] will exist in their soluble, charged form and are thus able to diffuse through the cytosol to their target. [[Ibuprofen]], [[aspirin]] and [[penicillin]] are examples of drugs that are weak acids.
-
-==Common acids==
-
-===Mineral acids (inorganic acids)===
-* [[Hydrogen halides]] and their solutions: [[hydrofluoric acid]] (HF), [[hydrochloric acid]] (HCl), [[hydrobromic acid]] (HBr), [[hydroiodic acid]] (HI)
-* Halogen oxoacids: [[hypochlorous acid]] (HClO), [[chlorous acid]] (HClO<sub>2</sub>), [[chloric acid]] (HClO<sub>3</sub>), [[perchloric acid]] (HClO<sub>4</sub>), and corresponding analogs for bromine and iodine
-** [[Hypofluorous acid]] (HFO), the only known oxoacid for fluorine.
-* [[Sulfuric acid]] (H<sub>2</sub>SO<sub>4</sub>)
-* [[Fluorosulfuric acid]] (HSO<sub>3</sub>F)
-* [[Nitric acid]] (HNO<sub>3</sub>)
-* [[Phosphoric acid]] (H<sub>3</sub>PO<sub>4</sub>)
-* [[Fluoroantimonic acid]] (HSbF<sub>6</sub>)
-* [[Fluoroboric acid]] (HBF<sub>4</sub>)
-* [[Hexafluorophosphoric acid]] (HPF<sub>6</sub>)
-* [[Chromic acid]] (H<sub>2</sub>CrO<sub>4</sub>)
-* [[Boric acid]] (H<sub>3</sub>BO<sub>3</sub>)
-
-===Sulfonic acids===
-A [[sulfonic acid]] has the general formula RS(=O)<sub>2</sub>–OH, where R is an organic radical.
-* [[Methanesulfonic acid]] (or mesylic acid, CH<sub>3</sub>SO<sub>3</sub>H)
-* [[Ethanesulfonic acid]] (or esylic acid, CH<sub>3</sub>CH<sub>2</sub>SO<sub>3</sub>H)
-* [[Benzenesulfonic acid]] (or besylic acid, C<sub>6</sub>H<sub>5</sub>SO<sub>3</sub>H)
-* [[p-Toluenesulfonic acid]] (or tosylic acid, CH<sub>3</sub>C<sub>6</sub>H<sub>4</sub>SO<sub>3</sub>H)
-* [[Trifluoromethanesulfonic acid]] (or triflic acid, CF<sub>3</sub>SO<sub>3</sub>H)
-* [[Polystyrene sulfonic acid]] (sulfonated [[polystyrene]], [CH<sub>2</sub>CH(C<sub>6</sub>H<sub>4</sub>)SO<sub>3</sub>H]<sub>n</sub>)
-
-===Carboxylic acids===
-A [[carboxylic acid]] has the general formula R-C(O)OH, where R is an organic radical. The carboxyl group -C(O)OH contains a [[carbonyl]] group, C=O, and a [[hydroxyl]] group, O-H.
-* [[Acetic acid]] (CH<sub>3</sub>COOH)
-* [[Citric acid]] (C<sub>6</sub>H<sub>8</sub>O<sub>7</sub>)
-* [[Formic acid]] (HCOOH)
-* [[Gluconic acid]] HOCH<sub>2</sub>-(CHOH)<sub>4</sub>-COOH
-* [[Lactic acid]] (CH<sub>3</sub>-CHOH-COOH)
-* [[Oxalic acid]] (HOOC-COOH)
-* [[Tartaric acid]] (HOOC-CHOH-CHOH-COOH)
-
-===Halogenated carboxylic acids===
-Halogenation at [[alpha and beta carbon|alpha position]] increases acid strength, so that the following acids are all stronger than acetic acid.
-* [[Fluoroacetic acid]]
-* [[Trifluoroacetic acid]]
-* [[Chloroacetic acid]]
-* [[Dichloroacetic acid]]
-* [[Trichloroacetic acid]]
-
-===Vinylogous carboxylic acids===
-Normal carboxylic acids are the direct union of a carbonyl group and a hydroxyl group.  In [[vinylogous]] carboxylic acids, a carbon-carbon double bond separates the carbonyl and hydroxyl groups.
-
-* [[Ascorbic acid]]
-
-===Nucleic acids===
-* [[Deoxyribonucleic acid]] (DNA)
-* [[Ribonucleic acid]] (RNA)
+==Notes==
+{{Notelist|40em}}
 
 ==References==
+{{Reflist|40em|refs=
+<ref name="INCITS_4-1986_R2012">{{cite web |title=INCITS 4-1986[R2012]: Information Systems - Coded Character Sets - 7-Bit American National Standard Code for Information Interchange (7-Bit ASCII) |date=2012-06-15 |url=https://standards.incits.org/apps/group_public/project/details.php?project_id=796 |access-date=2020-02-28 |url-status=live |archive-url=https://web.archive.org/web/20200228222040/https://standards.incits.org/apps/group_public/project/details.php?project_id=796 |archive-date=2020-02-28}}</ref>
+<ref name="INCITS_4-1986_R2017">{{cite web |title=INCITS 4-1986[R2017]: Information Systems - Coded Character Sets - 7-Bit American National Standard Code for Information Interchange (7-Bit ASCII) |date=2017-11-02 |orig-year=2017-06-09 |url=https://standards.incits.org/apps/group_public/project/details.php?project_id=1829 |access-date=2020-02-28 |url-status=live |archive-url=https://web.archive.org/web/20200228221645/https://standards.incits.org/apps/group_public/project/details.php?project_id=1829 |archive-date=2020-02-28}}</ref>
+<ref name="Bemer_1980_Inside">{{cite book |title=General Purpose Software |chapter=Chapter 1: Inside ASCII |author-last=Bemer |author-first=Robert William |author-link=Robert William Bemer |date=1980 |series=Best of Interface Age |volume=2 |location=Portland, OR, USA |publisher=dilithium Press |isbn=978-0-918398-37-6 |lccn=79-67462 |chapter-url=http://bookzz.org/dl/1210234/1105c6 |access-date=2016-08-27 |url-status=dead |archive-url=https://web.archive.org/web/20160827000956/http://dlx.bookzz.org/genesis/772000/c80a62495acf1e1a5b966de23c1f989a/_as/%5BInterface_Age_Staff%5D_Best_of_Interface_Age%2C_Volum%28BookZZ.org%29.pdf |archive-date=August 27, 2016 |pages=1–50 |postscript=,}} from:
+* {{cite journal |title=Inside ASCII – Part I |author-last=Bemer |author-first=Robert William |author-link=Robert William Bemer |journal=Interface Age |volume=3 |issue=5 |date=May 1978 |pages=96–102}}
+* {{cite journal |title=Inside ASCII – Part II |author-last=Bemer |author-first=Robert William |author-link=Robert William Bemer |journal=Interface Age |volume=3 |issue=6 |date=June 1978 |pages=64–74}}
+* {{cite journal |title=Inside ASCII – Part III |author-last=Bemer |author-first=Robert William |author-link=Robert William Bemer |journal=Interface Age |volume=3 |issue=7 |date=July 1978 |pages=80–87}}</ref>
+}}
 
-{{Reflist|30em}}
-* [https://web.archive.org/web/20011218075412/http://www.csudh.edu/oliver/chemdata/data-ka.htm Listing of strengths of common acids and bases]
-* [http://goldbook.iupac.org/A00071.html IUPAC Gold Book - acid]
-* Zumdahl, Chemistry, 4th Edition.
-* Ebbing, D.D., & Gammon, S. D. (2005). ''General chemistry'' (8th ed.). Boston, MA: Houghton Mifflin. {{ISBN|0-618-51177-6}}
-* Pavia, D.L., Lampman, G.M., & Kriz, G.S. (2004). ''Organic chemistry volume 1: Organic chemistry 351.'' Mason, OH: Cenage Learning. {{ISBN|0-7593-4727-1}}
+==Further reading==
+* {{cite journal |title=A Proposal for Character Code Compatibility |author-first=Robert William |author-last=Bemer |author-link=Robert William Bemer |journal=Communications of the ACM |volume=3 |issue=2 |date=1960 |doi=10.1145/366959.366961 |pages=71–72}}
+* {{cite web |title=The Babel of Codes Prior to ASCII: The 1960 Survey of Coded Character Sets: The Reasons for ASCII |author-first=Robert William |author-last=Bemer |author-link=Robert William Bemer |date=2003-05-23 |url=http://www.trailing-edge.com/~bobbemer/SURVEY.HTM |access-date=2016-05-09 |url-status=dead |archive-url=https://web.archive.org/web/20131017062654/http://www.trailing-edge.com/~bobbemer/SURVEY.HTM |archive-date=2013-10-17 |postscript=,}} from:
+** {{cite journal |title=Survey of coded character representation |author-first=Robert William |author-last=Bemer |author-link=Robert William Bemer |journal=[[Communications of the ACM]] |volume=3 |issue=12 |pages=639–641 |date=December 1960 |doi=10.1145/367487.367493}}
+** {{cite journal |title=Survey of punched card codes |author-first1=H. J. |author-last1=Smith |author-first2=F. A. |author-last2=Williams |journal=[[Communications of the ACM]] |volume=3 |issue=12 |page=642 |date=December 1960 |doi=10.1145/367487.367491}}
+* {{cite book |title=American National Standard Code for Information Interchange |publisher=[[American National Standards Institute]] |date=1977}}
+* {{cite journal |title=History and impact of computer standards |author-first1=G. S. |author-last1=Robinson |author-first2=C. |author-last2=Cargill |journal=[[Computer (magazine)|Computer]] |volume=29 |issue=10 |pages=79–85 |date=1996 |doi=10.1109/2.539725}}
+* {{cite web |title=On the Early Development of ASCII – The History of ASCII |editor-first=John F. |editor-last=Ptak |author-first=Ralph Elvin |author-last=Mullendore<!-- https://web.archive.org/web/20160616031928/https://www.geni.com/people/Ralph-Mullendore/6000000036811759940 --> |publisher=JF Ptak Science Books |publication-date=March 2012 |date=1964 |orig-year=1963 |url=http://longstreet.typepad.com/thesciencebookstore/2012/03/heres-the-link.html |access-date=2016-05-26 |url-status=live |archive-url=https://web.archive.org/web/20160526181319/http://longstreet.typepad.com/thesciencebookstore/2012/03/heres-the-link.html |archive-date=2016-05-26}}
 
 ==External links==
-* [http://www2.iq.usp.br/docente/gutz/Curtipot_.html Curtipot]: Acid-Base equilibria diagrams, [[pH]] calculation and [[titration]] curves simulation and analysis – [[freeware]]
+{{Commons category|ASCII}}
+<!-- ==========(PLEASE NOTE)============
+PLEASE BE CAUTIOUS IN ADDING MORE LINKS TO
+THIS ARTICLE. WIKIPEDIA IS NOT A COLLECTION
+OF LINKS NOR SHOULD IT BE USED FOR ADVERTISING.
 
-{{Authority control}}
+This article already contains ASCII code charts, therefore any link to such a chart does not pass [[WP:ELNO]] #1 and WILL BE DELETED.
 
-[[Category:Acids| ]]
-[[Category:Acid–base chemistry]]
+This article is not about so-called "extended ASCII", therefore any link to a page about "extended ASCII" is not relevant and WILL BE DELETED.
+
+"ASCII converters" are a dime a dozen, so choosing any one would be linkspam for that site. All such links WILL BE DELETED. Add them to the Open Directory Project (dmoz.org) instead.
+
+See [[Wikipedia:External links]] & [[Wikipedia:Spam]] for details.
+==========(PLEASE NOTE)============ -->
+* {{cite web |title=C0 Controls and Basic Latin – Range: 0000–007F |work=The Unicode Standard 8.0 |date=2015 |orig-year=1991 |publisher=[[Unicode, Inc.]] |url=https://www.unicode.org/charts/PDF/U0000.pdf |access-date=2016-05-26 |url-status=live |archive-url=https://web.archive.org/web/20160526182105/http://www.unicode.org/charts/PDF/U0000.pdf |archive-date=2016-05-26}}
+* {{cite journal |title=The Evolution of Character Codes, 1874–1968 |author-first=Eric |author-last=Fischer |citeseerx=10.1.1.96.678 }} [https://web.archive.org/web/20120213005708/http://www.transbay.net/~enf/ascii/ascii.pdf]
+
+{{Character encodings|state=collapsed}}
+
+[[Category:ASCII| ]]
+[[Category:Computer-related introductions in 1963]]
+[[Category:Character sets]]
+[[Category:Character encoding]]
+[[Category:Latin-script representations]]
+[[Category:Presentation layer protocols]]

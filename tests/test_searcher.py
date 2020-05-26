@@ -43,10 +43,13 @@ class TestSearcher(unittest.TestCase):
         extreme [[individualism]] to complete [[collectivism]].{{sfn|McLean|McMillan|2003|loc=Anarchism}} Strains of 
         anarchism have often been divided into the categories of [[Social anarchism|social]] and [[individualist 
         anarchism]], or similar dual classifications.{{
-        sfnm|1a1=Fowler|1y=1972|2a1=Kropotkin|2y=2002|2p=5|3a1=Ostergaard|3y=2009|3p=14|3loc=Anarchism}} """
+        sfnm|1a1=Fowler|1y=1972|2a1=Kropotkin|2y=2002|2p=5|3a1=Ostergaard|3y=2009|3p=14|3loc=Anarchism}}
+        The etymological origin of anarchism 
+        is from the Ancient Greek anarkhia, meaning "without a ruler", composed of the prefix an- (i.e. "without") and the word arkhos (i.e. "leader" or "ruler"). The suffix -ism denotes the ideological current that favours anarchy.[1] Anarchism appears in English from 1642[2] as anarchisme and anarchy from 1539.[3] Various factions within the French Revolution labelled their opponents as anarchists, although few such accused shared many views with later anarchists. Many revolutionaries of the 19th century such as William Godwin (1756–1836) and Wilhelm Weitling (1808–1871) would contribute to the anarchist doctrines of the next generation, but they did not use anarchist or anarchism in describing themselves or their beliefs.
+        """
         f = Fragmenter()
         result = Compiler().compile(text)
-        f.frag(result, ['anarchism'])
+        f.frag(result, ['asdisadas'])
 
 
 if __name__ == '__main__':
