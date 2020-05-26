@@ -75,6 +75,7 @@ class WikiIndex:
                 for root in self.xml_parser.from_xml(str(wiki)):
                     try:
                         id, title, text = self.xml_parser.get(root)
+                        logger.info(f'{title.text} compiling')
                         article = compiler.compile(text.text)
                         writer.add_document(title=title.text, text=article, categories=','.join(categories), id=f'{id}')
                         logger.info(f'{title.text} indexed')

@@ -187,11 +187,14 @@ WIKIMEDIA_MARKUP = [
 ]
 
 IGNORED_TAGS = [
-    r'<math[\s\S]*?<\/math\>',
+    # r'<math[\s\S]*?<\/math\>',
     # r'<\!--[\s\S]*?<\/--\!\>',
     r'<\!--[\s\S]*?--\>',
-    r'<code[\s\S]*?<\/code\>',
+    # r'<code[\s\S]*?<\/code\>',
+    # r'<syntaxhighlight[\s\S]*?<\/syntaxhighlight\>',
     # r'<sub[\s\S]*?<\/sub\>',
+    # r'<code[\s\S]*?<\/code\>',
+    r'<[\s\S]*?<\/[\S]*?\>'
 ]
 
 
