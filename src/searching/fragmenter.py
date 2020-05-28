@@ -118,13 +118,14 @@ class Fragmenter:
     def clean(self, text):
         return text
 
-    def __init__(self, max_size=200, top=3):
+    def __init__(self, max_size=200, top=2):
         self._tokenizer = PhraseTokenizer()
         self._stemmer = PorterStemmer()
         self._threshold = 0.25
-        self._top = 2
+        self._top = top
         self._max_size = max_size
 
+    # TODO
     def merge_fragments(self, fragments):
         # for i in sorted(fragments, key=lambda p: p.index):
         return fragments
@@ -174,7 +175,7 @@ class Fragmenter:
 
             phrase.score = ((d ** 2) / nqterms) + (l * (d / nqterms))
 
-        # print('\n\n\n\n', phrases, '\n\n\n')
+        # print('\n\n\n\n', self.top_fragments(phrases), '\n\n\n')
         return self.highlight(self.top_fragments(phrases)[0])
 
     def highlight(self, phrase):
