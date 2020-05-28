@@ -21,7 +21,7 @@ class TestSearcher(unittest.TestCase):
         results[0].snippet()
 
     def test_fragmenter(self):
-        text = """Anarchism is an [[Anti-authoritarianism|anti-authoritarian]] [[Political philosophy|political]] and 
+        text = """'''Anarchism''' is an [[Anti-authoritarianism|anti-authoritarian]] [[Political philosophy|political]] and 
         [[Social philosophy|social philosophy]]{{sfn|Flint|2009|p=27}} that rejects [[Hierarchy|hierarchies]] as 
         unjust and advocates their replacement with [[Workers' self-management|self-managed]], 
         [[Self-governance|self-governed]] societies based on voluntary, [[cooperative]] institutions. These 
@@ -49,7 +49,7 @@ class TestSearcher(unittest.TestCase):
         """
         f = Fragmenter()
         result = Compiler().compile(text)
-        f.frag(result, ['asdisadas'])
+        print(f.frag(result, ['anarch']))
 
 
 if __name__ == '__main__':

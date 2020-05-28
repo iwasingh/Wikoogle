@@ -23,11 +23,11 @@
 
 {% block content %}
   <main>
-    {% for obj in results %}
+    {% for result in results %}
       <article>
         <small>en.wikipedia.org/resource</small>
-        <a href="#">{{ obj["title"] }}</a>
-        <span class="text">{{ obj["text"] | safe }}</span>
+        <a href="#">{{ result.title }}</a>
+        <span class="text">{{ result.snippet() | safe }}</span>
       </article>
     {% endfor %}
   </main>

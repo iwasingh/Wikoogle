@@ -4,7 +4,7 @@ import re
 import parsing.lexer as lexer
 from .combinators import ParseError
 import parsing.grammar as g
-
+from parsing.utils import MalformedTag
 logger = logging.getLogger('Parser')
 
 """A recursive descent parser implementation LL(1) https://en.wikipedia.org/wiki/Recursive_descent_parser
@@ -82,10 +82,10 @@ class Parser:
 
     def parse(self, text, expression=None):
         self._ast = Node()
-        self._tokens = iter(self.lexer.tokenize(text))
-        expression = expression if expression else self._grammar.expression()
-        self.next()
         try:
+            self._tokens = iter(self.lexer.tokenize(text))
+            expression = expression if expression else self._grammar.expression()
+            self.next()
             while self.current.token != lexer.Lexer.EOF:
                 result = expression(self)
                 if result:
@@ -93,7 +93,7 @@ class Parser:
                 else:
                     self.next()
 
-        except ParseError as e:
+        except (MalformedTag, ParseError) as e:
             raise e
 
         return self._ast

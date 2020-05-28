@@ -5,7 +5,7 @@ from .symbols import Template, Link, Heading, Text, Token, \
     Heading3, Heading4, Heading5, Heading6, Comment, Italic, ItalicAndBold, Bold, Tag, WIKIMEDIA_MARKUP, \
     IGNORED_TAGS
 
-from .utils import RecursiveMatch, recursive
+from .utils import RecursiveMatch, recursive, MalformedTag
 
 logger = logging.getLogger('Lexer')
 
@@ -49,7 +49,7 @@ class LexerToken(Token):
         return self.__str__()
 
     def __str__(self):
-        return self._token.__repr__()
+        return self._token.__repr__() + f' [{self._col}]'
         # return '\n' + self._text
 
     def __eq__(self, token):
@@ -94,6 +94,7 @@ class Lexer:
         # Debugging
         # if symbol_type == Symbol.ID: breakpoint()
         for symbol in self.table[symbol_type]:
+            # try:
             match, token = symbol.match(text, self._col)
             # Find a better way to do it
             if match:
@@ -109,6 +110,7 @@ class Lexer:
                     tokens.append(LexerToken(token, self._row, self._col, match.group(0)))
 
                 self._col = match.end(0)
+            # except MalformedTag as e:
 
         if len(tokens) == 0 and symbol_type == Symbol.ID:
             self._col += 1
@@ -127,6 +129,7 @@ class Lexer:
             for ignore in self.table[Symbol.IGNORE]:
                 match = ignore.match(text, self._col)
                 if match:
+                    # print(match, text[match.start(0):match.end(0)])
                     self._col = match.end(0)
             else:
                 resolved_tokens, next_symbol = self._tokenize(text, symbol_type)
@@ -178,11 +181,11 @@ class LinkT(Link):
 
 
 # Headings
-Lexer.symbol(Symbol.RESERVED)(Heading6)
-Lexer.symbol(Symbol.RESERVED)(Heading5)
-Lexer.symbol(Symbol.RESERVED)(Heading4)
-Lexer.symbol(Symbol.RESERVED)(Heading3)
-Lexer.symbol(Symbol.RESERVED)(Heading)
+# Lexer.symbol(Symbol.RESERVED)(Heading6)
+# Lexer.symbol(Symbol.RESERVED)(Heading5)
+# Lexer.symbol(Symbol.RESERVED)(Heading4)
+# Lexer.symbol(Symbol.RESERVED)(Heading3)
+# Lexer.symbol(Symbol.RESERVED)(Heading)
 
 # Comment
 Lexer.symbol(Symbol.RESERVED)(Comment)

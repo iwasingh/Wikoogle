@@ -2,7 +2,9 @@ from whoosh.qparser import QueryParser
 import searching.result as r
 from whoosh.qparser import MultifieldParser
 from query.expander import expand
+import logging
 
+logger = logging.getLogger()
 
 class Searcher:
     def __init__(self, wikimedia):
@@ -17,7 +19,6 @@ class Searcher:
         try:
             searcher = self.wikimedia.index.searcher()
             results = searcher.search(query)
-        except:
-            pass
-
-        return [r.Result(i, text) for i in results]
+            return [r.Result(i, query) for i in results]
+        except Exception as e:
+            logger.error(e)

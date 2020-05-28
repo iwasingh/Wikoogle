@@ -3,6 +3,11 @@ import re
 """ Recursive match helper that regular expressions can't handle """
 
 
+class MalformedTag(Exception):
+    def __init__(self, start, end, position):
+        self.message = f"Malformed tag found: {start} {end} {position}"
+
+
 def recursive(text, start, end, position):
     # match_start = re.compile(start, re.DOTALL)
     # match_end = re.compile(end, re.DOTALL)
@@ -31,6 +36,12 @@ def recursive(text, start, end, position):
             elif txt:
                 content += txt.group(0)
                 index = txt.end()
+            else:
+                """
+                 A recursive tag should never ends up here.
+                 that means text has unbalanced tags or the loop reached end of file without finding a closing tag.
+                """
+                raise MalformedTag(start, end, position)
 
             if not stack:
                 rec = RecursiveMatch(should_start.start, index, [

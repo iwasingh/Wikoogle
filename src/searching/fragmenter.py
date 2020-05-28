@@ -1,36 +1,51 @@
+from nltk.tokenize.treebank import TreebankWordDetokenizer
+from nltk.tokenize.punkt import PunktSentenceTokenizer
 from nltk import word_tokenize
-import nltk
-from nltk.tokenize import WhitespaceTokenizer
-from whoosh.analysis import StandardAnalyzer
-import re
-from collections import OrderedDict
-from preprocessing.analyzer import FragmenterAnalyzer
 from nltk.stem.porter import *
 import re
-from statistics import stdev
-
-# In [2]: tokenizer =
-
-# phrase_analyzer = FragmenterAnalyzer()
+from parsing.symbols import Bold, Italic, ItalicAndBold, Heading3, Heading4, Heading
 
 stemmer = PorterStemmer()
+detokenizer = TreebankWordDetokenizer()
+
+
+def clean(text):
+    tags = [
+        Bold,
+        ItalicAndBold,
+        Italic,
+        Heading3,
+        Heading4,
+        Heading
+    ]
+
+    for i in tags:
+        text = re.sub(i.start.regex, "", text)
+
+    return text
+
+
+class Term:
+    def __init__(self, start, end):
+        self.start = start
+        self.end = end
 
 
 class Phrase:
-    def __init__(self, text, phrase, index):
+    def __init__(self, phrase, index):
         self.index = index
         self.matches = []
         self.score = 0
-
-        self.phrase = phrase
-        self.tokens = [stemmer.stem(i) for i in word_tokenize(self.phrase)]
-        # self.phrase = [i.text for i in phrase_analyzer(text)]
+        self.text = clean(phrase)
+        self.tokens = [stemmer.stem(i) for i in word_tokenize(self.text)]
+        # for word_tokenize(self.text)
+        # print([i.text for i in phrase_analyzer(text)])
 
     def __repr__(self):
-        return self.phrase + ' ' + f'[{self.score}]' + '\n'
+        return self.text + ' ' + f'[{self.score}]' + '\n'
 
     def __hash__(self):
-        return hash(f'{self.phrase}')
+        return hash(f'{self.text}')
 
     def add_match(self, token):
         self.matches.append(token)
@@ -38,16 +53,15 @@ class Phrase:
 
 class PhraseTokenizer:
     def __init__(self):
-        self._tokenizer = self._tokenizer = nltk.tokenize.punkt.PunktSentenceTokenizer()
+        self._tokenizer = self._tokenizer = PunktSentenceTokenizer()
 
     def tokenize(self, text):
         phrases = []
         counter = 0
         for index, phrase in enumerate(self._tokenizer.tokenize(text)):
-            print(phrase)
             start = counter
             end = start + len(phrase) - 1
-            phrases.append(Phrase(text, phrase, index))
+            phrases.append(Phrase(phrase, index))
             counter = end + 1
 
         return phrases
@@ -60,13 +74,18 @@ class Fragment:
 
 
 class Hit:
-    def __init__(self, term, score):
+    def __init__(self, term, score, matched_token):
         self._term = term
         self._score = score
+        self._matched_token = matched_token
 
     @property
     def term(self):
         return self._term
+
+    @property
+    def token(self):
+        return self._matched_token
 
     def __repr__(self):
         return self._term + '[' + str(self._score) + ']'
@@ -81,12 +100,8 @@ class QueryTerm:
     def match(self, phrase):
         matches = []
         for t in phrase.tokens:
-            # if t == self._term:
-            #     matches.append(Hit(self._term, 1))
-            #
-            # elif t in self._aliases:
             if t in self._aliases or t == self._term:
-                matches.append(Hit(self._term, 1))
+                matches.append(Hit(self._term, 1, t))
 
         return matches
 
@@ -99,6 +114,9 @@ class Fragmenter:
     :param max_size: max window size, google goes from min=150 to 200-250
 
     """
+
+    def clean(self, text):
+        return text
 
     def __init__(self, max_size=200, top=3):
         self._tokenizer = PhraseTokenizer()
@@ -122,7 +140,7 @@ class Fragmenter:
         top_fragment = top_fragments[0]
         best_fragments = []
         for t in top_fragments:
-            epsilon = top_fragment.score - t.score
+            epsilon = abs(top_fragment.score - t.score)
             if epsilon <= self._threshold:
                 best_fragments.append(t)
 
@@ -154,12 +172,21 @@ class Fragmenter:
 
             # TODO k = longest run of query terms in phrase, let's say from wj ... wj+k
 
-            phrase.score = ((d ** 2) / nqterms) + (l * (d/nqterms))
+            phrase.score = ((d ** 2) / nqterms) + (l * (d / nqterms))
 
-        print('\n\n\n\n', phrases, '\n\n\n')
-        for i in self.top_fragments(phrases):
-            print(i, 'score', '[', i.score, ']', '\n', '__MATCHES__', i.matches, '\n___')
+        # print('\n\n\n\n', phrases, '\n\n\n')
+        return self.highlight(self.top_fragments(phrases)[0])
 
-    def highlight(self, phrase, terms):
-        pass
-        
+    def highlight(self, phrase):
+        # template = '<%(tag)s class=%(q)s%(cls)s%(tn)s%(q)s>%(t)s</%(tag)s>'
+        output = []
+        highlight_terms = set(map(lambda hit: hit.term, phrase.matches))
+        text = word_tokenize(phrase.text)
+        for index, t in enumerate(phrase.tokens):
+            term = text[index]
+            if t.lower() in highlight_terms:
+                term = f'<strong>{term}</strong>'
+
+            output.append(term)
+
+        return detokenizer.detokenize(output)

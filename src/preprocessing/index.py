@@ -9,7 +9,7 @@ from .analyzer import WikimediaAnalyzer
 import config
 from parsing.compiler import Compiler, ParseTypes
 import shutil
-
+from parsing.utils import MalformedTag
 logger = logging.getLogger('preprocessing')
 
 
@@ -80,9 +80,9 @@ class WikiIndex:
                         writer.add_document(title=title.text, text=article, categories=','.join(categories), id=f'{id}')
                         logger.info(f'{title.text} indexed')
                         categories.clear()
-                    except ParseError as e:
+                    except (ParseError, MalformedTag) as e:
                         miss += 1
-                        logger.warning(f'{title.text} parse error, skipping')
+                        logger.warning(f'{title.text} parse or malformed tag error, skipping')
                         continue
 
         if miss > 0:

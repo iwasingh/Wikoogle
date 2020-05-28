@@ -1,3 +1,4 @@
+from parsing.lexer import Lexer
 """ Small set of combinator utilities to combine rules """
 
 
@@ -77,7 +78,7 @@ def rep(expression, stop):
 
     def parse(parser):
         acc = []
-        while parser.current.token != stop:
+        while parser.current.token != stop and parser.current.token != Lexer.EOF:
             result = expression(parser)
             if result:
                 acc.append(result)
