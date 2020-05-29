@@ -3,7 +3,7 @@ import logging
 from pathlib import Path
 from searching.searcher import Searcher
 from preprocessing.index import WikiIndex
-from searching.fragmenter import Fragmenter
+from searching.fragmenter import Fragmenter, truncate
 from parsing.compiler import Compiler
 logging.basicConfig(level=logging.INFO)
 
@@ -19,6 +19,10 @@ class TestSearcher(unittest.TestCase):
     def test_snippet(self):
         results = self.searcher.search('anarkhia')
         results[0].snippet()
+
+    def test_truncate(self):
+        text = """Ascorbic acid is an organic compound with formula, originally called hexuronic acid. It is a white solid, but impure samples can appear yellowish. It dissolves well in water to give mildly acidic solutions. It is a mild redox|reducing agent."""
+        print(truncate(text, 84))
 
     def test_fragmenter(self):
         text = """

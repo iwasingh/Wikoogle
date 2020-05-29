@@ -75,3 +75,5 @@ Things to do:
 * https://arxiv.org/pdf/2002.10782.pdf
 * http://marksanderson.org/publications/my_papers/SIGIR98.pdf
 
+# WSD and Query expansion
+* https://arxiv.org/pdf/1105.5444.pdf

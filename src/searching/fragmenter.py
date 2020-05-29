@@ -16,13 +16,29 @@ def clean(text):
         Italic,
         Heading3,
         Heading4,
-        Heading
+        Heading,
+
     ]
 
     for i in tags:
         text = re.sub(i.start.regex, "", text)
 
+    text = re.sub(r'<ref[\s\S]*?\/\>(!?<\/ref\>)*|<ref[\s\S]*?\>*?[<]?\/ref\>', "", text)
+
     return text
+
+
+def truncate(text, size):
+    maximum_size = size + 100
+    truncated_text = text[:size]
+    last_char = truncated_text[-1]
+    while not last_char.isspace() and last_char not in {'!', '.', '?'} and len(truncated_text) <= maximum_size:
+        truncated_text += text[len(truncated_text)]
+        last_char = truncated_text[-1]
+
+    ellips = '...' if last_char.isspace() else ''
+
+    return truncated_text + ellips
 
 
 class Term:
@@ -115,20 +131,25 @@ class Fragmenter:
 
     """
 
-    def clean(self, text):
-        return text
-
-    def __init__(self, max_size=200, top=2):
+    def __init__(self, max_size=300, top=2):
         self._tokenizer = PhraseTokenizer()
         self._stemmer = PorterStemmer()
         self._threshold = 0.25
         self._top = top
         self._max_size = max_size
 
-    # TODO
     def merge_fragments(self, fragments):
-        # for i in sorted(fragments, key=lambda p: p.index):
-        return fragments
+        text = ''
+        matches = []
+        sorted_fragments = sorted(fragments, key=lambda p: p.index)
+        for phrase in sorted_fragments:
+            text += phrase.text
+            matches.extend(phrase.matches)
+        # text = truncate(text, self._max_size)
+        merged = Phrase(text, sorted_fragments[0].index)
+        merged.score = sorted_fragments[0].score
+        merged.matches = matches
+        return merged
 
     def top_fragments(self, phrases):
         sorted_fragments = sorted(filter(lambda p: len(p.matches) > 0 and p.score > 0, phrases), key=lambda p: p.score,
@@ -175,8 +196,8 @@ class Fragmenter:
 
             phrase.score = ((d ** 2) / nqterms) + (l * (d / nqterms))
 
-        # print('\n\n\n\n', self.top_fragments(phrases), '\n\n\n')
-        return self.highlight(self.top_fragments(phrases)[0])
+        # print('\n\n\n\n', phrases, '\n\n\n')
+        return self.highlight(self.top_fragments(phrases))
 
     def highlight(self, phrase):
         # template = '<%(tag)s class=%(q)s%(cls)s%(tn)s%(q)s>%(t)s</%(tag)s>'
