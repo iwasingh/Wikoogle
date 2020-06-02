@@ -1,8 +1,17 @@
-from nltk import pos_tag
+from nltk import pos_tag, word_tokenize, RegexpParser, ngrams, FreqDist
+from nltk.collocations import BigramCollocationFinder
 from nltk.corpus import wordnet
 from nltk.stem import WordNetLemmatizer, PorterStemmer
-from preprocessing.analyzer import WikimediaAnalyzer
+from preprocessing.analyzer import WikimediaAnalyzer, GOOGLE_STOP_WORDS
+from preprocessing.utils import clean
 from enum import Enum
+from whoosh.classify import Expander, ExpansionModel
+from rake_nltk import Metric, Rake
+from nltk.tree import Tree
+from functools import reduce
+import operator
+from math import log
+from whoosh.analysis import StemmingAnalyzer
 
 
 class POSTag(Enum):
@@ -40,7 +49,7 @@ def stemming(tokens):
     return [stemmer.stem(t) for t in tokens]
 
 
-def expand(query):
+def thesaurus_expand(query):
     """
     Wordent hierarchy
      - hyponyms concepts that are more specific (immediate), navigate down to the tree
@@ -65,3 +74,144 @@ def expand(query):
 
     tokens += [i.text for i in analyzer(' '.join(list(synonyms)))]
     return original_tokens + [i for i in tokens if i not in original_tokens]
+
+
+def noun_groups(tokens, chunk_size=2, analyzer=StemmingAnalyzer()):
+    grammar = r"""
+        NBAR: {<NN|JJ><|JJ|NN>} # Nouns and Adjectives, terminated with Nouns
+              {<NN>} # If pattern not found just a single NN is ok
+    """
+    cp = RegexpParser(grammar)
+    result = cp.parse(pos_tag(tokens))
+    nouns = set()
+    for chunk in result:
+        if type(chunk) == Tree:
+            if chunk.label() == 'NBAR':
+                words = list(map(lambda entry: entry[0], chunk.leaves()))
+                tokens = analyzer(" ".join(words))
+                nouns.add(" ".join([i.text for i in tokens]))
+                # nouns.add(tuple([i.text for i in tokens]))
+        else:
+            continue
+            # print('Leaf', '\n', chunk)
+    return nouns
+
+
+class Passage:
+    """ Deprecated """
+
+    def __init__(self, doc, passage):
+        self._doc = doc
+        self._passage = passage
+
+        self.concept = []
+
+    def __repr__(self):
+        return f'{self._passage[0:3]}...[{len(self._passage)}] [{self._doc["title"]}]'
+
+
+class DocStats:
+    """
+     In-memory bigram index for text statistics
+    """
+
+    def __init__(self, tokens):
+        self._bigram = BigramCollocationFinder.from_words(tokens)
+
+    @staticmethod
+    def _score_from_ngram(*args):
+        return args[0]
+
+    def _frequency(self, gram: tuple):
+        fd_score = self._bigram.score_ngram(self._score_from_ngram, *gram) or 0
+        bd_score = self._bigram.score_ngram(self._score_from_ngram, *gram[::-1]) or 0
+        return max(fd_score, bd_score)
+
+    def frequency(self, term: str):
+        grams = [i for i in ngrams(term.split(" "), 2)]
+        # breakpoint()
+        if len(grams) == 0:
+            return self._bigram.word_fd[term]
+        return max([self._frequency(gram) for gram in grams])
+
+
+def __count_docs_containing(c, docs):
+    return len(list(filter(lambda f: f > 0, [d.frequency(c) for d in docs])))
+
+
+def prod(products):
+    return reduce(operator.mul, products)
+
+
+def _calculate_qterm_correlation(query_terms, concept, idf_c, docs):
+    for qterm, idf_i in query_terms:
+        N = len(docs)
+        # IDFc = max(1.0, log(N / npc, 10) / 5)
+        # IDFi = max(1.0, log(N / npi, 10) / 5)
+        y = 0.1
+
+        f = sum([doc_stat.frequency(qterm) * doc_stat.frequency(concept) for doc_stat in docs])
+
+        if f == 0:
+            yield y
+        else:
+            # print(f, N, y, idf_c, idf_i, concept, qterm)
+            yield (y + (log(f) * idf_c) / log(N)) ** idf_i
+            # yield d
+
+
+def lca_expand(query, documents, size=15, passage_size=400):
+    """
+    Implements the Local Context Analysis algorithm to expand query based on top ranked concept that
+    maximize the sim to the query
+
+    sim(q,c) = ∏ (y + (log(f(ci,ki) + IDFc) / log(n))^IDFi
+    where:
+    * f(ci, ki) = quantifies the correlation between the concept c and the query term ki:
+     and is given by: Σ pfi_j * pfc_j where pf(i,c)_j is the frequency of term ki or concept c in the j-th doc
+    * IDFc = inverse document frequency of concept c calculated as max(1, log_10(N/npc)/5)
+      IDFi = inverse document frequency of query term i calculated as max(1, log_10(N/npi)/5) to emphasizes infrequent query terms
+      where npc is number of documents containing the concept c nad npi number of docs containing the query term i
+      and N is number of documents
+      IDFi
+    * y is a smoothing constant set to 0.1 to avoid zeros values in the product calculation
+
+    A concept is a noun group of single, two, or three words.
+    """
+    query_terms = set([i.text for i in query.all_tokens()])
+    analyzer = StemmingAnalyzer()
+    concepts = set()
+    doc_stats = []
+
+    for doc in documents:
+        # TODO use fragmenter to find the best window of text
+        text = clean(doc['text'][:passage_size]).lower()
+        tokens = word_tokenize(text)
+        stemmed_tokens = [i.text for i in analyzer(text)]
+        key_terms = noun_groups(tokens)
+        concepts = concepts.union(key_terms)
+        doc_stats.append(DocStats(stemmed_tokens))
+
+    query_terms_with_idf = list()
+
+    for q in query_terms:
+        npi = __count_docs_containing(q, doc_stats)
+        if npi == 0:
+            query_terms_with_idf.append((q, 1))
+        else:
+            query_terms_with_idf.append((q, max(1.0, log(len(documents) / npi, 10) / 5)))
+
+    concepts = set(filter(len, concepts))  # Removing blank entries
+
+    ranking = []
+
+    for concept in concepts:
+        if concept in query_terms: continue
+        N = len(documents)
+        npc = __count_docs_containing(concept, doc_stats)
+        idf_c = max(1.0, log(N / npc, 10) / 5)
+        prods = _calculate_qterm_correlation(query_terms_with_idf, concept, idf_c, doc_stats)
+        sim = prod([i for i in prods])
+        ranking.append((concept, sim))
+
+    return list(map(lambda q: q[0], sorted(ranking, key=lambda c: c[1], reverse=True)))[:size]

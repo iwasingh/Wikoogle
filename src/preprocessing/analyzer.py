@@ -1,7 +1,5 @@
 from whoosh.analysis import StemmingAnalyzer
-from whoosh.analysis import StandardAnalyzer, Analyzer, CompositeAnalyzer
 from whoosh.analysis.filters import Filter, SubstitutionFilter
-from whoosh.analysis.morph import StemFilter
 from whoosh.analysis.filters import STOP_WORDS
 from nltk.stem import WordNetLemmatizer
 
@@ -36,9 +34,9 @@ class WikiNormalizer(Filter):
         return filters(tokens)
 
 
-def WikimediaAnalyzer():
+def WikimediaAnalyzer(stoplist=GOOGLE_STOP_WORDS):
     # Use different analyzer for the title
-    ret = StemmingAnalyzer(stoplist=GOOGLE_STOP_WORDS)
+    ret = StemmingAnalyzer(stoplist=stoplist)
 
     chain = ret | WikiNormalizer()
 
@@ -48,3 +46,4 @@ def WikimediaAnalyzer():
 def FragmenterAnalyzer():
     ret = StemmingAnalyzer(minsize=0, stoplist=None)
     return ret
+

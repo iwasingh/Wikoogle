@@ -197,6 +197,7 @@ class Fragmenter:
             phrase.score = ((d ** 2) / nqterms) + (l * (d / nqterms))
 
         # print('\n\n\n\n', phrases, '\n\n\n')
+
         return self.highlight(self.top_fragments(phrases))
 
     def highlight(self, phrase):

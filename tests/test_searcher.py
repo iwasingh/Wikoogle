@@ -5,6 +5,8 @@ from searching.searcher import Searcher
 from preprocessing.index import WikiIndex
 from searching.fragmenter import Fragmenter, truncate
 from parsing.compiler import Compiler
+from query.expander import lca_expand
+
 logging.basicConfig(level=logging.INFO)
 
 DATA_FOLDER = Path(__file__).parent / 'data'
@@ -15,6 +17,10 @@ class TestSearcher(unittest.TestCase):
         super(TestSearcher, self).__init__(*args, **kwargs)
         self.index = WikiIndex().get('__index')
         self.searcher = Searcher(self.index)
+
+    def test_query_expansion(self):
+        query = 'anarchism etymology'
+        results = self.searcher.search(query)
 
     def test_snippet(self):
         results = self.searcher.search('anarkhia')
@@ -231,7 +237,6 @@ Another alternative uses [[N-Bromosuccinimide|''N''-bromosuccinimide]] (NBS) as 
         f = Fragmenter()
         result = Compiler().compile(text)
         print(f.frag(result, ['nucleic', 'acid']))
-
 
 if __name__ == '__main__':
     unittest.main()
