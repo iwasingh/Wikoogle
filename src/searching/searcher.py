@@ -7,6 +7,7 @@ from whoosh import scoring
 from whoosh.classify import Expander, ExpansionModel
 from whoosh import qparser
 import whoosh.query as wq
+import time
 
 logger = logging.getLogger()
 
@@ -26,12 +27,18 @@ class Searcher:
 
         try:
             searcher = self.wikimedia.index.searcher()
+            t0 = time.time()
             results = searcher.search(query, limit=self._query_expansion_limit)
-
+            t1 = time.time()
+            print('whoosh search time: ', t1 - t0)
+            t0 = time.time()
             terms = " OR ".join(['(' + i + ')' for i in lca_expand(query, results, size=10)])
-            print(terms)
+            t1 = time.time()
+
+            print(terms, 'query expansion time:', t1 - t0)
             expanded_query = query | self.parser.parse(terms).with_boost(0.30)
-            results = searcher.search(expanded_query, limit=30)
+            # TODO To each concept assign a weight given by 1-0.9  i/m to not stress user query term
+            results = searcher.search(expanded_query, limit=10)
             return [r.Result(i, query) for i in results]
         except Exception as e:
             logger.error(e)

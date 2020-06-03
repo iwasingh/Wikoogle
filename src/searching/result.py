@@ -1,5 +1,6 @@
 from searching.fragmenter import Fragmenter
 import logging
+import time
 
 logger = logging.getLogger()
 
@@ -26,5 +27,8 @@ class Result:
     def snippet(self):
         title = self._value["title"]
         text = self._value["text"]
+        # t0 = time.time()
         snippet = self.fragmenter.frag(text, [i.text for i in self._query.all_tokens()])
+        # t1 = time.time()
+        # print('snippet generation time:', t1-t0)
         return snippet

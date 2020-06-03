@@ -1,5 +1,3 @@
-from whoosh import highlight
-from whoosh.analysis import StandardAnalyzer, RegexAnalyzer, KeywordAnalyzer, SimpleAnalyzer, LowercaseFilter
 from preprocessing.index import WikiIndex
 from searching.searcher import Searcher
 from flask import Flask, request, render_template
@@ -9,18 +7,12 @@ import config
 import logging
 import logging.config
 
-import nltk
-from nltk.corpus import wordnet as wn
-import re
-
 __logger = None
 __wikimedia_ix = None
 __searcher = None
 
 """
 TODO stats and content compression,
-TODO snippets,
-TODO integrate expand query
 """
 
 

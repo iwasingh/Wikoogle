@@ -4,6 +4,7 @@ from nltk import word_tokenize
 from nltk.stem.porter import *
 import re
 from parsing.symbols import Bold, Italic, ItalicAndBold, Heading3, Heading4, Heading
+import time
 
 stemmer = PorterStemmer()
 detokenizer = TreebankWordDetokenizer()
@@ -52,7 +53,7 @@ class Phrase:
         self.index = index
         self.matches = []
         self.score = 0
-        self.text = clean(phrase)
+        self.text = phrase
         self.tokens = [stemmer.stem(i) for i in word_tokenize(self.text)]
         # for word_tokenize(self.text)
         # print([i.text for i in phrase_analyzer(text)])
@@ -72,15 +73,12 @@ class PhraseTokenizer:
         self._tokenizer = self._tokenizer = PunktSentenceTokenizer()
 
     def tokenize(self, text):
-        phrases = []
-        counter = 0
-        for index, phrase in enumerate(self._tokenizer.tokenize(text)):
-            start = counter
-            end = start + len(phrase) - 1
-            phrases.append(Phrase(phrase, index))
-            counter = end + 1
+        tokens = self._tokenizer.tokenize(text)
+        return [Phrase(phrase, index) for index, phrase in enumerate(tokens)]
+        # for index, phrase in enumerate(tokens):
+        #     phrases.append(Phrase(phrase, index))
 
-        return phrases
+        # return phrases
 
 
 class Fragment:
@@ -156,7 +154,7 @@ class Fragmenter:
                                   reverse=True)
 
         if len(sorted_fragments) == 0:
-            return [phrases[0]]
+            return phrases[0]
 
         top_fragments = sorted_fragments[:self._top]
         top_fragment = top_fragments[0]
@@ -169,6 +167,7 @@ class Fragmenter:
         return self.merge_fragments(best_fragments)
 
     def frag(self, text, terms):
+        text = clean(text)
         query_terms = list(map(lambda t: QueryTerm(t, [self._stemmer.stem(t)]), list(set(terms))))
         phrases = self._tokenizer.tokenize(text)
         nqterms = len(terms)
@@ -198,7 +197,8 @@ class Fragmenter:
 
         # print('\n\n\n\n', phrases, '\n\n\n')
 
-        return self.highlight(self.top_fragments(phrases))
+        best_fragment = self.top_fragments(phrases)
+        return self.highlight(best_fragment)
 
     def highlight(self, phrase):
         # template = '<%(tag)s class=%(q)s%(cls)s%(tn)s%(q)s>%(t)s</%(tag)s>'
