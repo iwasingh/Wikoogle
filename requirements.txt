@@ -7,7 +7,6 @@ lxml==4.5.0
 MarkupSafe==1.1.1
 nltk==3.5
 PyYAML==5.3.1
-rake-nltk==1.0.4
 regex==2020.4.4
 tqdm==4.45.0
 Werkzeug==1.0.1

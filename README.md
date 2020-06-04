@@ -69,7 +69,9 @@ Things to do:
 * Query expansion and WSD with NLTK
  - An idea might be use wikipedia articles Category references to build a wikipedia-specific thesaurus to get better results
 	 
-
+## Notes 1.5
+* Ignore #REDIRECT
+* Query LCA expansion
 
 # Snippet generation
 * https://arxiv.org/pdf/2002.10782.pdf
@@ -79,3 +81,4 @@ Things to do:
 * https://arxiv.org/pdf/1105.5444.pdf
 * http://disi.unitn.it/~bernardi/Courses/DL/Slides_11_12/9.pdf
 * https://dl.acm.org/doi/pdf/10.1145/333135.333138#:~:text=Local%20context%20analysis%20ranks%20the,query%20expansion%20than%20existing%20techniques.
+* https://my.eng.utah.edu/~cs7961/papers/XuCroft-SIGIR96.pdf
