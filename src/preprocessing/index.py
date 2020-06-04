@@ -10,6 +10,7 @@ import config
 from parsing.compiler import Compiler, ParseTypes
 import shutil
 from parsing.utils import MalformedTag
+from parsing.lexer import RedirectFound
 logger = logging.getLogger('preprocessing')
 
 
@@ -56,7 +57,12 @@ class WikiIndex:
         if not self.index:
             raise FileNotFoundError('Index not initialized')
 
-        writer = self.index.writer()
+        writer = self.index.writer(limitmb=1024, procs=4)
+        # speeding up batch indexing
+        analyzer = writer.schema["text"].format.analyzer
+        analyzer.cachesize = -1
+        analyzer.clear()
+
         compiler = Compiler()
 
         categories = []
@@ -80,9 +86,9 @@ class WikiIndex:
                         writer.add_document(title=title.text, text=article, categories=','.join(categories), id=f'{id}')
                         logger.info(f'{title.text} indexed')
                         categories.clear()
-                    except (ParseError, MalformedTag) as e:
+                    except (ParseError, MalformedTag, RedirectFound) as e:
                         miss += 1
-                        logger.warning(f'{title.text} parse or malformed tag error, skipping')
+                        logger.warning(f'{title.text} {e.message}, skipping')
                         continue
 
         if miss > 0:

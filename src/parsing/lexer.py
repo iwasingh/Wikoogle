@@ -1,7 +1,7 @@
 import logging
 import re
 from enum import Enum
-from .symbols import Template, Link, Heading, Text, Token, \
+from .symbols import Template, Link, Heading, Text, Token, Redirect, \
     Heading3, Heading4, Heading5, Heading6, Comment, Italic, ItalicAndBold, Bold, Tag, WIKIMEDIA_MARKUP, \
     IGNORED_TAGS
 
@@ -191,6 +191,15 @@ class LinkT(Link):
 Lexer.symbol(Symbol.RESERVED)(Comment)
 
 
+@Lexer.symbol(Symbol.RESERVED)
+class RedirectT(Redirect):
+    def match(self, text, pos, **kwargs):
+        if self.start.match(text, pos, **kwargs):
+            raise RedirectFound(text)
+
+        return None, self.start
+
+
 # Formatting, whoosh automatically removes apices
 # Lexer.symbol(Symbol.RESERVED)(ItalicAndBold)
 # Lexer.symbol(Symbol.RESERVED)(Bold)
@@ -227,3 +236,8 @@ class Ignore:
 
     def match(self, text, pos, **kwargs):
         return self._regex.match(text, pos)
+
+
+class RedirectFound(Exception):
+    def __init__(self, message=''):
+        self.message = f"RedirectError: Redirect article to {message}"

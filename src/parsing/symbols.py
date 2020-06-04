@@ -170,6 +170,14 @@ class ItalicAndBold(Tag):
         super().__init__(self.start, self.end)
 
 
+class Redirect:
+    start = Token('REDIRECT', r'#REDIRECT')
+    end = start
+
+    def __init__(self):
+        pass
+
+
 WIKIMEDIA_MARKUP = [
     Template(),
     Link(),
@@ -179,6 +187,7 @@ WIKIMEDIA_MARKUP = [
     Heading5(),
     Heading6(),
     Comment(),
+    Redirect(),
     # Bold(),
     # Italic(),
     # ItalicAndBold(),

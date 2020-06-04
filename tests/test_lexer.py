@@ -1,6 +1,6 @@
 import unittest
 import logging
-from parsing.lexer import TemplateT, Lexer
+from parsing.lexer import TemplateT, Lexer, RedirectFound
 from pathlib import Path
 
 logging.basicConfig(level=logging.INFO)
@@ -37,11 +37,10 @@ class TestLexer(unittest.TestCase):
         logging.info(tokens)
         self.assertGreater(len(tokens), 0)
 
-    # def test_formatting(self):
-    #     lexer = Lexer()
-    #     tokens = lexer.tokenize("'''hello''' ''world'' this is '''''bold and italic'''''")
-    #     logging.info(tokens)
-    #     self.assertGreater(len(tokens), 0)
+    def test_redirect(self):
+        lexer = Lexer()
+        text = """#REDIRECT [[Ancient Greece]]{{Rcat shell|{{R move}}{{R related}}{{R unprintworthy}}}}"""
+        self.assertRaises(RedirectFound, lexer.tokenize, text)
 
 
 if __name__ == '__main__':
