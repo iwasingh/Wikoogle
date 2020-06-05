@@ -4,6 +4,7 @@ from parsing.lexer import Lexer
 
 class ParseError(Exception):
     def __init__(self, message=''):
+        self.type = 'ParseError'
         self.message = f"ParseError: {message}"
 
 

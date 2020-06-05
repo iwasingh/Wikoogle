@@ -5,6 +5,7 @@ import re
 
 class MalformedTag(Exception):
     def __init__(self, start, end, position):
+        self.type = 'MalformedTag'
         self.message = f"Malformed tag found: {start} {end} {position}"
 
 

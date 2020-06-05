@@ -11,14 +11,17 @@ from parsing.compiler import Compiler, ParseTypes
 import shutil
 from parsing.utils import MalformedTag
 from parsing.lexer import RedirectFound
+
 logger = logging.getLogger('preprocessing')
+
+WAnalyzer = WikimediaAnalyzer(cachesize=-1)
 
 
 class WikiSchema(SchemaClass):
     id = ID(stored=True)
-    title = TEXT(stored=True, analyzer=WikimediaAnalyzer(), field_boost=2.0)
-    text = TEXT(stored=True, analyzer=WikimediaAnalyzer())
-    categories = KEYWORD(stored=True, analyzer=WikimediaAnalyzer(), scorable=True, lowercase=True, commas=True)
+    title = TEXT(stored=True, analyzer=WAnalyzer, field_boost=2.0)
+    text = TEXT(stored=True, analyzer=WAnalyzer)
+    categories = KEYWORD(stored=True, analyzer=WAnalyzer, scorable=True, lowercase=True, commas=True)
 
 
 # TODO singleton
@@ -58,10 +61,6 @@ class WikiIndex:
             raise FileNotFoundError('Index not initialized')
 
         writer = self.index.writer(limitmb=1024, procs=4)
-        # speeding up batch indexing
-        analyzer = writer.schema["text"].format.analyzer
-        analyzer.cachesize = -1
-        analyzer.clear()
 
         compiler = Compiler()
 
@@ -88,7 +87,7 @@ class WikiIndex:
                         categories.clear()
                     except (ParseError, MalformedTag, RedirectFound) as e:
                         miss += 1
-                        logger.warning(f'{title.text} {e.message}, skipping')
+                        logger.warning(f'{title.text} {e.type}, skipping')
                         continue
 
         if miss > 0:
@@ -97,6 +96,7 @@ class WikiIndex:
         listener()  # Remove listener
 
         writer.commit()
+
 
 # huge_tree: disable security restrictions and support very deep trees
 # and very long text content (only affects libxml2 2.7+)

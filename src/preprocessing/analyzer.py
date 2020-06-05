@@ -34,10 +34,9 @@ class WikiNormalizer(Filter):
         return filters(tokens)
 
 
-def WikimediaAnalyzer(stoplist=GOOGLE_STOP_WORDS):
+def WikimediaAnalyzer(stoplist=GOOGLE_STOP_WORDS, cachesize=50000):
     # Use different analyzer for the title
-    ret = StemmingAnalyzer(stoplist=stoplist)
-
+    ret = StemmingAnalyzer(stoplist=stoplist, cachesize=cachesize)
     chain = ret | WikiNormalizer()
 
     return chain
@@ -46,4 +45,3 @@ def WikimediaAnalyzer(stoplist=GOOGLE_STOP_WORDS):
 def FragmenterAnalyzer():
     ret = StemmingAnalyzer(minsize=0, stoplist=None)
     return ret
-

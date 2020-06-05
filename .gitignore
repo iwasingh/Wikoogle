@@ -141,5 +141,6 @@ dmypy.json
 dumps
 
 __index
+___index
 logs
 backup

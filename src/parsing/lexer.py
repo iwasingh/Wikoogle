@@ -240,4 +240,5 @@ class Ignore:
 
 class RedirectFound(Exception):
     def __init__(self, message=''):
-        self.message = f"RedirectError: Redirect article to {message}"
+        self.type = 'RedirectFound'
+        self.message = f"RedirectError: Redirect article"
