@@ -45,7 +45,7 @@ def recursive(text, start, end, position):
                 raise MalformedTag(start, end, position)
 
             if not stack:
-                rec = RecursiveMatch(should_start.start, index, [
+                rec = RecursiveMatch(should_start.start(), index, [
                     (should_start, start),
                     (re.match(r'.*', content, re.DOTALL), content),
                     (last_end, end)])

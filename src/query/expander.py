@@ -12,6 +12,8 @@ from functools import reduce
 import operator
 from math import log
 from whoosh.analysis import StemmingAnalyzer
+from searching.fragmenter import Fragmenter
+import re
 
 
 class POSTag(Enum):
@@ -79,7 +81,7 @@ def thesaurus_expand(query):
 def noun_groups(tokens, chunk_size=2, analyzer=StemmingAnalyzer()):
     grammar = r"""
         NBAR: {<NN|JJ><|JJ|NN>} # Nouns and Adjectives, terminated with Nouns
-              {<NN>} # If pattern not found just a single NN is ok
+              # {<NN>} # If pattern not found just a single NN is ok
     """
     cp = RegexpParser(grammar)
     result = cp.parse(pos_tag(tokens))
@@ -129,14 +131,14 @@ class DocStats:
 
     def frequency(self, term: str):
         grams = [i for i in ngrams(term.split(" "), 2)]
-        # breakpoint()
-        if len(grams) == 0:
-            return self._bigram.word_fd[term]
+
+        if len(grams) == 0: return self._bigram.word_fd[term]
         return max([self._frequency(gram) for gram in grams])
 
 
 def __count_docs_containing(c, docs):
-    return len(list(filter(lambda f: f > 0, [d.frequency(c) for d in docs])))
+    docs_containing_c = list(filter(lambda f: f > 0, [d.frequency(c) for d in docs]))
+    return len(docs_containing_c)
 
 
 def prod(products):
@@ -160,7 +162,7 @@ def _calculate_qterm_correlation(query_terms, concept, idf_c, docs):
             # yield d
 
 
-def lca_expand(query, documents, size=15, passage_size=400):
+def lca_expand(query, documents, size=15, passage_size=400, threshold=1.4):
     """
     Implements the Local Context Analysis algorithm to expand query based on top ranked concept that
     maximize the sim to the query
@@ -178,15 +180,20 @@ def lca_expand(query, documents, size=15, passage_size=400):
 
     A concept is a noun group of single, two, or three words.
     """
+    fragmenter = Fragmenter(max_size=passage_size)
     query_terms = set([i.text for i in query.all_tokens()])
+    regex = re.compile(r"|".join(query_terms))
     analyzer = StemmingAnalyzer()
     concepts = set()
     doc_stats = []
-
     for doc in documents:
         # TODO use fragmenter to find the best window of text
-        text = clean(doc['text'][:passage_size]).lower()
-        tokens = word_tokenize(text)
+        text = clean(doc['text']).lower()
+        fragment = fragmenter.merge_fragments(
+            fragmenter.calculate_phrase_ranking(
+                text,
+                query_terms)[:3])
+        tokens = word_tokenize(fragment.text)
         stemmed_tokens = [i.text for i in analyzer(text)]
         key_terms = noun_groups(tokens)
         concepts = concepts.union(key_terms)
@@ -199,19 +206,22 @@ def lca_expand(query, documents, size=15, passage_size=400):
         if npi == 0:
             query_terms_with_idf.append((q, 1))
         else:
-            query_terms_with_idf.append((q, max(1.0, log(len(documents) / npi, 10) / 5)))
+            query_terms_with_idf.append((q, log(len(documents) / npi, 10) / 5))
 
-    concepts = set(filter(len, concepts))  # Removing blank entries
-
+    concepts = set(filter(lambda c: len(c) > 2, concepts))  # Removing blank entries or spurious pos_tag entries
+    # tagged as NN
+    # breakpoint()
     ranking = []
-
     for concept in concepts:
         if concept in query_terms: continue
         N = len(documents)
-        npc = __count_docs_containing(concept, doc_stats)
+        npc = __count_docs_containing(concept, doc_stats) or 1
         idf_c = max(1.0, log(N / npc, 10) / 5)
         prods = _calculate_qterm_correlation(query_terms_with_idf, concept, idf_c, doc_stats)
         sim = prod([i for i in prods])
         ranking.append((concept, sim))
 
-    return list(map(lambda q: q[0], sorted(ranking, key=lambda c: c[1], reverse=True)))[:size]
+    print(sorted(ranking, key=lambda c: c[1], reverse=True))
+    filtered = filter(lambda c: c[1] > threshold, ranking)
+    return list(map(lambda q: q[0], sorted(filtered, key=lambda c: c[1], reverse=True)))[:size]
+    # return [re.sub(regex, "", term).strip() for term in top_terms]

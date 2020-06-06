@@ -55,8 +55,6 @@ class Phrase:
         self.score = 0
         self.text = phrase
         self.tokens = [stemmer.stem(i) for i in word_tokenize(self.text)]
-        # for word_tokenize(self.text)
-        # print([i.text for i in phrase_analyzer(text)])
 
     def __repr__(self):
         return self.text + ' ' + f'[{self.score}]' + '\n'
@@ -127,12 +125,13 @@ class Fragmenter:
     """
     :param max_size: max window size, google goes from min=150 to 200-250
 
+    TODO caching
     """
 
-    def __init__(self, max_size=300, top=2):
+    def __init__(self, max_size=300, top=2, threshold=0.25):
         self._tokenizer = PhraseTokenizer()
         self._stemmer = PorterStemmer()
-        self._threshold = 0.25
+        self._threshold = threshold
         self._top = top
         self._max_size = max_size
 
@@ -166,7 +165,7 @@ class Fragmenter:
 
         return self.merge_fragments(best_fragments)
 
-    def frag(self, text, terms):
+    def calculate_phrase_ranking(self, text, terms):
         text = clean(text)
         query_terms = list(map(lambda t: QueryTerm(t, [self._stemmer.stem(t)]), list(set(terms))))
         phrases = self._tokenizer.tokenize(text)
@@ -195,12 +194,15 @@ class Fragmenter:
 
             phrase.score = ((d ** 2) / nqterms) + (l * (d / nqterms))
 
-        # print('\n\n\n\n', phrases, '\n\n\n')
+        return phrases
 
+    def frag(self, text, terms):
+        phrases = self.calculate_phrase_ranking(text, terms)
         best_fragment = self.top_fragments(phrases)
-        return self.highlight(best_fragment)
+        return best_fragment
 
-    def highlight(self, phrase):
+    @staticmethod
+    def highlight(phrase):
         # template = '<%(tag)s class=%(q)s%(cls)s%(tn)s%(q)s>%(t)s</%(tag)s>'
         output = []
         highlight_terms = set(map(lambda hit: hit.term, phrase.matches))

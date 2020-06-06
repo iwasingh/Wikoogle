@@ -4,6 +4,7 @@ from pathlib import Path
 from preprocessing.analyzer import WikiNormalizer, WikimediaAnalyzer
 from whoosh.analysis import RegexTokenizer
 from parsing.compiler import Compiler
+from preprocessing.utils import clean
 logging.basicConfig(level=logging.INFO)
 
 DATA_FOLDER = Path(__file__).parent / 'data'
@@ -26,6 +27,11 @@ class TestIndex(unittest.TestCase):
             result = Compiler().compile(text)
             tokens = WikimediaAnalyzer()(result)
             print([i.text for i in tokens])
+
+    def test_clean(self, file='wikitext'):
+        with (DATA_FOLDER / file).open(encoding="utf8") as f:
+            text = f.read()
+            print(clean(text))
 
 
 if __name__ == '__main__':

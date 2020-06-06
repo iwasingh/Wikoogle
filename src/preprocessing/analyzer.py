@@ -1,7 +1,8 @@
 from whoosh.analysis import StemmingAnalyzer
-from whoosh.analysis.filters import Filter, SubstitutionFilter
+from whoosh.analysis.filters import Filter, SubstitutionFilter, CharsetFilter
 from whoosh.analysis.filters import STOP_WORDS
 from nltk.stem import WordNetLemmatizer
+from whoosh.support.charset import accent_map
 
 GOOGLE_STOP_WORDS = frozenset(('I', 'a', 'about', 'an', 'are', 'as', 'at', 'be', 'by', 'com', 'for', 'from',
                                'how', 'in', 'is', 'it', 'of', 'on', 'or', 'that', 'the', 'this', 'to', 'was',
@@ -36,7 +37,7 @@ class WikiNormalizer(Filter):
 
 def WikimediaAnalyzer(stoplist=GOOGLE_STOP_WORDS, cachesize=50000):
     # Use different analyzer for the title
-    ret = StemmingAnalyzer(stoplist=stoplist, cachesize=cachesize)
+    ret = StemmingAnalyzer(stoplist=stoplist, cachesize=cachesize) | CharsetFilter(accent_map)
     chain = ret | WikiNormalizer()
 
     return chain
