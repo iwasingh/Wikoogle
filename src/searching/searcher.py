@@ -40,7 +40,7 @@ class Searcher:
                 print(terms, 'query expansion time:', t1 - t0)
                 expanded_query = query | self.parser.parse(terms).with_boost(0.30)
                 # TODO To each concept assign a weight given by 1-0.9  i/m to not stress user query term
-                results = searcher.search(expanded_query, limit=30)
+                results = searcher.search(expanded_query, limit=10)
 
             return [r.Result(i, query) for i in results]
 
