@@ -1,13 +1,22 @@
 <!doctype html>
 <html>
   <head>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo_mini.png') }}"/>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo_mini.png') }}"/>
     <title>
       {% block title %}Progetto{% endblock %}
     </title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap">
+<!--    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap">-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/root.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='icons/open-iconic.min.css') }}" >
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/_grid.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/_skeleton.css') }}" />
+<!--    TODO bundle inside wikoogle.css -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/wikoogle.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/_helper.css') }}" />
+
 
     {% block stylesheet %}{% endblock %}
   </head>
@@ -16,23 +25,22 @@
     <div class="page">
       {% block header %}
         <header>
-          <nav class="top-left">
-            <a href="/">Wikoogle</a>
-          </nav>
-          <nav class="top-right">
-            <a href="/" class="active">Homepage</a>
-          </nav>
+          <button class="button link muted">Settings</button>
+          <button class="button link muted">About</button>
+<!--          <nav class="top-right">-->
+<!--            <a href="/" class="active">Homepage</a>-->
+<!--          </nav>-->
         </header>
       {% endblock %}
 
       {% block content %}{% endblock %}
 
       {% block footer %}
-        <footer>
-          <span class="title">Gestione dell'informazione 2019/2020</span>
-          <hr/>
-          <span class="subtitle">&copy; Singh Amarjot, Matteo Guerzoni</span>
-        </footer>
+<!--        <footer>-->
+<!--          <span class="title">Gestione dell'informazione 2019/2020</span>-->
+<!--          <hr/>-->
+<!--          <span class="subtitle">&copy; Singh Amarjot, Matteo Guerzoni</span>-->
+<!--        </footer>-->
       {% endblock %}
     </div>
 

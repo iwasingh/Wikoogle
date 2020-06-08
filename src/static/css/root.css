@@ -1,14 +1,48 @@
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/Roboto/Roboto-Bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 400;
+    src: url('../fonts/Roboto/Roboto-Italic.ttf') format('truetype');
+}
+
 :root {
     --color-primary: #0052D4;
-    --color-lightGrey: #d2d6dd;
+    --color-secondary: #4364f7;
+    --color-light--grey: #d2d6dd;
     --color-grey: #747681;
-    --color-darkGrey: #3f4144;
+    --color-dark--grey: #3f4144;
     --color-error: #d43939;
     --color-success: #28bd14;
-    --grid-maxWidth: 120rem;
+    --grid-max--width: 120rem;
     --grid-gutter: 2rem;
     --font-size: 1.6rem;
-    --font-family: "Helvetica Neue", sans-serif;
+    --font-family: "Roboto", sans-serif;
+    --gradient-primary: #0052D4, #4364F7, #6FB1FC;
 
-    --gradient-primary: linear-gradient(to top, #0052D4, #4364F7, #6FB1FC);
+    --color-light: #f7fafe;
+
+    --shadow--small: 0 2px 4px #ebecf7;
 }
+
+body, html, * {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: normal;
+    box-sizing: border-box;
+    margin: 0;
+}
+

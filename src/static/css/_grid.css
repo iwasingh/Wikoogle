@@ -1,0 +1,50 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, [col-start] auto [col-end]);
+  grid-template-rows: repeat(3, [row-start] auto [row-end]);
+}
+
+.row-1 {
+  grid-row: row-start / row-end
+}
+
+.row-2 {
+  grid-row: row-start 2 / row-end 2
+}
+
+.row-3 {
+  grid-row: row-start 3 / row-end 3
+}
+
+.col-1 {
+  grid-column: col-start / col-end;
+}
+
+.col-2 {
+  grid-column: col-start 2 / col-end 2;
+}
+
+.col-3 {
+  grid-column: col-start 3 / col-end 3;
+}
+
+.self-center {
+  align-self: center;
+  justify-self: center;
+}
+
+.self-col-center {
+  align-self: center;
+}
+
+.self-col-end {
+  align-self: end;
+}
+
+.self-col-start {
+  align-self: start;
+}
+
+.self-row-center {
+  justify-self: center;
+}

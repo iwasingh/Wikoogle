@@ -40,3 +40,57 @@ form.search-form > button svg {
   height: 18px;
   fill: #757575;
 }
+
+.search-bar {
+  padding-left: 1rem;
+  height: 44px;
+  max-width: var(--grid-max--width);
+  width: 582px;
+  display: flex;
+  background: #fff;
+  border: 1px solid #0000001a;
+  border-radius: 24px;
+  z-index: 3;
+  align-items: center;
+  outline: none;
+  box-shadow: var(--shadow--small);
+}
+
+.search-bar input {
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, .87);
+  word-wrap: break-word;
+  outline: none;
+  display: flex;
+  flex: 100%;
+  -webkit-tap-highlight-color: transparent;
+  height: 34px;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.search-bar input::placeholder {
+  font-size: 1.1rem;
+  font-style: normal;
+  font-weight: normal;
+}
+.search-bar__action {
+  padding: 0;
+  height: 103%;
+  /*background-image: linear-gradient(to right, var(--gradient-primary));*/
+  background-color: var(--color-secondary);
+  border: 1px solid var(--color-secondary);
+  color: #fff;
+  width: 56px;
+  border-radius: 0 24px 24px 0;
+}
+.search-bar__icon {
+  align-items: center;
+  display: flex;
+  position: relative;
+  top: 2px;
+  color: var(--color-grey);
+}

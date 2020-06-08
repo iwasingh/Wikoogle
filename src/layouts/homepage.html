@@ -9,14 +9,29 @@
 {% endblock %}
 
 {% block content %}
-  <main>
-    <form class="search-form" method="GET" action="/search">
+  <main class="grid-container">
+    <img class="logo-full img-responsive row-1 col-2 self-col-end self-row-center"
+         src="{{ url_for('static', filename='images/logo_full.png') }}"/>
+    <div class="flex-container flex-col row-2 col-2 self-row-center mt-3">
+      <div class="search-bar" tabindex="-1">
+        <input type="text" name="q" id="main_query" placeholder="Search"/>
+        <button class="button search-bar__action">
+          <span class="oi" data-glyph="magnifying-glass"></span>
+        </button>
+<!--        <div class="search-bar__icon">-->
+<!--        </div>-->
+      </div>
+    </div>
+<!--      <div class="row-2 col-2 flex-container flex-col">-->
+<!--          <img class="logo-full img-responsive" src="{{ url_for('static', filename='images/logo_full.png') }}"/>-->
+<!--      </div>-->
+<!--    <form class="search-form" method="GET" action="/search">-->
 
-      {% include 'partials/search-form.html' %}
+<!--      {% include 'partials/search-form.html' %}-->
 
-      {% include 'partials/multi-field-query.html' %}
-      
-    </form>
+<!--      {% include 'partials/multi-field-query.html' %}-->
+<!--      -->
+<!--    </form>-->
   </main>
 {% endblock %}
 

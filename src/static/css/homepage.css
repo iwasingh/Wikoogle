@@ -1,3 +1,8 @@
 main {
-  grid-row: 2;
+  grid-row: content;
+}
+
+.logo-full {
+  height: 117px;
+  width: 425px;
 }

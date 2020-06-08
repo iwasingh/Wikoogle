@@ -1,65 +1,94 @@
-* {
-  font-family: 'Lato', sans-serif;
-  box-sizing: border-box;
-}
-
 body {
-  margin: 0px;
+  background-color: var(--color-light);
 }
-
 .page {
   display: grid;
-  grid-template-rows: 50px auto 100px;
+  grid-template-rows: [header] minmax(auto, 64px) [content] auto [footer] 100px;
   height: 100vh;
+  padding: 0 calc(var(--grid-gutter)/2);
+  /*margin: 0 auto;*/
+  /*max-width: 1024px;*/
 }
 
 header {
-  grid-row: 1;
-  display: grid;
-  grid-template-columns: 30% auto 30%;
+  grid-row: header;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  font-size: 1rem;
+  line-height: 1;
 }
 
-header nav.top-left {
-  grid-column: 1;
-  align-self: center;
-  justify-self: center;
+.button {
+  padding: 1rem 2rem;
+  text-align: center;
+  line-height: 1;
+  cursor: pointer;
+  border: none;
+  outline: none;
 }
 
-header nav.top-right {
-  grid-column: 3;
-  align-self: center;
-  justify-self: center;
+.link {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--color-primary)
 }
 
-header nav a {
-  padding: 10px 16px 12px 16px;
-  background: rgba(43, 108, 176, .7);
-  text-decoration: none;
-  color: #ffffff;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  font-weight: bold;
+header button {
+  color: var(--color-dark--grey);
+  font-size: 1.25rem;
+
 }
 
-header nav a:hover,
-header nav a.active {
-  background: rgb(43, 108, 176);
+.button:hover {
+  opacity: 0.8;
 }
+/*.button:active {*/
+/*  */
+/*}*/
 
-footer {
-  grid-row: 3;
-  background: #f2f2f2;
-  color: rgba(0,0,0,.7);
-}
+/*header nav.top-left {*/
+/*  grid-column: 1;*/
+/*  align-self: center;*/
+/*  justify-self: center;*/
+/*}*/
 
-footer span.title {
-  display: block;
-  font-size: 18px;
-  margin: 20px;
-}
+/*header nav.top-right {*/
+/*  grid-column: 3;*/
+/*  align-self: center;*/
+/*  justify-self: center;*/
+/*}*/
 
-footer span.subtitle {
-  margin-left: 20px;
-}
+/*header nav a {*/
+/*  padding: 10px 16px 12px 16px;*/
+/*  background: rgba(43, 108, 176, .7);*/
+/*  text-decoration: none;*/
+/*  color: #ffffff;*/
+/*  border-top-left-radius: 20px;*/
+/*  border-top-right-radius: 20px;*/
+/*  border-bottom-left-radius: 20px;*/
+/*  border-bottom-right-radius: 20px;*/
+/*  font-weight: bold;*/
+/*}*/
+
+/*header nav a:hover,*/
+/*header nav a.active {*/
+/*  background: rgb(43, 108, 176);*/
+/*}*/
+
+/*footer {*/
+/*  grid-row: 3;*/
+/*  background: #f2f2f2;*/
+/*  color: rgba(0,0,0,.7);*/
+/*}*/
+
+/*footer span.title {*/
+/*  display: block;*/
+/*  font-size: 18px;*/
+/*  margin: 20px;*/
+/*}*/
+
+/*footer span.subtitle {*/
+/*  margin-left: 20px;*/
+/*}*/
