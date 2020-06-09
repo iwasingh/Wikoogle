@@ -14,9 +14,10 @@ header {
   grid-row: header;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
   font-size: 1rem;
   line-height: 1;
+  align-items: center;
 }
 
 .button {

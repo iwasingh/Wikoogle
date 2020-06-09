@@ -72,6 +72,10 @@ def show_index():
 
 @app.route('/search')
 def search_results():
+    return render_template(
+        'resultpage.html',
+        results=[]
+    )
     queryAllFields = request.args.get("q", "")
 
     queryByTitle = request.args.get("title", "")

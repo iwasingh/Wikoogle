@@ -1,28 +1,23 @@
 {% extends "_skeleton.html" %}
 
-{% block title %}Risultati{% endblock %}
+{% block title %}Wikoogle - Search results{% endblock %}
 
 {% block stylesheet %}
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/resultpage.css') }}" />
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/partials/multi-field-query.css') }}" />
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/partials/search-form.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/resultpage.css') }}"/>
+    <!--  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/partials/multi-field-query.css') }}" />-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/partials/search-form.css') }}"/>
 {% endblock %}
 
-{% block header %}
-  <header>
-    <nav class="top-left">
-      <a href="/">Wikoogle</a>
-    </nav>
-    <nav class="top-right-center">
-      <form class="search-form" method="GET" action="/search">
-        {% include 'partials/search-form.html' %}
-      </form>
-    </nav>
-  </header>
+{% block header_left %}
+    <div class="flex-container">
+        <img class="logo-mini img-responsive mr-3" src="{{ url_for('static', filename='images/logo_mini.png') }}"/>
+        {% include 'partials/searchbar.html' %}
+    </div>
 {% endblock %}
 
 {% block content %}
-  <main>
+  <main class="grid-container">
+{#		<hr class="col-3 row-1"/>#}
     {% for result in results %}
       <article>
         <small>en.wikipedia.org/resource</small>

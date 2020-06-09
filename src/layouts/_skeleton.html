@@ -22,16 +22,20 @@
   </head>
 
   <body>
-    <div class="page">
-      {% block header %}
-        <header>
-          <button class="button link muted">Settings</button>
-          <button class="button link muted">About</button>
-<!--          <nav class="top-right">-->
-<!--            <a href="/" class="active">Homepage</a>-->
-<!--          </nav>-->
-        </header>
-      {% endblock %}
+  <div class="page">
+      <header class="pt-3">
+          <div class="nav-item__left">
+              {% block header_left %} {% endblock %}
+          </div>
+
+          <div class="nav-item__right">
+              <button class="button link muted">Settings</button>
+              <button class="button link muted">About</button>
+          </div>
+      </header>
+{#      {% block header %}#}
+{#          {% include 'partials/header.html' %}#}
+{#      {% endblock %}#}
 
       {% block content %}{% endblock %}
 
