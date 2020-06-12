@@ -19,17 +19,18 @@
 
 
     {% block stylesheet %}{% endblock %}
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/_media.css') }}" />
   </head>
 
   <body>
   <div class="page">
-      <header class="pt-3">
+      <header class="pt-3 fixed">
           <div class="nav-item__left">
               {% block header_left %} {% endblock %}
           </div>
 
           <div class="nav-item__right">
-              <button class="button link muted">Settings</button>
+              <button data-target="settings" data-toggle="modal" class="button link muted">Settings</button>
               <button class="button link muted">About</button>
           </div>
       </header>
@@ -48,6 +49,10 @@
       {% endblock %}
     </div>
 
+		{% block modals %}
+			{% include 'partials/settings.html' %}
+		{% endblock %}
+		<script type="text/javascript" src="{{ url_for('static', filename='js/wikoogle.js') }}"></script>
     {% block javascript %}{% endblock %}
-  </body>
+	</body>
 </html>

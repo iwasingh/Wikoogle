@@ -4,6 +4,14 @@
   grid-template-rows: repeat(3, [row-start] auto [row-end]);
 }
 
+.template-r-2 {
+  grid-template-rows: repeat(2, [row-start] auto [row-end]);
+}
+
+.template-c-2 {
+  grid-template-columns: repeat(2, [col-start] auto [col-end]);
+}
+
 .row-1 {
   grid-row: row-start / row-end
 }

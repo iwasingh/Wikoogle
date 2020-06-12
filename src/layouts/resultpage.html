@@ -9,23 +9,34 @@
 {% endblock %}
 
 {% block header_left %}
-    <div class="flex-container">
-        <img class="logo-mini img-responsive mr-3" src="{{ url_for('static', filename='images/logo_mini.png') }}"/>
-        {% include 'partials/searchbar.html' %}
-    </div>
+	<div class="flex-container">
+		<a href="/">
+			<img class="logo-mini mr-3" src="{{ url_for('static', filename='images/logo_mini.png') }}"
+					 onclick=""/>
+		</a>
+		<form method="GET" action="/search">
+			{% include 'partials/searchbar.html' %}
+		</form>
+	</div>
 {% endblock %}
 
 {% block content %}
-  <main class="grid-container">
-{#		<hr class="col-3 row-1"/>#}
-    {% for result in results %}
-      <article>
-        <small>en.wikipedia.org/resource</small>
-        <a href="#">{{ result.title }}</a>
-        <span class="text">{{ result.snippet() | safe }}</span>
-      </article>
-    {% endfor %}
-  </main>
+	<main class="grid-container results">
+		{#		<hr class="col-3 row-1"/>#}
+		{% for result in results %}
+			<article class="flex flex-col mr-6">
+				<a href="{{ result.resource }}" target="_blank">
+					<p class="resource caption">
+						{{ result.resource }}
+					</p>
+					<h3 class="title mt-1">
+						{{ result.title }}
+					</h3>
+				</a>
+				<p class="text mt-1">{{ result.snippet() | safe }}</p>
+			</article>
+		{% endfor %}
+	</main>
 {% endblock %}
 
 {% block javascript %}

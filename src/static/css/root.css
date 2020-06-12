@@ -30,14 +30,19 @@
     --grid-gutter: 2rem;
     --font-size: 1.6rem;
     --font-family: "Roboto", sans-serif;
-    --gradient-primary: #0052D4, #4364F7, #6FB1FC;
+    --gradient-primary: #0052D4, #4364F7, #6FB1FC; /* Bluelagoo */
 
     --color-light: #f7fafe;
+    --color-primary-opaque: #0052d45e;
 
     --shadow--small: 0 2px 4px #ebecf7;
 }
 
-body, html, * {
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+body, html{
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
     font-style: normal;
@@ -45,4 +50,46 @@ body, html, * {
     box-sizing: border-box;
     margin: 0;
 }
+
+h2 {
+    font-size: 2rem;
+    line-height: 2.4rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-size: 1.6rem;
+    line-height: 1.6rem;
+    margin-bottom: 0.90rem;
+}
+
+h4 {
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+strong {
+    font-weight: bold;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left, #f0f0f0, #d2d6dd, #f0f0f0);
+    background-image: -moz-linear-gradient(left, #f0f0f0, #d2d6dd, #f0f0f0);
+    background-image: -ms-linear-gradient(left, #f0f0f0, #d2d6dd, #f0f0f0);
+    background-image: -o-linear-gradient(left, #f0f0f0, #d2d6dd, #f0f0f0);
+    margin: 32px 0 32px 0;
+}
+
+/*hr.primary {*/
+/*    border: 0;*/
+/*    height: 1px;*/
+/*    background-image: -webkit-linear-gradient(left, #f0f0f0, var(--color-primary), #f0f0f0);*/
+/*    background-image: -moz-linear-gradient(left, #f0f0f0, var(--color-primary), #f0f0f0);*/
+/*    background-image: -ms-linear-gradient(left, #f0f0f0, var(--color-primary), #f0f0f0);*/
+/*    background-image: -o-linear-gradient(left, #f0f0f0, var(--color-primary), #f0f0f0);*/
+/*}*/
 

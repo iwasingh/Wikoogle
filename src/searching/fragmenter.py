@@ -33,7 +33,10 @@ def truncate(text, size):
     maximum_size = size + 100
     truncated_text = text[:size]
     last_char = truncated_text[-1]
-    while not last_char.isspace() and last_char not in {'!', '.', '?'} and len(truncated_text) <= maximum_size:
+    while not last_char.isspace() \
+            and last_char not in {'!', '.', '?'} \
+            and len(truncated_text) <= maximum_size \
+            and len(truncated_text) < len(text):
         truncated_text += text[len(truncated_text)]
         last_char = truncated_text[-1]
 
@@ -202,14 +205,13 @@ class Fragmenter:
         return best_fragment
 
     @staticmethod
-    def highlight(phrase):
+    def highlight(phrase, max_size=300):
         # template = '<%(tag)s class=%(q)s%(cls)s%(tn)s%(q)s>%(t)s</%(tag)s>'
         output = []
         highlight_terms = set(map(lambda hit: hit.term, phrase.matches))
-        text = word_tokenize(phrase.text)
-        for index, t in enumerate(phrase.tokens):
-            term = text[index]
-            if t.lower() in highlight_terms:
+        text = word_tokenize(truncate(phrase.text, max_size))
+        for term in text:
+            if stemmer.stem(term).lower() in highlight_terms:
                 term = f'<strong>{term}</strong>'
 
             output.append(term)

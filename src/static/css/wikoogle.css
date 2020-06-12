@@ -1,1 +1,62 @@
 @import "_typography.css";
+@import "_modal.css";
+
+
+.opt {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.opt__action {
+
+}
+
+.opt__description {
+  padding-right: 24px;
+  word-break: break-word;
+}
+
+input[type="radio"]{
+  display: none;
+}
+input[type="radio"] + label{
+  position: relative;
+  display: inline-block;
+  padding-left: 1.5em;
+  margin-right: 2em;
+  cursor: pointer;
+  line-height: 1em;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  height: 2rem;
+}
+input[type="radio"] + label:before,
+input[type="radio"] + label:after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2em;
+  height: 2em;
+  text-align: center;
+  color: white;
+  border-radius: 50%;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+  border: 1px solid var(--color-light--grey);
+}
+input[type="radio"] + label:before {
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+  box-shadow: inset 0 0 0 0.3em white, inset 0 0 0 1em var(--color-light--grey);
+}
+input[type="radio"] + label:hover:before {
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+  box-shadow: inset 0 0 0 0.2em white, inset 0 0 0 1em var(--color-primary-opaque);
+}
+input[type="radio"]:checked + label:before {
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+  box-shadow: inset 0 0 0 0.2em white, inset 0 0 0 1em var(--color-secondary);
+}
