@@ -16,14 +16,17 @@
 
 .bg-primary {
   background-color: var(--color-primary);
+  color: white;
 }
 
 .fill-primary {
   fill: var(--color-primary);
+  color: white;
 }
 
 .bg-secondary {
   background-color: var(--color-secondary);
+  color: white;
 }
 
 .bg-gradient {

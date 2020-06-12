@@ -1,67 +1,73 @@
 <div id="settings" class="modal">
 	<div class="modal-window">
-		<div class="modal-header flex justify-space-between align-start">
-			<h2 class="grey">Settings</h2>
-			<button data-dismiss="modal" class="button menu">
-        <span data-dismiss="modal" class="oi grey" data-glyph="x"></span>
-    </button>
-		</div>
-		<div class="flex-container flex-col p-0 pt-1">
-			<h3 class="primary"><strong>Query expansion</strong></h3>
+		<form method="POST" action="/settings">
+			<div class="modal-header flex justify-space-between align-start">
+				<h2 class="grey">Settings</h2>
+				<button data-dismiss="modal" class="button menu">
+					<span data-dismiss="modal" class="oi grey" data-glyph="x"></span>
+				</button>
+			</div>
+			<div class="flex-container flex-col p-0 pt-1">
+				<h3 class="primary"><strong>Query expansion</strong></h3>
 
-			<div class="opt mb-3">
-				<div class="opt__description">
-					<h4>Local Context Analysis query expansion</h4>
-					<p class="muted">Query expansion based on local context analysis algorithm.
-						The main idea is to expand a query by selecting key "concepts" from the first 10 documents.
-						These concepts are ranked accordingly with the query and the top ones are added in the query vector space
-						with a specific weight. Based on the following paper by
-						<a href="https://my.eng.utah.edu/~cs7961/papers/XuCroft-SIGIR96.pdf" target="_blank">
-							Jinxi Xu and W. Bruce Croft</a>
-					</p>
+				<div class="opt mb-3">
+					<div class="opt__description">
+						<h4>Local Context Analysis query expansion</h4>
+						<p class="muted">Query expansion based on local context analysis algorithm.
+							The main idea is to expand a query by selecting key "concepts" from the first 10 documents.
+							These concepts are ranked accordingly with the query and the top ones are added in the query vector space
+							with a specific weight. Based on the following paper by
+							<a href="https://my.eng.utah.edu/~cs7961/papers/XuCroft-SIGIR96.pdf" target="_blank">
+								Jinxi Xu and W. Bruce Croft</a>
+						</p>
+					</div>
+					<div class="opt__action">
+						<input class=radio" type="radio" value="lca" id="query_expansion_lca" name="query_expansion" {{ 'checked' if session['query_expansion'] == 'lca' else '' }} />
+						<label for="query_expansion_lca"></label>
+					</div>
 				</div>
-				<div class="opt__action">
-					<input class=radio" type="radio" value="lca" id="query_expansion_lca" name="query_expansion"/>
-					<label for="query_expansion_lca"></label>
-				</div>
-			</div>
 
-			<div class="opt mb-3">
-				<div class="opt__description">
-					<h4>No query expansion</h4>
-					<p class="muted">Disable query expansion</p>
+				<div class="opt mb-3">
+					<div class="opt__description">
+						<h4>No query expansion</h4>
+						<p class="muted">Disable query expansion</p>
+					</div>
+					<div class="opt__action">
+						<input class=radio" type="radio" value="none" id="query_expansion_none" name="query_expansion" {{ 'checked' if session['query_expansion'] == 'none' else '' }} />
+						<label for="query_expansion_none"></label>
+					</div>
 				</div>
-				<div class="opt__action">
-					<input class=radio" type="radio" value="none" id="query_expansion_none" name="query_expansion"/>
-					<label for="query_expansion_none"></label>
+				<hr/>
+				<h3 class="primary"><strong>Ranking</strong></h3>
+				<div class="opt mb-3">
+					<div class="opt__description">
+						<h4>Okapi BM25</h4>
+						<p class="muted">Okapi BM25 ranking function to estimate the relevance of documents. Used by default</p>
+					</div>
+					<div class="opt__action">
+						<input class=radio" type="radio" value="bm25" id="ranking_bm25" name="ranking" {{ 'checked' if session['ranking'] == 'bm25' else '' }} />
+						<label for="ranking_bm25"></label>
+					</div>
 				</div>
+				<div class="opt mb-3">
+					<div class="opt__description">
+						<h4>PL2</h4>
+						<p class="muted">PL2 ranking function from Terrier (see <a href="http://terrier.org/" target="_blank">http://terrier.org/</a>)
+						</p>
+					</div>
+					<div class="opt__action">
+						<input class=radio" type="radio" value="pl2" id="ranking_pl2" name="ranking" {{ 'checked' if session['ranking'] == 'pl2' else '' }} />
+						<label for="ranking_pl2"></label>
+					</div>
+				</div>
+				<hr/>
+				<h3 class="primary"><strong>PageRank</strong></h3>
+				TODO
 			</div>
-			<hr/>
-			<h3 class="primary"><strong>Ranking</strong></h3>
-			<div class="opt mb-3">
-				<div class="opt__description">
-					<h4>Okapi BM25</h4>
-					<p class="muted">Okapi BM25 ranking function to estimate the relevance of documents. Used by default</p>
-				</div>
-				<div class="opt__action">
-					<input class=radio" type="radio" value="bm25" id="ranking_bm25" name="ranking"/>
-					<label for="ranking_bm25"></label>
-				</div>
+			<div class="flex-container justify-space-between">
+				<div></div>
+				<input type="submit" class="button bg-primary" value="Submit" />
 			</div>
-			<div class="opt mb-3">
-				<div class="opt__description">
-					<h4>PL2</h4>
-					<p class="muted">PL2 ranking function from Terrier (see <a href="http://terrier.org/" target="_blank">http://terrier.org/</a>)
-					</p>
-				</div>
-				<div class="opt__action">
-					<input class=radio" type="radio" value="pl2" id="ranking_pl2" name="ranking"/>
-					<label for="ranking_pl2"></label>
-				</div>
-			</div>
-			<hr />
-			<h3 class="primary"><strong>PageRank</strong></h3>
-			TODO
-		</div>
+		</form>
 	</div>
 </div>

@@ -51,7 +51,12 @@ article a .resource {
 }
 
 article a .title {
-  text-decoration: none
+  text-decoration: none;
+  margin: 0;
+  font-weight: normal;
+  font-size: 1.4rem;
+  line-height: 1.6rem;
+  color: var(--color-primary);
 }
 article a .title:hover {
   text-decoration: underline;

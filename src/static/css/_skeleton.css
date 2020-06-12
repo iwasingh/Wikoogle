@@ -28,6 +28,7 @@ body {
   cursor: pointer;
   border: none;
   outline: none;
+  border-radius: 12px;
 }
 
 .link {
