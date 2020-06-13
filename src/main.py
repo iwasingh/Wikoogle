@@ -1,4 +1,5 @@
 from preprocessing.index import WikiIndex
+from pagerank.pagerank import PageRank
 from searching.searcher import Searcher
 from flask import Flask, request, render_template
 
@@ -9,6 +10,7 @@ import logging.config
 
 __logger = None
 __wikimedia_ix = None
+__page_rank = None
 __searcher = None
 
 """
@@ -48,6 +50,17 @@ def get_wikimedia_ix():
 
     return __wikimedia_ix
 
+def get_page_rank():
+    global __page_rank
+
+    if __page_rank is not None:
+        return __page_rank
+
+    print(' * Bootstrap PageRank')
+
+    __page_rank = PageRank().get('graph.txt')
+    
+    return __page_rank
 
 def get_searcher():
     global __searcher
@@ -57,7 +70,7 @@ def get_searcher():
 
     print(' * Bootstrap Searcher')
 
-    __searcher = Searcher(get_wikimedia_ix())
+    __searcher = Searcher(get_wikimedia_ix(), get_page_rank())
 
     return __searcher
 
@@ -92,4 +105,5 @@ def search_results():
 if __name__ == 'src.main':
     get_logger()
     get_wikimedia_ix()
-    # get_searcher()
+    get_page_rank()
+    get_searcher()

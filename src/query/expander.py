@@ -6,7 +6,7 @@ from preprocessing.analyzer import WikimediaAnalyzer, GOOGLE_STOP_WORDS
 from preprocessing.utils import clean
 from enum import Enum
 from whoosh.classify import Expander, ExpansionModel
-from rake_nltk import Metric, Rake
+# from rake_nltk import Metric, Rake
 from nltk.tree import Tree
 from functools import reduce
 import operator
