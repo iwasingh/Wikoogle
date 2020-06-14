@@ -50,6 +50,7 @@ def get_wikimedia_ix():
 
     return __wikimedia_ix
 
+
 def get_page_rank():
     global __page_rank
 
@@ -59,8 +60,9 @@ def get_page_rank():
     print(' * Bootstrap PageRank')
 
     __page_rank = PageRank().get('graph.txt')
-    
+
     return __page_rank
+
 
 def get_searcher():
     global __searcher

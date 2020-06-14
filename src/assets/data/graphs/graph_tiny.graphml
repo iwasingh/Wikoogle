@@ -1,0 +1,313 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><graph edgedefault="directed"><node id="ayn_rand"/>
+<node id="anarchism"/>
+<node id="april_15"/>
+<node id="aleister_crowley"/>
+<node id="athens"/>
+<node id="andrew_carnegie"/>
+<node id="alexander_grothendieck"/>
+<node id="black"/>
+<node id="british_national_party"/>
+<node id="barcelona"/>
+<node id="black_metal"/>
+<node id="capitalism"/>
+<node id="chinese_philosophy"/>
+<node id="catalonia"/>
+<node id="chicago"/>
+<node id="democracy"/>
+<node id="distributism"/>
+<node id="december_21"/>
+<node id="ethical_egoism"/>
+<node id="esperanto"/>
+<node id="a"/>
+<node id="ethics"/>
+<node id="emma_goldman"/>
+<node id="progressive_education"/>
+<node id="egalitarianism"/>
+<node id="fascism"/>
+<node id="february_12"/>
+<node id="feminism"/>
+<node id="flag"/>
+<node id="francisco_franco"/>
+<node id="george_orwell"/>
+<node id="graffiti"/>
+<node id="government"/>
+<node id="george_bernard_shaw"/>
+<node id="lgbt_social_movements"/>
+<node id="history_of_europe"/>
+<node id="history_of_spain"/>
+<node id="heaven"/>
+<node id="hierarchical_organization"/>
+<node id="hacker_ethic"/>
+<node id="politics_of_italy"/>
+<node id="iain_banks"/>
+<node id="individualist_anarchism"/>
+<node id="italo_calvino"/>
+<node id="individualism"/>
+<node id="international_brigades"/>
+<node id="jello_biafra"/>
+<node id="jorge_luis_borges"/>
+<node id="june_2"/>
+<node id="jean-jacques_rousseau"/>
+<node id="july_29"/>
+<node id="kurt_cobain"/>
+<node id="ken_macleod"/>
+<node id="anarcho-communism"/>
+<node id="leon_trotsky"/>
+<node id="libertarian_socialism"/>
+<node id="index_of_philosophy_articles_(a–c)"/>
+<node id="left-wing_politics"/>
+<node id="lemmy"/>
+<node id="michael_moorcock"/>
+<node id="mao_zedong"/>
+<node id="murray_rothbard"/>
+<node id="noam_chomsky"/>
+<node id="natural_law"/>
+<node id="objectivism_(ayn_rand)"/>
+<node id="politics"/>
+<node id="philip_k._dick"/>
+<node id="political_philosophy"/>
+<node id="political_spectrum"/>
+<node id="property"/>
+<node id="prague_spring"/>
+<node id="political_party"/>
+<node id="pol_pot"/>
+<node id="plutocracy"/>
+<node id="pacifism"/>
+<node id="philosophy_of_education"/>
+<node id="richard_wagner"/>
+<node id="red_army_faction"/>
+<node id="robert_anton_wilson"/>
+<node id="rent_(musical)"/>
+<node id="syndicalism"/>
+<node id="socialism"/>
+<node id="skinhead"/>
+<node id="satanism"/>
+<node id="september_6"/>
+<node id="state_(polity)"/>
+<node id="squatting"/>
+<node id="surrealism"/>
+<node id="salute"/>
+<node id="sandinista_national_liberation_front"/>
+<node id="stonewall_riots"/>
+<node id="justification_for_the_state"/>
+<node id="art"/>
+<node id="autism"/>
+<node id="americans_with_disabilities_act_of_1990"/>
+<node id="antipsychotic"/>
+<node id="adrian_lamo"/>
+<node id="blue"/>
+<node id="communication"/>
+<node id="courtney_love"/>
+<node id="central_nervous_system"/>
+<node id="evolutionary_psychology"/>
+<node id="genomic_imprinting"/>
+<node id="mitochondrion"/>
+<node id="neurotransmitter"/>
+<node id="pseudoscience"/>
+<node id="pittsburgh_steelers"/>
+<node id="stuttering"/>
+<node id="demographics_of_thailand"/>
+<node id="asteroid"/>
+<node id="albedo"/>
+<node id="absolute_magnitude"/>
+<node id="attribution_of_recent_climate_change"/>
+<node id="botany"/>
+<node id="comet"/>
+<node id="carbon_sink"/>
+<node id="comet_hale–bopp"/>
+<node id="hypothetical_types_of_biochemistry"/>
+<node id="deep_space_1"/>
+<node id="davis,_california"/>
+<node id="exoplanet"/>
+<node id="feedback"/>
+<node id="homeostasis"/>
+<node id="international_space_station"/>
+<node id="ice_age"/>
+<node id="john_von_neumann"/>
+<node id="kuiper_belt"/>
+<node id="list_of_latin_words_with_english_derivatives"/>
+<node id="miocene"/>
+<node id="moon"/>
+<node id="mercury_(planet)"/>
+<node id="nereid_(moon)"/>
+<node id="near-earth_object"/>
+<node id="nature"/>
+<node id="planets_beyond_neptune"/>
+<node id="sun"/>
+<node id="solar_energy"/>
+<node id="snow"/>
+<node id="snowball_earth"/>
+<node id="ascii"/>
+<node id="alpha"/>
+<node id="africa_alphabet"/>
+<node id="alphabet_song"/>
+<node id="braille"/>
+<node id="brahui_language"/>
+<node id="duodecimal"/>
+<node id="faroese_language"/>
+<node id="h"/>
+<node id="hangman_(game)"/>
+<node id="loglan"/>
+<node id="latin_alphabet"/>
+<node id="morse_code"/>
+<node id="norwegian_language"/>
+<node id="novial"/>
+<node id="interlingue"/>
+<node id="polish_language"/>
+<node id="romansh_language"/>
+<node id="romanian_language"/>
+<node id="swedish_language"/>
+<edge source="ayn_rand" target="anarchism"/>
+<edge source="april_15" target="anarchism"/>
+<edge source="aleister_crowley" target="anarchism"/>
+<edge source="athens" target="anarchism"/>
+<edge source="andrew_carnegie" target="anarchism"/>
+<edge source="alexander_grothendieck" target="anarchism"/>
+<edge source="black" target="anarchism"/>
+<edge source="british_national_party" target="anarchism"/>
+<edge source="barcelona" target="anarchism"/>
+<edge source="black_metal" target="anarchism"/>
+<edge source="capitalism" target="anarchism"/>
+<edge source="chinese_philosophy" target="anarchism"/>
+<edge source="catalonia" target="anarchism"/>
+<edge source="chicago" target="anarchism"/>
+<edge source="democracy" target="anarchism"/>
+<edge source="distributism" target="anarchism"/>
+<edge source="december_21" target="anarchism"/>
+<edge source="ethical_egoism" target="anarchism"/>
+<edge source="esperanto" target="anarchism"/>
+<edge source="esperanto" target="a"/>
+<edge source="ethics" target="anarchism"/>
+<edge source="emma_goldman" target="anarchism"/>
+<edge source="progressive_education" target="anarchism"/>
+<edge source="egalitarianism" target="anarchism"/>
+<edge source="fascism" target="anarchism"/>
+<edge source="february_12" target="anarchism"/>
+<edge source="feminism" target="anarchism"/>
+<edge source="flag" target="anarchism"/>
+<edge source="francisco_franco" target="anarchism"/>
+<edge source="george_orwell" target="anarchism"/>
+<edge source="graffiti" target="anarchism"/>
+<edge source="government" target="anarchism"/>
+<edge source="george_bernard_shaw" target="anarchism"/>
+<edge source="lgbt_social_movements" target="anarchism"/>
+<edge source="history_of_europe" target="anarchism"/>
+<edge source="history_of_spain" target="anarchism"/>
+<edge source="heaven" target="anarchism"/>
+<edge source="hierarchical_organization" target="anarchism"/>
+<edge source="hacker_ethic" target="anarchism"/>
+<edge source="politics_of_italy" target="anarchism"/>
+<edge source="iain_banks" target="anarchism"/>
+<edge source="individualist_anarchism" target="anarchism"/>
+<edge source="italo_calvino" target="anarchism"/>
+<edge source="individualism" target="anarchism"/>
+<edge source="international_brigades" target="anarchism"/>
+<edge source="jello_biafra" target="anarchism"/>
+<edge source="jorge_luis_borges" target="anarchism"/>
+<edge source="june_2" target="anarchism"/>
+<edge source="jean-jacques_rousseau" target="anarchism"/>
+<edge source="july_29" target="anarchism"/>
+<edge source="kurt_cobain" target="anarchism"/>
+<edge source="ken_macleod" target="anarchism"/>
+<edge source="anarcho-communism" target="anarchism"/>
+<edge source="leon_trotsky" target="anarchism"/>
+<edge source="libertarian_socialism" target="anarchism"/>
+<edge source="index_of_philosophy_articles_(a–c)" target="anarchism"/>
+<edge source="left-wing_politics" target="anarchism"/>
+<edge source="lemmy" target="anarchism"/>
+<edge source="michael_moorcock" target="anarchism"/>
+<edge source="mao_zedong" target="anarchism"/>
+<edge source="murray_rothbard" target="anarchism"/>
+<edge source="noam_chomsky" target="anarchism"/>
+<edge source="natural_law" target="anarchism"/>
+<edge source="objectivism_(ayn_rand)" target="anarchism"/>
+<edge source="politics" target="anarchism"/>
+<edge source="philip_k._dick" target="anarchism"/>
+<edge source="political_philosophy" target="anarchism"/>
+<edge source="political_spectrum" target="anarchism"/>
+<edge source="property" target="anarchism"/>
+<edge source="prague_spring" target="anarchism"/>
+<edge source="political_party" target="anarchism"/>
+<edge source="pol_pot" target="anarchism"/>
+<edge source="plutocracy" target="anarchism"/>
+<edge source="pacifism" target="anarchism"/>
+<edge source="philosophy_of_education" target="anarchism"/>
+<edge source="richard_wagner" target="anarchism"/>
+<edge source="red_army_faction" target="anarchism"/>
+<edge source="robert_anton_wilson" target="anarchism"/>
+<edge source="rent_(musical)" target="anarchism"/>
+<edge source="syndicalism" target="anarchism"/>
+<edge source="socialism" target="anarchism"/>
+<edge source="skinhead" target="anarchism"/>
+<edge source="satanism" target="anarchism"/>
+<edge source="september_6" target="anarchism"/>
+<edge source="state_(polity)" target="anarchism"/>
+<edge source="squatting" target="anarchism"/>
+<edge source="surrealism" target="anarchism"/>
+<edge source="salute" target="anarchism"/>
+<edge source="sandinista_national_liberation_front" target="anarchism"/>
+<edge source="stonewall_riots" target="anarchism"/>
+<edge source="art" target="autism"/>
+<edge source="americans_with_disabilities_act_of_1990" target="autism"/>
+<edge source="antipsychotic" target="autism"/>
+<edge source="adrian_lamo" target="autism"/>
+<edge source="blue" target="autism"/>
+<edge source="communication" target="autism"/>
+<edge source="courtney_love" target="autism"/>
+<edge source="central_nervous_system" target="autism"/>
+<edge source="evolutionary_psychology" target="autism"/>
+<edge source="genomic_imprinting" target="autism"/>
+<edge source="mitochondrion" target="autism"/>
+<edge source="neurotransmitter" target="autism"/>
+<edge source="pseudoscience" target="autism"/>
+<edge source="pittsburgh_steelers" target="autism"/>
+<edge source="stuttering" target="autism"/>
+<edge source="asteroid" target="albedo"/>
+<edge source="absolute_magnitude" target="albedo"/>
+<edge source="attribution_of_recent_climate_change" target="albedo"/>
+<edge source="botany" target="albedo"/>
+<edge source="comet" target="albedo"/>
+<edge source="carbon_sink" target="albedo"/>
+<edge source="comet_hale–bopp" target="albedo"/>
+<edge source="hypothetical_types_of_biochemistry" target="albedo"/>
+<edge source="deep_space_1" target="albedo"/>
+<edge source="davis,_california" target="albedo"/>
+<edge source="exoplanet" target="albedo"/>
+<edge source="feedback" target="albedo"/>
+<edge source="homeostasis" target="albedo"/>
+<edge source="international_space_station" target="albedo"/>
+<edge source="ice_age" target="albedo"/>
+<edge source="john_von_neumann" target="albedo"/>
+<edge source="kuiper_belt" target="albedo"/>
+<edge source="list_of_latin_words_with_english_derivatives" target="albedo"/>
+<edge source="miocene" target="albedo"/>
+<edge source="moon" target="albedo"/>
+<edge source="mercury_(planet)" target="albedo"/>
+<edge source="nereid_(moon)" target="albedo"/>
+<edge source="near-earth_object" target="albedo"/>
+<edge source="nature" target="albedo"/>
+<edge source="planets_beyond_neptune" target="albedo"/>
+<edge source="sun" target="albedo"/>
+<edge source="solar_energy" target="albedo"/>
+<edge source="snow" target="albedo"/>
+<edge source="ascii" target="a"/>
+<edge source="alpha" target="a"/>
+<edge source="africa_alphabet" target="a"/>
+<edge source="alphabet_song" target="a"/>
+<edge source="braille" target="a"/>
+<edge source="brahui_language" target="a"/>
+<edge source="duodecimal" target="a"/>
+<edge source="faroese_language" target="a"/>
+<edge source="h" target="a"/>
+<edge source="hangman_(game)" target="a"/>
+<edge source="loglan" target="a"/>
+<edge source="latin_alphabet" target="a"/>
+<edge source="morse_code" target="a"/>
+<edge source="norwegian_language" target="a"/>
+<edge source="novial" target="a"/>
+<edge source="interlingue" target="a"/>
+<edge source="polish_language" target="a"/>
+<edge source="romansh_language" target="a"/>
+<edge source="romanian_language" target="a"/>
+</graph></graphml>
