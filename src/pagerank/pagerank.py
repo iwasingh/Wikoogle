@@ -1,7 +1,9 @@
-import math
 from config import ASSETS_DATA, ROOT
 import networkx as nx
 import igraph
+from decimal import Decimal, getcontext
+
+getcontext().prec = 35
 
 
 def normalize_title(title):
@@ -9,9 +11,9 @@ def normalize_title(title):
 
 
 class PageRank:
-    def __init__(self, graph):
+    def __init__(self, g=None):
         self.graph = {}
-        self.G = graph
+        self.G = g
 
     def clear(self):
         pass
@@ -24,7 +26,7 @@ class PageRank:
         for line in f:
             articles = line.split(" ")
             main_article = articles.pop(0)
-            self.G.add_edges_from([(article, main_article) for article in articles])
+            self.G.add_edges_from([(article.rstrip(), main_article.rstrip()) for article in articles])
 
         f.close()
         nx.write_adjlist(self.G, str(path) + '.adjlist')
@@ -66,23 +68,16 @@ class PageRank:
         f = open(str(path), 'w', encoding="utf-8")
         for index in range(len(pr) - 1):
             article_title = self.G.vs[index]['id']
-            f.write(f'{article_title} {pr[index]}\n')
+            f.write(f'{article_title.rstrip()} {pr[index]}\n')
         f.close()
         return pr
 
-    def get(self, name='graph.txt', destructive=False):
+    def get(self, name, destructive=False):
         f = open(name, "r")
 
         for line in f:
-            articles = line.split(" ")
-            main_article = articles.pop(0)
-            self.graph[main_article] = math.log10(len(articles))
-
+            # Dont forget trailing '\n
+            article, rank = tuple(line.split(" "))
+            self.graph[article] = float((rank.rstrip()))
         f.close()
-
-        max_values = max(self.graph.items(), key=lambda item: item[1])[1]
-
-        for key in self.graph:
-            self.graph[key] = self.graph[key] / max_values
-
         return self
