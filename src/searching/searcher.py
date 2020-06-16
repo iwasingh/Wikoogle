@@ -5,9 +5,6 @@ from whoosh.qparser import MultifieldParser
 from query.expander import thesaurus_expand, lca_expand
 import logging
 from whoosh import scoring, searching, sorting
-from whoosh.classify import Expander, ExpansionModel
-from whoosh import qparser
-import whoosh.query as wq
 import time
 
 logger = logging.getLogger()
@@ -139,13 +136,19 @@ class Searcher:
         self._query_expansion_limit = 10
         self._query_expansion_terms = 5
         self._page_rank_limit = 30
-        self.parser = QueryParser('text', schema=self.wikimedia.index.schema)
+        self.parser_base = QueryParser('text', schema=self.wikimedia.index.schema)
+        self.parser = MultifieldParser(['title', 'text'], fieldboosts={'title': 2.5, 'text': 1.0},
+                                       schema=self.wikimedia.index.schema)
 
     def search(self, text, configuration):
         results = []
 
-        query = MultifieldParser(['title', 'text'], fieldboosts={'title': 2.5, 'text': 1.0},
-                                 schema=self.wikimedia.index.schema).parse(text)
+        query = self.parser.parse(text)
+
+        # query_base = self.parser_base.parse(text)
+
+        # return []
+
         expansion = 'lca'
         expansion_threshold = 1.4
         expansion_terms = self._query_expansion_terms
@@ -194,7 +197,8 @@ class Searcher:
                 if len(results) >= self._query_expansion_limit:
                     t0 = time.time()
                     terms = " OR ".join(
-                        ['(' + i + ')' for i in lca_expand(query, results, size=expansion_terms, threshold=expansion_threshold)])
+                        ['(' + i + ')' for i in
+                         lca_expand(query, results, size=expansion_terms, threshold=expansion_threshold)])
                     t1 = time.time()
                     print(terms, 'query expansion time:', t1 - t0)
                     expanded_query = query | self.parser.parse(terms).with_boost(0.30)
