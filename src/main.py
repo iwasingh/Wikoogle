@@ -116,8 +116,9 @@ def settings():
     if request.method == 'POST':
         session['query_expansion'] = request.form['query_expansion']
         session['ranking'] = request.form['ranking']
-        if 'page_rank' in request.form:
-            session['page_rank'] = request.form['page_rank']
+        session['link_analysis'] = request.form['link_analysis']
+        # if 'page_rank' in request.form:
+        #     session['page_rank'] = request.form['page_rank']
         return redirect('/')
 
     return session

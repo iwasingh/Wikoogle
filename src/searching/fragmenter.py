@@ -4,29 +4,31 @@ from nltk import word_tokenize
 from nltk.stem.porter import *
 import re
 from parsing.symbols import Bold, Italic, ItalicAndBold, Heading3, Heading4, Heading
+from preprocessing.utils import clean
+from markupsafe import Markup, escape
 import time
 
 stemmer = PorterStemmer()
 detokenizer = TreebankWordDetokenizer()
 
 
-def clean(text):
-    tags = [
-        Bold,
-        ItalicAndBold,
-        Italic,
-        Heading3,
-        Heading4,
-        Heading,
-
-    ]
-
-    for i in tags:
-        text = re.sub(i.start.regex, "", text)
-
-    text = re.sub(r'<ref[\s\S]*?\/\>(!?<\/ref\>)*|<ref[\s\S]*?\>*?[<]?\/ref\>', "", text)
-
-    return text
+# def clean(text):
+#     tags = [
+#         Bold,
+#         ItalicAndBold,
+#         Italic,
+#         Heading3,
+#         Heading4,
+#         Heading,
+#         Tab
+#     ]
+#
+#     for i in tags:
+#         text = re.sub(i.start.regex, "", text)
+#
+#     text = re.sub(r'<ref[\s\S]*?\/\>(!?<\/ref\>)*|<ref[\s\S]*?\>*?[<]?\/ref\>', "", text)
+#
+#     return text
 
 
 def truncate(text, size):
@@ -209,7 +211,7 @@ class Fragmenter:
         # template = '<%(tag)s class=%(q)s%(cls)s%(tn)s%(q)s>%(t)s</%(tag)s>'
         output = []
         highlight_terms = set(map(lambda hit: hit.term, phrase.matches))
-        text = word_tokenize(truncate(phrase.text, max_size))
+        text = word_tokenize(escape(truncate(phrase.text, max_size)))
         for term in text:
             if stemmer.stem(term).lower() in highlight_terms:
                 term = f'<strong>{term}</strong>'

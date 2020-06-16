@@ -1,4 +1,5 @@
 from searching.fragmenter import Fragmenter, truncate
+from markupsafe import Markup
 import logging
 import time
 
@@ -33,6 +34,8 @@ class Result:
         # t0 = time.time()
         snippet = self.fragmenter.frag(text, [i.text for i in self._query.all_tokens()])
         return Fragmenter.highlight(snippet)
+        # breakpoint()
+
         # if self.resource == 'https://en.wikipedia.org/wiki/Index_of_philosophy_articles_(A–C)':
         #     breakpoint()
         # t1 = time.time()

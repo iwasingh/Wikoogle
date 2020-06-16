@@ -42,7 +42,7 @@
 				<div class="opt mb-3">
 					<div class="opt__description">
 						<h4>Okapi BM25</h4>
-						<p class="muted">Okapi BM25 ranking function to estimate the relevance of documents. Used by default</p>
+						<p class="muted">Okapi BM25 ranking function to estimate the relevance of documents.</p>
 					</div>
 					<div class="opt__action">
 						<input class=radio" type="radio" value="bm25" id="ranking_bm25" name="ranking" {{ 'checked' if session['ranking'] == 'bm25' else '' }} />
@@ -61,8 +61,33 @@
 					</div>
 				</div>
 				<hr/>
-				<h3 class="primary"><strong>PageRank</strong></h3>
-				TODO
+				<h3 class="primary"><strong>Link Analysis</strong></h3>
+				<div class="opt mb-3">
+					<div class="opt__description">
+						<h4>PageRank</h4>
+						<p class="muted">Sort results by the <i>authority</i> value of the document obtained through a query-independent
+							link analysis algorithm <i>PageRank</i> used by Google and initially proposed by
+							<a href="http://infolab.stanford.edu/~backrub/google.html" target="_blank">
+								Sergey Brin and Larry Page</a>.
+						</p>
+						</p>
+					</div>
+					<div class="opt__action">
+						<input class=radio" type="radio" value="page_rank" id="page_rank"
+									 name="link_analysis" {{ 'checked' if session['link_analysis'] == 'page_rank' else '' }} />
+						<label for="page_rank"></label>
+					</div>
+				</div>
+				<div class="opt mb-3">
+					<div class="opt__description">
+						<h4>No PageRank</h4>
+						<p class="muted">Disable PageRank</p>
+					</div>
+					<div class="opt__action">
+						<input class=radio" type="radio" value="none" id="page_rank_none" name="link_analysis" {{ 'checked' if session['query_expansion'] == 'none' else '' }} />
+						<label for="page_rank_none"></label>
+					</div>
+				</div>
 			</div>
 			<div class="flex-container justify-space-between">
 				<div></div>

@@ -187,7 +187,6 @@ def lca_expand(query, documents, size=15, passage_size=400, threshold=1.4):
     concepts = set()
     doc_stats = []
     for doc in documents:
-        # TODO use fragmenter to find the best window of text
         text = clean(doc['text']).lower()
         fragment = fragmenter.merge_fragments(
             fragmenter.calculate_phrase_ranking(

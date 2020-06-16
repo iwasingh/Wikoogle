@@ -21,7 +21,35 @@ EXPANSION = {
     'none': False
 }
 
+# LINK_ANALYSIS = {
+#     'page_rank':
+# }
+
 ALPHA = 0.5
+
+
+def page_rank_facet(pagerank):
+    def page_rank_sort(result):
+        doc_title = normalize_title(result.get("title", ""))
+        score = result.score
+        rank = pagerank.graph.get(doc_title, 0)
+        rlength = len(pagerank.graph)
+        return rank * score
+
+    return page_rank_sort
+
+
+# def expand_from(results, type='lca'):
+#     if type == 'lca':
+#         if len(results) >= self._query_expansion_limit:
+#             t0 = time.time()
+#             terms = " OR ".join(
+#                 ['(' + i + ')' for i in lca_expand(query, results, size=self._query_expansion_terms)])
+#             t1 = time.time()
+#             print(terms, 'query expansion time:', t1 - t0)
+#             expanded_query = query | self.parser.parse(terms).with_boost(0.30)
+#             # TODO To each concept assign a weight given by 1-0.9  i/m to not stress user query term
+#             results = searcher.search(expanded_query, limit=10)
 
 
 class PageRankFacet(sorting.FacetType):
@@ -46,8 +74,6 @@ class PageRankFacet(sorting.FacetType):
         def key_for(self, matcher, docid):
             doc = self.segment_searcher.stored_fields(docid)
             doc_title = normalize_title(doc.get("title", ""))
-            # print(self.pagerank.graph.get(doc_title, 0))
-            # if doc_title == 'genetic_code' or doc_title == 'dna':
             score = matcher.score()
             rank = self.pagerank.graph.get(doc_title, 0)
             return rank * len(self.pagerank.graph)
@@ -112,14 +138,23 @@ class Searcher:
         self.pagerank = pagerank
         self._query_expansion_limit = 10
         self._query_expansion_terms = 5
+        self._page_rank_limit = 30
         self.parser = QueryParser('text', schema=self.wikimedia.index.schema)
 
     def search(self, text, configuration):
         results = []
-        # TODO expand query
+
         query = MultifieldParser(['title', 'text'], fieldboosts={'title': 2.5, 'text': 1.0},
                                  schema=self.wikimedia.index.schema).parse(text)
         expansion = 'lca'
+        expansion_threshold = 1.4
+        expansion_terms = self._query_expansion_terms
+
+        link_analysis = False
+
+        limit = self._query_expansion_limit
+
+        facet = lambda result: result.score
 
         if 'query_expansion' in configuration:
             expansion = configuration['query_expansion']
@@ -129,36 +164,46 @@ class Searcher:
         if 'ranking' in configuration and configuration['ranking'] and MODELS[configuration['ranking']]:
             model = MODELS[configuration['ranking']]
 
+        if 'link_analysis' in configuration and configuration['link_analysis'] != 'none':
+            facet = page_rank_facet(self.pagerank)
+            limit = self._page_rank_limit
+            link_analysis = 'page_rank'
+
         try:
-            facet = PageRankFacet(self.pagerank)
-            searcher = self.wikimedia.index.searcher()
+            # TODO only 1 instance per model
+            searcher = self.wikimedia.index.searcher(weighting=model)
+
             t0 = time.time()
-            results = searcher.search(query, limit=self._query_expansion_limit if expansion != 'none' else 30)
+
+            results = searcher.search(query, limit=limit)
+
             t1 = time.time()
+
             print('* whoosh search time: ', t1 - t0)
-            print('* model used: ', model.__name__)
-            print('* expansion model used: ', expansion)
+            print('* limit ', limit)
+            print('* model: ', model.__name__)
+            print('* expansion model: ', expansion)
+            print('* result retrieved: ', len(results))
+            print('* link analysis: ', link_analysis)
+
             if expansion == 'lca':
+                if link_analysis:
+                    results = sorted(results, key=facet, reverse=True)[:self._query_expansion_limit]
+                    # results = results[:self._query_expansion_limit]
+                    # expansion_threshold = 1.1
                 if len(results) >= self._query_expansion_limit:
                     t0 = time.time()
                     terms = " OR ".join(
-                        ['(' + i + ')' for i in lca_expand(query, results, size=self._query_expansion_terms)])
+                        ['(' + i + ')' for i in lca_expand(query, results, size=expansion_terms, threshold=expansion_threshold)])
                     t1 = time.time()
                     print(terms, 'query expansion time:', t1 - t0)
                     expanded_query = query | self.parser.parse(terms).with_boost(0.30)
                     # TODO To each concept assign a weight given by 1-0.9  i/m to not stress user query term
-                    results = searcher.search(expanded_query, limit=10)
+                    results = searcher.search(expanded_query, limit=limit)
 
-            def page_rank_sort(result):
-                doc_title = normalize_title(result.get("title", ""))
-                score = result.score
-                rank = self.pagerank.graph.get(doc_title, 0)
-                rlength = len(self.pagerank.graph)
-                return rank * score
-
-            results = sorted(results, key=page_rank_sort, reverse=True)
+            results = sorted(results, key=facet, reverse=True)[:10]
             return [r.Result(i, query) for i in results]
 
         except Exception as e:
-            breakpoint()
             logger.error(e)
+            return []
