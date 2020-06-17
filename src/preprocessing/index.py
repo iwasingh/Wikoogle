@@ -5,13 +5,15 @@ from lxml import etree
 from whoosh.fields import TEXT, ID, SchemaClass, KEYWORD
 from whoosh import index
 from parsing.combinators import ParseError
-from pagerank.pagerank import normalize_title
+from pagerank.pagerank import PageRank, normalize_title
 from .analyzer import WikimediaAnalyzer
 import config
 from parsing.compiler import Compiler, ParseTypes
 import shutil
 from parsing.utils import MalformedTag
 from parsing.lexer import RedirectFound
+from config import ASSETS_DATA
+import networkx as nx
 
 logger = logging.getLogger('preprocessing')
 
@@ -71,14 +73,23 @@ class WikiIndex:
         link_graph = {}
 
         def output_file(link_graph_in):
-            lines = []
-            f = open("graph.txt", "w")
-            for article_title in link_graph_in:
-                if len(link_graph_in[article_title]):
-                    lines.append("{} {}".format(article_title, " ".join(link_graph_in[article_title])))
-            f.write("\n".join(lines))
-            f.close()
+            path_adjlist     = ASSETS_DATA / 'graphs' / 'graph.adjlist'
+            path_graphml     = ASSETS_DATA / 'graphs' / 'graph.graphml'
+            path_igraph_rank = ASSETS_DATA / 'graphs' / 'graph.igraph.rank'
 
+            G_graph = nx.DiGraph()
+
+            for article_title in link_graph_in:
+                link_article_subgraph = link_graph_in[article_title]
+                if len(link_article_subgraph):
+                    G_graph.add_edges_from([(sub_article_title.rstrip(), article_title.rstrip()) for sub_article_title in link_article_subgraph])
+
+            nx.write_adjlist(G_graph, str(path_adjlist))
+            nx.write_graphml(G_graph, str(path_graphml))
+
+            pr = PageRank.from_igraph_graphml(path=path_graphml)
+            pr.generate_igraph_page_rank(path=path_igraph_rank)
+            
         def apply_filters(link_graph_in):
             link_graph_clean = {}
             for article_title in all_articles:
