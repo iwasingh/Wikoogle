@@ -114,6 +114,7 @@ def search_results():
 @app.route('/settings', methods=['GET', 'POST'])
 def settings():
     if request.method == 'POST':
+        session['results_limit'] = request.form['results_limit']
         session['query_expansion'] = request.form['query_expansion']
         session['ranking'] = request.form['ranking']
         session['link_analysis'] = request.form['link_analysis']

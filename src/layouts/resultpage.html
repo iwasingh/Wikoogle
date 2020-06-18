@@ -30,7 +30,7 @@
 						{{ result.resource }}
 					</p>
 					<h3 class="title mt-1">
-						{{ result.title }}
+						{{ loop.index }}. {{ result.title }}
 					</h3>
 				</a>
 				<p class="text mt-1">{{ result.snippet() | safe }}</p>

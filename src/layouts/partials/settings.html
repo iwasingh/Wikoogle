@@ -8,8 +8,39 @@
 				</button>
 			</div>
 			<div class="flex-container flex-col p-0 pt-1">
+				<h3 class="primary"><strong>Results limit</strong></h3>
+				<div class="opt mb-3">
+					<div class="opt__description">
+						<h4>10 results</h4>
+						<p class="muted">Limit up to 10 results.</p>
+					</div>
+					<div class="opt__action">
+						<input class=radio" type="radio" value="10" id="results_limit_10" name="results_limit" {{ 'checked' if session['results_limit'] == '10' else '' }} />
+						<label for="results_limit_10"></label>
+					</div>
+				</div>
+				<div class="opt mb-3">
+					<div class="opt__description">
+						<h4>20 results</h4>
+						<p class="muted">Limit up to 20 results.</p>
+					</div>
+					<div class="opt__action">
+						<input class=radio" type="radio" value="20" id="results_limit_20" name="results_limit" {{ 'checked' if session['results_limit'] == '20' else '' }} />
+						<label for="results_limit_20"></label>
+					</div>
+				</div>
+				<div class="opt mb-3">
+					<div class="opt__description">
+						<h4>30 results</h4>
+						<p class="muted">Limit up to 30 results.</p>
+					</div>
+					<div class="opt__action">
+						<input class=radio" type="radio" value="30" id="results_limit_30" name="results_limit" {{ 'checked' if session['results_limit'] == '30' else '' }} />
+						<label for="results_limit_30"></label>
+					</div>
+				</div>
+				<hr/>
 				<h3 class="primary"><strong>Query expansion</strong></h3>
-
 				<div class="opt mb-3">
 					<div class="opt__description">
 						<h4>Local Context Analysis query expansion</h4>

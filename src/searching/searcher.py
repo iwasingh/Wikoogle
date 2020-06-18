@@ -172,6 +172,9 @@ class Searcher:
             limit = self._page_rank_limit
             link_analysis = 'page_rank'
 
+        if 'results_limit' in configuration and int(configuration['results_limit']):
+            limit = int(configuration['results_limit'])
+
         try:
             # TODO only 1 instance per model
             searcher = self.wikimedia.index.searcher(weighting=model)
@@ -205,7 +208,7 @@ class Searcher:
                     # TODO To each concept assign a weight given by 1-0.9  i/m to not stress user query term
                     results = searcher.search(expanded_query, limit=limit)
 
-            results = sorted(results, key=facet, reverse=True)[:10]
+            results = sorted(results, key=facet, reverse=True)
             return [r.Result(i, query) for i in results]
 
         except Exception as e:
