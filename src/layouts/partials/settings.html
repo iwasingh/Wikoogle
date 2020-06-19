@@ -9,36 +9,47 @@
 			</div>
 			<div class="flex-container flex-col p-0 pt-1">
 				<h3 class="primary"><strong>Results limit</strong></h3>
-				<div class="opt mb-3">
-					<div class="opt__description">
-						<h4>10 results</h4>
-						<p class="muted">Limit up to 10 results.</p>
-					</div>
-					<div class="opt__action">
-						<input class=radio" type="radio" value="10" id="results_limit_10" name="results_limit" {{ 'checked' if session['results_limit'] == '10' else '' }} />
-						<label for="results_limit_10"></label>
-					</div>
+				<div class="flex flex-col align-center justify-center mt-3">
+					<input id="results_limit_30" value="{{ 10 if not session['results_limit'] else session['results_limit'] }}" type="range" min="10" max="30" step="10" name="results_limit" />
+						<label for="results_limit_30">
+							<span class="muted">
+								10
+							</span>
+							<span class="muted">
+								20
+							</span>
+							<span class="muted">
+								30
+							</span>
+						</label>
+{#					<div class="opt__description">#}
+{#						<h4>10 results</h4>#}
+{#						<p class="muted">Limit up to 10 results.</p>#}
+{#					</div>#}
+{#					<div class="opt__action">#}
+{#						<input class=radio" type="radio" value="10" id="results_limit_10" name="results_limit" {{ 'checked' if session['results_limit'] == '10' else '' }} />#}
+{#					</div>#}
 				</div>
-				<div class="opt mb-3">
-					<div class="opt__description">
-						<h4>20 results</h4>
-						<p class="muted">Limit up to 20 results.</p>
-					</div>
-					<div class="opt__action">
-						<input class=radio" type="radio" value="20" id="results_limit_20" name="results_limit" {{ 'checked' if session['results_limit'] == '20' else '' }} />
-						<label for="results_limit_20"></label>
-					</div>
-				</div>
-				<div class="opt mb-3">
-					<div class="opt__description">
-						<h4>30 results</h4>
-						<p class="muted">Limit up to 30 results.</p>
-					</div>
-					<div class="opt__action">
-						<input class=radio" type="radio" value="30" id="results_limit_30" name="results_limit" {{ 'checked' if session['results_limit'] == '30' else '' }} />
-						<label for="results_limit_30"></label>
-					</div>
-				</div>
+{#				<div class="opt mb-3">#}
+{#					<div class="opt__description">#}
+{#						<h4>20 results</h4>#}
+{#						<p class="muted">Limit up to 20 results.</p>#}
+{#					</div>#}
+{#					<div class="opt__action">#}
+{#						<input class=radio" type="radio" value="20" id="results_limit_20" name="results_limit" {{ 'checked' if session['results_limit'] == '20' else '' }} />#}
+{#						<label for="results_limit_20"></label>#}
+{#					</div>#}
+{#				</div>#}
+{#				<div class="opt mb-3">#}
+{#					<div class="opt__description">#}
+{#						<h4>30 results</h4>#}
+{#						<p class="muted">Limit up to 30 results.</p>#}
+{#					</div>#}
+{#					<div class="opt__action">#}
+{#						<input class=radio" type="radio" value="30" id="results_limit_30" name="results_limit" {{ 'checked' if session['results_limit'] == '30' else '' }} />#}
+{#						<label for="results_limit_30"></label>#}
+{#					</div>#}
+{#				</div>#}
 				<hr/>
 				<h3 class="primary"><strong>Query expansion</strong></h3>
 				<div class="opt mb-3">
@@ -55,6 +66,20 @@
 					<div class="opt__action">
 						<input class=radio" type="radio" value="lca" id="query_expansion_lca" name="query_expansion" {{ 'checked' if session['query_expansion'] == 'lca' else '' }} />
 						<label for="query_expansion_lca"></label>
+					</div>
+				</div>
+
+				<div class="opt mb-3">
+					<div class="opt__description">
+						<h4>Thesaurus based query expansion</h4>
+						<p class="muted">Query expansion based on a thesaurus(Wordnet).
+							The query is expanded with the gloss of each disambiguated synset. Wordnet is generic corpus that might not be suited to expand queries for wikipedia(a wikipedia corpus could be better)
+							so query drift might be behind the corner with polysemic and very general queries.
+						</p>
+					</div>
+					<div class="opt__action">
+						<input class=radio" type="radio" value="thesaurus" id="query_expansion_thesaurus" name="query_expansion" {{ 'checked' if session['query_expansion'] == 'thesaurus' else '' }} />
+						<label for="query_expansion_thesaurus"></label>
 					</div>
 				</div>
 
@@ -115,7 +140,7 @@
 						<p class="muted">Disable PageRank</p>
 					</div>
 					<div class="opt__action">
-						<input class=radio" type="radio" value="none" id="page_rank_none" name="link_analysis" {{ 'checked' if session['query_expansion'] == 'none' else '' }} />
+						<input class=radio" type="radio" value="none" id="page_rank_none" name="link_analysis" {{ 'checked' if not session['link_analysis'] or session['link_analysis'] == 'none' else '' }} />
 						<label for="page_rank_none"></label>
 					</div>
 				</div>

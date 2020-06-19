@@ -7,6 +7,8 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 # source venv/bin/activate
 # python -m nltk.downloader punkt
+# python -m nltk.downloader 'popular'
+
 #
 EXPOSE 8888
 

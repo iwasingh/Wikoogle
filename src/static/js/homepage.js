@@ -38,14 +38,14 @@
     }
   }
 
-  closeRef.onclick = function() {
-    isMultiFieldQueryActive = false
-    bindMultiFieldQuery()
-  }
-
-  toggleRef.onclick = function() {
-    isMultiFieldQueryActive = true
-    bindMultiFieldQuery()
-  }
+  // closeRef.onclick = function() {
+  //   isMultiFieldQueryActive = false
+  //   bindMultiFieldQuery()
+  // }
+  //
+  // toggleRef.onclick = function() {
+  //   isMultiFieldQueryActive = true
+  //   bindMultiFieldQuery()
+  // }
 
 })();
