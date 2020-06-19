@@ -37,7 +37,7 @@ class WikiNormalizer(Filter):
 
 def WikimediaAnalyzer(stoplist=GOOGLE_STOP_WORDS, cachesize=50000):
     # Use different analyzer for the title
-    ret = StemmingAnalyzer(stoplist=stoplist, cachesize=cachesize) | CharsetFilter(accent_map)
+    ret = StemmingAnalyzer(stoplist=stoplist, cachesize=-1) | CharsetFilter(accent_map)
     chain = ret | WikiNormalizer()
 
     return chain

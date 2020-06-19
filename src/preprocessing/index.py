@@ -63,7 +63,7 @@ class WikiIndex:
         if not self.index:
             raise FileNotFoundError('Index not initialized')
 
-        writer = self.index.writer(limitmb=1024, procs=4)
+        writer = self.index.writer(limitmb=1024, procs=2, multisegment=True)
 
         compiler = Compiler()
 
@@ -111,9 +111,16 @@ class WikiIndex:
                     link_graph[article_link] = article_graph
 
         miss = 0
+        count = 0
         for wiki in directory.iterdir():
             if wiki.is_file() and wiki.stem.startswith('enwiki'):
                 for root in self.xml_parser.from_xml(str(wiki)):
+                    count += 1
+
+                    if count > 10000:
+                        writer.commit()
+                        writer = self.index.writer(limitmb=1024, procs=2, multisegment=True)
+
                     listener = None
                     try:
                         id, title, text = self.xml_parser.get(root)
