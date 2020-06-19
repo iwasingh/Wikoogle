@@ -77,17 +77,12 @@ class PageRankFacet(sorting.FacetType):
             # return ALPHA * score + (1 - ALPHA) * (rank)
 
 
-def page_rank_weighting(idf, tf, fl, avgfl, B, K1, r, rlength):
+def page_rank_weighting(idf, tf, fl, avgfl, B, K1, rank):
     s = scoring.bm25(idf, tf, fl, avgfl, B, K1)
-    b = 1.5
-    return s
-    # return ALPHA * s + (1 - ALPHA) * (r * rlength)
-    #     e_measure = (1 - ((1 + b**2)/(((b**2)/r) + (1/s))))
-    #     print(r, s, e_measure)
-    # print(s, r, r*rlength)
+    return ALPHA * s + (1 - ALPHA) * rank * 1000
 
 
-class CustomFunctionScorer(scoring.WeightLengthScorer):
+class PageRankBM25Scorer(scoring.WeightLengthScorer):
     def __init__(self, searcher, fieldname, text, pagerank, B=0.75, K1=1.2):
         parent = searcher.get_parent()
 
@@ -108,25 +103,21 @@ class CustomFunctionScorer(scoring.WeightLengthScorer):
     def score(self, matcher):
         document = self.searcher.stored_fields(matcher.id())
         self.doc_title = normalize_title(document.get("title", ""))
-        self.ranking = self.pagerank.graph.get(self.doc_title, 0)
+        self.ranking = self.pagerank.get(self.doc_title, 0)
         return self._score(matcher.weight(), self.dfl(matcher.id()))
 
     def _score(self, weight, length):
-        s = page_rank_weighting(self.idf, weight, length, self.avgfl, self.B, self.K1, self.ranking,
-                                len(self.pagerank.graph))
-
-        # k = ["dna", "dna_virus", "genome", "mutation", "chromatin", "nucleic_acid", "base_pair", "genetic_code",
-        #      "nucleotide", "brazil"]
-        # if self.doc_title in k: print(self.doc_title, s)
-        return s
+        return page_rank_weighting(self.idf, weight, length, self.avgfl, self.B, self.K1, self.ranking)
 
 
-class CustomWeighting(scoring.WeightingModel):
+class PageRankBM25(scoring.WeightingModel):
+    __name__ = 'PageRankBM25'
+
     def __init__(self, pagerank):
         self.pagerank = pagerank
 
     def scorer(self, searcher, fieldname, text, qf=1):
-        return CustomFunctionScorer(searcher, fieldname, text, self.pagerank)
+        return PageRankBM25Scorer(searcher, fieldname, text, self.pagerank)
 
 
 class Searcher:
