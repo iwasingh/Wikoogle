@@ -11,45 +11,18 @@
 				<h3 class="primary"><strong>Results limit</strong></h3>
 				<div class="flex flex-col align-center justify-center mt-3">
 					<input id="results_limit_30" value="{{ 10 if not session['results_limit'] else session['results_limit'] }}" type="range" min="10" max="30" step="10" name="results_limit" />
-						<label for="results_limit_30">
-							<span class="muted">
-								10
-							</span>
-							<span class="muted">
-								20
-							</span>
-							<span class="muted">
-								30
-							</span>
-						</label>
-{#					<div class="opt__description">#}
-{#						<h4>10 results</h4>#}
-{#						<p class="muted">Limit up to 10 results.</p>#}
-{#					</div>#}
-{#					<div class="opt__action">#}
-{#						<input class=radio" type="radio" value="10" id="results_limit_10" name="results_limit" {{ 'checked' if session['results_limit'] == '10' else '' }} />#}
-{#					</div>#}
+					<label for="results_limit_30">
+						<span class="muted">
+							10
+						</span>
+						<span class="muted">
+							20
+						</span>
+						<span class="muted">
+							30
+						</span>
+					</label>
 				</div>
-{#				<div class="opt mb-3">#}
-{#					<div class="opt__description">#}
-{#						<h4>20 results</h4>#}
-{#						<p class="muted">Limit up to 20 results.</p>#}
-{#					</div>#}
-{#					<div class="opt__action">#}
-{#						<input class=radio" type="radio" value="20" id="results_limit_20" name="results_limit" {{ 'checked' if session['results_limit'] == '20' else '' }} />#}
-{#						<label for="results_limit_20"></label>#}
-{#					</div>#}
-{#				</div>#}
-{#				<div class="opt mb-3">#}
-{#					<div class="opt__description">#}
-{#						<h4>30 results</h4>#}
-{#						<p class="muted">Limit up to 30 results.</p>#}
-{#					</div>#}
-{#					<div class="opt__action">#}
-{#						<input class=radio" type="radio" value="30" id="results_limit_30" name="results_limit" {{ 'checked' if session['results_limit'] == '30' else '' }} />#}
-{#						<label for="results_limit_30"></label>#}
-{#					</div>#}
-{#				</div>#}
 				<hr/>
 				<h3 class="primary"><strong>Query expansion</strong></h3>
 				<div class="opt mb-3">
@@ -115,6 +88,28 @@
 						<input class=radio" type="radio" value="pl2" id="ranking_pl2" name="ranking" {{ 'checked' if session['ranking'] == 'pl2' else '' }} />
 						<label for="ranking_pl2"></label>
 					</div>
+				</div>
+				<div class="opt mb-3">
+					<div class="opt__description">
+						<h4>PageRank + Okapi BM25</h4>
+						<p class="muted">A custom ranking function that combines bm25 with pagerank score</p>
+					</div>
+					<div class="opt__action">
+						<input class=radio" type="radio" value="pr_bm25" id="ranking_pr_bm25" name="ranking" {{ 'checked' if session['ranking'] == 'pr_bm25' else '' }} />
+						<label for="ranking_pr_bm25"></label>
+					</div>
+				</div>
+				<hr/>
+				<h3 class="primary"><strong>Pagerank relevance</strong></h3>
+				<h4>Works only with PageRank + Okapi BM25 Ranking model</h4>
+				<div class="flex flex-col align-center justify-center mt-3">
+					<input id="page_rank_lvl_10" value="{{ 8 if not session['page_rank_lvl'] else session['page_rank_lvl'] }}" type="range" min="1" max="10" step="1" name="page_rank_lvl" />
+					<label for="page_rank_lvl_10">
+						<span class="muted">0.1</span>
+						<span class="muted">0.4</span>
+						<span class="muted">0.7</span>
+						<span class="muted">1</span>
+					</label>
 				</div>
 				<hr/>
 				<h3 class="primary"><strong>Link Analysis</strong></h3>

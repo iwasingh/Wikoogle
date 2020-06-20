@@ -9,23 +9,6 @@ import time
 
 logger = logging.getLogger()
 
-MODELS = {
-    'bm25': scoring.BM25F,
-    'pl2': scoring.PL2
-}
-
-EXPANSION = {
-    'none': False,
-    'lca': lca_expand,
-    'thesaurus': thesaurus_expand
-}
-
-# LINK_ANALYSIS = {
-#     'page_rank':
-# }
-
-ALPHA = 0.5
-
 
 def page_rank_facet(pagerank):
     def page_rank_sort(result):
@@ -63,16 +46,15 @@ class PageRankFacet(sorting.FacetType):
             score = matcher.score()
             rank = self.pagerank.graph.get(doc_title, 0)
             return rank * len(self.pagerank.graph)
-            # return ALPHA * score + (1 - ALPHA) * (rank)
 
 
-def page_rank_weighting(idf, tf, fl, avgfl, B, K1, rank):
+def page_rank_weighting(idf, tf, fl, avgfl, B, K1, a, r):
     s = scoring.bm25(idf, tf, fl, avgfl, B, K1)
-    return ALPHA * s + (1 - ALPHA) * rank * 1000
+    return a * s + (1 - a) * r * 1000
 
 
 class PageRankBM25Scorer(scoring.WeightLengthScorer):
-    def __init__(self, searcher, fieldname, text, pagerank, B=0.75, K1=1.2):
+    def __init__(self, searcher, fieldname, text, pagerank, a, B=0.75, K1=1.2):
         parent = searcher.get_parent()
 
         # fai come lambda dello scorer per non dover passare rearcher e pagerank
@@ -80,43 +62,64 @@ class PageRankBM25Scorer(scoring.WeightLengthScorer):
         self.searcher = parent
         self.pagerank = pagerank
 
-        self.ranking = 0
+        self.r = 0
         self.doc_title = ""
         self.idf = parent.idf(fieldname, text)
         self.avgfl = parent.avg_field_length(fieldname) or 1
         self.B = B
         self.K1 = K1
+        self.a = a
 
         self.setup(searcher, fieldname, text)
 
     def score(self, matcher):
         document = self.searcher.stored_fields(matcher.id())
         self.doc_title = normalize_title(document.get("title", ""))
-        self.ranking = self.pagerank.get(self.doc_title, 0)
+        self.r = self.pagerank.get(self.doc_title, 0)
         return self._score(matcher.weight(), self.dfl(matcher.id()))
 
     def _score(self, weight, length):
-        return page_rank_weighting(self.idf, weight, length, self.avgfl, self.B, self.K1, self.ranking)
+        return page_rank_weighting(self.idf, weight, length, self.avgfl, self.B, self.K1, self.a, self.r)
 
 
 class PageRankBM25(scoring.WeightingModel):
     __name__ = 'PageRankBM25'
 
-    def __init__(self, pagerank):
+    def __init__(self, pagerank, alpha):
         self.pagerank = pagerank
+        self.alpha = alpha
 
     def scorer(self, searcher, fieldname, text, qf=1):
-        return PageRankBM25Scorer(searcher, fieldname, text, self.pagerank)
+        return PageRankBM25Scorer(searcher, fieldname, text, self.pagerank, self.alpha)
+
+
+MODELS = {
+    'bm25': scoring.BM25F,
+    'pl2': scoring.PL2,
+    'pr_bm25': PageRankBM25
+}
+
+EXPANSION = {
+    'none': False,
+    'lca': lca_expand,
+    'thesaurus': thesaurus_expand
+}
 
 
 class Searcher:
     def __init__(self, wikimedia, pagerank):
         self.wikimedia = wikimedia
+        self.pagerank = pagerank
+
+        self._page_rank_bm25_alpha = 0.8
+        _pr_bm25_mod = PageRankBM25(self.pagerank.graph, self._page_rank_bm25_alpha)
+
         self.searcher = {
             'bm25': self.wikimedia.index.searcher(weighting=scoring.BM25F),
-            'pl2': self.wikimedia.index.searcher(weighting=scoring.PL2)
+            'pl2': self.wikimedia.index.searcher(weighting=scoring.PL2),
+            'pr_bm25': self.wikimedia.index.searcher(weighting=_pr_bm25_mod)
         }
-        self.pagerank = pagerank
+        
         self._query_expansion_relevant_limit = 10
         self._query_expansion_terms = 5
         self._page_rank_relevant_window = 30
@@ -126,30 +129,31 @@ class Searcher:
 
     @staticmethod
     def parse_query_from_terms(terms):
-
         # self.parser.parse(terms).with_boost(0.30)
         return " OR ".join(['(' + i + ')' for i in terms])
 
     def search(self, text, configuration):
-        results = []
-
+        # Default query object
         query = self.parser.parse(text)
 
-        # query_base = self.parser_base.parse(text)
+        # Default results object
+        results = []
 
-        # return []
+        # Default query limit
         limit = 10
+
+        if 'results_limit' in configuration and int(configuration['results_limit']) > 0:
+            limit = int(configuration['results_limit'])
+
+        # Default Query Expansion
         expansion = 'lca'
         expansion_threshold = 1.4
         expansion_terms = self._query_expansion_terms
 
-        link_analysis = False
-
-        facet = lambda result: result.score
-
         if 'query_expansion' in configuration:
             expansion = configuration['query_expansion']
 
+        # Default Ranking
         model = MODELS['bm25']
         searcher = self.searcher['bm25']
 
@@ -157,17 +161,27 @@ class Searcher:
             model = MODELS[configuration['ranking']]
             searcher = self.searcher[configuration['ranking']]
 
-        if 'link_analysis' in configuration and configuration['link_analysis'] != 'none':
-            facet = page_rank_facet(self.pagerank)
-            # limit = self._page_rank_limit
-            link_analysis = 'page_rank'
+        # Default PageRank relevance
+        alpha = self._page_rank_bm25_alpha
 
-        if 'results_limit' in configuration and int(configuration['results_limit']):
-            limit = int(configuration['results_limit'])
+        if 'page_rank_lvl' in configuration and int(configuration['page_rank_lvl']) > 0:
+            alpha = int(configuration['page_rank_lvl']) / 10
+            _pr_bm25_mod = PageRankBM25(self.pagerank.graph, alpha)
+            searcher = self.wikimedia.index.searcher(weighting=_pr_bm25_mod)
+
+        # Default Link Analysis
+        link_analysis = False
+        facet = lambda result: result.score
+
+        if model.__name__ != 'PageRankBM25':
+            if 'link_analysis' in configuration and configuration['link_analysis'] != 'none':
+                facet = page_rank_facet(self.pagerank)
+                link_analysis = 'page_rank'
 
         try:
             results = []
             print('* limit ', limit)
+            print('* alpha ', alpha)
             print('* model: ', model.__name__)
             print('* expansion model: ', expansion)
             print('* link analysis: ', link_analysis)
@@ -188,14 +202,10 @@ class Searcher:
                         for i, w in enumerate(weights):
                             q = self.parser_base.parse(terms[i]).with_boost(w)
                             expanded_query = expanded_query | q
-                        print('* expanded terms: ', terms)
-                        print('* expanded query: ', expanded_query)
-                        print('* weights: ', weights)
                         results = searcher.search(expanded_query, limit=limit)
                 elif expansion == 'thesaurus':
                     terms = Searcher.parse_query_from_terms(thesaurus_expand(text, self.wikimedia, size=10))
                     expanded_query = query | self.parser.parse(terms).with_boost(0.30)
-                    print('* expanded terms: ', terms)
                     results = searcher.search(expanded_query, limit=limit)
             else:
                 results = searcher.search(query, limit=limit)

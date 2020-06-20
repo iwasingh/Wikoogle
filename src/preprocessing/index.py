@@ -66,40 +66,14 @@ class WikiIndex:
         if not self.index:
             raise FileNotFoundError('Index not initialized')
 
-        writer = self.index.writer(limitmb=1024, procs=2, multisegment=True)
+        writer = self.index.writer(limitmb=4096, procs=4, multisegment=True)
 
         compiler = Compiler()
 
         categories = []
+        reverse_graph = []
 
-        all_articles = []
-        link_graph = {}
-
-        def output_file(link_graph_in):
-            path_adjlist = ASSETS_DATA / 'graphs' / 'graph.adjlist'
-            path_graphml = ASSETS_DATA / 'graphs' / 'graph.graphml'
-            path_igraph_rank = ASSETS_DATA / 'graphs' / 'graph.igraph.rank'
-
-            G_graph = nx.DiGraph()
-
-            for article_title in link_graph_in:
-                link_article_subgraph = link_graph_in[article_title]
-                if len(link_article_subgraph):
-                    G_graph.add_edges_from(
-                        [(sub_article_title.rstrip(), article_title.rstrip()) for sub_article_title in
-                         link_article_subgraph])
-
-            nx.write_adjlist(G_graph, str(path_adjlist))
-            nx.write_graphml(G_graph, str(path_graphml))
-
-            pr = PageRank.from_igraph_graphml(path=path_graphml)
-            pr.generate_igraph_page_rank(path=path_igraph_rank)
-
-        def apply_filters(link_graph_in):
-            link_graph_clean = {}
-            for article_title in all_articles:
-                link_graph_clean[article_title] = link_graph_in.get(article_title, [])
-            return link_graph_clean
+        file_adjlist = open(ASSETS_DATA / 'graphs' / 'graph.adjlist', "w")
 
         def parse_link(node, article):
             category = node.value.category()
@@ -107,13 +81,9 @@ class WikiIndex:
             if category:
                 categories.append(category.group())
             else:
-                article_title = normalize_title(article)
                 article_link = normalize_title(node.value.text)
-                article_graph = link_graph.get(article_link, [])
-
-                if article_title not in article_graph:
-                    article_graph.append(article_title)
-                    link_graph[article_link] = article_graph
+                if article_link not in reverse_graph:
+                    reverse_graph.append(article_link)
 
         miss = 0
         count = 0
@@ -122,9 +92,9 @@ class WikiIndex:
                 for root in self.xml_parser.from_xml(str(wiki)):
                     count += 1
 
-                    if count > 10000:
+                    if count > 5000:
                         writer.commit()
-                        writer = self.index.writer(limitmb=1024, procs=2, multisegment=True)
+                        writer = self.index.writer(limitmb=4096, procs=4, multisegment=True)
                         count = 0
 
                     listener = None
@@ -136,8 +106,11 @@ class WikiIndex:
                         writer.add_document(title=title.text, text=article, categories=','.join(categories), id=f'{id}')
                         logger.info(f'{title.text} indexed')
                         listener and listener()  # Remove listeners
+                        article_title = normalize_title(title.text)
+                        adj_graph_str = " ".join(reverse_graph)
+                        file_adjlist.write(article_title + " " + adj_graph_str + "\n")
                         categories.clear()
-                        all_articles.append(normalize_title(title.text))
+                        reverse_graph.clear()
                     except (ParseError, MalformedTag, RedirectFound) as e:
                         miss += 1
                         listener and listener()  # Remove listeners
@@ -147,9 +120,9 @@ class WikiIndex:
         if miss > 0:
             logger.warning(f'{miss} articles ignored')
 
-        output_file(apply_filters(link_graph))
-
         writer.commit()
+
+        file_adjlist.close()
 
 
 # huge_tree: disable security restrictions and support very deep trees

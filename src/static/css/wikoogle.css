@@ -89,7 +89,8 @@ input[type="range"]::-webkit-slider-thumb:active {
   transform: scale(1.2);
 }
 
-label[for^=results_limit_30] {
+label[for^=results_limit_30],
+label[for^=page_rank_lvl_10] {
   width: 300px;
   display: flex;
   justify-content: space-between;
