@@ -1,4 +1,4 @@
-from whoosh.analysis import StemmingAnalyzer
+from whoosh.analysis import StemmingAnalyzer, StandardAnalyzer
 from whoosh.analysis.filters import Filter, SubstitutionFilter, CharsetFilter
 from whoosh.analysis.filters import STOP_WORDS
 from nltk.stem import WordNetLemmatizer
@@ -45,4 +45,9 @@ def WikimediaAnalyzer(stoplist=GOOGLE_STOP_WORDS, cachesize=50000):
 
 def FragmenterAnalyzer():
     ret = StemmingAnalyzer(minsize=0, stoplist=None)
+    return ret
+
+
+def ThesaurusExpansionAnalyzer(stoplist=GOOGLE_STOP_WORDS):
+    ret = StandardAnalyzer(stoplist=stoplist)
     return ret

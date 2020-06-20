@@ -6,6 +6,10 @@ from preprocessing.index import WikiIndex
 from searching.fragmenter import Fragmenter, truncate
 from parsing.compiler import Compiler
 from query.expander import lca_expand
+from query.expander import thesaurus_expand
+from whoosh.qparser import QueryParser
+from pagerank.pagerank import PageRank
+from config import ASSETS_DATA
 
 logging.basicConfig(level=logging.INFO)
 
@@ -16,11 +20,14 @@ class TestSearcher(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         super(TestSearcher, self).__init__(*args, **kwargs)
         self.index = WikiIndex().get('__index')
-        self.searcher = Searcher(self.index)
+        self.pagerank = PageRank().get(ASSETS_DATA / 'graphs' / 'graph.igraph.rank')
+        self.searcher = Searcher(self.index, pagerank=self.pagerank)
+        # self.q = QueryParser('text')
 
     def test_query_expansion(self):
-        query = 'anarchism etymology'
-        results = self.searcher.search(query)
+        parsed_query = 'computer programming'
+        print(thesaurus_expand(parsed_query, self.index))
+        return True
 
     def test_snippet(self):
         results = self.searcher.search('anarkhia')
@@ -397,6 +404,7 @@ One of the original-model TARDISes used in the television series' production in 
         f = Fragmenter()
         result = Compiler().compile(text)
         print(f.frag(result, ['nucleic', 'acid']))
+
 
 if __name__ == '__main__':
     unittest.main()

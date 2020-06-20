@@ -5,6 +5,7 @@ from preprocessing.analyzer import WikiNormalizer, WikimediaAnalyzer
 from whoosh.analysis import RegexTokenizer
 from parsing.compiler import Compiler
 from preprocessing.utils import clean
+from preprocessing.index import WikiIndex
 logging.basicConfig(level=logging.INFO)
 
 DATA_FOLDER = Path(__file__).parent / 'data'
@@ -32,6 +33,11 @@ class TestIndex(unittest.TestCase):
         with (DATA_FOLDER / file).open(encoding="utf8") as f:
             text = f.read()
             print(clean(text))
+
+    def test_index(self):
+        with (DATA_FOLDER / 'enwiki_test.xml').open(encoding="utf8") as f:
+            text = f.read()
+            index = WikiIndex().get('__test_index',  dump=DATA_FOLDER)
 
 
 if __name__ == '__main__':

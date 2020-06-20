@@ -29,15 +29,16 @@ class WikiSchema(SchemaClass):
 
 # TODO singleton
 class WikiIndex:
-    def __init__(self):
+    def __init__(self, namespace='http://www.mediawiki.org/xml/export-0.10/'):
         self.schema = WikiSchema
-        self.xml_parser = WikiXML(namespace='http://www.mediawiki.org/xml/export-0.10/')
+        self.xml_parser = WikiXML(namespace=namespace)
         self.index = None
+        self.reader = None
 
     def clear(self):
         pass
 
-    def get(self, name='__indexdir', destructive=False):
+    def get(self, name='__indexdir', dump=config.DUMP_FOLDER, destructive=False):
         index_path = config.ROOT.joinpath(name)
         path = str(index_path)
 
@@ -51,11 +52,13 @@ class WikiIndex:
                 index_path.mkdir()
                 self.index = index.create_in(path, WikiSchema())
                 logging.info('Index newly created, adding documents')
-                self.build()
+                self.build(directory=dump)
             except (FileExistsError, FileNotFoundError) as e:
                 logger.error('Index already exist or parent not found')
                 sys.exit(0)
         self.index = index.open_dir(path)
+        print(' * Bootstrap index reader')
+        self.reader = self.index.reader()
 
         return self
 
@@ -73,8 +76,8 @@ class WikiIndex:
         link_graph = {}
 
         def output_file(link_graph_in):
-            path_adjlist     = ASSETS_DATA / 'graphs' / 'graph.adjlist'
-            path_graphml     = ASSETS_DATA / 'graphs' / 'graph.graphml'
+            path_adjlist = ASSETS_DATA / 'graphs' / 'graph.adjlist'
+            path_graphml = ASSETS_DATA / 'graphs' / 'graph.graphml'
             path_igraph_rank = ASSETS_DATA / 'graphs' / 'graph.igraph.rank'
 
             G_graph = nx.DiGraph()
@@ -82,14 +85,16 @@ class WikiIndex:
             for article_title in link_graph_in:
                 link_article_subgraph = link_graph_in[article_title]
                 if len(link_article_subgraph):
-                    G_graph.add_edges_from([(sub_article_title.rstrip(), article_title.rstrip()) for sub_article_title in link_article_subgraph])
+                    G_graph.add_edges_from(
+                        [(sub_article_title.rstrip(), article_title.rstrip()) for sub_article_title in
+                         link_article_subgraph])
 
             nx.write_adjlist(G_graph, str(path_adjlist))
             nx.write_graphml(G_graph, str(path_graphml))
 
             pr = PageRank.from_igraph_graphml(path=path_graphml)
             pr.generate_igraph_page_rank(path=path_igraph_rank)
-            
+
         def apply_filters(link_graph_in):
             link_graph_clean = {}
             for article_title in all_articles:
@@ -120,6 +125,7 @@ class WikiIndex:
                     if count > 10000:
                         writer.commit()
                         writer = self.index.writer(limitmb=1024, procs=2, multisegment=True)
+                        count = 0
 
                     listener = None
                     try:
@@ -129,12 +135,12 @@ class WikiIndex:
                         article = compiler.compile(text.text)
                         writer.add_document(title=title.text, text=article, categories=','.join(categories), id=f'{id}')
                         logger.info(f'{title.text} indexed')
-                        listener and listener() # Remove listeners
+                        listener and listener()  # Remove listeners
                         categories.clear()
                         all_articles.append(normalize_title(title.text))
                     except (ParseError, MalformedTag, RedirectFound) as e:
                         miss += 1
-                        listener and listener() # Remove listeners
+                        listener and listener()  # Remove listeners
                         logger.warning(f'{title.text} {e.type}, skipping')
                         continue
 
