@@ -29,6 +29,20 @@
 
 				<div class="opt mb-3">
 					<div class="opt__description">
+						<h4>Thesaurus based query expansion</h4>
+						<p class="muted">Query expansion based on a thesaurus(Wordnet).
+							The query is expanded with the gloss of each disambiguated synset. Wordnet is generic corpus that might not be suited to expand queries for wikipedia(a wikipedia corpus could be better)
+							so query drift might be behind the corner with polysemic and very general queries.
+						</p>
+					</div>
+					<div class="opt__action">
+						<input class=radio" type="radio" value="thesaurus" id="query_expansion_thesaurus" name="query_expansion" {{ 'checked' if session['query_expansion'] == 'thesaurus' else '' }} />
+						<label for="query_expansion_thesaurus"></label>
+					</div>
+				</div>
+
+				<div class="opt mb-3">
+					<div class="opt__description">
 						<h4>No query expansion</h4>
 						<p class="muted">Disable query expansion</p>
 					</div>
@@ -84,7 +98,7 @@
 						<p class="muted">Disable PageRank</p>
 					</div>
 					<div class="opt__action">
-						<input class=radio" type="radio" value="none" id="page_rank_none" name="link_analysis" {{ 'checked' if session['query_expansion'] == 'none' else '' }} />
+						<input class=radio" type="radio" value="none" id="page_rank_none" name="link_analysis" {{ 'checked' if not session['link_analysis'] or session['link_analysis'] == 'none' else '' }} />
 						<label for="page_rank_none"></label>
 					</div>
 				</div>

@@ -27,15 +27,16 @@ class WikiSchema(SchemaClass):
 
 # TODO singleton
 class WikiIndex:
-    def __init__(self):
+    def __init__(self, namespace='http://www.mediawiki.org/xml/export-0.10/'):
         self.schema = WikiSchema
-        self.xml_parser = WikiXML(namespace='http://www.mediawiki.org/xml/export-0.10/')
+        self.xml_parser = WikiXML(namespace=namespace)
         self.index = None
+        self.reader = None
 
     def clear(self):
         pass
 
-    def get(self, name='__indexdir', destructive=False):
+    def get(self, name='__indexdir', dump=config.DUMP_FOLDER, destructive=False):
         index_path = config.ROOT.joinpath(name)
         path = str(index_path)
 
@@ -49,11 +50,13 @@ class WikiIndex:
                 index_path.mkdir()
                 self.index = index.create_in(path, WikiSchema())
                 logging.info('Index newly created, adding documents')
-                self.build()
+                self.build(directory=dump)
             except (FileExistsError, FileNotFoundError) as e:
                 logger.error('Index already exist or parent not found')
                 sys.exit(0)
         self.index = index.open_dir(path)
+        print(' * Bootstrap index reader')
+        self.reader = self.index.reader()
 
         return self
 

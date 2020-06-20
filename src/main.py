@@ -1,12 +1,12 @@
+from flask import Flask, request, render_template, session, redirect, url_for
 from preprocessing.index import WikiIndex
 from pagerank.pagerank import PageRank
 from searching.searcher import Searcher
-from flask import Flask, request, render_template, session, redirect, url_for
-
 import yaml
 import config
 import logging
 import logging.config
+import os
 
 __logger = None
 __wikimedia_ix = None
@@ -96,12 +96,7 @@ def search_results():
     # )
     queryAllFields = request.args.get("q", "")
 
-    queryByTitle = request.args.get("title", "")
-    queryByAuthor = request.args.get("author", "")
-    queryByCategory = request.args.get("category", "")
-
     # query = [t.text for t in StandardAnalyzer()(queryAllFields)]
-
     results = get_searcher().search(queryAllFields, session)
     # results = [map_result_to_temp(r, query) for r in results]
 
@@ -124,8 +119,14 @@ def settings():
     return session
 
 
-if __name__ == 'src.main':
+def warm_modules():
     get_logger()
     get_wikimedia_ix()
     get_page_rank()
     get_searcher()
+
+
+if __name__ == 'src.main':
+    # # https://stackoverflow.com/questions/25504149/why-does-running-the-flask-dev-server-run-itself-twice/25504196
+    # lazy_loading(warm_modules)
+    warm_modules()

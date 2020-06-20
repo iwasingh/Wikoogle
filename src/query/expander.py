@@ -2,11 +2,9 @@ from nltk import pos_tag, word_tokenize, RegexpParser, ngrams, FreqDist
 from nltk.collocations import BigramCollocationFinder
 from nltk.corpus import wordnet
 from nltk.stem import WordNetLemmatizer, PorterStemmer
-from preprocessing.analyzer import WikimediaAnalyzer, GOOGLE_STOP_WORDS
+from preprocessing.analyzer import ThesaurusExpansionAnalyzer, WikimediaAnalyzer
 from preprocessing.utils import clean
 from enum import Enum
-from whoosh.classify import Expander, ExpansionModel
-# from rake_nltk import Metric, Rake
 from nltk.tree import Tree
 from functools import reduce
 import operator
@@ -14,6 +12,38 @@ from math import log
 from whoosh.analysis import StemmingAnalyzer
 from searching.fragmenter import Fragmenter
 import re
+import math
+import time
+from pywsd import disambiguate, adapted_lesk
+
+
+# wsd_disambiguate = None
+# wsd_adapted_lesk = None
+
+# if os.environ.get('FLASK_ENV') == 'development':
+#     if os.environ.get('WERKZEUG_RUN_MAIN') == 'true':
+#         from pywsd import disambiguate, adapted_lesk
+#
+#         wsd_disambiguate = disambiguate
+#         wsd_adapted_lesk = adapted_lesk
+# else:
+#     from pywsd import disambiguate, adapted_lesk
+#
+#     wsd_disambiguate = disambiguate
+#     wsd_adapted_lesk = adapted_lesk
+
+
+# def load_pywsd():
+#     global wsd_disambiguate
+#     global wsd_adapted_lesk
+#
+#     if wsd_disambiguate is None or wsd_disambiguate is None:
+#         from pywsd import disambiguate, adapted_lesk
+#         wsd_disambiguate = disambiguate
+#         wsd_adapted_lesk = adapted_lesk
+#
+
+# lazy_loading(load_pywsd)
 
 
 class POSTag(Enum):
@@ -51,7 +81,7 @@ def stemming(tokens):
     return [stemmer.stem(t) for t in tokens]
 
 
-def thesaurus_expand(query):
+def thesaurus_expand(query, wikimedia, size=3):
     """
     Wordent hierarchy
      - hyponyms concepts that are more specific (immediate), navigate down to the tree
@@ -60,29 +90,101 @@ def thesaurus_expand(query):
      - holonyms things that contain meronyms (i.e. tree)
 
      Query expansion require good relevance feedback methods. Using a thesaurus based query expansion might decrease
-     performance and has query drift problems with polysemic words. For now query expansion
-     for now only stems and lemmas of non-polysemic words are expanded
+     performance and has query drift problems with polysemic words. This method picks up keyword from gloss of the synsets
+     and uses a lesk algorithm to disambiguate terms from each other
     :param query:
     :return:
     """
-    analyzer = WikimediaAnalyzer()
+    analyzer = ThesaurusExpansionAnalyzer()
+    wikimedia_analyzer = WikimediaAnalyzer()
     original_tokens = [i.text for i in analyzer(query)]
-    tokens = stemming(original_tokens)
+    # original_tokens = set([i.text for i in query.all_tokens()])
+
     synonyms = set()
-    for token in original_tokens:
-        senses = wordnet.synsets(token, 'n')
-        if len(senses) == 1:
-            synonyms = synonyms.union(set(senses[0].lemma_names()))
 
-    tokens += [i.text for i in analyzer(' '.join(list(synonyms)))]
-    return original_tokens + [i for i in tokens if i not in original_tokens]
+    rule = r"""
+           NBAR: {<NN>}
+                 {<JJ>}
+                 # {<JJS>}
+                 {<NNS>}
+                 # {<NNP>}
+    """
+
+    synsets = []
+    for w, s in disambiguate(" ".join(original_tokens), algorithm=adapted_lesk):
+        if s:
+            definition = s.definition()
+            tokens = [i.text for i in wikimedia_analyzer(definition)]
+            synsets.append((w, wordnet.synset(s.name()), tokens))
+    for word, sense, definition in synsets:
+        if sense:
+            synonyms = synonyms.union(noun_groups(word_tokenize(sense.definition()), chunk_size=1, rule=rule))
+            for l in sense.lemma_names():
+                for lemma in wikimedia_analyzer(l.replace('_', ' ')):
+                    synonyms.add(lemma.text)
+
+    # for token in tokens: for _, original_sense, _ in synsets: for child_synset in wordnet.synsets(token):
+    # if child_synset: # definition = [i.text for i in analyzer(child_synset.definition())] # pywsd. score =
+    # wordnet.synset(original_sense.name()).path_similarity(child_synset, simulate_root=False) print(
+    # child_synset, child_synset.definition(), original_sense, score)
+
+    # print(tokens)
+    # print([j.definition() for i, j in pywsd.disambiguate(query, algorithm=pywsd.simple_lesk)], '\n',
+    #       [j.definition() for i, j in pywsd.disambiguate(query, algorithm=pywsd.adapted_lesk)], '\n',
+    #       [j.definition() for i, j in pywsd.disambiguate(query, algorithm=pywsd.cosine_lesk)], '\n',
+    #       [j.definition() for i, j in pywsd.disambiguate(query, algorithm=pywsd.max_similarity)])
+
+    # if len(_concept) > 0:
+    #     concept, similarity_strength = _concept[0]
+    #     if similarity_strength > 0.7:
+    #         __retrieve_definition_groupings(synsets)
+    # else:
+    #     print(__retrieve_definition_groupings(synsets))
+    # disambiguated_senses = disambiguate(query, algorithm=adapted_lesk)
+
+    # print(disambiguated_senses, '\n\n', simple_lesk, '\n\n', resnik_wsd(word_tokenize(query)), '\n')
+    # for token in original_tokens:
+    #     senses = wordnet.synsets(token, 'n')
+    #     if len(senses) == 1:
+    #         synonyms = synonyms.union(set(senses[0].lemma_names()))
+    #     else:
+    #
+    # tokens += [i.text for i in analyzer(' '.join(list(synonyms)))]
+    # return original_tokens + [i for i in tokens if i not in original_tokens]
+
+    reader = wikimedia.reader
+    N = reader.doc_count()
+
+    def get_cosine(vec1, vec2):
+        intersection = set(vec1.keys()) & set(vec2.keys())
+        numerator = sum([vec1[x] * vec2[x] for x in intersection])
+
+        sum1 = sum([vec1[x] ** 2 for x in vec1.keys()])
+        sum2 = sum([vec2[x] ** 2 for x in vec2.keys()])
+        denominator = math.sqrt(sum1) * math.sqrt(sum2)
+
+        if not denominator:
+            return 0.0
+        else:
+            return float(numerator) / denominator
+
+    terms_vec = {}
+    for syn in synonyms:
+        doc_frequency = reader.doc_frequency('text', syn)
+        if doc_frequency != 0:
+            idf = log(N / doc_frequency)
+            terms_vec[syn] = idf
+    return list(map(lambda q: q, sorted(terms_vec, key=lambda c: terms_vec[c], reverse=True)))[:size]
 
 
-def noun_groups(tokens, chunk_size=2, analyzer=StemmingAnalyzer()):
+def noun_groups(tokens, chunk_size=2, analyzer=StemmingAnalyzer(), rule=None):
     grammar = r"""
         NBAR: {<NN|JJ><|JJ|NN>} # Nouns and Adjectives, terminated with Nouns
               # {<NN>} # If pattern not found just a single NN is ok
     """
+    if rule is not None:
+        grammar = rule
+
     cp = RegexpParser(grammar)
     result = cp.parse(pos_tag(tokens))
     nouns = set()

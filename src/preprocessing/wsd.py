@@ -1,4 +1,38 @@
 from nltk.corpus import wordnet
+    # global wsd
+    # if os.environ.get('FLASK_ENV') == 'development':
+    #     if os.environ.get('WERKZEUG_RUN_MAIN') != 'true':
+    #         if wsd is None:
+    #             import pywsd
+    #             wsd = pywsd
+
+    # return wsd
+
+
+# else:
+#     import pywsd
+#     wsd = pywsd
+# import pywsd as wsd
+# if os.environ.get('WERKZEUG_RUN_MAIN') == 'true':
+#     if wsd is None:
+#         import pywsd
+#         wsd = pywsd
+
+# wsd_disambiguate = None
+# wsd_adapted_lesk = None
+#
+#
+# def warm_pywsd():
+#     global wsd_disambiguate
+#     global wsd_adapted_lesk
+#
+#     if wsd_disambiguate is None:
+#         from pywsd import disambiguate
+#         __disambiguate = disambiguate
+#
+#     if wsd_adapted_lesk is None:
+#         from pywsd import adapted_lesk
+#         wsd_adapted_lesk = adapted_lesk
 
 
 def maximum_similarity(w1, w2, threshold=0):
