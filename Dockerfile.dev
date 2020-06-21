@@ -3,13 +3,14 @@ FROM python:latest
 RUN apt-get update && apt-get install -y \
     python3-lxml
 
-
 WORKDIR /app
-# source venv/bin/activate
-# python -m nltk.downloader punkt
-# python -m nltk.downloader 'popular'
 
-#
+RUN pip install pipenv
+COPY ./Pipfile .
+COPY ./Pipfile.lock .
+RUN pipenv install --system --deploy
+RUN python -m nltk.downloader 'popular'
+
 EXPOSE 8888
 
 CMD ["/bin/bash"]
