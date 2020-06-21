@@ -9,14 +9,13 @@
   <p align="center">
     The wikipedia search engine!
     <br />
-    <a href="https://github.com/iwasingh/Wikoogle"><strong>Demo »</strong></a>
+    <a href="http://212.237.42.43:8080/"><strong>Demo »</strong></a>
     <br />
     <br />
   </p>
 </p>
 
 Wikoogle is a wikipedia information retrieval system (search engine)
-You can play with the demo based on 3GB of wikipedia pages on the following link: [Wikoogle demo](http://212.237.42.43:8080/)
 
 ## Installation
 Alongside of other dependencies used to build the project explained below, you must need:
@@ -111,5 +110,7 @@ Wikoogle, resembles google(at least, we try): the query language is almost the s
     <img src="https://i.imgur.com/G4JHW77.png" align="center" width="888px"/>
   </a>
 </p>
+
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
