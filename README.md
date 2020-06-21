@@ -92,6 +92,11 @@ ran the application on your computer at: [localhost:PORT](http://localhost:PORT)
 
 Wikoogle, resembles google(at least, we try): the query language is almost the same and you can configure search parameters of the models (e.g page rank, query expansion) from the ui-friendly menu
 
+### Browser support
+All major modern browser are supported:
+* Chrome (>=57)
+* Edge (>=16)
+* Firefox (>=52)
 
 ## Screenshots
 <p align="center">
