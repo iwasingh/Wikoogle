@@ -66,7 +66,7 @@ class WikiIndex:
         if not self.index:
             raise FileNotFoundError('Index not initialized')
 
-        writer = self.index.writer(limitmb=4096, procs=4, multisegment=True)
+        writer = self.index.writer(limitmb=2048, procs=2, multisegment=True)
 
         compiler = Compiler()
 
@@ -92,9 +92,9 @@ class WikiIndex:
                 for root in self.xml_parser.from_xml(str(wiki)):
                     count += 1
 
-                    if count > 5000:
+                    if count > 20000:
                         writer.commit()
-                        writer = self.index.writer(limitmb=4096, procs=4, multisegment=True)
+                        writer = self.index.writer(limitmb=2048, procs=2, multisegment=True)
                         count = 0
 
                     listener = None

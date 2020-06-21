@@ -92,11 +92,22 @@ class PageRankBM25(scoring.WeightingModel):
     def scorer(self, searcher, fieldname, text, qf=1):
         return PageRankBM25Scorer(searcher, fieldname, text, self.pagerank, self.alpha)
 
+class HitsBM25(scoring.WeightingModel):
+    __name__ = 'HitsBM25'
+
+    def __init__(self, pagerank, alpha):
+        self.pagerank = pagerank
+        self.alpha = alpha
+
+    def scorer(self, searcher, fieldname, text, qf=1):
+        return PageRankBM25Scorer(searcher, fieldname, text, self.pagerank, self.alpha)
+
 
 MODELS = {
     'bm25': scoring.BM25F,
     'pl2': scoring.PL2,
-    'pr_bm25': PageRankBM25
+    'pr_bm25': PageRankBM25,
+    'hits': HitsBM25,
 }
 
 EXPANSION = {
@@ -117,7 +128,8 @@ class Searcher:
         self.searcher = {
             'bm25': self.wikimedia.index.searcher(weighting=scoring.BM25F),
             'pl2': self.wikimedia.index.searcher(weighting=scoring.PL2),
-            'pr_bm25': self.wikimedia.index.searcher(weighting=_pr_bm25_mod)
+            'pr_bm25': self.wikimedia.index.searcher(weighting=_pr_bm25_mod),
+            'hits': self.wikimedia.index.searcher(weighting=_pr_bm25_mod)
         }
         
         self._query_expansion_relevant_limit = 10
@@ -160,6 +172,13 @@ class Searcher:
         if 'ranking' in configuration and configuration['ranking'] and MODELS[configuration['ranking']]:
             model = MODELS[configuration['ranking']]
             searcher = self.searcher[configuration['ranking']]
+
+        # Defeault PageRank graph
+        # graph = self.pagerank.graph
+
+        # if model.__name__ == 'HitsBM25':
+        #     if expansion == 'lca':
+                
 
         # Default PageRank relevance
         alpha = self._page_rank_bm25_alpha
