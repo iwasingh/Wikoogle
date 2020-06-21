@@ -1,7 +1,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/iwasingh/Wikoogle">
-    <img src="https://i.imgur.com/k4ZcWB3.png" alt="Logo">
+    <img src="https://i.imgur.com/k4ZcWB3.png" alt="Logo" width="425px">
   </a>
 
   <h3 align="center">Wikoogle</h3>
@@ -13,12 +13,6 @@
     <br />
     <br />
   </p>
-</p>
-
-<p align="center">
-  <a href="https://vuestic.epicmax.co" target="_blank">
-    <img src="https://i.imgur.com/gpKQqC3.png" align="center" width="888px"/>
-  </a>
 </p>
 
 Wikoogle is a wikipedia information retrieval system (search engine)
@@ -100,6 +94,22 @@ ran the application on your computer at: [localhost:PORT](http://localhost:PORT)
 Wikoogle, resembles google(at least, we try): the query language is almost the same and you can configure search parameters of the models (e.g page rank, query expansion) from the ui-friendly menu
 
 
+## Screenshots
+<p align="center">
+  <a href="https://github.com/iwasingh/Wikoogle" target="_blank">
+    <img src="https://i.imgur.com/Rgv2DQD.png" align="center" width="888px"/>
+  </a>
+</p>
 
+<p align="center">
+  <a href="https://github.com/iwasingh/Wikoogle" target="_blank">
+    <img src="https://i.imgur.com/U0GkYuE.png" align="center" width="888px"/>
+  </a>
+</p>
+<p align="center">
+  <a href="https://github.com/iwasingh/Wikoogle" target="_blank">
+    <img src="https://i.imgur.com/G4JHW77.png" align="center" width="888px"/>
+  </a>
+</p>
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
