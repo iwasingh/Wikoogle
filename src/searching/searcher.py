@@ -108,7 +108,7 @@ MODELS = {
     'bm25': scoring.BM25F,
     'pl2': scoring.PL2,
     'pr_bm25': PageRankBM25,
-    'hits': HitsBM25,
+    'hits_bm25': HitsBM25,
 }
 
 EXPANSION = {
@@ -123,14 +123,16 @@ class Searcher:
         self.wikimedia = wikimedia
         self.pagerank = pagerank
 
-        self._page_rank_bm25_alpha = 0.8
-        _pr_bm25_mod = PageRankBM25(self.pagerank.graph, self._page_rank_bm25_alpha)
+        self._bm25_alpha = 0.8
+
+        _pr_bm25_mod = PageRankBM25(self.pagerank.graph, self._bm25_alpha)
+        _hits_bm25_mod = HitsBM25(self.pagerank.graph, self._bm25_alpha)
 
         self.searcher = {
             'bm25': ws(reader=self.wikimedia.reader, weighting=scoring.BM25F),
             'pl2': ws(reader=self.wikimedia.reader, weighting=scoring.PL2),
             'pr_bm25': ws(reader=self.wikimedia.reader, weighting=_pr_bm25_mod),
-            'hits': ws(reader=self.wikimedia.reader, weighting=_pr_bm25_mod)
+            'hits_bm25': ws(reader=self.wikimedia.reader, weighting=_hits_bm25_mod)
         }
         
         self._query_expansion_relevant_limit = 10
@@ -182,12 +184,12 @@ class Searcher:
                 
 
         # Default PageRank relevance
-        alpha = self._page_rank_bm25_alpha
+        alpha = self._bm25_alpha
 
         if 'page_rank_lvl' in configuration and int(configuration['page_rank_lvl']) > 0:
             alpha = int(configuration['page_rank_lvl']) / 10
             _pr_bm25_mod = PageRankBM25(self.pagerank.graph, alpha)
-            searcher = self.wikimedia.index.searcher(weighting=_pr_bm25_mod)
+            searcher = ws(reader=self.wikimedia.reader, weighting=_pr_bm25_mod)
 
         # Default Link Analysis
         link_analysis = False
