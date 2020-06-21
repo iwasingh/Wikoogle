@@ -1,84 +1,75 @@
 # Wikoogle
-Wikipedia search engine
 
-# Libraries
-* https://spacy.io/ seems the most powerful and has a storng community behind it
-* https://www.nltk.org/ the library is maintained by a very small number of people and seems like it is buggy, erratic, uneven and difficult to use
-* https://whoosh.readthedocs.io/en/latest/intro.html seems dead but is good to do the project. Maybe parsing, tagging, stemming, document preprocessing can be done with this and the searching with a custom implementation. It would be more reasonable since whoosh only support BM25 model  . It is slow that elasticsearch and lucene
-* https://lucene.apache.org/solr/ 
-* https://elasticsearch-py.readthedocs.io/en/master/
+Wikoogle is a information retrieval system (search engine) to retrieve relevant wikipedia articles.
 
-## Tips
-* https://wiki.python.org/moin/PythonSpeed/PerformanceTips
-* Write high speed functions in C and build a python c extension. Roughly
-* Pypy
-* Ctypes
-* C extension
-* I/O performance https://docs.python.org/3/library/io.html
-
-## XML parsing
-* http://effbot.org/zone/celementtree.htm
-* https://lxml.de/intro.html 
-* Wikipedia Schema https://www.mediawiki.org/wiki/Help:Formatting
-
-## Wikimedia parsing
-* https://www.mediawiki.org/wiki/Markup_spec/EBNF
-* https://github.com/attardi/wikiextractor/wiki
+## Installation
+Alongside of other dependencies used to build the project explained below, you must need:
+* [Wikipedia dumps](https://dumps.wikimedia.org/enwiki/latest/). You should pick few dumps and only ones that have `pages-articles-multistream` as a name.
+  Download them and put in the `dumps` directory on the root of the project
 
 
-## Indexing
-* https://www.ibm.com/developerworks/library/x-hiperfparse/index.html 
-## Wikitext formatting
-* https://en.wikipedia.org/wiki/Help:Wikitext
-* https://en.wikipedia.org/wiki/Help:Cheatsheet
-* https://en.wikiquote.org/wiki/Help:Wiki_markup_examples	
-* https://dl.acm.org/doi/10.1145/512927.512931
-* https://tomassetti.me/guide-parsing-algorithms-terminology/#structureParser
+### Windows/Unix
+#### Requirements
+* python (>= 3.8)
+* pipenv
 
-## Logging
-* https://docs.python.org/3/howto/logging-cookbook.html
+After checking the requirements 
+```
+python --version
+pipenv --version
+```
 
-## Notes 1.0
-### Problems
-* xml tree memory problem, solved by .clear() and del
-* Wikipedia template parsing
-###
-* How to model the index?
- * Multiple index
-   - whoosh index with title and a reference in the wikigoogle index
-   - wikigoogle index with the wikipedia parsed template and other information
+follow these steps from the root of the project:
+#### Installing dependencies
+```bash
+pipenv install
+pipenv run  python -m nltk.downloader 'popular'
+```
+#### Run
+1. Specify the entrypoint
+    ```bash
+    export FLASK_APP=main.py 
+    ```
+    or in Window Powershell (`Window-key + X` -> Window Powershell)
+    ```bash
+    $env:FLASK_APP = "main.py"
+    ```
+1. Run
+    ```
+    cd src
+    pipenv run python -m flask run --host 0.0.0.0 --port PORT --no-reload
+    ```
+    remember to set the PORT (e.g 8888)
 
-## Notes 1.1
-* Wikimedia markup spec
- * Keep &ltmath; and &gt/math to show math expressions or remove them?;
-   -> Everything different from Wikimedia markspec should be kept or handle situation case by case?
-      For indexing purpose these expression are quite useless since they need to be processed (ex. MathJax, Latex ec..)
+### Docker
+As alternative to the first installation, you can install and run the project within a linux container. Be sure to have docker installed: https://docs.docker.com/get-docker/
+1. Build the image `information_retrieval` (you can change the tag)
+    ```bash 
+    docker image build -t information_retrieval -f Dockerfile.dev .
+    ```
+   
+   The image is based on the `python:latest` image. If the process fails due to missing image, download it with
+   `docker pull python` and retry.
+1. Create the container with the name `ir_container` (you can change it)
+    ```bash
+    docker container create -p 8888:8888 -v ${PWD}:/app -it --name ir_container information_retrieval
+    ```
+   
+   You can change the ports mapping(8888 is the only exposed port of the image, so don't change the destination container port but only the origin host port) and the name of the container.
+   
+1. Run
+   ```bash
+   docker -ia ir_container # or the name you specified before
+   cd src
+   export FLASK_APP=main.py
+   python -m flask run --host 0.0.0.0 --port 8888 --no-reload
+   ```
+   
 
-## Notes 1.2
-* Parser works, it might be useful to build a secondary index with a parsed wikitext to add features like this https://www.google.com/search?q=Known+star+systems+within+5.0+parsecs+(16.3+light-years)&rlz=1C1CHBF_enIT883IT883&oq=Known+star+systems+within+5.0+parsecs+(16.3+light-years)&aqs=chrome..69i57.182j0j7&sourceid=chrome&ie=UTF-8 (Table rendered directly)
+### 
+## Usage
 
-## Notes 1.3
-Things to do:
-* UI
- * Nodejs/Flask that serves a SPA/SSR
-* Searching
- * Query expansion
 
-## Notes 1.4
-* Summarize with RAKE https://www.researchgate.net/publication/227988510_Automatic_Keyword_Extraction_from_Individual_Documents
-* Query expansion and WSD with NLTK
- - An idea might be use wikipedia articles Category references to build a wikipedia-specific thesaurus to get better results
-	 
-## Notes 1.5
-* Ignore #REDIRECT
-* Query LCA expansion
 
-# Snippet generation
-* https://arxiv.org/pdf/2002.10782.pdf
-* http://marksanderson.org/publications/my_papers/SIGIR98.pdf
-
-# WSD and Query expansion
-* https://arxiv.org/pdf/1105.5444.pdf
-* http://disi.unitn.it/~bernardi/Courses/DL/Slides_11_12/9.pdf
-* https://dl.acm.org/doi/pdf/10.1145/333135.333138#:~:text=Local%20context%20analysis%20ranks%20the,query%20expansion%20than%20existing%20techniques.
-* https://my.eng.utah.edu/~cs7961/papers/XuCroft-SIGIR96.pdf
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
