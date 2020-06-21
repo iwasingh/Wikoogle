@@ -1,0 +1,40 @@
+<div id="about" class="modal">
+	<div class="modal-window">
+		<div class="modal-header flex justify-space-between align-start">
+			<h2 class="grey">About</h2>
+			<button data-dismiss="modal" class="button menu">
+				<span data-dismiss="modal" class="oi grey" data-glyph="x"></span>
+			</button>
+		</div>
+		<div class="flex-container flex-col p-0 pt-1">
+			<p class="muted mb-3">Developed by Singh Amarjot and Matteo Guerzoni - Università degli studi di Modena e Reggio Emilia</p>
+
+			<h3 class="primary"><strong>Github</strong></h3>
+			<p class="muted mb-3">Checkout the project source code on <a href="https://github.com/iwasingh/Wikoogle" target="_blank">GitHub</a></p>
+
+			<h3 class="primary"><strong>License</strong></h3>
+			<p class="muted">This project is licensed under the MIT license</p>
+			{#				<div class="opt mb-3">#}
+			{#					<div class="opt__description">#}
+			{#						<h4>20 results</h4>#}
+			{#						<p class="muted">Limit up to 20 results.</p>#}
+			{#					</div>#}
+			{#					<div class="opt__action">#}
+			{#						<input class=radio" type="radio" value="20" id="results_limit_20" name="results_limit" {{ 'checked' if session['results_limit'] == '20' else '' }} />#}
+			{#						<label for="results_limit_20"></label>#}
+			{#					</div>#}
+			{#				</div>#}
+			{#				<div class="opt mb-3">#}
+			{#					<div class="opt__description">#}
+			{#						<h4>30 results</h4>#}
+			{#						<p class="muted">Limit up to 30 results.</p>#}
+			{#					</div>#}
+			{#					<div class="opt__action">#}
+			{#						<input class=radio" type="radio" value="30" id="results_limit_30" name="results_limit" {{ 'checked' if session['results_limit'] == '30' else '' }} />#}
+			{#						<label for="results_limit_30"></label>#}
+			{#					</div>#}
+			{#				</div>#}
+			<hr/>
+		</div>
+	</div>
+</div>

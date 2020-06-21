@@ -177,7 +177,14 @@
   height: auto;
   max-width: 425px;
 }
-
+.logo-medium {
+  height: auto;
+  max-width: 250px;
+}
+.logo-small {
+  height: auto;
+  max-width: 150px;
+}
 .logo-mini {
   width: 53px;
   height:46px;

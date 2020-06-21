@@ -1,6 +1,6 @@
 
 .results {
-  grid-template-columns: repeat(1, [col-start] minmax(320px, 682px) [col-end]);
+  grid-template-columns: repeat(1, [col-start] minmax(300px, 682px) [col-end]);
   grid-template-rows: none;
   grid-auto-rows: minmax(min-content, max-content);
 }
@@ -69,10 +69,28 @@ article .text {
 
 @media (min-width: 990px) {
   main {
-    margin: 0 0 0 85px
+    margin: 0 0 0 180px
   }
 }
 
 main article:first-child{
   margin-top: 24px;
 }
+
+.header-result {
+  flex-direction: row;
+}
+
+.header-result .header-logo {
+  margin-right: 15px;
+}
+
+.header-result .header-options {
+  flex-grow: 1;
+  justify-content: flex-end;
+}
+/*@media (max-width: 576px) {*/
+/*  .search-bar {*/
+/*    width: 250px !important;*/
+/*  }*/
+/*}*/
