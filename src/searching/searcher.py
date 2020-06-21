@@ -5,6 +5,7 @@ from whoosh.qparser import MultifieldParser
 from query.expander import thesaurus_expand, lca_expand
 import logging
 from whoosh import scoring, searching, sorting
+from whoosh.searching import Searcher as ws
 import time
 
 logger = logging.getLogger()
@@ -126,10 +127,10 @@ class Searcher:
         _pr_bm25_mod = PageRankBM25(self.pagerank.graph, self._page_rank_bm25_alpha)
 
         self.searcher = {
-            'bm25': self.wikimedia.index.searcher(weighting=scoring.BM25F),
-            'pl2': self.wikimedia.index.searcher(weighting=scoring.PL2),
-            'pr_bm25': self.wikimedia.index.searcher(weighting=_pr_bm25_mod),
-            'hits': self.wikimedia.index.searcher(weighting=_pr_bm25_mod)
+            'bm25': ws(reader=self.wikimedia.reader, weighting=scoring.BM25F),
+            'pl2': ws(reader=self.wikimedia.reader, weighting=scoring.PL2),
+            'pr_bm25': ws(reader=self.wikimedia.reader, weighting=_pr_bm25_mod),
+            'hits': ws(reader=self.wikimedia.reader, weighting=_pr_bm25_mod)
         }
         
         self._query_expansion_relevant_limit = 10
