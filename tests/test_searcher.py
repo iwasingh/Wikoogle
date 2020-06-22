@@ -20,7 +20,8 @@ class TestSearcher(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         super(TestSearcher, self).__init__(*args, **kwargs)
         self.index = WikiIndex().get('__index')
-        self.pagerank = PageRank().get(ASSETS_DATA / 'graphs' / 'graph.igraph.rank')
+        self.pagerank = PageRank()
+        self.pagerank.get()
         self.searcher = Searcher(self.index, pagerank=self.pagerank)
         # self.q = QueryParser('text')
 

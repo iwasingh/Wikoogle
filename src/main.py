@@ -59,7 +59,8 @@ def get_page_rank():
 
     print(' * Bootstrap PageRank')
 
-    __page_rank = PageRank().get(config.ASSETS_DATA / 'graphs' / 'graph.igraph.rank')
+    __page_rank = PageRank()
+    __page_rank.get()
 
     return __page_rank
 

@@ -323,7 +323,7 @@ def lca_expand(query, documents, size=15, passage_size=400, threshold=1.4):
         sim = prod([i for i in prods])
         ranking.append((concept, sim))
 
-    print(sorted(ranking, key=lambda c: c[1], reverse=True))
+    # print(sorted(ranking, key=lambda c: c[1], reverse=True))
     filtered = filter(lambda c: c[1] > threshold, ranking)
     return list(map(lambda q: q[0], sorted(filtered, key=lambda c: c[1], reverse=True)))[:size]
     # return [re.sub(regex, "", term).strip() for term in top_terms]

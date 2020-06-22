@@ -1,108 +1,16 @@
-from whoosh.qparser import QueryParser
-import searching.result as r
-from pagerank.pagerank import normalize_title
-from whoosh.qparser import MultifieldParser
-from query.expander import thesaurus_expand, lca_expand
+import time
 import logging
+import searching.result as r
 from whoosh import scoring, searching, sorting
 from whoosh.searching import Searcher as ws
-import time
+from whoosh.qparser import QueryParser, MultifieldParser
+from query.expander import thesaurus_expand, lca_expand
+from hits.hits import Hits
+from hits.weighting import HitsBM25
+from pagerank.weighting import PageRankBM25
+from pagerank.facet import PageRankFacet
 
 logger = logging.getLogger()
-
-
-def page_rank_facet(pagerank):
-    def page_rank_sort(result):
-        doc_title = normalize_title(result.get("title", ""))
-        score = result.score
-        rank = pagerank.graph.get(doc_title, 0)
-        rlength = len(pagerank.graph)
-        return rank * score
-
-    return page_rank_sort
-
-
-class PageRankFacet(sorting.FacetType):
-    def __init__(self, pagerank, maptype=None):
-        self.pagerank = pagerank
-        self.maptype = maptype
-
-    def categorizer(self, global_searcher):
-        return self.PageRankCategorizer(self.pagerank, global_searcher)
-
-    class PageRankCategorizer(sorting.Categorizer):
-        def __init__(self, pagerank, global_searcher):
-            self.pagerank = pagerank
-            w = global_searcher.weighting
-            self.use_final = w.use_final
-            if w.use_final:
-                self.final = w.final
-
-        def set_searcher(self, segment_searcher, offset):
-            self.segment_searcher = segment_searcher
-
-        def key_for(self, matcher, docid):
-            doc = self.segment_searcher.stored_fields(docid)
-            doc_title = normalize_title(doc.get("title", ""))
-            score = matcher.score()
-            rank = self.pagerank.graph.get(doc_title, 0)
-            return rank * len(self.pagerank.graph)
-
-
-def page_rank_weighting(idf, tf, fl, avgfl, B, K1, a, r):
-    s = scoring.bm25(idf, tf, fl, avgfl, B, K1)
-    return a * s + (1 - a) * r * 1000
-
-
-class PageRankBM25Scorer(scoring.WeightLengthScorer):
-    def __init__(self, searcher, fieldname, text, pagerank, a, B=0.75, K1=1.2):
-        parent = searcher.get_parent()
-
-        # fai come lambda dello scorer per non dover passare rearcher e pagerank
-
-        self.searcher = parent
-        self.pagerank = pagerank
-
-        self.r = 0
-        self.doc_title = ""
-        self.idf = parent.idf(fieldname, text)
-        self.avgfl = parent.avg_field_length(fieldname) or 1
-        self.B = B
-        self.K1 = K1
-        self.a = a
-
-        self.setup(searcher, fieldname, text)
-
-    def score(self, matcher):
-        document = self.searcher.stored_fields(matcher.id())
-        self.doc_title = normalize_title(document.get("title", ""))
-        self.r = self.pagerank.get(self.doc_title, 0)
-        return self._score(matcher.weight(), self.dfl(matcher.id()))
-
-    def _score(self, weight, length):
-        return page_rank_weighting(self.idf, weight, length, self.avgfl, self.B, self.K1, self.a, self.r)
-
-
-class PageRankBM25(scoring.WeightingModel):
-    __name__ = 'PageRankBM25'
-
-    def __init__(self, pagerank, alpha):
-        self.pagerank = pagerank
-        self.alpha = alpha
-
-    def scorer(self, searcher, fieldname, text, qf=1):
-        return PageRankBM25Scorer(searcher, fieldname, text, self.pagerank, self.alpha)
-
-class HitsBM25(scoring.WeightingModel):
-    __name__ = 'HitsBM25'
-
-    def __init__(self, pagerank, alpha):
-        self.pagerank = pagerank
-        self.alpha = alpha
-
-    def scorer(self, searcher, fieldname, text, qf=1):
-        return PageRankBM25Scorer(searcher, fieldname, text, self.pagerank, self.alpha)
-
 
 MODELS = {
     'bm25': scoring.BM25F,
@@ -123,10 +31,13 @@ class Searcher:
         self.wikimedia = wikimedia
         self.pagerank = pagerank
 
+        self.parser = MultifieldParser(['title', 'text'], fieldboosts={'title': 2.5, 'text': 1.0}, schema=self.wikimedia.index.schema)
+        self.parser_base = QueryParser('text', schema=self.wikimedia.index.schema)
+
         self._bm25_alpha = 0.8
 
         _pr_bm25_mod = PageRankBM25(self.pagerank.graph, self._bm25_alpha)
-        _hits_bm25_mod = HitsBM25(self.pagerank.graph, self._bm25_alpha)
+        _hits_bm25_mod = HitsBM25({}, {}, self._bm25_alpha)
 
         self.searcher = {
             'bm25': ws(reader=self.wikimedia.reader, weighting=scoring.BM25F),
@@ -138,13 +49,10 @@ class Searcher:
         self._query_expansion_relevant_limit = 10
         self._query_expansion_terms = 5
         self._page_rank_relevant_window = 30
-        self.parser_base = QueryParser('text', schema=self.wikimedia.index.schema)
-        self.parser = MultifieldParser(['title', 'text'], fieldboosts={'title': 2.5, 'text': 1.0},
-                                       schema=self.wikimedia.index.schema)
+        self._hits_rank_relevant_window = 10
 
     @staticmethod
     def parse_query_from_terms(terms):
-        # self.parser.parse(terms).with_boost(0.30)
         return " OR ".join(['(' + i + ')' for i in terms])
 
     def search(self, text, configuration):
@@ -176,18 +84,24 @@ class Searcher:
             model = MODELS[configuration['ranking']]
             searcher = self.searcher[configuration['ranking']]
 
-        # Defeault PageRank graph
-        # graph = self.pagerank.graph
-
-        # if model.__name__ == 'HitsBM25':
-        #     if expansion == 'lca':
-                
-
         # Default PageRank relevance
         alpha = self._bm25_alpha
 
         if 'page_rank_lvl' in configuration and int(configuration['page_rank_lvl']) > 0:
             alpha = int(configuration['page_rank_lvl']) / 10
+
+        # Hits
+        if model.__name__ == 'HitsBM25':
+            _hits_searcher = self.searcher['bm25']
+            results = _hits_searcher.search(query, limit=self._hits_rank_relevant_window)
+            hits = Hits()
+            hits.load_graphml()
+            hits.rank_from_results(results)
+            _hits_bm25_mod = HitsBM25(hits.authorities, hits.hubs, alpha)
+            searcher = ws(reader=self.wikimedia.reader, weighting=_hits_bm25_mod)
+
+        # PageRank
+        if model.__name__ == 'PageRank':             
             _pr_bm25_mod = PageRankBM25(self.pagerank.graph, alpha)
             searcher = ws(reader=self.wikimedia.reader, weighting=_pr_bm25_mod)
 
@@ -195,10 +109,9 @@ class Searcher:
         link_analysis = False
         facet = lambda result: result.score
 
-        if model.__name__ != 'PageRankBM25':
-            if 'link_analysis' in configuration and configuration['link_analysis'] != 'none':
-                facet = page_rank_facet(self.pagerank)
-                link_analysis = 'page_rank'
+        if 'link_analysis' in configuration and configuration['link_analysis'] != 'none':
+            facet = page_rank_facet(self.pagerank)
+            link_analysis = 'page_rank'
 
         try:
             results = []

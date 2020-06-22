@@ -99,9 +99,19 @@
 						<label for="ranking_pr_bm25"></label>
 					</div>
 				</div>
+				<div class="opt mb-3">
+					<div class="opt__description">
+						<h4>Hits + Okapi BM25</h4>
+						<p class="muted">A custom ranking function that combines bm25 with hits score</p>
+					</div>
+					<div class="opt__action">
+						<input class=radio" type="radio" value="hits_bm25" id="ranking_hits_bm25" name="ranking" {{ 'checked' if session['ranking'] == 'hits_bm25' else '' }} />
+						<label for="ranking_hits_bm25"></label>
+					</div>
+				</div>
 				<hr/>
-				<h3 class="primary"><strong>Pagerank relevance</strong></h3>
-				<h4>Works only with PageRank + Okapi BM25 Ranking model</h4>
+				<h3 class="primary"><strong>Link Analysis</strong></h3>
+				<h4>Boost for custom ranking models (PageRank, Hits)</h4>
 				<div class="flex flex-col align-center justify-center mt-3">
 					<input id="page_rank_lvl_10" value="{{ 8 if not session['page_rank_lvl'] else session['page_rank_lvl'] }}" type="range" min="1" max="10" step="1" name="page_rank_lvl" />
 					<label for="page_rank_lvl_10">
@@ -111,8 +121,6 @@
 						<span class="muted">1</span>
 					</label>
 				</div>
-				<hr/>
-				<h3 class="primary"><strong>Link Analysis</strong></h3>
 				<div class="opt mb-3">
 					<div class="opt__description">
 						<h4>PageRank</h4>

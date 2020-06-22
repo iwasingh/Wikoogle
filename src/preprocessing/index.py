@@ -5,14 +5,14 @@ from lxml import etree
 from whoosh.fields import TEXT, ID, SchemaClass, KEYWORD
 from whoosh import index
 from parsing.combinators import ParseError
-from pagerank.pagerank import PageRank, normalize_title
+from pagerank.pagerank import PageRank, Adjacency, normalize_title
 from .analyzer import WikimediaAnalyzer
 import config
 from parsing.compiler import Compiler, ParseTypes
 import shutil
 from parsing.utils import MalformedTag
 from parsing.lexer import RedirectFound
-from config import ASSETS_DATA
+from config import ASSETS_DATA, N_PROC
 import networkx as nx
 
 logger = logging.getLogger('preprocessing')
@@ -66,14 +66,14 @@ class WikiIndex:
         if not self.index:
             raise FileNotFoundError('Index not initialized')
 
-        writer = self.index.writer(limitmb=2048, procs=2, multisegment=True)
+        writer = self.index.writer(limitmb=2048, procs=N_PROC, multisegment=True)
 
         compiler = Compiler()
 
         categories = []
         reverse_graph = []
 
-        file_adjlist = open(ASSETS_DATA / 'graphs' / 'graph.adjlist', "w")
+        file_adjlist = open(ASSETS_DATA / 'graphs' / 'graph.adjlist.tmp', "w")
 
         def parse_link(node, article):
             category = node.value.category()
@@ -94,7 +94,7 @@ class WikiIndex:
 
                     if count > 20000:
                         writer.commit()
-                        writer = self.index.writer(limitmb=2048, procs=2, multisegment=True)
+                        writer = self.index.writer(limitmb=2048, procs=N_PROC, multisegment=True)
                         count = 0
 
                     listener = None
@@ -124,11 +124,19 @@ class WikiIndex:
 
         file_adjlist.close()
 
+        adj = Adjacency()
 
-# huge_tree: disable security restrictions and support very deep trees
-# and very long text content (only affects libxml2 2.7+)
+        adj.load_from_index()
 
-# @functools.lru_cache(user_function)
+        adj.write_adjlist_clean()
+
+        pr = PageRank()
+
+        pr.load_adjlist()
+
+        pr.load_graphml()
+
+        pr.generate_rank()
 
 
 class WikiXML:
