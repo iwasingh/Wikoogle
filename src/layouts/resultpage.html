@@ -8,15 +8,21 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/partials/search-form.css') }}"/>
 {% endblock %}
 
-{% block header_left %}
-	<div class="flex-container">
-		<a href="/">
-			<img class="logo-mini mr-3" src="{{ url_for('static', filename='images/logo_mini.png') }}"
-					 onclick=""/>
+{% block header %}
+	<div class="flex-container header-result">
+		<a href="/" class="mb-3 header-logo">
+			{#			<img class="logo-mini mr-3" src="{{ url_for('static', filename='images/logo_mini.png') }}"#}
+			{#					 onclick=""/>#}
+
+			<img class="logo-small img-responsive"
+					 src="{{ url_for('static', filename='images/logo_full.png') }}"/>
 		</a>
-		<form method="GET" action="/search">
+		<form method="GET" action="/search" class="mb-3" class="header-form">
 			{% include 'partials/searchbar.html' %}
 		</form>
+		<div class="flex header-options">
+			{% include 'partials/header_options.html' %}
+		</div>
 	</div>
 {% endblock %}
 

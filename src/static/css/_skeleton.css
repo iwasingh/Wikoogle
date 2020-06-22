@@ -4,7 +4,7 @@ body {
 }
 .page {
   display: grid;
-  grid-template-rows: [header] minmax(auto, 64px) [content] 1fr [footer] minmax(0, 100px);
+  grid-template-rows: [header] auto [content] 1fr [footer] minmax(0, 100px);
   min-height: 100vh;
   padding: 0 calc(var(--grid-gutter)/2);
   width: 100%;

@@ -24,16 +24,22 @@
 
   <body>
   <div class="page">
-      <header class="pt-3 fixed">
-          <div class="nav-item__left">
-              {% block header_left %} {% endblock %}
-          </div>
+		<header class="pt-3">
+			{% block header %}
+				<div class="nav-item__left">
+					{% block header_left %} {% endblock %}
+				</div>
 
-          <div class="nav-item__right">
-              <button data-target="settings" data-toggle="modal" class="button link muted">Settings</button>
-              <button class="button link muted">About</button>
-          </div>
-      </header>
+				<div class="nav-item__center">
+					{% block header_center %} {% endblock %}
+				</div>
+
+				<div class="nav-item__right">
+					{% include 'partials/header_options.html' %}
+				</div>
+
+			{% endblock %}
+		</header>
 {#      {% block header %}#}
 {#          {% include 'partials/header.html' %}#}
 {#      {% endblock %}#}
@@ -51,6 +57,7 @@
 
 		{% block modals %}
 			{% include 'partials/settings.html' %}
+			{% include 'partials/about.html' %}
 		{% endblock %}
 		<script type="text/javascript" src="{{ url_for('static', filename='js/wikoogle.js') }}"></script>
     {% block javascript %}{% endblock %}

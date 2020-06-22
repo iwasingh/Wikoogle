@@ -1,7 +1,6 @@
-
 @media (max-width: 576px) {
   .search-bar {
-    width: 275px;
+    width: 100%;
   }
 
   .logo-full {
@@ -18,6 +17,12 @@
     margin: 0;
     border-radius: 0;
   }
+
+  .header-result {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
@@ -33,4 +38,10 @@
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
 
+}
+@media (max-width: 320px) {
+  .logo-full {
+    width: calc(100% - 32px);
+    height: auto;
+  }
 }
