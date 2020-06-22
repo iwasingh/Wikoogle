@@ -8,7 +8,7 @@ from query.expander import thesaurus_expand, lca_expand
 from hits.hits import Hits
 from hits.weighting import HitsBM25
 from pagerank.weighting import PageRankBM25
-from pagerank.facet import PageRankFacet
+from pagerank.facet import PageRankFacet, page_rank_facet
 
 logger = logging.getLogger()
 

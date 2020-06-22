@@ -1,9 +1,11 @@
 from whoosh import scoring
 from pagerank.pagerank import normalize_title
 
+
 def page_rank_weighting(idf, tf, fl, avgfl, B, K1, a, r):
     s = scoring.bm25(idf, tf, fl, avgfl, B, K1)
     return a * s + (1 - a) * r * s
+
 
 class PageRankBM25Scorer(scoring.WeightLengthScorer):
     def __init__(self, searcher, fieldname, text, pagerank, a, B=0.75, K1=1.2):
@@ -30,6 +32,7 @@ class PageRankBM25Scorer(scoring.WeightLengthScorer):
 
     def _score(self, weight, length):
         return page_rank_weighting(self.idf, weight, length, self.avgfl, self.B, self.K1, self.a, self.r)
+
 
 class PageRankBM25(scoring.WeightingModel):
     __name__ = 'PageRankBM25'

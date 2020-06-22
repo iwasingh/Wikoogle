@@ -37,7 +37,7 @@
 						</p>
 					</div>
 					<div class="opt__action">
-						<input class=radio" type="radio" value="lca" id="query_expansion_lca" name="query_expansion" {{ 'checked' if session['query_expansion'] == 'lca' else '' }} />
+						<input class=radio" type="radio" value="lca" id="query_expansion_lca" name="query_expansion" {{ 'checked' if session['query_expansion'] == 'lca' or not session['query_expansion'] else '' }} />
 						<label for="query_expansion_lca"></label>
 					</div>
 				</div>
@@ -74,7 +74,7 @@
 						<p class="muted">Okapi BM25 ranking function to estimate the relevance of documents.</p>
 					</div>
 					<div class="opt__action">
-						<input class=radio" type="radio" value="bm25" id="ranking_bm25" name="ranking" {{ 'checked' if session['ranking'] == 'bm25' else '' }} />
+						<input class=radio" type="radio" value="bm25" id="ranking_bm25" name="ranking" {{ 'checked' if session['ranking'] == 'bm25' or not session['ranking'] else '' }} />
 						<label for="ranking_bm25"></label>
 					</div>
 				</div>
@@ -112,7 +112,8 @@
 				<hr/>
 				<h3 class="primary"><strong>Link Analysis</strong></h3>
 				<h4>Boost for custom ranking models (PageRank, Hits)</h4>
-				<div class="flex flex-col align-center justify-center mt-3">
+				<p class="muted">The model is: <code>alpha * BM25  + (1-alpha) * PageRank</code>. That means higher values of alpha will favor BM25 score and lower values will favor PageRank score</p>
+				<div class="flex flex-col align-center justify-center mt-3 mb-3">
 					<input id="page_rank_lvl_10" value="{{ 8 if not session['page_rank_lvl'] else session['page_rank_lvl'] }}" type="range" min="1" max="10" step="1" name="page_rank_lvl" />
 					<label for="page_rank_lvl_10">
 						<span class="muted">0.1</span>

@@ -109,6 +109,7 @@ def search_results():
 
 @app.route('/settings', methods=['GET', 'POST'])
 def settings():
+
     if request.method == 'POST':
         session['results_limit'] = request.form['results_limit']
         session['page_rank_lvl'] = request.form['page_rank_lvl']
