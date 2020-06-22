@@ -33,8 +33,8 @@ class HitsBM25Scorer(scoring.WeightLengthScorer):
     def score(self, matcher):
         document = self.searcher.stored_fields(matcher.id())
         self.doc_title = normalize_title(document.get("title", ""))
-        self.r_a = auth.get(self.doc_title, 0)
-        self.r_h = hubs.get(self.doc_title, 0)
+        self.r_a = self.auth.get(self.doc_title, 0)
+        self.r_h = self.hubs.get(self.doc_title, 0)
         return self._score(matcher.weight(), self.dfl(matcher.id()))
 
     def _score(self, weight, length):
