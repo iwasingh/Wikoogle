@@ -12,23 +12,25 @@ def page_rank_facet(pagerank):
 
     return page_rank_sort
 
+
 class PageRankCategorizer(sorting.Categorizer):
-        def __init__(self, pagerank, global_searcher):
-            self.pagerank = pagerank
-            w = global_searcher.weighting
-            self.use_final = w.use_final
-            if w.use_final:
-                self.final = w.final
+    def __init__(self, pagerank, global_searcher):
+        self.pagerank = pagerank
+        w = global_searcher.weighting
+        self.use_final = w.use_final
+        if w.use_final:
+            self.final = w.final
 
-        def set_searcher(self, segment_searcher, offset):
-            self.segment_searcher = segment_searcher
+    def set_searcher(self, segment_searcher, offset):
+        self.segment_searcher = segment_searcher
 
-        def key_for(self, matcher, docid):
-            doc = self.segment_searcher.stored_fields(docid)
-            doc_title = normalize_title(doc.get("title", ""))
-            score = matcher.score()
-            rank = self.pagerank.graph.get(doc_title, 0)
-            return rank * len(self.pagerank.graph)
+    def key_for(self, matcher, docid):
+        doc = self.segment_searcher.stored_fields(docid)
+        doc_title = normalize_title(doc.get("title", ""))
+        score = matcher.score()
+        rank = self.pagerank.graph.get(doc_title, 0)
+        return rank * len(self.pagerank.graph)
+
 
 class PageRankFacet(sorting.FacetType):
     def __init__(self, pagerank, maptype=None):
@@ -37,4 +39,3 @@ class PageRankFacet(sorting.FacetType):
 
     def categorizer(self, global_searcher):
         return PageRankCategorizer(self.pagerank, global_searcher)
-    
