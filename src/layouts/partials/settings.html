@@ -37,7 +37,7 @@
 						</p>
 					</div>
 					<div class="opt__action">
-						<input class=radio" type="radio" value="lca" id="query_expansion_lca" name="query_expansion" {{ 'checked' if session['query_expansion'] == 'lca' else '' }} />
+						<input class=radio" type="radio" value="lca" id="query_expansion_lca" name="query_expansion" {{ 'checked' if session['query_expansion'] == 'lca' or not session['query_expansion'] else '' }} />
 						<label for="query_expansion_lca"></label>
 					</div>
 				</div>
@@ -74,7 +74,7 @@
 						<p class="muted">Okapi BM25 ranking function to estimate the relevance of documents.</p>
 					</div>
 					<div class="opt__action">
-						<input class=radio" type="radio" value="bm25" id="ranking_bm25" name="ranking" {{ 'checked' if session['ranking'] == 'bm25' else '' }} />
+						<input class=radio" type="radio" value="bm25" id="ranking_bm25" name="ranking" {{ 'checked' if session['ranking'] == 'bm25' or not session['ranking'] else '' }} />
 						<label for="ranking_bm25"></label>
 					</div>
 				</div>
