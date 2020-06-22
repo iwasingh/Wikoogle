@@ -6,8 +6,6 @@ import igraph
 class Hits:
     def __init__(self):
         self.G = None
-        self.hubs = {}
-        self.authorities = {}
 
     def load_graphml(self):
         file_graphml = ASSETS_DATA / 'graphs' / 'graph.graphml'
@@ -45,6 +43,8 @@ class Hits:
         nxGraph.add_nodes_from([nodes[x] for x in nodes])
         nxGraph.add_edges_from(edges)
 
-        self.authorities = normalize_graph(nx.hits(nxGraph)[1])
-        self.hubs = normalize_graph(nx.hits(nxGraph)[0])
+        auth = normalize_graph(nx.hits(nxGraph)[1])
+        hubs = normalize_graph(nx.hits(nxGraph)[0])
+
+        return (auth, hubs)
         

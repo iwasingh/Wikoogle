@@ -89,39 +89,8 @@
 						<label for="ranking_pl2"></label>
 					</div>
 				</div>
-				<div class="opt mb-3">
-					<div class="opt__description">
-						<h4>PageRank + Okapi BM25</h4>
-						<p class="muted">A custom ranking function that combines bm25 with pagerank score</p>
-					</div>
-					<div class="opt__action">
-						<input class=radio" type="radio" value="pr_bm25" id="ranking_pr_bm25" name="ranking" {{ 'checked' if session['ranking'] == 'pr_bm25' else '' }} />
-						<label for="ranking_pr_bm25"></label>
-					</div>
-				</div>
-				<div class="opt mb-3">
-					<div class="opt__description">
-						<h4>Hits + Okapi BM25</h4>
-						<p class="muted">A custom ranking function that combines bm25 with hits score</p>
-					</div>
-					<div class="opt__action">
-						<input class=radio" type="radio" value="hits_bm25" id="ranking_hits_bm25" name="ranking" {{ 'checked' if session['ranking'] == 'hits_bm25' else '' }} />
-						<label for="ranking_hits_bm25"></label>
-					</div>
-				</div>
 				<hr/>
 				<h3 class="primary"><strong>Link Analysis</strong></h3>
-				<h4>Boost for custom ranking models (PageRank, Hits)</h4>
-				<p class="muted">The model is: <code>alpha * BM25  + (1-alpha) * PageRank</code>. That means higher values of alpha will favor BM25 score and lower values will favor PageRank score</p>
-				<div class="flex flex-col align-center justify-center mt-3 mb-3">
-					<input id="page_rank_lvl_10" value="{{ 8 if not session['page_rank_lvl'] else session['page_rank_lvl'] }}" type="range" min="1" max="10" step="1" name="page_rank_lvl" />
-					<label for="page_rank_lvl_10">
-						<span class="muted">0.1</span>
-						<span class="muted">0.4</span>
-						<span class="muted">0.7</span>
-						<span class="muted">1</span>
-					</label>
-				</div>
 				<div class="opt mb-3">
 					<div class="opt__description">
 						<h4>PageRank</h4>
@@ -140,8 +109,21 @@
 				</div>
 				<div class="opt mb-3">
 					<div class="opt__description">
-						<h4>No PageRank</h4>
-						<p class="muted">Disable PageRank</p>
+						<h4>Hits</h4>
+						<p class="muted">Sort results by the <i>hub</i> and <i>authority</i> value of the document
+							obtained through a query-dependent link analysis algorithm <i>Hits</i>.
+						</p>
+					</div>
+					<div class="opt__action">
+						<input class=radio" type="radio" value="hits_rank" id="hits_rank"
+									 name="link_analysis" {{ 'checked' if session['link_analysis'] == 'hits_rank' else '' }} />
+						<label for="hits_rank"></label>
+					</div>
+				</div>
+				<div class="opt mb-3">
+					<div class="opt__description">
+						<h4>No Link Analysis</h4>
+						<p class="muted">Disable Link Analysis</p>
 					</div>
 					<div class="opt__action">
 						<input class=radio" type="radio" value="none" id="page_rank_none" name="link_analysis" {{ 'checked' if not session['link_analysis'] or session['link_analysis'] == 'none' else '' }} />

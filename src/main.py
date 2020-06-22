@@ -112,7 +112,6 @@ def settings():
 
     if request.method == 'POST':
         session['results_limit'] = request.form['results_limit']
-        session['page_rank_lvl'] = request.form['page_rank_lvl']
         session['query_expansion'] = request.form['query_expansion']
         session['ranking'] = request.form['ranking']
         session['link_analysis'] = request.form['link_analysis']

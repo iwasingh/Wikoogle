@@ -6,17 +6,14 @@ from whoosh.searching import Searcher as ws
 from whoosh.qparser import QueryParser, MultifieldParser
 from query.expander import thesaurus_expand, lca_expand
 from hits.hits import Hits
-from hits.weighting import HitsBM25
-from pagerank.weighting import PageRankBM25
-from pagerank.facet import PageRankFacet, page_rank_facet
+from pagerank.facet import page_rank_facet
+from hits.facet import hits_rank_facet
 
 logger = logging.getLogger()
 
 MODELS = {
     'bm25': scoring.BM25F,
-    'pl2': scoring.PL2,
-    'pr_bm25': PageRankBM25,
-    'hits_bm25': HitsBM25,
+    'pl2': scoring.PL2
 }
 
 EXPANSION = {
@@ -30,20 +27,16 @@ class Searcher:
     def __init__(self, wikimedia, pagerank):
         self.wikimedia = wikimedia
         self.pagerank = pagerank
+        self.hitsrank = Hits()
+        
+        self.hitsrank.load_graphml()
 
         self.parser = MultifieldParser(['title', 'text'], fieldboosts={'title': 2.5, 'text': 1.0}, schema=self.wikimedia.index.schema)
         self.parser_base = QueryParser('text', schema=self.wikimedia.index.schema)
 
-        self._bm25_alpha = 0.8
-
-        _pr_bm25_mod = PageRankBM25(self.pagerank.graph, self._bm25_alpha)
-        _hits_bm25_mod = HitsBM25({}, {}, self._bm25_alpha)
-
         self.searcher = {
             'bm25': ws(reader=self.wikimedia.reader, weighting=scoring.BM25F),
-            'pl2': ws(reader=self.wikimedia.reader, weighting=scoring.PL2),
-            'pr_bm25': ws(reader=self.wikimedia.reader, weighting=_pr_bm25_mod),
-            'hits_bm25': ws(reader=self.wikimedia.reader, weighting=_hits_bm25_mod)
+            'pl2': ws(reader=self.wikimedia.reader, weighting=scoring.PL2)
         }
         
         self._query_expansion_relevant_limit = 10
@@ -83,40 +76,25 @@ class Searcher:
         if 'ranking' in configuration and configuration['ranking'] and MODELS[configuration['ranking']]:
             model = MODELS[configuration['ranking']]
             searcher = self.searcher[configuration['ranking']]
-
-        # Default PageRank relevance
-        alpha = self._bm25_alpha
-
-        if 'page_rank_lvl' in configuration and int(configuration['page_rank_lvl']) > 0:
-            alpha = int(configuration['page_rank_lvl']) / 10
-
-        # Hits
-        if model.__name__ == 'HitsBM25':
-            _hits_searcher = self.searcher['bm25']
-            results = _hits_searcher.search(query, limit=self._hits_rank_relevant_window)
-            hits = Hits()
-            hits.load_graphml()
-            hits.rank_from_results(results)
-            _hits_bm25_mod = HitsBM25(hits.authorities, hits.hubs, alpha)
-            searcher = ws(reader=self.wikimedia.reader, weighting=_hits_bm25_mod)
-
-        # PageRank
-        if model.__name__ == 'PageRank':             
-            _pr_bm25_mod = PageRankBM25(self.pagerank.graph, alpha)
-            searcher = ws(reader=self.wikimedia.reader, weighting=_pr_bm25_mod)
-
+        
         # Default Link Analysis
         link_analysis = False
         facet = lambda result: result.score
 
         if 'link_analysis' in configuration and configuration['link_analysis'] != 'none':
-            facet = page_rank_facet(self.pagerank)
-            link_analysis = 'page_rank'
+            link_analysis = configuration['link_analysis']
+
+            if link_analysis == 'hits_rank':
+                results = searcher.search(query, limit=self._hits_rank_relevant_window)
+                auths, hubs = self.hitsrank.rank_from_results(results)
+                facet = hits_rank_facet(auths, hubs)
+            
+            if link_analysis == 'page_rank':
+                facet = page_rank_facet(self.pagerank)
 
         try:
             results = []
             print('* limit ', limit)
-            print('* alpha ', alpha)
             print('* model: ', model.__name__)
             print('* expansion model: ', expansion)
             print('* link analysis: ', link_analysis)
