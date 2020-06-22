@@ -1,5 +1,5 @@
 from config import ASSETS_DATA
-from pagerank.pagerank import normalize_title
+from pagerank.pagerank import normalize_title, normalize_graph
 import networkx as nx
 import igraph
 
@@ -45,11 +45,6 @@ class Hits:
         nxGraph.add_nodes_from([nodes[x] for x in nodes])
         nxGraph.add_edges_from(edges)
 
-        self.hubs = nx.hits(nxGraph)[0]
-        self.authorities = nx.hits(nxGraph)[1]
-
-        m_auth = max([self.authorities[k] for k in self.authorities])
-        m_hubs = max([self.hubs[k] for k in self.hubs])
-
-        print(' * max_authorities ', m_auth)
-        print(' * max_hubs ', m_hubs)
+        self.authorities = normalize_graph(nx.hits(nxGraph)[1])
+        self.hubs = normalize_graph(nx.hits(nxGraph)[0])
+        

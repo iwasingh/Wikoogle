@@ -8,6 +8,19 @@ import igraph
 def normalize_title(title):
     return title.split('|')[0].lower().replace(" ", "_")
 
+def normalize_graph(graph, N = 0.85):
+    len_graph = len(graph)
+
+    for key in graph:
+        graph[key] = graph[key] * len_graph
+    
+    maxg = max([graph[key] for key in graph])
+
+    for key in graph:
+        graph[key] = graph[key] / maxg * N
+
+    return graph
+
 def proc_handler(data):
     tmp = ""
     articles = data.get("articles")
@@ -87,7 +100,7 @@ class PageRank:
         self.G = nx.read_adjlist(str(file_adjlist), create_using=nx.DiGraph)
         nx.write_graphml(self.G, ASSETS_DATA / 'graphs' / 'graph.graphml')
 
-    def load_graphml(self):
+    def load_graphml(self): # leggi da adjlist per memoria
         file_graphml = ASSETS_DATA / 'graphs' / 'graph.graphml'
         self.G = igraph.Graph.Read_GraphML(str(file_graphml))
 
@@ -102,8 +115,14 @@ class PageRank:
 
     def get(self):
         file_pagerank = ASSETS_DATA / 'graphs' / 'graph.igraph.rank'
+        graph_temp = {}
+
         with open(str(file_pagerank), "r") as ff:
             for line in ff:
                 article, rank = tuple(line.split(" "))
-                self.graph[article] = float((rank.rstrip()))
+                graph_temp[article] = float((rank.rstrip()))
             ff.close()
+
+        self.graph = normalize_graph(graph_temp)
+
+        return self.graph

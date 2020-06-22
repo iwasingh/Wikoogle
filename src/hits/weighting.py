@@ -2,11 +2,7 @@ from whoosh import scoring
 from pagerank.pagerank import normalize_title
 
 def hits_weighting(idf, tf, fl, avgfl, B, K1, a, r_a, r_h):
-    r = (r_a * 10) + (r_h * 10) 
-    
-    r = r if r < 1.0 else 1.0
-    r = r if r > 0 else 0.001
-    
+    r = (r_a / 2) + (r_h / 2) 
     s = scoring.bm25(idf, tf, fl, avgfl, B, K1)
     return a * s + (1 - a) * r * s
 
@@ -47,6 +43,6 @@ class HitsBM25(scoring.WeightingModel):
         self.auth = auth
         self.hubs = hubs
         self.alpha = alpha
-
+    
     def scorer(self, searcher, fieldname, text, qf=1):
         return HitsBM25Scorer(searcher, fieldname, text, self.auth, self.hubs, self.alpha)
