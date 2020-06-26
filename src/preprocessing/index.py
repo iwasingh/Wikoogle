@@ -22,7 +22,7 @@ WAnalyzer = WikimediaAnalyzer(cachesize=-1)
 
 class WikiSchema(SchemaClass):
     id = ID(stored=True)
-    title = TEXT(stored=True, analyzer=WAnalyzer, field_boost=2.0)
+    title = TEXT(stored=True, analyzer=WAnalyzer)
     text = TEXT(stored=True, analyzer=WAnalyzer)
     categories = KEYWORD(stored=True, analyzer=WAnalyzer, scorable=True, lowercase=True, commas=True)
 

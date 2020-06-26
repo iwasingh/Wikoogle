@@ -17,33 +17,18 @@ import time
 from pywsd import disambiguate, adapted_lesk
 
 
-# wsd_disambiguate = None
-# wsd_adapted_lesk = None
+def get_cosine(vec1, vec2):
+    intersection = set(vec1.keys()) & set(vec2.keys())
+    numerator = sum([vec1[x] * vec2[x] for x in intersection])
 
-# if os.environ.get('FLASK_ENV') == 'development':
-#     if os.environ.get('WERKZEUG_RUN_MAIN') == 'true':
-#         from pywsd import disambiguate, adapted_lesk
-#
-#         wsd_disambiguate = disambiguate
-#         wsd_adapted_lesk = adapted_lesk
-# else:
-#     from pywsd import disambiguate, adapted_lesk
-#
-#     wsd_disambiguate = disambiguate
-#     wsd_adapted_lesk = adapted_lesk
+    sum1 = sum([vec1[x] ** 2 for x in vec1.keys()])
+    sum2 = sum([vec2[x] ** 2 for x in vec2.keys()])
+    denominator = math.sqrt(sum1) * math.sqrt(sum2)
 
-
-# def load_pywsd():
-#     global wsd_disambiguate
-#     global wsd_adapted_lesk
-#
-#     if wsd_disambiguate is None or wsd_disambiguate is None:
-#         from pywsd import disambiguate, adapted_lesk
-#         wsd_disambiguate = disambiguate
-#         wsd_adapted_lesk = adapted_lesk
-#
-
-# lazy_loading(load_pywsd)
+    if not denominator:
+        return 0.0
+    else:
+        return float(numerator) / denominator
 
 
 class POSTag(Enum):
@@ -99,6 +84,7 @@ def thesaurus_expand(query, wikimedia, size=3):
     wikimedia_analyzer = WikimediaAnalyzer()
     original_tokens = [i.text for i in analyzer(query)]
     # original_tokens = set([i.text for i in query.all_tokens()])
+    print(original_tokens)
 
     synonyms = set()
 
@@ -116,13 +102,18 @@ def thesaurus_expand(query, wikimedia, size=3):
             definition = s.definition()
             tokens = [i.text for i in wikimedia_analyzer(definition)]
             synsets.append((w, wordnet.synset(s.name()), tokens))
+
     for word, sense, definition in synsets:
         if sense:
             synonyms = synonyms.union(noun_groups(word_tokenize(sense.definition()), chunk_size=1, rule=rule))
-            for l in sense.lemma_names():
-                for lemma in wikimedia_analyzer(l.replace('_', ' ')):
-                    if lemma.text not in original_tokens:
-                        synonyms.add(lemma.text)
+            text = " ".join([i.name() for i in sense.lemmas()])
+            for lemma in wikimedia_analyzer(text):
+                if lemma.text not in original_tokens:
+                    synonyms.add(lemma.text)
+                # vfor tok in wikimedia_analyzer(lemma.text):
+                #     print(tok.text)
+                #     if tok.text not in original_tokens:
+                #         synonyms.add(tok.text)
 
     # for token in tokens: for _, original_sense, _ in synsets: for child_synset in wordnet.synsets(token):
     # if child_synset: # definition = [i.text for i in analyzer(child_synset.definition())] # pywsd. score =
@@ -156,26 +147,16 @@ def thesaurus_expand(query, wikimedia, size=3):
     reader = wikimedia.reader
     N = reader.doc_count()
 
-    def get_cosine(vec1, vec2):
-        intersection = set(vec1.keys()) & set(vec2.keys())
-        numerator = sum([vec1[x] * vec2[x] for x in intersection])
-
-        sum1 = sum([vec1[x] ** 2 for x in vec1.keys()])
-        sum2 = sum([vec2[x] ** 2 for x in vec2.keys()])
-        denominator = math.sqrt(sum1) * math.sqrt(sum2)
-
-        if not denominator:
-            return 0.0
-        else:
-            return float(numerator) / denominator
-
     terms_vec = {}
     for syn in synonyms:
         doc_frequency = reader.doc_frequency('text', syn)
         if doc_frequency != 0:
             idf = log(N / doc_frequency)
             terms_vec[syn] = idf
-    return list(map(lambda q: q, sorted(terms_vec, key=lambda c: terms_vec[c], reverse=True)))[:size]
+        else:
+            terms_vec[syn] = 0
+
+    return list(map(lambda q: q, sorted(terms_vec, key=lambda c: terms_vec[c])))[:size]
 
 
 def noun_groups(tokens, chunk_size=2, analyzer=StemmingAnalyzer(), rule=None):
@@ -323,7 +304,7 @@ def lca_expand(query, documents, size=15, passage_size=400, threshold=1.4):
         sim = prod([i for i in prods])
         ranking.append((concept, sim))
 
-    # print(sorted(ranking, key=lambda c: c[1], reverse=True))
+    print(sorted(ranking, key=lambda c: c[1], reverse=True))
     filtered = filter(lambda c: c[1] > threshold, ranking)
     return list(map(lambda q: q[0], sorted(filtered, key=lambda c: c[1], reverse=True)))[:size]
     # return [re.sub(regex, "", term).strip() for term in top_terms]

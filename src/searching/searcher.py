@@ -31,7 +31,7 @@ class Searcher:
         
         self.hitsrank.load_graphml()
 
-        self.parser = MultifieldParser(['title', 'text'], fieldboosts={'title': 2.5, 'text': 1.0}, schema=self.wikimedia.index.schema)
+        self.parser = MultifieldParser(['title', 'text'], fieldboosts={'title': 1.0, 'text': 1.0}, schema=self.wikimedia.index.schema)
         self.parser_base = QueryParser('text', schema=self.wikimedia.index.schema)
 
         self.searcher = {
@@ -101,12 +101,12 @@ class Searcher:
 
             if expansion != 'none' and expansion is not False:
                 if expansion == 'lca':
-                    if link_analysis:
-                        results = searcher.search(query, limit=self._page_rank_relevant_window)
-                        results = sorted(results, key=facet, reverse=True)[:self._query_expansion_relevant_limit]
-                        expansion_threshold = 1.005
-                    else:
-                        results = searcher.search(query, limit=self._query_expansion_relevant_limit)
+                    # if link_analysis:
+                    #     results = searcher.search(query, limit=self._page_rank_relevant_window)
+                    #     results = sorted(results, key=facet, reverse=True)[:self._query_expansion_relevant_limit]
+                    #     expansion_threshold = 1.005
+                    # else:
+                    results = searcher.search(query, limit=self._query_expansion_relevant_limit)
 
                     if len(results) >= self._query_expansion_relevant_limit:
                         terms = lca_expand(query, results, size=expansion_terms, threshold=expansion_threshold)
@@ -118,6 +118,7 @@ class Searcher:
                         results = searcher.search(expanded_query, limit=limit)
                 elif expansion == 'thesaurus':
                     terms = Searcher.parse_query_from_terms(thesaurus_expand(text, self.wikimedia, size=10))
+                    print(terms)
                     expanded_query = query | self.parser.parse(terms).with_boost(0.30)
                     results = searcher.search(expanded_query, limit=limit)
             else:

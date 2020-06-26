@@ -49,5 +49,6 @@ def FragmenterAnalyzer():
 
 
 def ThesaurusExpansionAnalyzer(stoplist=GOOGLE_STOP_WORDS):
+    # filters = SubstitutionFilter("_", " ") | SubstitutionFilter(".", "")
     ret = StandardAnalyzer(stoplist=stoplist)
-    return ret
+    return ret | SubstitutionFilter('_', " ")
