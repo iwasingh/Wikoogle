@@ -9,15 +9,15 @@ def normalize_title(title):
     return title.split('|')[0].lower().replace(" ", "_")
 
 def normalize_graph(graph, N = 0.85):
-    len_graph = len(graph)
+    # len_graph = len(graph)
 
-    for key in graph:
-        graph[key] = graph[key] * len_graph
+    # for key in graph:
+    #     graph[key] = graph[key] * len_graph
     
-    maxg = max([graph[key] for key in graph])
+    # maxg = max([graph[key] for key in graph])
 
-    for key in graph:
-        graph[key] = graph[key] / maxg * N
+    # for key in graph:
+    #     graph[key] = graph[key] / maxg * N
 
     return graph
 
@@ -99,8 +99,8 @@ class PageRank:
         file_adjlist = ASSETS_DATA / 'graphs' / 'graph.adjlist'
         self.G = nx.read_adjlist(str(file_adjlist), create_using=nx.DiGraph)
         nx.write_graphml(self.G, ASSETS_DATA / 'graphs' / 'graph.graphml')
-
-    def load_graphml(self): # leggi da adjlist per memoria
+        
+    def load_graphml(self):
         file_graphml = ASSETS_DATA / 'graphs' / 'graph.graphml'
         self.G = igraph.Graph.Read_GraphML(str(file_graphml))
 
