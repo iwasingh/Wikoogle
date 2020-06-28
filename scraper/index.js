@@ -262,7 +262,7 @@ async function main() {
             const _tempda = await runKeyForWiki(k, page, config.name)
             const _wiki = _tempda.slice(0, 10)
             const _relv = _google.slice(0, 10)
-            const _prec = [];
+            let _prec = [];
 
             for (p in _wiki) {
                 if (_relv.includes(_wiki[p])) {
@@ -284,8 +284,10 @@ async function main() {
                 }
             }
 
+           _prec = [["-", 0], ..._prec]
+
             for (v in _prec) {
-                for (t = parseInt(v); t < 10; t++) {
+                for (t = parseInt(v); t <= 10; t++) {
                     if (_prec[t][1] > _prec[v][1]) {
                         _prec[v][1] = _prec[t][1]
                     }
@@ -301,11 +303,10 @@ async function main() {
     }
 
     for (c in ALL_CONFIG) {
-        console.log(' ')
-        console.log(ALL_CONFIG[c].name)
+        console.log('\n')
         console.log(keywords.join(","))
 
-        for (i = 0; i < 10; i++) {
+        for (i = 0; i <= 10; i++) {
             const _temp = []
 
             for (k in keywords) {
