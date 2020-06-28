@@ -148,6 +148,8 @@ __back_assets
 __back_index
 .storage
 
-__assets/graphs/**
+__assets/graphs/*
+
+!__assets/graphs/.gitkeep 
 
 scraper/node_modules
