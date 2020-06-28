@@ -148,6 +148,6 @@ __back_assets
 __back_index
 .storage
 
-__assets/graphs/*
+__assets/graphs/**
 
 scraper/node_modules
