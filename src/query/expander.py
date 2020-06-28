@@ -14,6 +14,7 @@ from searching.fragmenter import Fragmenter, PhraseTokenizer
 import re
 import math
 from pywsd import disambiguate, adapted_lesk
+# from pke.unsupervised import TopicRank
 
 
 def get_cosine(vec1, vec2):
@@ -65,7 +66,32 @@ def stemming(tokens):
     return [stemmer.stem(t) for t in tokens]
 
 
-def thesaurus_expand(query, wikimedia, size=3):
+def pke_key_phrase_extract(text, n=10):
+    # create a TopicRank extractor
+    extractor = TopicRank()
+
+    # load the content of the document, here in CoreNLP XML format
+    # the input language is set to English (used for the stoplist)
+    # normalization is set to stemming (computed with Porter's stemming algorithm)
+    extractor.load_document(text,
+                            language="en",
+                            normalization='stemming')
+
+    # select the keyphrase candidates, for TopicRank the longest sequences of
+    # nouns and adjectives
+    extractor.candidate_selection(pos={'NOUN', 'PROPN', 'ADJ'})
+
+    # weight the candidates using a random walk. The threshold parameter sets the
+    # minimum similarity for clustering, and the method parameter defines the
+    # linkage method
+    extractor.candidate_weighting(threshold=0.74,
+                                  method='average')
+
+    # print the n-highest (10) scored candidates
+    return extractor.get_n_best(n=n, stemming=True)
+
+
+def thesaurus_expand(query, wikimedia, size=3, threshold=4.23):
     """
     Wordent hierarchy
      - hyponyms concepts that are more specific (immediate), navigate down to the tree
@@ -96,9 +122,20 @@ def thesaurus_expand(query, wikimedia, size=3):
     """
 
     synsets = []
+    # for i in original_tokens:
+    #     for s in wordnet.synsets(i):
+    #         for h in s.hypernyms():
+    #             print(s, h , s.wup_similarity(h))
+
+    # for i in original_tokens:
+    #     for s in wordnet.synsets(i):
+    #         print(s.definition())
+
     for w, s in disambiguate(" ".join(original_tokens), algorithm=adapted_lesk):
         if s:
             definition = s.definition()
+            pke_text = definition + ' ' + ' '.join(s.lemma_names())
+            # print(pke_key_phrase_extract(pke_text))
             tokens = [i.text for i in wikimedia_analyzer(definition)]
             synsets.append((w, wordnet.synset(s.name()), tokens))
 
@@ -144,18 +181,34 @@ def thesaurus_expand(query, wikimedia, size=3):
     # return original_tokens + [i for i in tokens if i not in original_tokens]
 
     reader = wikimedia.reader
-    N = reader.doc_count()
 
     terms_vec = {}
     for syn in synonyms:
-        doc_frequency = reader.doc_frequency('text', syn)
-        if doc_frequency != 0:
-            idf = log(N / doc_frequency)
-            terms_vec[syn] = idf
-        else:
-            terms_vec[syn] = 0
+        score = calc_syn_score(syn, reader)
 
-    return list(map(lambda q: q, sorted(terms_vec, key=lambda c: terms_vec[c])))[:size]
+        terms_vec[syn] = score
+        # else:
+        #     terms_vec[syn] = 0
+
+    ranked_terms = sorted(terms_vec, key=lambda c: terms_vec[c], reverse=True)
+    print('***Ranked terms')
+    for i in list(map(lambda q: (q, terms_vec[q]), ranked_terms)):
+        print(i[0], ' ', i[1], '\n')
+
+    return list(map(lambda q: q[0], filter(lambda v: v[1] >= threshold, terms_vec.items())))
+
+
+def calc_syn_score(syn, reader):
+    terms_vec = []
+    for i in word_tokenize(syn):
+        doc_frequency = reader.doc_frequency('text', i)
+        term_frequency = reader.frequency('text', i)
+        if doc_frequency != 0:
+            terms_vec.append(term_frequency / doc_frequency)
+        else:
+            terms_vec.append(0)
+
+    return max(terms_vec)
 
 
 def noun_groups(tokens, chunk_size=2, analyzer=StemmingAnalyzer(), rule=None):

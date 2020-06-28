@@ -51,16 +51,29 @@ class Searcher:
 
         self.query_analyzer = WikimediaAnalyzer()
 
+        self.query_expansion_thesaurus_threshold = 4.23
+
     @staticmethod
     def parse_query_from_terms(terms):
         return " OR ".join(['(' + i + ')' for i in terms])
+
+    def re_weight_query(self, query, terms):
+        print(terms)
+        weights = [1 - (0.9 * ((i + 1) / len(terms))) for i, t in enumerate(terms)]
+        expanded_query = query.with_boost(1)
+        for i, w in enumerate(weights):
+            tokens = [i.text for i in self.query_analyzer(terms[i])]
+            print(terms[i], tokens)
+            q = Phrase('text', tokens, 3).with_boost(w)
+            expanded_query = expanded_query | q
+        return expanded_query
 
     def search(self, text, configuration):
         # Default query object
         t = [i.text for i in self.query_analyzer(text)]
         query = self.parser.parse(text) if len(t) <= 1 else Phrase('text', t, slop=1)
         logger.info(repr(query))
-        logger.info(repr(nltk.pos_tag(t)))
+        logger.info(repr(nltk.pos_tag(nltk.word_tokenize(text))))
 
         # print(extract(word_tokenize(text)))
 
@@ -119,22 +132,17 @@ class Searcher:
                     #     expansion_threshold = 1.005
                     # else:
                     results = searcher.search(query, limit=self._query_expansion_relevant_limit)
-                    print(results)
                     if len(results) >= self._query_expansion_relevant_limit:
                         terms = lca_expand(query, results, size=20, threshold=1.288)
-                        weights = [1 - (0.9 * ((i + 1) / len(terms))) for i, t in enumerate(terms)]
-                        expanded_query = query.with_boost(1)
-                        for i, w in enumerate(weights):
-                            q = Phrase('text', nltk.word_tokenize(terms[i]), 3).with_boost(w)
-                            print(w, q)
-                            expanded_query = expanded_query | q
-
-                        print(expanded_query)
+                        # print(terms)
+                        expanded_query = self.re_weight_query(query, terms)
+                        logging.info(repr(expanded_query))
                         results = searcher.search(expanded_query, limit=limit)
                 elif expansion == 'thesaurus':
-                    terms = Searcher.parse_query_from_terms(thesaurus_expand(text, self.wikimedia, size=10))
-                    print(terms)
-                    expanded_query = query | self.parser.parse(terms).with_boost(0.30)
+                    terms = thesaurus_expand(text, self.wikimedia, size=10, threshold=self.query_expansion_thesaurus_threshold)
+                    # print(terms)
+                    expanded_query = self.re_weight_query(query, terms)
+                    logging.info(repr(expanded_query))
                     results = searcher.search(expanded_query, limit=limit)
             else:
                 results = searcher.search(query, limit=limit)

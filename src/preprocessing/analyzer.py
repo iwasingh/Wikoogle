@@ -6,7 +6,7 @@ from whoosh.support.charset import accent_map
 
 GOOGLE_STOP_WORDS = frozenset(('I', 'a', 'about', 'an', 'are', 'as', 'at', 'be', 'by', 'com', 'for', 'from',
                                'how', 'in', 'is', 'it', 'of', 'on', 'or', 'that', 'the', 'this', 'to', 'was',
-                               'what', 'when', 'where', 'who', 'will', 'with', 'the',
+                               'what', 'when', 'where', 'who', 'will', 'with',
                                'www')).union(STOP_WORDS)
 
 
