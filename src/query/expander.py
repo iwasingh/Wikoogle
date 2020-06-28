@@ -10,10 +10,9 @@ from functools import reduce
 import operator
 from math import log
 from whoosh.analysis import StemmingAnalyzer
-from searching.fragmenter import Fragmenter
+from searching.fragmenter import Fragmenter, PhraseTokenizer
 import re
 import math
-import time
 from pywsd import disambiguate, adapted_lesk
 
 
@@ -272,10 +271,11 @@ def lca_expand(query, documents, size=15, passage_size=400, threshold=1.4):
     doc_stats = []
     for doc in documents:
         text = clean(doc['text']).lower()
-        fragment = fragmenter.merge_fragments(
-            fragmenter.calculate_phrase_ranking(
-                text,
-                query_terms)[:3])
+        fragment = fragmenter.merge_fragments(PhraseTokenizer().tokenize(text)[:3])
+        # fragment = fragmenter.merge_fragments(
+        #     fragmenter.calculate_phrase_ranking(
+        #         text,
+        #         query_terms)[:3])
         tokens = word_tokenize(fragment.text)
         stemmed_tokens = [i.text for i in analyzer(text)]
         key_terms = noun_groups(tokens)
