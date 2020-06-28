@@ -150,4 +150,6 @@ __back_index
 
 __assets/graphs/*
 
+!__assets/graphs/.gitkeep
+
 scraper/node_modules
