@@ -15,7 +15,7 @@
   </p>
 </p>
 
-Wikoogle is a wikipedia information retrieval system (search engine)
+Wikoogle is a wikipedia information retrieval system. In other terms is a wikipedia search engine
 
 ## Installation
 Alongside of other dependencies used to build the project explained below, you must need:
