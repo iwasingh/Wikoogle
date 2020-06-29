@@ -17,5 +17,5 @@ loggers:
     handlers: [file]
     propagate: 0
 root:
-  level: ERROR
+  level: INFO
   handlers: [root]
