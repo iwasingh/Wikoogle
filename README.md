@@ -99,7 +99,7 @@ All major modern browser are supported:
 * Firefox (>=52)
 
 ## Docs
-See docs [here](https://github.com/iwasingh/Wikoogle/tree/master/docs)
+See docs [here](https://github.com/iwasingh/Wikoogle/tree/master/docs), you will find evaluation and performance measures and other aspects related to the project as challenges, architecture, models and so on.
 
 ## Screenshots
 <p align="center">
