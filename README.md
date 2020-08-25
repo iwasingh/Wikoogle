@@ -9,7 +9,7 @@
   <p align="center">
     The wikipedia search engine!
     <br />
-    <a href="http://212.237.42.43:8080/"><strong>Demo »</strong></a>
+    <a href="http://212.237.42.43:8080/"><strong>Demo » (service might be unvailable)</strong></a>
     <br />
     <br />
   </p>
@@ -97,6 +97,9 @@ All major modern browser are supported:
 * Chrome (>=57)
 * Edge (>=16)
 * Firefox (>=52)
+
+## Docs
+See docs [here](https://github.com/iwasingh/Wikoogle/tree/master/docs)
 
 ## Screenshots
 <p align="center">
