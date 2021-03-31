@@ -1,13 +1,14 @@
+-i https://pypi.org/simple/
 click==7.1.1
 cycler==0.10.0
 decorator==4.4.2
-Flask==1.1.2
+flask==1.1.2
 itsdangerous==1.1.0
-Jinja2==2.11.2
+jinja2==2.11.2
 joblib==0.14.1
 kiwisolver==1.2.0
-lxml==4.5.0
-MarkupSafe==1.1.1
+lxml==4.6.3
+markupsafe==1.1.1
 matplotlib==3.2.1
 networkx==2.4
 nltk==3.5
@@ -18,11 +19,11 @@ python-dateutil==2.8.1
 python-igraph==0.8.2
 pytz==2020.1
 pywsd==1.2.4
-PyYAML==5.3.1
+pyyaml==5.3.1
 regex==2020.4.4
 six==1.15.0
 texttable==1.6.2
 tqdm==4.45.0
-Werkzeug==1.0.1
-Whoosh==2.7.4
+werkzeug==1.0.1
+whoosh==2.7.4
 wn==0.0.23
