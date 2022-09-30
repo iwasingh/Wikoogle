@@ -9,7 +9,7 @@ verify_ssl = true
 click = "==7.1.1"
 decorator = "==4.4.2"
 itsdangerous = "==1.1.0"
-joblib = "==0.14.1"
+joblib = "==1.2.0"
 kiwisolver = "==1.2.0"
 lxml = "==4.5.0"
 matplotlib = "==3.2.1"
